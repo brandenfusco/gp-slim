@@ -4,3 +4,6 @@
 [submodule "cms-page-style-update"]
 	path = cms-page-style-update
 	url = git@gitlab.dev:development/cms-page-style-update.git
+[submodule "new-green-pistachio"]
+	path = new-green-pistachio
+	url = git@gitlab.dev:development/new-green-pistachio.git
