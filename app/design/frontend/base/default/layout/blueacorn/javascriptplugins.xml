@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+		<reference name="scripts_in_footer">
+
+			<!-- Fancybox -->
+			<action method="addItem" ifconfig="javascriptplugins/plugins/fancybox">
+				<type>js_css</type>
+				<name>blueacorn/lib/fancybox/jquery.fancybox.css</name>
+			</action>
+			<action method="addItem" ifconfig="javascriptplugins/plugins/fancybox">
+				<type>js</type>
+				<name>blueacorn/lib/fancybox/jquery.fancybox.pack.js</name>
+			</action>
+
+			<!-- BX Slider -->
+			<action method="addItem" ifconfig="javascriptplugins/plugins/bxslider">
+				<type>js_css</type>
+				<name>blueacorn/lib/bxslider/jquery.bxslider.css</name>
+			</action>
+			<action method="addItem" ifconfig="javascriptplugins/plugins/bxslider">
+				<type>js</type>
+				<name>blueacorn/lib/bxslider/jquery.bxslider.min.js</name>
+			</action>
+
+			<!-- Flexslider -->
+			<action method="addItem" ifconfig="javascriptplugins/plugins/flexslider">
+				<type>js_css</type>
+				<name>blueacorn/lib/flexslider/flexslider.css</name>
+			</action>
+			<action method="addItem" ifconfig="javascriptplugins/plugins/flexslider">
+				<type>js</type>
+				<name>blueacorn/lib/flexslider/jquery.flexslider-min.js</name>
+			</action>
+
+			<!-- jQuery ScrollTo -->
+			<action method="addItem" ifconfig="javascriptplugins/plugins/scrollto">
+				<type>js</type>
+				<name>blueacorn/lib/scrollto/jquery.scrollTo.min.js</name>
+			</action>
+
+			<!-- Selectivizr -->
+			<action method="addItem" ifconfig="javascriptplugins/plugins/selectivizr">
+				<type>js</type>
+				<name>blueacorn/lib/selectivizr/selectivizr-min.js</name>
+				<if>lte IE 8</if>
+			</action>
+
+			<!-- Placeholder.js -->
+			<action method="addItem" ifconfig="javascriptplugins/plugins/placeholderjs">
+				<type>js</type>
+				<name>blueacorn/lib/placeholderjs/placeholder.min.js</name>
+			</action>
+
+			<!-- SVG Injector -->
+			<action method="addItem" ifconfig="javascriptplugins/plugins/svginjector">
+				<type>js</type>
+				<name>blueacorn/lib/svginjector/svg-injector.min.js</name>
+			</action>
+
+			<!-- Headroom.js -->
+			<action method="addItem" ifconfig="javascriptplugins/plugins/headroom">
+				<type>js</type>
+				<name>blueacorn/lib/headroom/headroom.min.js</name>
+			</action>
+
+			<!-- Parallax.js -->
+			<action method="addItem" ifconfig="javascriptplugins/plugins/parallax">
+				<type>js</type>
+				<name>blueacorn/lib/parallax/parallax.min.js</name>
+			</action>
+
+			<!-- HTML5Shiv (this one needs to be last) -->
+			<action method="addItem" ifconfig="javascriptplugins/plugins/html5shiv">
+				<type>js</type>
+				<name>blueacorn/lib/html5shiv/html5shiv-printshiv.min.js</name>
+				<if>lt IE 9</if>
+			</action>
+
+		</reference>
+	</default>
+</layout>
