@@ -1,3 +1,6 @@
 [submodule "footer-assets"]
 	path = footer-assets
 	url = git@gitlab.dev:development/footer-assets.git
+[submodule "cms-page-style-update"]
+	path = cms-page-style-update
+	url = git@gitlab.dev:development/cms-page-style-update.git
