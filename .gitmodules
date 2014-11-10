@@ -1,0 +1,3 @@
+[submodule "footer-assets"]
+	path = footer-assets
+	url = git@gitlab.dev:development/footer-assets.git
