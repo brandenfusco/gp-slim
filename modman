@@ -3,6 +3,7 @@ app/design/frontend/base/default/layout/blueacorn/javascriptplugins.xml	app/desi
 app/etc/modules/BlueAcorn_JavaScriptPlugins.xml	app/etc/modules/BlueAcorn_JavaScriptPlugins.xml
 js/blueacorn/lib/	js/blueacorn/lib/
 app/design/adminhtml/default/default/layout/blueacorn/javascriptplugins.xml	app/design/adminhtml/default/default/layout/blueacorn/javascriptplugins.xml
+skin/adminhtml/default/default/css/blueacorn.css	skin/adminhtml/default/default/css/blueacorn.css
 
 @import footer-assets/
 @import cms-page-style-update/
