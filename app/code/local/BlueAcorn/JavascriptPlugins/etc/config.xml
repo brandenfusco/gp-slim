@@ -9,31 +9,41 @@
 -->
 <config>
 
-	<modules>
-		<BlueAcorn_JavascriptPlugins>
-			<version>0.1.0</version>
-		</BlueAcorn_JavascriptPlugins>
-	</modules>
+    <modules>
+        <BlueAcorn_JavascriptPlugins>
+            <version>0.1.0</version>
+        </BlueAcorn_JavascriptPlugins>
+    </modules>
 
-	<frontend>
-		<layout>
-			<updates>
-				<blueacorn_javascriptplugins>
-					<file>blueacorn/javascriptplugins.xml</file>
-				</blueacorn_javascriptplugins>
-			</updates>
-		</layout>
-	</frontend>
+    <frontend>
+        <layout>
+            <updates>
+                <blueacorn_javascriptplugins>
+                    <file>blueacorn/javascriptplugins.xml</file>
+                </blueacorn_javascriptplugins>
+            </updates>
+        </layout>
+    </frontend>
 
-	<global>
-		<helpers>
-	        <javascriptplugins>
-	            <class>BlueAcorn_JavascriptPlugins_Helper</class>
-	        </javascriptplugins>
-	    </helpers>  
-	</global>
+    <adminhtml>
+        <layout>
+            <updates>
+                <blueacorn_javascriptplugins>
+                    <file>blueacorn/javascriptplugins.xml</file>
+                </blueacorn_javascriptplugins>
+            </updates>
+        </layout>
+    </adminhtml>
 
-	<adminhtml>
+    <global>
+        <helpers>
+            <javascriptplugins>
+                <class>BlueAcorn_JavascriptPlugins_Helper</class>
+            </javascriptplugins>
+        </helpers>
+    </global>
+
+    <adminhtml>
         <acl>
             <resources>
                 <admin>
