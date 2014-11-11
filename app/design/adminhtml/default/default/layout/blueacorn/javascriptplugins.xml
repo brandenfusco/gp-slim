@@ -4,7 +4,7 @@
 
     <default>
         <reference name="head">
-            <action method="addCss"><name>blueacorn.css</name></action>
+            <action method="addCss"><name>css/blueacorn.css</name></action>
         </reference>
     </default>
 
