@@ -1,8 +1,11 @@
 <?xml version="1.0"?>
-<layout version="0.1.0">
+
+<layout>
+
     <default>
         <reference name="head">
             <action method="addCss"><name>blueacorn.css</name></action>
         </reference>
     </default>
+
 </layout>

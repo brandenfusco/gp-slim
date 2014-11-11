@@ -12,7 +12,7 @@
 	<tabs>
 		<blueacorn translate="label" module="javascriptplugins">
 			<label>Blue Acorn</label>
-			<sort_order>400</sort_order>
+			<sort_order>99999</sort_order>
             <class>system-config-blueacorn</class>
 		</blueacorn>
 	</tabs>
