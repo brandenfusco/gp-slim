@@ -45,7 +45,11 @@ Documentation for each plugin can be found by clicking on the **Source** link un
 
 
 ## 5. Installation
-To install this module, `cd` into your site's root directory, and then run:
+To install this module, you will need [Modman](https://github.com/colinmollenhour/modman) on your machine. For Mac users, simply:
+
+ `brew install modman`
+
+Then, `cd` into your site's root directory and run:
 
 `modman init`
 
@@ -58,6 +62,14 @@ Then run:
 `modman clone git@gitlab.dev:development/base-module.git`
 
 This will install all the required module dependencies along with this module. **Clear your cache** and everything should be good to go. You may need to log out of your store's Admin and log back in. (Also make sure that you have **cache disabled** in the Admin as well.)
+
+**IMPORTANT NOTE:** you will need to *ensure that symlinks are are enabled* in your System Configuration. Navigate to:
+
+** System > Configuration > Advanced > Developer **
+
+Expand the *Template Settings* tab and change *Allow Symlinks* to "Yes"
+
+
 
 
 ## 6. Usage
