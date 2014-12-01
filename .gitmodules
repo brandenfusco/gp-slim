@@ -7,3 +7,6 @@
 [submodule "new-green-pistachio"]
 	path = new-green-pistachio
 	url = git@gitlab.dev:development/new-green-pistachio.git
+[submodule "magejsconfig"]
+	path = magejsconfig
+	url = git@gitlab.dev:development/magejsconfig.git

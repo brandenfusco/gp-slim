@@ -8,3 +8,4 @@ skin/adminhtml/base/default/css/blueacorn.css	skin/adminhtml/base/default/css/bl
 @import footer-assets/
 @import cms-page-style-update/
 @import new-green-pistachio/
+@import magejsconfig/
