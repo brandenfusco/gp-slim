@@ -1,12 +1,16 @@
 [submodule "footer-assets"]
 	path = footer-assets
 	url = git@gitlab.dev:development/footer-assets.git
+	branch = master
 [submodule "cms-page-style-update"]
 	path = cms-page-style-update
 	url = git@gitlab.dev:development/cms-page-style-update.git
+	branch = master
 [submodule "new-green-pistachio"]
 	path = new-green-pistachio
 	url = git@gitlab.dev:development/new-green-pistachio.git
+	branch = master
 [submodule "magejsconfig"]
 	path = magejsconfig
 	url = git@gitlab.dev:development/magejsconfig.git
+	branch = master
