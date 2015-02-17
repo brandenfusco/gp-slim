@@ -4,6 +4,7 @@ app/etc/modules/BlueAcorn_JavaScriptPlugins.xml	app/etc/modules/BlueAcorn_JavaSc
 js/blueacorn/lib/	js/blueacorn/lib/
 app/design/adminhtml/default/default/layout/blueacorn/javascriptplugins.xml	app/design/adminhtml/default/default/layout/blueacorn/javascriptplugins.xml
 skin/adminhtml/base/default/css/blueacorn.css	skin/adminhtml/base/default/css/blueacorn.css
+skin/adminhtml/base/default/images/blueacorn/blueacorn-logo.png   skin/adminhtml/base/default/images/blueacorn/blueacorn-logo.png
 
 @import footer-assets/
 @import cms-page-style-update/
