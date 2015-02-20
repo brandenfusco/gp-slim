@@ -1,36 +1,23 @@
 <?xml version="1.0"?>
 <layout version="0.1.0">
     <default>
-        <reference name="scripts_in_footer">
-
+        <reference name="head">
             <!-- Fancybox -->
             <action method="addItem" ifconfig="javascriptplugins/plugins/fancybox">
                 <type>js_css</type>
                 <name>blueacorn/lib/fancybox/jquery.fancybox.css</name>
             </action>
-            <action method="addItem" ifconfig="javascriptplugins/plugins/fancybox">
-                <type>js</type>
-                <name>blueacorn/lib/fancybox/jquery.fancybox.pack.js</name>
-            </action>
 
-            <!-- BX Slider -->
+            <!-- BX Slider-->
             <action method="addItem" ifconfig="javascriptplugins/plugins/bxslider">
                 <type>js_css</type>
                 <name>blueacorn/lib/bxslider/jquery.bxslider.css</name>
-            </action>
-            <action method="addItem" ifconfig="javascriptplugins/plugins/bxslider">
-                <type>js</type>
-                <name>blueacorn/lib/bxslider/jquery.bxslider.min.js</name>
             </action>
 
             <!-- Flexslider -->
             <action method="addItem" ifconfig="javascriptplugins/plugins/flexslider">
                 <type>js_css</type>
                 <name>blueacorn/lib/flexslider/flexslider.css</name>
-            </action>
-            <action method="addItem" ifconfig="javascriptplugins/plugins/flexslider">
-                <type>js</type>
-                <name>blueacorn/lib/flexslider/jquery.flexslider-min.js</name>
             </action>
 
             <!-- Owl Carousel -->
@@ -42,6 +29,27 @@
                 <type>js_css</type>
                 <name>blueacorn/lib/owlcarousel/owl.theme.css</name>
             </action>
+        </reference>
+        <reference name="scripts_in_footer">
+            <!-- Fancybox -->
+            <action method="addItem" ifconfig="javascriptplugins/plugins/fancybox">
+                <type>js</type>
+                <name>blueacorn/lib/fancybox/jquery.fancybox.pack.js</name>
+            </action>
+
+            <!-- BX Slider -->
+            <action method="addItem" ifconfig="javascriptplugins/plugins/bxslider">
+                <type>js</type>
+                <name>blueacorn/lib/bxslider/jquery.bxslider.min.js</name>
+            </action>
+
+            <!-- Flexslider -->
+            <action method="addItem" ifconfig="javascriptplugins/plugins/flexslider">
+                <type>js</type>
+                <name>blueacorn/lib/flexslider/jquery.flexslider-min.js</name>
+            </action>
+
+            <!-- Owl Carousel -->
             <action method="addItem" ifconfig="javascriptplugins/plugins/owl">
                 <type>js</type>
                 <name>blueacorn/lib/owlcarousel/owl.carousel.js</name>
