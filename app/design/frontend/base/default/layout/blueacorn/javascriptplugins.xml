@@ -29,7 +29,18 @@
                 <type>js_css</type>
                 <name>blueacorn/lib/owlcarousel/owl.theme.css</name>
             </action>
+
+            <!-- Owl Carousel 2-->
+            <action method="addItem" ifconfig="javascriptplugins/plugins/owl_two">
+                <type>js_css</type>
+                <name>blueacorn/lib/owlcarousel2/assets/owl.carousel.min.css</name>
+            </action>
+            <action method="addItem" ifconfig="javascriptplugins/plugins/owl_two">
+                <type>js_css</type>
+                <name>blueacorn/lib/owlcarousel2/assets/owl.theme.green.min.css</name>
+            </action>
         </reference>
+
         <reference name="scripts_in_footer">
             <!-- Fancybox -->
             <action method="addItem" ifconfig="javascriptplugins/plugins/fancybox">
@@ -53,6 +64,12 @@
             <action method="addItem" ifconfig="javascriptplugins/plugins/owl">
                 <type>js</type>
                 <name>blueacorn/lib/owlcarousel/owl.carousel.js</name>
+            </action>
+
+            <!-- Owl Carousel 2 -->
+            <action method="addItem" ifconfig="javascriptplugins/plugins/owl_two">
+                <type>js</type>
+                <name>blueacorn/lib/owlcarousel2/owl.carousel.min.js</name>
             </action>
 
             <!-- jQuery ScrollTo -->
