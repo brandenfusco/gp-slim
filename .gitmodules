@@ -8,5 +8,5 @@
 	branch = master
 [submodule "magejsconfig"]
 	path = magejsconfig
-	url = git@github.com:BlueAcornInc/magejsconfig.git
+	url = git@github.com:BlueAcornInc/ba-magejsconfig.git
 	branch = master
