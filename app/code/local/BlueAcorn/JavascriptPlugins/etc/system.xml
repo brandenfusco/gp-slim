@@ -2,9 +2,9 @@
 <!--
 /**
 * @package     BlueAcorn\JavascriptPlugins
-* @version     0.1.0
+* @version     0.2.0
 * @author      Blue Acorn, Inc. <code@blueacorn.com>
-* @copyright   Copyright © 2014 Blue Acorn, Inc.
+* @copyright   Copyright © 2015 Blue Acorn, Inc.
 */
 -->
 <config>
@@ -28,9 +28,9 @@
             <show_in_website>1</show_in_website>
             <show_in_store>1</show_in_store>
             <groups>
-                <plugins translate="label">
-                    <label>Plugins</label>
-                    <frontend_type>text</frontend_type>
+
+                <modals translate="label">
+                    <label>Modal Window Plugins</label>
                     <sort_order>100</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
@@ -48,94 +48,61 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </fancybox>
-                        <bxslider translate="label comment">
-                            <label>BX Slider (V 4.1.2)</label>
-                            <comment>
-                                <![CDATA[<a href="http://bxslider.com/" target="_blank">Source</a>]]>
-                            </comment>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>2</sort_order>
+                    </fields>
+                </modals>
+
+                <sliders translate="label">
+                    <label>Slideshow Plugins</label>
+                    <sort_order>101</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <bxslidergroup type="group" translate="label">
+                            <label>BX Slider</label>
+                            <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </bxslider>
+                            <fields>
+                                <bxslider translate="label comment">
+                                    <label>BX Slider (V 4.2.5)</label>
+                                    <comment>
+                                        <![CDATA[<a href="http://bxslider.com/" target="_blank">Source</a>]]>
+                                    </comment>
+                                    <frontend_type>select</frontend_type>
+                                    <source_model>adminhtml/system_config_source_yesno</source_model>
+                                    <sort_order>1</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </bxslider>
+                                <bxsliderfitvids translate="label comment">
+                                    <label>Enable FitVids.js for BX Slider</label>
+                                    <comment><![CDATA[<p>Useful for having Videos withing your slideshow.</p>]]></comment>
+                                    <frontend_type>select</frontend_type>
+                                    <source_model>adminhtml/system_config_source_yesno</source_model>
+                                    <sort_order>2</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </bxsliderfitvids>
+                                <bxslidereasing translate="label comment">
+                                    <label>Enable jQuery Easing for BX Slider</label>
+                                    <comment><![CDATA[<p>Required if you're using any of the easing features.</p>]]></comment>
+                                    <frontend_type>select</frontend_type>
+                                    <source_model>adminhtml/system_config_source_yesno</source_model>
+                                    <sort_order>3</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </bxslidereasing>
+                            </fields>
+                        </bxslidergroup>
                         <flexslider translate="label comment">
-                            <label>Flexslider (V 2.2.2)</label>
+                            <label>Flexslider (V 2.5)</label>
                             <comment>
                                 <![CDATA[<a href="http://www.woothemes.com/flexslider/" target="_blank">Source</a>]]>
-                            </comment>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>3</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </flexslider>
-                        <scrollto translate="label comment">
-                            <label>jQuery ScrollTo (V 1.4.13)</label>
-                            <comment>
-                                <![CDATA[<a href="http://demos.flesler.com/jquery/scrollTo/" target="_blank">Source</a>]]>
-                            </comment>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>4</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </scrollto>
-                        <selectivizr translate="label comment">
-                            <label>Selectivizr (V 1.0.2)</label>
-                            <comment>
-                                <![CDATA[<a href="http://selectivizr.com/" target="_blank">Source</a>]]>
-                            </comment>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>5</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </selectivizr>
-                        <placeholderjs translate="label comment">
-                            <label>Placeholder.js (V 3.0.2)</label>
-                            <comment>
-                                <![CDATA[<a href="http://jamesallardice.github.io/Placeholders.js/" target="_blank">Source</a>]]>
-                            </comment>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>7</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </placeholderjs>
-                        <svginjector translate="label comment">
-                            <label>SVG Injector (V 1.1.2)</label>
-                            <comment>
-                                <![CDATA[<a href="https://github.com/iconic/SVGInjector" target="_blank">Source</a>]]>
-                            </comment>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>8</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </svginjector>
-                        <headroom translate="label comment">
-                            <label>Headroom.js (V 0.7.0)</label>
-                            <comment>
-                                <![CDATA[<a href="http://wicky.nillia.ms/headroom.js/" target="_blank">Source</a>]]>
-                            </comment>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>9</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </headroom>
-                        <parallax translate="label comment">
-                            <label>Parallax.js (V 1.1)</label>
-                            <comment>
-                                <![CDATA[<a href="http://pixelcog.com/parallax.js/" target="_blank">Source</a>]]>
                             </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
@@ -143,19 +110,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </parallax>
-                        <html5shiv translate="label comment">
-                            <label>HTML5Shiv (V 3.7.2)</label>
-                            <comment>
-                                <![CDATA[<a href="https://github.com/aFarkas/html5shiv" target="_blank">Source</a>]]>
-                            </comment>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>11</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </html5shiv>
+                        </flexslider>
                         <owl translate="label comment">
                             <label>Owl Carousel (V 1.3.2)</label>
                             <comment>
@@ -181,10 +136,115 @@
                             <show_in_store>1</show_in_store>
                         </owl_two>
                     </fields>
+                </sliders>
+
+                <ux>
+                    <label>UX Plugins</label>
+                    <sort_order>102</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <headroom translate="label comment">
+                            <label>Headroom.js (V 0.7.0)</label>
+                            <comment>
+                                <![CDATA[<a href="http://wicky.nillia.ms/headroom.js/" target="_blank">Source</a>]]>
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </headroom>
+                        <parallax translate="label comment">
+                            <label>Parallax.js (V 1.3.1)</label>
+                            <comment>
+                                <![CDATA[<a href="http://pixelcog.com/parallax.js/" target="_blank">Source</a>]]>
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </parallax>
+                        <scrollto translate="label comment">
+                            <label>jQuery ScrollTo (V 2.1.1)</label>
+                            <comment>
+                                <![CDATA[<a href="http://demos.flesler.com/jquery/scrollTo/" target="_blank">Source</a>]]>
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </scrollto>
+                    </fields>
+                </ux>
+
+                <plugins translate="label">
+                    <label>Polyfills and Browser Support</label>
+                    <sort_order>103</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <selectivizr translate="label comment">
+                            <label>Selectivizr (V 1.0.2)</label>
+                            <comment>
+                                <![CDATA[<a href="http://selectivizr.com/" target="_blank">Source</a>]]>
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </selectivizr>
+                        <placeholderjs translate="label comment">
+                            <label>Placeholders.js (V 4.0.1)</label>
+                            <comment>
+                                <![CDATA[<a href="http://jamesallardice.github.io/Placeholders.js/" target="_blank">Source</a>]]>
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </placeholderjs>
+                        <svginjector translate="label comment">
+                            <label>SVG Injector (V 1.1.3)</label>
+                            <comment>
+                                <![CDATA[<a href="https://github.com/iconic/SVGInjector" target="_blank">Source</a>]]>
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </svginjector>
+                        <html5shiv translate="label comment">
+                            <label>HTML5Shiv (V 3.7.3)</label>
+                            <comment>
+                                <![CDATA[<a href="https://github.com/aFarkas/html5shiv" target="_blank">Source</a>]]>
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </html5shiv>
+                    </fields>
                 </plugins>
+
             </groups>
         </javascriptplugins>
 
     </sections>
-
+    
 </config>

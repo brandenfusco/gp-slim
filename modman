@@ -7,6 +7,5 @@ skin/adminhtml/base/default/css/blueacorn.css	skin/adminhtml/base/default/css/bl
 skin/adminhtml/base/default/images/blueacorn/blueacorn-logo.png   skin/adminhtml/base/default/images/blueacorn/blueacorn-logo.png
 
 @import footer-assets/
-@import cms-page-style-update/
 @import new-green-pistachio/
 @import magejsconfig/

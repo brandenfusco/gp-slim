@@ -2,15 +2,11 @@
 	path = footer-assets
 	url = git@github.com:BlueAcornInc/footer-assets.git
 	branch = master
-[submodule "cms-page-style-update"]
-	path = cms-page-style-update
-	url = git@github.com:BlueAcornInc/cms-page-style-update.git
-	branch = master
 [submodule "new-green-pistachio"]
 	path = new-green-pistachio
 	url = git@github.com:BlueAcornInc/new-green-pistachio.git
 	branch = master
 [submodule "magejsconfig"]
 	path = magejsconfig
-	url = git@github.com:BlueAcornInc/magejsconfig.git
+	url = git@github.com:BlueAcornInc/ba-magejsconfig.git
 	branch = master
