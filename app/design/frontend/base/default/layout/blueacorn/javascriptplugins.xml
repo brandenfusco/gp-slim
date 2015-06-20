@@ -3,39 +3,39 @@
     <default>
         <reference name="head">
             <!-- Fancybox -->
-            <action method="addItem" ifconfig="javascriptplugins/plugins/fancybox">
+            <action method="addItem" ifconfig="javascriptplugins/modals/fancybox">
                 <type>js_css</type>
                 <name>blueacorn/lib/fancybox/jquery.fancybox.css</name>
             </action>
 
             <!-- BX Slider-->
-            <action method="addItem" ifconfig="javascriptplugins/plugins/bxslider">
+            <action method="addItem" ifconfig="javascriptplugins/bxslidergroup/bxslider">
                 <type>js_css</type>
-                <name>blueacorn/lib/bxslider/jquery.bxslider.css</name>
+                <name>blueacorn/lib/bxslider/jquery.bxslider.min.css</name>
             </action>
 
             <!-- Flexslider -->
-            <action method="addItem" ifconfig="javascriptplugins/plugins/flexslider">
+            <action method="addItem" ifconfig="javascriptplugins/sliders/flexslider">
                 <type>js_css</type>
                 <name>blueacorn/lib/flexslider/flexslider.css</name>
             </action>
 
             <!-- Owl Carousel -->
-            <action method="addItem" ifconfig="javascriptplugins/plugins/owl">
+            <action method="addItem" ifconfig="javascriptplugins/sliders/owl">
                 <type>js_css</type>
                 <name>blueacorn/lib/owlcarousel/owl.carousel.css</name>
             </action>
-            <action method="addItem" ifconfig="javascriptplugins/plugins/owl">
+            <action method="addItem" ifconfig="javascriptplugins/sliders/owl">
                 <type>js_css</type>
                 <name>blueacorn/lib/owlcarousel/owl.theme.css</name>
             </action>
 
             <!-- Owl Carousel 2-->
-            <action method="addItem" ifconfig="javascriptplugins/plugins/owl_two">
+            <action method="addItem" ifconfig="javascriptplugins/sliders/owl_two">
                 <type>js_css</type>
                 <name>blueacorn/lib/owlcarousel2/assets/owl.carousel.min.css</name>
             </action>
-            <action method="addItem" ifconfig="javascriptplugins/plugins/owl_two">
+            <action method="addItem" ifconfig="javascriptplugins/sliders/owl_two">
                 <type>js_css</type>
                 <name>blueacorn/lib/owlcarousel2/assets/owl.theme.green.min.css</name>
             </action>
@@ -43,37 +43,47 @@
 
         <reference name="scripts_in_footer">
             <!-- Fancybox -->
-            <action method="addItem" ifconfig="javascriptplugins/plugins/fancybox">
+            <action method="addItem" ifconfig="javascriptplugins/modals/fancybox">
                 <type>js</type>
                 <name>blueacorn/lib/fancybox/jquery.fancybox.pack.js</name>
             </action>
 
             <!-- BX Slider -->
-            <action method="addItem" ifconfig="javascriptplugins/plugins/bxslider">
+            <action method="addItem" ifconfig="javascriptplugins/bxslidergroup/bxslider">
                 <type>js</type>
                 <name>blueacorn/lib/bxslider/jquery.bxslider.min.js</name>
             </action>
 
+            <action method="addItem" ifconfig="javascriptplugins/bxslidergroup/bxslidereasing">
+                <type>js</type>
+                <name>blueacorn/lib/bxslider/vendor/jquery.easing.1.3.js</name>
+            </action>
+
+            <action method="addItem" ifconfig="javascriptplugins/bxslidergroup/bxsliderfitvids">
+                <type>js</type>
+                <name>blueacorn/lib/bxslider/vendor/jquery.fitvids.js</name>
+            </action>
+
             <!-- Flexslider -->
-            <action method="addItem" ifconfig="javascriptplugins/plugins/flexslider">
+            <action method="addItem" ifconfig="javascriptplugins/sliders/flexslider">
                 <type>js</type>
                 <name>blueacorn/lib/flexslider/jquery.flexslider-min.js</name>
             </action>
 
             <!-- Owl Carousel -->
-            <action method="addItem" ifconfig="javascriptplugins/plugins/owl">
+            <action method="addItem" ifconfig="javascriptplugins/sliders/owl">
                 <type>js</type>
                 <name>blueacorn/lib/owlcarousel/owl.carousel.js</name>
             </action>
 
             <!-- Owl Carousel 2 -->
-            <action method="addItem" ifconfig="javascriptplugins/plugins/owl_two">
+            <action method="addItem" ifconfig="javascriptplugins/sliders/owl_two">
                 <type>js</type>
                 <name>blueacorn/lib/owlcarousel2/owl.carousel.min.js</name>
             </action>
 
             <!-- jQuery ScrollTo -->
-            <action method="addItem" ifconfig="javascriptplugins/plugins/scrollto">
+            <action method="addItem" ifconfig="javascriptplugins/ux/scrollto">
                 <type>js</type>
                 <name>blueacorn/lib/scrollto/jquery.scrollTo.min.js</name>
             </action>
@@ -88,7 +98,7 @@
             <!-- Placeholder.js -->
             <action method="addItem" ifconfig="javascriptplugins/plugins/placeholderjs">
                 <type>js</type>
-                <name>blueacorn/lib/placeholderjs/placeholder.min.js</name>
+                <name>blueacorn/lib/placeholderjs/placeholders.min.js</name>
             </action>
 
             <!-- SVG Injector -->
@@ -98,13 +108,13 @@
             </action>
 
             <!-- Headroom.js -->
-            <action method="addItem" ifconfig="javascriptplugins/plugins/headroom">
+            <action method="addItem" ifconfig="javascriptplugins/ux/headroom">
                 <type>js</type>
                 <name>blueacorn/lib/headroom/headroom.min.js</name>
             </action>
 
             <!-- Parallax.js -->
-            <action method="addItem" ifconfig="javascriptplugins/plugins/parallax">
+            <action method="addItem" ifconfig="javascriptplugins/ux/parallax">
                 <type>js</type>
                 <name>blueacorn/lib/parallax/parallax.min.js</name>
             </action>
