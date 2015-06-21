@@ -4,8 +4,8 @@
 The Base Module allows developers to enable/disable various JavaScript plugins from the Admin in the **System > Configuration** section. Each plugin's dependencies (stylesheets, images, and minified JavaScript files) will be automatically loaded before the closing **&lt;/body&gt;** tag. This module has two other module dependencies:
 
 ##### Dependencies
-* Footer Assets module (documentation [here](http://gitlab.dev/development/footer-assets/tree/master))
-* CMS Page Style Update (documentation [here](http://gitlab.dev/development/cms-page-style-update/tree/master))
+* Footer Assets module ([documentation](https://github.com/BlueAcornInc/ba-footer-assets/tree/master))
+* Green Pistachio ([documentation](https://github.com/BlueAcornInc/new-green-pistachio))
 
 
 
@@ -23,7 +23,7 @@ The Base Module allows developers to enable/disable various JavaScript plugins f
 
 
 ## 3. Version
-0.1.0
+0.2.0
 
 
 
@@ -31,15 +31,15 @@ The Base Module allows developers to enable/disable various JavaScript plugins f
 The following plugins are currently available in Version 0.1.0
 
 * Fancybox V 2.1.5
-* BX Slider V 4.1.2
-* Flexslider V 2.2.2
-* jQuery ScrollTo V 1.4.13
+* BX Slider V 4.2.5
+* Flexslider V 2.5.0
+* jQuery ScrollTo V 2.1.1
 * Selectivizr V 1.0.2
 * Placeholder.js V 3.0.2
-* SVG Injector V 1.1.2
+* SVG Injector V 1.1.3
 * Headroom.js V 0.7.0
-* Parallax.js V 1.1
-* HTML5 Shiv V 3.7.2
+* Parallax.js V 1.3.1
+* HTML5 Shiv V 3.7.3
 
 Documentation for each plugin can be found by clicking on the **Source** link under each plugin's selectbox within the Admin
 
@@ -59,7 +59,7 @@ In your terminal you should see something like:
 
 Then run:
 
-`modman clone git@gitlab.dev:development/base-module.git`
+`modman clone git@github.com:BlueAcornInc/blueacorn-dev-common.git`
 
 This will install all the required module dependencies along with this module. **Clear your cache** and everything should be good to go. You may need to log out of your store's Admin and log back in. (Also make sure that you have **cache disabled** in the Admin as well.)
 
@@ -68,7 +68,6 @@ This will install all the required module dependencies along with this module. *
 ** System > Configuration > Advanced > Developer **
 
 Expand the *Template Settings* tab and change *Allow Symlinks* to "Yes"
-
 
 
 
