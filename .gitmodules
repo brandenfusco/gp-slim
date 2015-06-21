@@ -1,6 +1,6 @@
 [submodule "footer-assets"]
 	path = footer-assets
-	url = git@github.com:BlueAcornInc/footer-assets.git
+	url = git@github.com:BlueAcornInc/ba-footer-assets.git
 	branch = master
 [submodule "new-green-pistachio"]
 	path = new-green-pistachio
