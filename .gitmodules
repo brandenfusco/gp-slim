@@ -1,10 +1,10 @@
 [submodule "footer-assets"]
 	path = footer-assets
-	url = git@github.com:BlueAcornInc/ba-footer-assets.git
+	url = git@github.com:BlueAcornInc/gp-footer-assets.git
 	branch = master
 [submodule "new-green-pistachio"]
 	path = new-green-pistachio
-	url = git@github.com:BlueAcornInc/new-green-pistachio.git
+	url = git@github.com:BlueAcornInc/gp-green-pistachio.git
 	branch = master
 [submodule "magejsconfig"]
 	path = magejsconfig
