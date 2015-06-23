@@ -10,3 +10,7 @@
 	path = magejsconfig
 	url = git@github.com:BlueAcornInc/ba-magejsconfig.git
 	branch = master
+[submodule "gp-remove-link-by-name"]
+	path = gp-remove-link-by-name
+	url = git@github.com:BlueAcornInc/gp-remove-link-by-name.git
+    branch = master
