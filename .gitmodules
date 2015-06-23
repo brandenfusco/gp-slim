@@ -18,3 +18,7 @@
 	path = gp-cms-page-style-update
 	url = git@github.com:BlueAcornInc/gp-cms-page-style-update.git
     branch = master
+[submodule "gp-stickyheader"]
+	path = gp-stickyheader
+	url = git@github.com:BlueAcornInc/gp-stickyheader.git
+    branch = master
