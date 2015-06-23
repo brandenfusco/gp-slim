@@ -14,3 +14,7 @@
 	path = gp-remove-link-by-name
 	url = git@github.com:BlueAcornInc/gp-remove-link-by-name.git
     branch = master
+[submodule "gp-cms-page-style-update"]
+	path = gp-cms-page-style-update
+	url = git@github.com:BlueAcornInc/gp-cms-page-style-update.git
+    branch = master
