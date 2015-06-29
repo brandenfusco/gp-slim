@@ -1,11 +1,14 @@
-app/code/local/BlueAcorn/JavascriptPlugins/	app/code/local/BlueAcorn/JavascriptPlugins/
-app/design/frontend/base/default/layout/blueacorn/javascriptplugins.xml	app/design/frontend/base/default/layout/blueacorn/javascriptplugins.xml
-app/etc/modules/BlueAcorn_JavaScriptPlugins.xml	app/etc/modules/BlueAcorn_JavaScriptPlugins.xml
-js/blueacorn/lib/	js/blueacorn/lib/
-app/design/adminhtml/default/default/layout/blueacorn/javascriptplugins.xml	app/design/adminhtml/default/default/layout/blueacorn/javascriptplugins.xml
-skin/adminhtml/base/default/css/blueacorn.css	skin/adminhtml/base/default/css/blueacorn.css
-skin/adminhtml/base/default/images/blueacorn/blueacorn-logo.png   skin/adminhtml/base/default/images/blueacorn/blueacorn-logo.png
+webroot/app/code/local/BlueAcorn/JavascriptPlugins/	webroot/app/code/local/BlueAcorn/JavascriptPlugins/
+webroot/app/design/frontend/base/default/layout/blueacorn/javascriptplugins.xml	webroot/app/design/frontend/base/default/layout/blueacorn/javascriptplugins.xml
+webroot/app/etc/modules/BlueAcorn_JavaScriptPlugins.xml	webroot/app/etc/modules/BlueAcorn_JavaScriptPlugins.xml
+webroot/js/blueacorn/lib/	webroot/js/blueacorn/lib/
+webroot/app/design/adminhtml/default/default/layout/blueacorn/javascriptplugins.xml	webroot/app/design/adminhtml/default/default/layout/blueacorn/javascriptplugins.xml
+webroot/skin/adminhtml/base/default/css/blueacorn.css	webroot/skin/adminhtml/base/default/css/blueacorn.css
+webroot/skin/adminhtml/base/default/images/blueacorn/blueacorn-logo.png   webroot/skin/adminhtml/base/default/images/blueacorn/blueacorn-logo.png
 
 @import footer-assets/
 @import new-green-pistachio/
 @import magejsconfig/
+@import gp-cms-page-style-update/
+@import gp-sticky-header/
+@import gp-remove-link-by-name/

@@ -6,6 +6,9 @@ The Base Module allows developers to enable/disable various JavaScript plugins f
 ##### Dependencies
 * Footer Assets module ([documentation](https://github.com/BlueAcornInc/ba-footer-assets/tree/master))
 * Green Pistachio ([documentation](https://github.com/BlueAcornInc/new-green-pistachio))
+* CMS Page Style Update ([documentation](https://github.com/BlueAcornInc/gp-cms-page-style-update/tree/master))
+* Sticky Header ([documentation](https://github.com/BlueAcornInc/gp-stickyheader/tree/master))
+* Remove Link by Name ([documentation](https://github.com/BlueAcornInc/gp-remove-link-by-name/tree/master))
 
 
 
@@ -72,7 +75,7 @@ Expand the *Template Settings* tab and change *Allow Symlinks* to "Yes"
 
 
 ## 6. Usage
-After you've installed this module, log into the Admin section of your store, and navigate to: 
+After you've installed this module, log into the Admin section of your store, and navigate to:
 
 **System > Configuration**
 
