@@ -119,6 +119,12 @@
                 <name>blueacorn/lib/parallax/parallax.min.js</name>
             </action>
 
+            <!-- Responsive Images (this one needs to be last) -->
+            <action method="addItem" ifconfig="javascriptplugins/plugins/responsiveimg">
+                <type>js</type>
+                <name>blueacorn/lib/responsiveimg/responsive-img.min.js</name>
+            </action>
+
             <!-- HTML5Shiv (this one needs to be last) -->
             <action method="addItem" ifconfig="javascriptplugins/plugins/html5shiv">
                 <type>js</type>
