@@ -10,5 +10,5 @@ webroot/skin/adminhtml/base/default/images/blueacorn/blueacorn-logo.png   webroo
 @import new-green-pistachio/
 @import magejsconfig/
 @import gp-cms-page-style-update/
-@import gp-sticky-header/
+@import gp-stickyheader/
 @import gp-remove-link-by-name/
