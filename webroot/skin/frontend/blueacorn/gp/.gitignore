@@ -1,9 +1,9 @@
-# Blue Acorn Compiled Files #
-#############################
-jsmin/
-jsmin/*
-css/
-css/*
-.sass-cache/
-.sass-cache/*
-*.map
+# compiled / minified assets
+############################
+
+/.sass-cache
+/css
+/jsmin
+
+# ignore development map files
+*.css.map
