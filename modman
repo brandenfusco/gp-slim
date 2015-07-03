@@ -19,4 +19,4 @@ webroot/skin/adminhtml/base/default/images/blueacorn/blueacorn-logo.png         
 
 # add pistachios
 @import pistachios/gp-cms-page-style-update
-@import pistachios/gp-footer-asset
+@import pistachios/gp-footer-assets
