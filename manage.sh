@@ -49,8 +49,8 @@ AUTO_COMMIT=${GIT_AUTO_COMMIT:-false}
 ###########
 
 pistachio_add(){
-  REMOTE=$1
-  TARGET=$(basename "$REMOTE" .git)
+  local REMOTE=$1
+  local TARGET=$(basename "$REMOTE" .git)
 
   echo "adding ${TARGET}..."
   
@@ -59,7 +59,12 @@ pistachio_add(){
   fi
 
   cd $CWD/pistachios
-  git submodule add $REMOTE $TARGET
+  git submodule add --force $REMOTE $TARGET
+
+  # add pistachio to modman
+  local LINE="@import pistachios/$TARGET" 
+  grep -q "$LINE" "$CWD/modman" || echo "$LINE" >> "$CWD/modman"
+
   
   if $AUTO_COMMIT; then
     git add $TARGET 
@@ -76,11 +81,20 @@ pistachio_delete(){
     error "please provide pistachio to delete"
   fi
 
-  cd $CWD/pistachios
-  git rm $1 
-  git rm --cached $1
+  TARGET=pistachios/$1
+
+  if [ ! -d $CWD/$TARGET ]; then
+    error "pistachio $1 does not exist"
+  fi
+
+  cd $CWD
+  git rm $TARGET 
+
+  # remove from modman (use # as delimeter to support slashes in path)
+  sed -i "\#@import $TARGET#d" modman
   
   if $AUTO_COMMIT; then
+    git add modman
     git commit -m "auto-removing ${1}" 
     git push
   fi
@@ -92,6 +106,8 @@ pistachio_update(){
   git submodule foreach git pull
 
   if $AUTO_COMMIT; then
+    cd pistachios
+    git add .
     git commit -m "auto-updating pistachios" 
     git push
   fi
