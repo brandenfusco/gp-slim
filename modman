@@ -2,9 +2,3 @@
 webroot/ webroot/
 
 
-@import footer-assets/
-@import new-green-pistachio/
-@import magejsconfig/
-@import gp-cms-page-style-update/
-@import gp-stickyheader/
-@import gp-remove-link-by-name/
