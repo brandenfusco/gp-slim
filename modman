@@ -1,7 +1,15 @@
-# copy contents of webroot/ 
-webroot/app/       app/
-webroot/js/        js/
-webroot/skin/      skin/
+# unique directories
+webroot/app/code/local/BlueAcorn/JavascriptPlugins/  app/code/local/BlueAcorn/JavascriptPlugins/
+webroot/js/blueacorn/lib/                            js/blueacorn/lib/
+
+# files
+webroot/app/design/frontend/base/default/layout/blueacorn/javascriptplugins.xml      app/design/frontend/base/default/layout/blueacorn/javascriptplugins.xml
+webroot/app/design/adminhtml/default/default/layout/blueacorn/javascriptplugins.xml  app/design/adminhtml/default/default/layout/blueacorn/javascriptplugins.xml
+webroot/app/etc/modules/BlueAcorn_JavaScriptPlugins.xml                              app/etc/modules/BlueAcorn_JavaScriptPlugins.xml
+
+webroot/skin/adminhtml/base/default/css/blueacorn.css	                               skin/adminhtml/base/default/css/blueacorn.css
+webroot/skin/adminhtml/base/default/images/blueacorn/blueacorn-logo.png              skin/adminhtml/base/default/images/blueacorn/blueacorn-logo.png
+
 
 # add blueacorn ui -- if this is a webroot project, 
 #   copy to ../blueacornui
