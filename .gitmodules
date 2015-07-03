@@ -1,0 +1,6 @@
+[submodule "pistachios/gp-footer-assets"]
+	path = pistachios/gp-footer-assets
+	url = git@github.com:briceburg/gp-footer-assets.git
+[submodule "pistachios/gp-cms-page-style-update"]
+	path = pistachios/gp-cms-page-style-update
+	url = git@github.com:briceburg/gp-cms-page-style-update.git
