@@ -1,4 +1,12 @@
 # copy contents of webroot/ 
-webroot/ / 
+webroot/app/       app/
+webroot/js/        js/
+webroot/skin/      skin/
+
+# add blueacorn ui -- if this is a webroot project, 
+#   copy to ../blueacornui
+# else 
+#   copy to blueacornui (in magento root)
+@shell  if [ $(basename "$PROJECT") = "webroot" ]; then cp -a ${MODULE}/blueacornui ${PROJECT}/../blueacornui; else cp -a ${MODULE}/blueacornui ${PROJECT}; fi
 
 
