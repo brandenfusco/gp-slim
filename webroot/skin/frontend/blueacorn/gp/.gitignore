@@ -1,0 +1,9 @@
+# Blue Acorn Compiled Files #
+#############################
+jsmin/
+jsmin/*
+css/
+css/*
+.sass-cache/
+.sass-cache/*
+*.map
