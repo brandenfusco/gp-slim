@@ -1,36 +1,79 @@
-# Blue Acorn Base Module
+# green pistachio
 
-## 1. Overview
-The Base Module allows developers to enable/disable various JavaScript plugins from the Admin in the **System > Configuration** section. Each plugin's dependencies (stylesheets, images, and minified JavaScript files) will be automatically loaded before the closing **&lt;/body&gt;** tag. This module has two other module dependencies:
+it's like eating a **handful** of _pre-shelled_ front end magento plugins. 
 
-##### Dependencies
+##### features
+* Sass compilation of the 1.14 theme with LibSass
+* Faster Development with Caching Turned on, cache only gets cleared when you make a change to an XML or PHTML file within your blueacornui/app directories.
+* JS Linting for Code Quality Checks
+* Staging Compilation Settings
+* Production Compilation Settings
+* Image Minification for JPG, PNG, GIF & SVG
+* Autoprefixing for the most common supported browsers, and a seperate autoprefixing task for IE8
+* Easy Setup Commands
+
+##### handful of shelled pistachios
 * Footer Assets module ([documentation](https://github.com/BlueAcornInc/ba-footer-assets/tree/master))
-* Green Pistachio ([documentation](https://github.com/BlueAcornInc/new-green-pistachio))
 * CMS Page Style Update ([documentation](https://github.com/BlueAcornInc/gp-cms-page-style-update/tree/master))
 * Sticky Header ([documentation](https://github.com/BlueAcornInc/gp-stickyheader/tree/master))
 * Remove Link by Name ([documentation](https://github.com/BlueAcornInc/gp-remove-link-by-name/tree/master))
 
+## quick start
+
+##### module installation
+* ensure you have installed [modman](https://github.com/colinmollenhour/modman)
+* *ensure that symlinks are are enabled* in your System Configuration
+  * System > Configuration > Advanced > Developer
+  * Expand the *Template Settings* tab and change *Allow Symlinks* to "Yes"
+
+```sh
+cd /path/to/magento-webroot
+modman init
+modman clone git@github.com:briceburg/green-pistachio.git
+```
+
+##### theme compilation
+
+green-pistachio uses [grunt](http://gruntjs.com/) and [bower](http://bower.io/) to build your theme by compiling and fetching assets. 
+
+modman will install a directory named **blueacornui** to your project's root containing the build scripts for your theme.
+
+* ensure you have nodejs and [npm](https://www.npmjs.com/) installed
+* ensure you have grunt-cli and bower installed globally
+  * `sudo npm install -g grunt-cli bower`
+
+**installation (one-time)**
+```sh
+cd /path/to/blueacornui
+npm install
+bower install
+grunt setup:{YOURTHEMENAME}  [????]
+```
+
+**live development**
+Run the following command to watch your app & skin directories for changes and compile SASS & JS on save, as well as clear cache when you modify any XML or PHTML files.
+
+```sh
+cd /path/to/blueacornui
+grunt
+```
 
 
-## 2. Files Included
-* **app/code/local/BlueAcorn/JavascriptPlugins/Helper/Data.php**
-* **app/code/local/BlueAcorn/JavascriptPlugins/config.xml**
-* **app/code/local/BlueAcorn/JavascriptPlugins/system.xml**
-	* for configuration with Admin
-* **app/design/frontend/base/default/layout/blueacorn/javascriptplugins.xml**
-	* uses **Footer Assets** module to add plugin dependencies before closing *&lt;/body&gt;* tag
-* **app/etc/modules/BlueAcorn_JavaScriptPlugins.xml**
-* **js/blueacorn/lib**
-	* contains all of the plugins' dependencies, each in their own directory (see section 4 below)
+**theme compiling**
+This will lint & compile all your SASS & JS files to css & minified js whenever you save a js, scss file.
+	
+If you modify a layout xml or phtml file within your package, the grunt shell command will automatically clear your magento cache.
 
+```sh
+cd /path/to/blueacornui
+grunt compile
+```
 
+## overview
 
-## 3. Version
-0.2.0
+The Base Module allows developers to enable/disable various JavaScript plugins from the Admin in the **System > Configuration** section. Each plugin's dependencies (stylesheets, images, and minified JavaScript files) will be automatically loaded before the closing **&lt;/body&gt;** tag. This module has two other module dependencies:
 
-
-
-## 4. Plugins Included
+##### plugins
 The following plugins are currently available in Version 0.1.0
 
 * Fancybox V 2.1.5
@@ -47,34 +90,8 @@ The following plugins are currently available in Version 0.1.0
 Documentation for each plugin can be found by clicking on the **Source** link under each plugin's selectbox within the Admin
 
 
-## 5. Installation
-To install this module, you will need [Modman](https://github.com/colinmollenhour/modman) on your machine. For Mac users, simply:
 
- `brew install modman`
-
-Then, `cd` into your site's root directory and run:
-
-`modman init`
-
-In your terminal you should see something like:
-
-*Initialized Module Manager at /path/to/your/site*
-
-Then run:
-
-`modman clone git@github.com:BlueAcornInc/blueacorn-dev-common.git`
-
-This will install all the required module dependencies along with this module. **Clear your cache** and everything should be good to go. You may need to log out of your store's Admin and log back in. (Also make sure that you have **cache disabled** in the Admin as well.)
-
-**IMPORTANT NOTE:** you will need to *ensure that symlinks are are enabled* in your System Configuration. Navigate to:
-
-** System > Configuration > Advanced > Developer **
-
-Expand the *Template Settings* tab and change *Allow Symlinks* to "Yes"
-
-
-
-## 6. Usage
+## usage
 After you've installed this module, log into the Admin section of your store, and navigate to:
 
 **System > Configuration**
