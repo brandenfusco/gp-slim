@@ -1,10 +1,6 @@
-webroot/app/code/local/BlueAcorn/JavascriptPlugins/	webroot/app/code/local/BlueAcorn/JavascriptPlugins/
-webroot/app/design/frontend/base/default/layout/blueacorn/javascriptplugins.xml	webroot/app/design/frontend/base/default/layout/blueacorn/javascriptplugins.xml
-webroot/app/etc/modules/BlueAcorn_JavaScriptPlugins.xml	webroot/app/etc/modules/BlueAcorn_JavaScriptPlugins.xml
-webroot/js/blueacorn/lib/	webroot/js/blueacorn/lib/
-webroot/app/design/adminhtml/default/default/layout/blueacorn/javascriptplugins.xml	webroot/app/design/adminhtml/default/default/layout/blueacorn/javascriptplugins.xml
-webroot/skin/adminhtml/base/default/css/blueacorn.css	webroot/skin/adminhtml/base/default/css/blueacorn.css
-webroot/skin/adminhtml/base/default/images/blueacorn/blueacorn-logo.png   webroot/skin/adminhtml/base/default/images/blueacorn/blueacorn-logo.png
+# copy contents of webroot/ to <target>/webroot
+webroot/ webroot/
+
 
 @import footer-assets/
 @import new-green-pistachio/
