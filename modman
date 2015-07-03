@@ -1,4 +1,4 @@
-# copy contents of webroot/ to <target>/webroot
-webroot/ webroot/
+# copy contents of webroot/ 
+webroot/ / 
 
 
