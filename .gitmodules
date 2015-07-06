@@ -7,3 +7,6 @@
 [submodule "pistachios/gp-remove-link-by-name"]
 	path = pistachios/gp-remove-link-by-name
 	url = git@github.com:briceburg/gp-remove-link-by-name.git
+[submodule "pistachios/gp-stickyheader"]
+	path = pistachios/gp-stickyheader
+	url = git@github.com:briceburg/gp-stickyheader.git
