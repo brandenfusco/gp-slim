@@ -22,3 +22,4 @@ webroot/skin/adminhtml/base/default/images/blueacorn/blueacorn-logo.png         
 @import pistachios/gp-footer-assets
 @import pistachios/gp-remove-link-by-name
 @import pistachios/gp-stickyheader
+@import pistachios/ba-magejsconfig

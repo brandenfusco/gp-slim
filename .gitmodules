@@ -10,3 +10,6 @@
 [submodule "pistachios/gp-stickyheader"]
 	path = pistachios/gp-stickyheader
 	url = git@github.com:briceburg/gp-stickyheader.git
+[submodule "pistachios/ba-magejsconfig"]
+	path = pistachios/ba-magejsconfig
+	url = git@github.com:briceburg/ba-magejsconfig.git
