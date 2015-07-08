@@ -16,7 +16,7 @@ webroot/skin/adminhtml/base/default/images/blueacorn/blueacorn-logo.png         
 # else 
 #   copy to blueacornui (in magento root)
 @shell  echo "copying blueacornui... [project: $PROJECT]"
-@shell  if [ $(basename "$PROJECT") = "webroot" ]; then cp -a ${MODULE}/blueacornui ${PROJECT}/../blueacornui; else cp -a ${MODULE}/blueacornui ${PROJECT}; fi
+@shell  if [ $(basename "$PROJECT") = "webroot" ]; then cp -a ${MODULE}/blueacornui ${PROJECT}/../; else cp -a ${MODULE}/blueacornui ${PROJECT}; fi
 
 # add pistachios
 @import pistachios/gp-cms-page-style-update
