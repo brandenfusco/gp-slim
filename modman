@@ -1,24 +1,33 @@
-# unique directories
-webroot/app/code/local/BlueAcorn/JavascriptPlugins/  app/code/local/BlueAcorn/JavascriptPlugins/
-webroot/js/blueacorn/lib/                            js/blueacorn/lib/
+# directories
+webroot/app/code/local/BlueAcorn/JavascriptPlugins/                                  app/code/local/BlueAcorn/JavascriptPlugins/
+webroot/app/code/local/BlueAcorn/StyleGuide/	                                       app/code/local/BlueAcorn/StyleGuide/
+webroot/app/design/frontend/blueacorn/gp/	                                           app/design/frontend/blueacorn/gp/
+webroot/js/blueacorn/lib/                                                            js/blueacorn/lib/
+webroot/skin/frontend/blueacorn/gp/	                                                 skin/frontend/blueacorn/gp/
 
 # files
 webroot/app/design/frontend/base/default/layout/blueacorn/javascriptplugins.xml      app/design/frontend/base/default/layout/blueacorn/javascriptplugins.xml
 webroot/app/design/adminhtml/default/default/layout/blueacorn/javascriptplugins.xml  app/design/adminhtml/default/default/layout/blueacorn/javascriptplugins.xml
+
 webroot/app/etc/modules/BlueAcorn_JavaScriptPlugins.xml                              app/etc/modules/BlueAcorn_JavaScriptPlugins.xml
+webroot/app/etc/modules/BlueAcorn_StyleGuide.xml                                     app/etc/modules/BlueAcorn_StyleGuide.xml
 
 webroot/skin/adminhtml/base/default/css/blueacorn.css                                skin/adminhtml/base/default/css/blueacorn.css
 webroot/skin/adminhtml/base/default/images/blueacorn/blueacorn-logo.png              skin/adminhtml/base/default/images/blueacorn/blueacorn-logo.png
 
-
-# add blueacorn ui -- if this is a webroot project, 
+#
+# add blueacorn ui
+# if this is a webroot project, 
 #   copy to ../blueacornui
 # else 
 #   copy to blueacornui (in magento root)
+#
+
 @shell  echo "copying blueacornui... [project: $PROJECT]"
 @shell  if [ $(basename "$PROJECT") = "webroot" ]; then cp -a ${MODULE}/blueacornui ${PROJECT}/../; else cp -a ${MODULE}/blueacornui ${PROJECT}; fi
 
 # add pistachios
+# (do not edit -- mange through manage.sh)
 @import pistachios/gp-cms-page-style-update
 @import pistachios/gp-footer-assets
 @import pistachios/gp-remove-link-by-name
