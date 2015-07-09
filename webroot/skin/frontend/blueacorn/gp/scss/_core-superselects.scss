@@ -1,0 +1,46 @@
+ //
+ // Style Sheet for Super Selects CMS Page
+ //
+ // @package     Blue Acorn / Super Selects
+ // @version     1.0.0
+ // @author      Blue Acorn, Inc. <code@blueacorn.com>
+ // @copyright   Copyright © 2015 Blue Acorn, Inc.
+ //
+
+@import "blueacorn/grid";
+@import "blueacorn/development";
+
+.cms-page-view.cms-superselects {
+    .std {
+        li { font-style: normal; }
+        .form-list {
+            list-style-type: none;
+            > li {
+                @include g-all();
+                margin-left: 0;
+            }
+            .field {
+                float: left;
+                @include g-item(m, 2, false);
+                @include bp(max-width, $bp-medium) {
+                    width: 100%;
+                    clear: both;
+                    margin-left: 0;
+                }
+            }
+        }
+        .ba-options {
+            @extend .ba-options;
+        }
+        .ba-select.open .ba-options { display: block; }
+        .validation-error {
+            .ba-options li, .ba-shiv-content, .ba-shiv-content:hover, .ba-arrow:after, .ba-arrow:hover:after { color: $white; }
+            .ba-options li:hover, .ba-options li:hover span {
+                color: $black-80 !important;
+            }
+        }
+        .ba-thumbnail {
+            @extend .ba-thumbnail;
+        }
+    }
+}

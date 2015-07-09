@@ -1,24 +1,15 @@
-[submodule "footer-assets"]
-	path = footer-assets
-	url = git@github.com:BlueAcornInc/gp-footer-assets.git
-	branch = master
-[submodule "new-green-pistachio"]
-	path = new-green-pistachio
-	url = git@github.com:BlueAcornInc/gp-green-pistachio.git
-	branch = master
-[submodule "magejsconfig"]
-	path = magejsconfig
-	url = git@github.com:BlueAcornInc/ba-magejsconfig.git
-	branch = master
-[submodule "gp-remove-link-by-name"]
-	path = gp-remove-link-by-name
-	url = git@github.com:BlueAcornInc/gp-remove-link-by-name.git
-    branch = master
-[submodule "gp-cms-page-style-update"]
-	path = gp-cms-page-style-update
-	url = git@github.com:BlueAcornInc/gp-cms-page-style-update.git
-    branch = master
-[submodule "gp-stickyheader"]
-	path = gp-stickyheader
-	url = git@github.com:BlueAcornInc/gp-stickyheader.git
-    branch = master
+[submodule "pistachios/gp-cms-page-style-update"]
+	path = pistachios/gp-cms-page-style-update
+	url = git@github.com:briceburg/gp-cms-page-style-update.git
+[submodule "pistachios/gp-footer-assets"]
+	path = pistachios/gp-footer-assets
+	url = git@github.com:briceburg/gp-footer-assets.git
+[submodule "pistachios/gp-remove-link-by-name"]
+	path = pistachios/gp-remove-link-by-name
+	url = git@github.com:briceburg/gp-remove-link-by-name.git
+[submodule "pistachios/gp-stickyheader"]
+	path = pistachios/gp-stickyheader
+	url = git@github.com:briceburg/gp-stickyheader.git
+[submodule "pistachios/ba-magejsconfig"]
+	path = pistachios/ba-magejsconfig
+	url = git@github.com:briceburg/ba-magejsconfig.git

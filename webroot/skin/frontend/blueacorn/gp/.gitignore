@@ -1,0 +1,9 @@
+# compiled / minified assets
+############################
+
+/.sass-cache
+/css
+/jsmin
+
+# ignore development map files
+*.css.map
