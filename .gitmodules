@@ -1,15 +1,15 @@
 [submodule "pistachios/gp-cms-page-style-update"]
 	path = pistachios/gp-cms-page-style-update
-	url = git@github.com:briceburg/gp-cms-page-style-update.git
+	url = git@github.com:BlueAcornInc/gp-cms-page-style-update.git
 [submodule "pistachios/gp-footer-assets"]
 	path = pistachios/gp-footer-assets
-	url = git@github.com:briceburg/gp-footer-assets.git
+	url = git@github.com:BlueAcornInc/gp-footer-assets.git
 [submodule "pistachios/gp-remove-link-by-name"]
 	path = pistachios/gp-remove-link-by-name
-	url = git@github.com:briceburg/gp-remove-link-by-name.git
+	url = git@github.com:BlueAcornInc/gp-remove-link-by-name.git
 [submodule "pistachios/gp-stickyheader"]
 	path = pistachios/gp-stickyheader
-	url = git@github.com:briceburg/gp-stickyheader.git
+	url = git@github.com:BlueAcornInc/gp-stickyheader.git
 [submodule "pistachios/ba-magejsconfig"]
 	path = pistachios/ba-magejsconfig
-	url = git@github.com:briceburg/ba-magejsconfig.git
+	url = git@github.com:BlueAcornInc/ba-magejsconfig.git
