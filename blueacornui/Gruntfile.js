@@ -204,6 +204,20 @@ module.exports = function(grunt){
             }
         },
 
+        githooks: {
+            dev: {
+                options: {
+                    dest: '../.git/hooks'
+                },
+                'post-merge': {
+                    taskNames: 'concurrent:sass autoprefixer:dev autoprefixer:ie jshint uglify:dev shell:cache'
+                },
+                'post-checkout': {
+                    taskNames: 'concurrent:sass autoprefixer:dev autoprefixer:ie jshint uglify:dev shell:cache'
+                }
+            }
+        },
+
         copy: {
             app: {
                 cwd: '<%=webRoot%>/app/design/frontend/rwd',
@@ -305,6 +319,9 @@ module.exports = function(grunt){
 
     // Quality Control Task, used to verify content quality of Frontend Assets
     grunt.registerTask('qc', ['newer:jshint']);
+
+    // Grunt compile githook task on post-checkout and post-merge
+    grunt.registerTask('dev-githooks', ['githooks:dev']);
 
     // Grunt Setup Task
     grunt.registerTask('setup', function(){
