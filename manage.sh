@@ -103,7 +103,7 @@ pistachio_delete(){
 pistachio_update(){
   cd $CWD
 
-  git submodule update --remote --merge
+  git submodule update --remote --checkout --recursive --force
 
   if $AUTO_COMMIT; then
     cd pistachios
