@@ -77,7 +77,6 @@ jQuery(document).ready(function($){
             $.each(settings.selects, function(idx, select){
                 var currentSelect = $(select),
                     selectOptions,
-                    dynamicOptionBuilder,
                     dynamicSelectOption;
 
                 // Detects if the Super Select DOM Customizations alread
@@ -109,13 +108,7 @@ jQuery(document).ready(function($){
                 $(selectOptions).append('<ul></ul>');
 
                 // Iterate through the select options to create the individual super select options & attach to Select
-                dynamicOptionBuilder = 'buildOptionObject' + self.camelCaseCreator(self.getSelectType(currentSelect));
-
-                if($.isFunction(self[dynamicOptionBuilder])){
-                    currentSelect.optionsArray = self[dynamicOptionBuilder]($(currentSelect).children());
-                }else{
-                    currentSelect.optionsArray = self.buildOptionObject($(currentSelect).children());
-                }
+                self.buildOptionsObjects(currentSelect);
 
                 // Create Individual List of Items for the Super Select
                 dynamicSelectOption = 'buildSelectOption' + self.camelCaseCreator(self.getSelectType(currentSelect));
@@ -127,9 +120,6 @@ jQuery(document).ready(function($){
                         self.buildSelectOption(this, selectOptions, idx);
                     }
                 });
-
-                // Update Max Height
-                self.setMaxOptionsHeight(currentSelect);
 
                 // Populate the Shiv
                 self.updateSuperSelectsShiv(currentSelect);
@@ -433,6 +423,8 @@ jQuery(document).ready(function($){
             // Add Open Class to the Shiv, Create the Closing Element, and Attach Closing Element Events
             $(currentSelect).siblings('.ba-select-box').addClass('open').after('<div class="ba-select-close"></div>');
 
+            self.setMaxOptionsHeight(currentSelect);
+
             self.setKeyboardObservers(currentSelect);
 
             self.setCloseObserver(currentSelect);
@@ -461,17 +453,21 @@ jQuery(document).ready(function($){
             var self = this,
                 customOptions = $(currentSelect).siblings('.ba-select-box').find('.ba-options ul').children();
 
-                $.each($(customOptions), function(optionIndex){
-                    $(this).on('click touchstart', function(){
-                        $(customOptions).removeClass('selected');
-                        $(this).addClass('selected');
-                        $(currentSelect).prop('selectedIndex',optionIndex);
-                        $(currentSelect).trigger('change');
-                        self.updateSuperSelectsShiv(currentSelect);
-                        $(currentSelect).siblings('.ba-select-box').find('.ba-shiv').trigger('click');
-                        $(document).off('keyup');
-                    });
+            $.each($(customOptions), function(optionIndex){
+                $(this).on('click touchstart', function(){
+                    $(customOptions).removeClass('selected');
+                    $(this).addClass('selected');
+                    $(currentSelect).prop('selectedIndex',optionIndex);
+                    if($(currentSelect).attr('onchange')){
+                        $(currentSelect)[0].onChangeEvent = new Function($(currentSelect).attr('onchange'));
+                        $(currentSelect)[0].onChangeEvent();
+                    }
+                    $(currentSelect).trigger('change');
+                    self.updateSuperSelectsShiv(currentSelect);
+                    $(currentSelect).siblings('.ba-select-box').find('.ba-shiv').trigger('click');
+                    $(document).off('keyup');
                 });
+            });
         },
 
         /**
@@ -589,6 +585,21 @@ jQuery(document).ready(function($){
             superSelectTemplate = '<div class="ba-select ba-select-box ba-' + self.getSelectType(currentSelect) + ' ' + self.getSelectStatus(currentSelect) + '"><span class="ba-shiv"><span></span></span><div class="ba-options"></div></div>';
 
             $(currentSelect).before(superSelectTemplate);
+        },
+
+        /**
+         * Run Object Creation events for optionsArray based on Select Type
+         * @param currentSelect jQuery DOM Object of Select
+         */
+        buildOptionsObjects: function(currentSelect) {
+            var self = this,
+            dynamicOptionBuilder = 'buildOptionObject' + self.camelCaseCreator(self.getSelectType(currentSelect));
+
+            if($.isFunction(self[dynamicOptionBuilder])){
+                currentSelect.optionsArray = self[dynamicOptionBuilder]($(currentSelect).children());
+            }else{
+                currentSelect.optionsArray = self.buildOptionObject($(currentSelect).children());
+            }
         },
 
         /**
@@ -768,8 +779,14 @@ jQuery(document).ready(function($){
 
             var self = this,
                 selectedOption = $(currentSelect).prop('selectedIndex'),
-                optionsArray = currentSelect.optionsArray[selectedOption],
+                optionsArray,
                 html = '';
+
+                if(currentSelect.optionsArray === undefined) {
+                    self.buildOptionsObjects(currentSelect);
+                }
+
+                optionsArray = currentSelect.optionsArray[selectedOption];
 
                 if(optionsArray.image !== undefined){
                     html += self.updateShivImage(self.settings.imageType, optionsArray.image, optionsArray.value);

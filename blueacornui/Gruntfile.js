@@ -2,9 +2,6 @@ module.exports = function(grunt){
 
     grunt.initConfig({
         webRoot: '../webroot',
-        //appDir: '<%=webRoot%>/app/design/frontend/blueacorn/site',
-        //skinDir: '<%=webRoot%>/skin/frontend/blueacorn/site',
-        // rely on symbolic links from `grunt setup:<theme_name>`
         appDir: 'app',
         skinDir: 'skin',
         pkg: grunt.file.readJSON('package.json'),
@@ -41,64 +38,62 @@ module.exports = function(grunt){
             }
         },
 
-        autoprefixer: {
+        postcss: {
             dev: {
                 options: {
-                    remove: true,
-                    cascade: false,
-                    map: {
-                        inline: false,
-                        // sourcesContent: false,
-                        prev: true,
-                        annotation: false
-                    },
-                    browsers: [
-                        'last 3 Explorer versions',
-                        'last 2 Chrome versions',
-                        'last 2 Safari versions',
-                        'last 2 Firefox Versions',
-                        'last 2 iOS versions',
-                        'last 2 ChromeAndroid versions',
-                        '> 1%'
+                    map: true,
+                    processor: [
+                        require('autoprefixer-core')({
+                            browsers: [
+                                'last 3 Explorer versions',
+                                'last 2 Chrome versions',
+                                'last 2 Safari versions',
+                                'last 2 Firefox Versions',
+                                'last 2 iOS versions',
+                                'last 2 ChromeAndroid versions',
+                                '> 1%'
+                            ],
+                            map: {
+                                inline: false,
+                                prev: true,
+                                annotation: false,
+                                sourceContent: false
+                            }
+                        }),
                     ],
                 },
-                expand: true,
-                flatten: true,
-                src: ['<%=skinDir%>/css/**/*.css', '!<%=skinDir%>/css/**/*ie8.css'],
-                dest: '<%=skinDir%>/css'
+                src: ['<%=skinDir%>/css/**/*.css', '!<%=skinDir%>/css/**/*ie8.css']
             },
             ie: {
                 options: {
-                    remove: true,
-                    cascade: false,
                     map: false,
-                    browsers: ['Explorer 8'],
+                    processor: [
+                        require('autoprefixer-core')({
+                            browsers: ['Explorer 8']
+                        }),
+                    ],
                 },
-                expand: true,
-                flatten: true,
-                src: ['<%=skinDir%>/css/**/*ie8.css'],
-                dest: '<%=skinDir%>/css'
+                src: ['<%=skinDir%>/css/**/*ie8.css']
             },
             production: {
                 options: {
-                    remove: true,
-                    cascade: false,
                     map: false,
-                    browsers: [
-                        'last 3 Explorer versions',
-                        'last 2 Chrome versions',
-                        'last 2 Safari versions',
-                        'last 2 Firefox Versions',
-                        'last 2 iOS versions',
-                        'last 2 ChromeAndroid versions',
-                        '> 1%'
+                    processor: [
+                        require('autoprefixer-core')({
+                            browsers: [
+                                'last 3 Explorer versions',
+                                'last 2 Chrome versions',
+                                'last 2 Safari versions',
+                                'last 2 Firefox Versions',
+                                'last 2 iOS versions',
+                                'last 2 ChromeAndroid versions',
+                                '> 1%'
+                            ]
+                        }),
                     ],
                 },
-                expand: true,
-                flatten: true,
-                src: ['<%=skinDir%>/css/**/*.css', '!<%=skinDir%>/css/**/*ie8.css'],
-                dest: '<%=skinDir%>/css'
-            },
+                src: ['<%=skinDir%>/css/**/*.css', '!<%=skinDir%>/css/**/*ie8.css']
+            }
         },
 
         sass: {
@@ -210,10 +205,10 @@ module.exports = function(grunt){
                     dest: '../.git/hooks'
                 },
                 'post-merge': {
-                    taskNames: 'concurrent:sass autoprefixer:dev autoprefixer:ie jshint uglify:dev shell:cache'
+                    taskNames: 'concurrent:sass postcss:dev postcss:ie jshint uglify:dev shell:cache'
                 },
                 'post-checkout': {
-                    taskNames: 'concurrent:sass autoprefixer:dev autoprefixer:ie jshint uglify:dev shell:cache'
+                    taskNames: 'concurrent:sass postcss:dev postcss:ie jshint uglify:dev shell:cache'
                 }
             }
         },
@@ -277,7 +272,7 @@ module.exports = function(grunt){
             },
             sass: {
                 files: ['<%=skinDir%>/scss/**/*.scss'],
-                tasks: ['concurrent:sass', 'concurrent:autoprefixer'],
+                tasks: ['concurrent:sass', 'concurrent:postcss'],
                 sourceComments: 'normal',
                 options: {
                     sourceMap: true
@@ -303,7 +298,7 @@ module.exports = function(grunt){
         concurrent: {
             setup: ['copy:app', 'copy:skin'],
             sass: ['sass:dev', 'sass:ie'],
-            autoprefixer: ['autoprefixer:dev', 'autoprefixer:ie']
+            postcss: ['postcss:dev', 'postcss:ie']
         },
 
     });
@@ -332,12 +327,12 @@ module.exports = function(grunt){
     });
 
     // Compilation Task, used to re-compile Frontend Assets.
-    grunt.registerTask('compile', ['concurrent:sass', 'autoprefixer:dev', 'autoprefixer:ie', 'jshint', 'uglify:dev', 'shell:cache']);
+    grunt.registerTask('compile', ['concurrent:sass', 'postcss:dev', 'postcss:ie', 'jshint', 'uglify:dev', 'shell:cache']);
 
     // Staging Deployment Task, used for post-deployment compilation of Frontend Assets on Staging.
-    grunt.registerTask('staging', ['sass:production', 'sass:ie', 'autoprefixer:production', 'autoprefixer:ie', 'jshint', 'uglify:production', 'newer:imagemin', 'shell:cache']);
+    grunt.registerTask('staging', ['sass:production', 'sass:ie', 'postcss:production', 'postcss:ie', 'jshint', 'uglify:production', 'newer:imagemin', 'shell:cache']);
 
     // Production Deployment Task, used for post-deployment compilation of Frontend Assets on Production.
-    grunt.registerTask('production', ['sass:production', 'sass:ie', 'autoprefixer:production', 'autoprefixer:ie', 'jshint', 'uglify:production', 'newer:imagemin', 'shell:cache']);
+    grunt.registerTask('production', ['sass:production', 'sass:ie', 'postcss:production', 'postcss:ie', 'jshint', 'uglify:production', 'newer:imagemin', 'shell:cache']);
 
 }
