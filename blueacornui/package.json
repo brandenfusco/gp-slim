@@ -21,6 +21,7 @@
     "compass"
   ],
   "devDependencies": {
+    "autoprefixer-core": "*",
     "grunt": "*",
     "grunt-banner": "*",
     "grunt-concurrent": "*",
