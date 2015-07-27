@@ -32,6 +32,7 @@
     "grunt-contrib-watch": "*",
     "grunt-githooks": "*",
     "grunt-newer": "*",
+    "grunt-postcss": "*",
     "grunt-sass": "*",
     "grunt-shell": "*",
     "grunt-usebanner": "*",
