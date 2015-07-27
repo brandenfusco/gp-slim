@@ -1,6 +1,6 @@
 # green pistachio
 
-it's like eating a **handful** of _pre-shelled_ front end magento plugins. 
+it's like eating a **handful** of _pre-shelled_ front end magento plugins.
 
 ##### features
 * Sass compilation of the 1.14 theme with LibSass
@@ -29,12 +29,12 @@ it's like eating a **handful** of _pre-shelled_ front end magento plugins.
 ```sh
 cd /path/to/magento-webroot
 modman init
-modman clone git@github.com:briceburg/green-pistachio.git
+modman clone git@github.com:BlueAcornInc/green-pistachio.git
 ```
 
 ##### theme compilation
 
-green-pistachio uses [grunt](http://gruntjs.com/) and [bower](http://bower.io/) to build your theme by compiling and fetching assets. 
+green-pistachio uses [grunt](http://gruntjs.com/) and [bower](http://bower.io/) to build your theme by compiling and fetching assets.
 
 modman will install a directory named **blueacornui** to your project's root containing the build scripts for your theme.
 
@@ -47,7 +47,7 @@ modman will install a directory named **blueacornui** to your project's root con
 cd /path/to/blueacornui
 npm install
 bower install
-grunt setup:{YOURTHEMENAME}  [????]
+grunt setup:site
 ```
 
 **live development**
@@ -61,7 +61,7 @@ grunt
 
 **theme compiling**
 This will lint & compile all your SASS & JS files to css & minified js whenever you save a js, scss file.
-	
+
 If you modify a layout xml or phtml file within your package, the grunt shell command will automatically clear your magento cache.
 
 ```sh
