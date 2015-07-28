@@ -3,6 +3,7 @@
 
     <default>
         <reference name="head">
+            <action method="addItem"><type>skin_js</type><name>js/blueacorn-magento-overrides.js</name><params/></action>
             <action method="removeItem"><type>skin_css</type><name>css/enterprise.css</name></action>
             <action method="removeItem"><type>skin_css</type><name>css/enterprise-ie8.css</name></action>
         </reference>
