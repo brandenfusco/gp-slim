@@ -16,5 +16,5 @@
 	* [BlueAcorn/DevelopmentCore](skin/frontend/blueacorn/gp/js/development/USAGE-BLUEACORN-DEVELOPMENT-CORE.MD)
 	* [BlueAcorn/StyleGuide](skin/frontend/blueacorn/gp/js/development/USAGE-BLUEACORN-STYLEGUIDE.MD)
 	* [BlueAcorn/StyleGuideMenu](skin/frontend/blueacorn/gp/js/development/USAGE-BLUEACORN-STYLEGUIDE-MENU.MD)
-* [BlueAcorn/MagentoOverrides](skin/frontend/blueacorn/gp/js/USAGE-MAGENTO-OVERRIDES.MD)
+* [BlueAcorn/MagentoOverrides](skin/frontend/blueacorn/gp/js/USAGE-BLUEACORN-MAGENTO-OVERRIDES.MD)
 

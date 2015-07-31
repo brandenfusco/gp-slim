@@ -4,7 +4,7 @@
     * [ba - BlueAcornCore](#ba)
     * [overrideSettings](#overridesettings)
     * [setupDebugging](#setupdebugging)
-    * [watchConsole](#watchConsole)
+    * [watchConsole](#watch)
 
 ## Usage
 
@@ -89,6 +89,6 @@
 		
 		ba.myObject = new MyObject(){});
 		
-###[watchConsole](id:watchconsole)
+###[watchConsole](id:watch)
 
 `watchConsole(message)` will console log development debugging information if **System > Config > Blue Acorn > Style Guide** Development Mode is set to `yes`.
