@@ -291,7 +291,7 @@ module.exports = function(grunt){
             },
             images: {
                 files: ['<%=skinDir%>/src/**.*{png,jpg,gif,svg}'],
-                task: ['newer:imagemin']
+                tasks: ['newer:imagemin']
             },
         },
 
