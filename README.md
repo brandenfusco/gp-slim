@@ -7,6 +7,7 @@ It's like eating a **handful** of _pre-shelled_ front end magento plugins.
 1. [Features](#features)
 2. [Quick Start](#quickstart)
 	1. [Module Installation](#module)
+		2. [Using Modman](#usingmodman)
 	2. [Theme Compilation](#theme)
 	3. [Theme Setup](#setup)
 4. [Usage](#usage)
@@ -40,9 +41,11 @@ It's like eating a **handful** of _pre-shelled_ front end magento plugins.
   * System > Configuration > Advanced > Developer
   * Expand the *Template Settings* tab and change *Allow Symlinks* to "Yes"
 
-		$: cd /path/to/magento-webroot
-		$/path/to/magento-webroot/: modman init
-		$/path/to/magento-webroot/: modman clone git@github.com:BlueAcornInc/green-pistachio.git
+###### [Using Modman](id:usingmodman)
+
+	$: cd /path/to/magento-webroot
+	$/path/to/magento-webroot/: modman init
+	$/path/to/magento-webroot/: modman clone git@github.com:BlueAcornInc/green-pistachio.git
 
 
 ##### [Theme Compilation](id:theme)
