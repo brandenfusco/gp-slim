@@ -41,7 +41,8 @@ error () {
 # globals
 #########
 
-CWD="$(dirname "$(readlink -f "$0")")"
+type greadlink >/dev/null 2>&1 && CWD="$(dirname "$(greadlink -f "$0")")" || \
+  CWD="$(dirname "$(readlink -f "$0")")"
 AUTO_COMMIT=${GIT_AUTO_COMMIT:-false}
 
 
