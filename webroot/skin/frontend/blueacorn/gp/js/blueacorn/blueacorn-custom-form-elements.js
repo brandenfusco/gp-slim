@@ -225,8 +225,6 @@ jQuery(document).ready(function ($) {
         },
 
         selectStatus: function(selectElement) {
-            console.log($(selectElement).parent('.select-container').length > 0 || $(selectElement).prop('multiple'));
-
             return $(selectElement).parent('.select-container').length > 0 || $(selectElement).prop('multiple');
         },
 

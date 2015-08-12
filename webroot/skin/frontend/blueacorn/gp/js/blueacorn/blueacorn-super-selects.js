@@ -56,6 +56,7 @@ jQuery(document).ready(function($){
 
             // Watching update:selects, update:all & section:update Custom Events
             $(document).on('update:selects update:all section:update', function() {
+                self.settings.selects = $('select');
                 self.createSuperSelect();
                 self.unsetCustom();
                 self.updateInternetExplorer();
@@ -210,7 +211,7 @@ jQuery(document).ready(function($){
                 selectShiv  = $(currentSelect).siblings('.ba-select-box').find('.ba-shiv');
 
                 // Add Click Event tot he Super Select Shiv
-                selectShiv.on('click touchstart', function(){
+                selectShiv.on('click', function(){
                     // Detect if the Shiv is Already Open
                     if(!$(currentSelect).siblings('.ba-select-box').hasClass('open')){
                         self.openOptions(currentSelect);
@@ -229,7 +230,7 @@ jQuery(document).ready(function($){
                 selectShiv  = $(currentSelect).siblings('.ba-select-box').find('.ba-shiv');
 
                 // Add Click Event tot he Super Select Shiv
-                selectShiv.on('click touchstart', function(){
+                selectShiv.on('click', function(){
                     // Detect if the Shiv is Already Open
                     var baSelectBox = $(currentSelect).siblings('.ba-select-box'),
                         baOptionsBox = $(baSelectBox).find('.ba-options');
@@ -258,7 +259,7 @@ jQuery(document).ready(function($){
                 selectShiv  = $(currentSelect).siblings('.ba-select-box').find('.ba-shiv');
 
                 // Add Click Event tot he Super Select Shiv
-                selectShiv.on('click touchstart', function(){
+                selectShiv.on('click', function(){
                     // Detect if the Shiv is Already Open
                     var baSelectBox = $(currentSelect).siblings('.ba-select-box'),
                         baOptionsBox = $(baSelectBox).find('.ba-options');
@@ -288,7 +289,7 @@ jQuery(document).ready(function($){
                 selectShiv  = $(currentSelect).siblings('.ba-select-box').find('.ba-shiv');
 
                 // Add Click Event tot he Super Select Shiv
-                selectShiv.on('click touchstart', function(){
+                selectShiv.on('click', function(){
                     // Detect if the Shiv is Already Open
                     var baSelectBox = $(currentSelect).siblings('.ba-select-box');
                     if(!$(baSelectBox).hasClass('open')){
@@ -315,7 +316,7 @@ jQuery(document).ready(function($){
                 selectShiv  = $(currentSelect).siblings('.ba-select-box').find('.ba-shiv');
 
             // Add Click Event tot he Super Select Shiv
-            selectShiv.on('click touchstart', function(){
+            selectShiv.on('click', function(){
                 // Detect if the Shiv is Already Open
                 var baSelectBox = $(currentSelect).siblings('.ba-select-box');
                 if(!$(baSelectBox).hasClass('open')){
@@ -343,7 +344,7 @@ jQuery(document).ready(function($){
                 selectShiv  = $(currentSelect).siblings('.ba-select-box').find('.ba-shiv');
 
                 // Add Click Event tot he Super Select Shiv
-                selectShiv.on('click touchstart', function(){
+                selectShiv.on('click', function(){
                     // Detect if the Shiv is Already Open
                     var baSelectBox = $(currentSelect).siblings('.ba-select-box');
                     if(!$(baSelectBox).hasClass('open')){
@@ -454,7 +455,7 @@ jQuery(document).ready(function($){
                 customOptions = $(currentSelect).siblings('.ba-select-box').find('.ba-options ul').children();
 
             $.each($(customOptions), function(optionIndex){
-                $(this).on('click touchstart', function(){
+                $(this).on('click', function(){
                     $(customOptions).removeClass('selected');
                     $(this).addClass('selected');
                     $(currentSelect).prop('selectedIndex',optionIndex);
@@ -462,7 +463,7 @@ jQuery(document).ready(function($){
                         $(currentSelect)[0].onChangeEvent = new Function($(currentSelect).attr('onchange'));
                         $(currentSelect)[0].onChangeEvent();
                     }
-                    $(currentSelect).trigger('change');
+                    $(currentSelect)[0].triggerEvent('change');
                     self.updateSuperSelectsShiv(currentSelect);
                     $(currentSelect).siblings('.ba-select-box').find('.ba-shiv').trigger('click');
                     $(document).off('keyup');
@@ -480,7 +481,7 @@ jQuery(document).ready(function($){
                 customOptions = $(currentSelect).siblings('.ba-select-box').find('.ba-options ul').children();
 
                 $.each($(customOptions), function(optionIndex){
-                    $(this).on('click touchstart', function(){
+                    $(this).on('click', function(){
 
                         if(!$(currentSelect).data('setup-first')) {
                             $(currentSelect).data('setup-first', true);
@@ -491,7 +492,7 @@ jQuery(document).ready(function($){
                         $(this).addClass('selected');
 
                         $(currentSelect).prop('selectedIndex',optionIndex);
-                        $(currentSelect).trigger('change');
+                        $(currentSelect)[0].triggerEvent('change');
                         self.updateSuperSelectsShiv(currentSelect);
                         $(currentSelect).siblings('.ba-select-box').find('.ba-shiv').trigger('click');
                     });
@@ -514,7 +515,7 @@ jQuery(document).ready(function($){
          */
         setCloseObserver: function(currentSelect) {
             // Detect Closing Element Click
-            $(currentSelect).siblings('.ba-select-close').on('click touchstart', function(){
+            $(currentSelect).siblings('.ba-select-close').on('click', function(){
                 // Fire Click Event on Element Shiv
                 $(currentSelect).siblings('.ba-select-box').find('.ba-shiv').trigger('click');
                 $(currentSelect).trigger('custom:blur');
@@ -611,17 +612,16 @@ jQuery(document).ready(function($){
          */
         buildOptionObject: function(opts) {
             var optionsArray = [];
- 
+
             $.each($(opts), function(idx, opt){
-
-                var superSelectOption = {};
-
-                superSelectOption.value = $(opt).attr('value') ? $(opt).attr('value') : '';
-                superSelectOption.selected = $(opt).prop('selected');
-                superSelectOption.disabled = $(opt).prop('disabled');
-                superSelectOption.content = $(opt).html() ? $(opt).html() : '';
-                superSelectOption.color = $(opt).data('color') ? $(opt).data('color') : '';
-                superSelectOption.image = $(opt).data('image') ? $(opt).data('image') : '';
+                var superSelectOption = {
+                    'value': $(opt).attr('value').length > 0 ? $(opt).attr('value') : '',
+                    'selected': $(opt).prop('selected'),
+                    'disabled': $(opt).prop('disabled'),
+                    'content': $(opt).html(),
+                    'color': $(opt).data('color'),
+                    'image': $(opt).data('image')
+                };
 
                 optionsArray.push(superSelectOption);
             });
@@ -743,8 +743,6 @@ jQuery(document).ready(function($){
          */
         buildSelectOptionThumbnail: function(opt, selectOptions, idx) {
             this.buildSelectOptionWithDelay(opt, selectOptions, idx, 0.02, false);
-
-            // console.log(opt, selectOptions, idx);
 
             if(idx === 0){
                 $($(selectOptions).find('ul li')[idx]).addClass('first-child');
