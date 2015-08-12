@@ -614,14 +614,15 @@ jQuery(document).ready(function($){
             var optionsArray = [];
 
             $.each($(opts), function(idx, opt){
-                var superSelectOption = {
-                    'value': $(opt).attr('value').length > 0 ? $(opt).attr('value') : '',
-                    'selected': $(opt).prop('selected'),
-                    'disabled': $(opt).prop('disabled'),
-                    'content': $(opt).html(),
-                    'color': $(opt).data('color'),
-                    'image': $(opt).data('image')
-                };
+
+                var superSelectOption = {};
+
+                superSelectOption.value = $(opt).attr('value') ? $(opt).attr('value') : '';
+                superSelectOption.selected = $(opt).prop('selected');
+                superSelectOption.disabled = $(opt).prop('disabled');
+                superSelectOption.content = $(opt).html() ? $(opt).html() : '';
+                superSelectOption.color = $(opt).data('color') ? $(opt).data('color') : '';
+                superSelectOption.image = $(opt).data('image') ? $(opt).data('image') : '';
 
                 optionsArray.push(superSelectOption);
             });
