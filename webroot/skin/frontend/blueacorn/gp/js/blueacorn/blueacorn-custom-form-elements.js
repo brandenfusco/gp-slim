@@ -338,7 +338,7 @@ jQuery(document).ready(function ($) {
                 var selectElement, optionValue, truncateOption;
 
                 selectElement = $(this).siblings('select');
-                optionValue = $(selectElement).children('option:selected').text();
+                optionValue = $(selectElement).find('option:selected').text();
                 truncateOption = $(selectElement).data('truncate');
 
                 $(this).html(optionValue.strip().truncate(truncateOption) + '<span></span>');
