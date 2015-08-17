@@ -57,6 +57,7 @@ jQuery(document).ready(function($){
             // Watching update:selects, update:all & section:update Custom Events
             $(document).on('update:selects update:all section:update', function() {
                 self.settings.selects = $('select');
+                self.unsetAll();
                 self.createSuperSelect();
                 self.unsetCustom();
                 self.updateInternetExplorer();
@@ -860,6 +861,21 @@ jQuery(document).ready(function($){
                     }
                 });
 
+            });
+        },
+
+        /**
+         * Unsets all super selects on rebuild.
+         */
+        unsetAll: function() {
+            var self = this;
+
+            $.each(self.settings.selects, function(idx, listItem){
+                $.each($(listItem), function (idx, el) {
+                    if ($(el).prop('tagName') == 'SELECT') {
+                        self.unsetSuperSelect(el);
+                    }
+                });
             });
         },
 
