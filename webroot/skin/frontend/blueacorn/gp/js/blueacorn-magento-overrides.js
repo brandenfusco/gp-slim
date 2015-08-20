@@ -9,7 +9,7 @@ Event.observe(window, 'load', function () {
             Product.Config.prototype.resetChildren = Product.Config.prototype.resetChildren.wrap(
                 function(parentFunction, element) {
                     parentFunction(element);
-                    jQuery(document).trigger('update:selects');
+                    jQuery(document).trigger('update:all');
                 }
             );
 
@@ -27,7 +27,7 @@ Event.observe(window, 'load', function () {
             Product.Config.prototype.configureElement = Product.Config.prototype.configureElement.wrap(
                 function(parentFunction, element){
                     parentFunction(element);
-                    jQuery(document).trigger('update:selects');
+                    jQuery(document).trigger('update:all');
                 }
             );
         }
@@ -117,7 +117,7 @@ Event.observe(window, 'load', function () {
         Shipping.prototype.syncWithBilling = Shipping.prototype.syncWithBilling.wrap(
             function(parentFunction){
                 parentFunction();
-                jQuery(document).trigger('update:selects');
+                jQuery(document).trigger('update:all');
             }
         );
 
@@ -137,7 +137,7 @@ Event.observe(window, 'load', function () {
         shipping.setSameAsBilling = shipping.setSameAsBilling.wrap(
             function(parentFunction, flag) {
                 parentFunction(flag);
-                jQuery(document).trigger('update:selects');
+                jQuery(document).trigger('update:all');
             }
         );
 
@@ -145,7 +145,7 @@ Event.observe(window, 'load', function () {
         shipping.syncWithBilling = shipping.syncWithBilling.wrap(
             function(parentFunction) {
                 parentFunction();
-                jQuery(document).trigger('update:selects');
+                jQuery(document).trigger('update:all');
             }
         );
     }
@@ -209,7 +209,7 @@ Event.observe(window, 'load', function () {
         RegionUpdater.prototype.update = RegionUpdater.prototype.update.wrap(
             function(parentFunction){
                 parentFunction();
-                jQuery(document).trigger('update:selects');
+                jQuery(document).trigger('update:all');
             }
         );
     }
