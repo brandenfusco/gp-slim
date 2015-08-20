@@ -6,12 +6,22 @@
             <action method="addItem"><type>skin_js</type><name>js/blueacorn-magento-overrides.js</name><params/></action>
             <action method="removeItem"><type>skin_css</type><name>css/enterprise.css</name></action>
             <action method="removeItem"><type>skin_css</type><name>css/enterprise-ie8.css</name></action>
+            <action method="removeItem"><type>skin_js</type><name>js/lib/jquery.cycle2.min.js</name></action>
+            <action method="removeItem"><type>skin_js</type><name>js/lib/jquery.cycle2.swipe.min.js</name></action>
+            <action method="removeItem"><type>skin_js</type><name>js/slideshow.js</name></action>
+            <action method="removeItem"><type>skin_js</type><name>js/lib/imagesloaded.js</name></action>
+            <action method="removeItem"><type>skin_js</type><name>js/minicart.js</name></action>
         </reference>
         <reference name="before_body_end">
             <block type="page/html_head" name="footerjs" as="footerjs" after="-" template="page/html/footerjs.phtml">
                 <action method="addItem"><type>skin_js</type><name>jsmin/blueacorn.min.js</name><params/></action>
                 <action method="addItem" ifconfig="styleguide/development/enable_development"><type>skin_js</type><name>jsmin/blueacorn.development.min.js</name><params/></action>
-                <action method="addItem"><type>skin_js</type><name>js/vendor/jquery.fancybox.pack.js</name><params/></action>
+                <action method="addItem"><type>skin_js</type><name>js/lib/jquery.cycle2.min.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/lib/jquery.cycle2.swipe.min.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/slideshow.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/lib/imagesloaded.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/minicart.js</name></action>
+                <!-- <action method="addItem"><type>skin_js</type><name>js/vendor/jquery.fancybox.pack.js</name><params/></action> -->
             </block>
         </reference>
     </default>

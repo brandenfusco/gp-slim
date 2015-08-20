@@ -291,14 +291,15 @@ module.exports = function(grunt){
             },
             images: {
                 files: ['<%=skinDir%>/src/**.*{png,jpg,gif,svg}'],
-                tasks: ['newer:imagemin']
+                task: ['newer:imagemin']
             },
         },
 
         concurrent: {
             setup: ['copy:app', 'copy:skin'],
             sass: ['sass:dev', 'sass:ie'],
-            postcss: ['postcss:dev', 'postcss:ie']
+            postcss: ['postcss:dev', 'postcss:ie'],
+            compile: ['concurrent:sass','shell:cache','newer:imagemin'],
         },
 
     });
@@ -327,7 +328,7 @@ module.exports = function(grunt){
     });
 
     // Compilation Task, used to re-compile Frontend Assets.
-    grunt.registerTask('compile', ['concurrent:sass', 'postcss:dev', 'postcss:ie', 'jshint', 'uglify:dev', 'shell:cache']);
+    grunt.registerTask('compile', ['concurrent:compile', 'postcss:dev', 'postcss:ie', 'jshint', 'uglify:dev']);
 
     // Staging Deployment Task, used for post-deployment compilation of Frontend Assets on Staging.
     grunt.registerTask('staging', ['sass:production', 'sass:ie', 'postcss:production', 'postcss:ie', 'jshint', 'uglify:production', 'newer:imagemin', 'shell:cache']);

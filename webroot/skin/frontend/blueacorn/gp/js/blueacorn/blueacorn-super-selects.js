@@ -32,7 +32,7 @@ jQuery(document).ready(function($){
                 'selects': $('select'), // jQuery DOM Object Selector
                 'smallSelects': $('#select-language, .toolbar select, .review-heading .pager select, .review-customer-index .pager select, .small-select'), // List of known Small Selects
                 'smallClass': 'sm', // Class for Small Selects
-                'blackList': ['.no-style'] //Black List for Selects that should not be styled, Array of classes to look for, not DOM selectors
+                'blackList': ['.no-style','.swatch-select'] //Black List for Selects that should not be styled, Array of classes to look for, not DOM selectors
             };
 
             // Overrides the default settings
@@ -125,6 +125,9 @@ jQuery(document).ready(function($){
 
                 // Populate the Shiv
                 self.updateSuperSelectsShiv(currentSelect);
+
+                // Make sure max height is
+                self.setMaxOptionsHeight(currentSelect);
 
                 // Add Observers
                 self.setSelectObservers(currentSelect);
@@ -424,8 +427,6 @@ jQuery(document).ready(function($){
 
             // Add Open Class to the Shiv, Create the Closing Element, and Attach Closing Element Events
             $(currentSelect).siblings('.ba-select-box').addClass('open').after('<div class="ba-select-close"></div>');
-
-            self.setMaxOptionsHeight(currentSelect);
 
             self.setKeyboardObservers(currentSelect);
 
@@ -800,6 +801,18 @@ jQuery(document).ready(function($){
                 html += '<span class="ba-shiv-content">' + self.formatShivContent(currentSelect.optionsArray[selectedOption].content) + '</span>';
 
             $(currentSelect).siblings('.ba-select-box').find('.ba-shiv').html(html + ' <span class="ba-arrow"></span>');
+
+            if($(currentSelect).css('display') === 'none'){
+                $(currentSelect).siblings('.ba-select').css('display','none');
+            }else{
+                $(currentSelect).siblings('.ba-select').css('display','');
+            }
+
+            if($(currentSelect).prop('disabled')){
+                $(currentSelect).parent('.ba-select-container').addClass('disabled');
+            }else{
+                $(currentSelect).parent('.ba-select-container').removeClass('disabled');
+            }
 
         },
 
