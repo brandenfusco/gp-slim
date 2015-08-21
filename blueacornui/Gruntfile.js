@@ -171,7 +171,11 @@ module.exports = function(grunt){
                     'mv <%=webRoot%>/app/design/frontend/blueacorn/gp <%=webRoot%>/app/design/frontend/blueacorn/<%=defaultTheme%>',
                     'mv <%=webRoot%>/skin/frontend/blueacorn/gp <%=webRoot%>/skin/frontend/blueacorn/<%=defaultTheme%>',
                     'ln -s <%=webRoot%>/app/design/frontend/blueacorn/<%=defaultTheme%>/ app',
-                    'ln -s <%=webRoot%>/skin/frontend/blueacorn/<%=defaultTheme%>/ skin'
+                    'ln -s <%=webRoot%>/skin/frontend/blueacorn/<%=defaultTheme%>/ skin',
+                    'cd <%=webRoot%>',
+                    'n98-magerun.phar config:set design/package/name blueacorn',
+                    'n98-magerun.phar config:set design/theme/default site',
+                    'n98-magerun.phar config:set dev/template/allow_symlink 1'
                 ].join('&&')
             }
         },
