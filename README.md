@@ -37,9 +37,6 @@ It's like eating a **handful** of _pre-shelled_ front end magento plugins.
 
 ##### [Module Installation](id:module)
 * ensure you have installed [modman](https://github.com/colinmollenhour/modman)
-* *ensure that symlinks are are enabled* in your System Configuration
-  * System > Configuration > Advanced > Developer
-  * Expand the *Template Settings* tab and change *Allow Symlinks* to "Yes"
 
 ###### [Using Modman](id:usingmodman)
 
@@ -85,8 +82,6 @@ If you modify a layout xml or phtml file within your package, the grunt shell co
 ##### [Theme Setup](id:setup)
 
 You'll need to update `webroot/app/design/frontend/blueacorn/enterprise/etc/theme.xml` and change `<parent>rwd/default</parent>` to `<parent>blueacorn/default</parent>`.
-
-In Magento's Admin goto **System > Config > Design** point your package to **blueacorn** and point your theme to **site**.
 
 ## Usage
 
