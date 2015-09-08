@@ -98,7 +98,7 @@ module.exports = function(grunt){
 
         sass: {
             options: {
-                includePaths: ['bower_components/compass-mixins/lib', 'bower_components/sass-list-maps/_sass-list-maps.scss'],
+                includePaths: ['<%=skinDir%>/scss/', 'bower_components/compass-mixins/lib', 'bower_components/sass-list-maps/_sass-list-maps.scss', '../webroot/skin/frontend/blueacorn/enterprise/scss/', '../webroot/skin/frontend/blueacorn/default/scss/'],
                 sourceComments: false,
                 precision: 4,
                 outputStyle: 'nested',

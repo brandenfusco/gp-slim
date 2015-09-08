@@ -19,7 +19,7 @@
 //
 // @category    design
 // @package     rwd_default
-// @copyright Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+// @copyright Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
 // @license http://www.magento.com/license/enterprise-edition
 //
 
@@ -68,48 +68,21 @@
 //     so we should try not to change this order once it is in place
 
 @import "module/product-list";
-// @import "module/catalog-product";
 @import "module/catalog-msrp";
 @import "module/catalog-compare";
-// @import "module/checkout-cart";
-// @import "module/checkout-onepage";
-// @import "module/checkout-success";
-// @import "module/configurableswatches";
-// @import "module/customer";
-// @import "module/contacts";
-// @import "module/paypal";
-// @import "module/review";
 @import "module/slideshow";
-// @import "module/wishlist";
 @import "module/checkout-cart-minicart";
 @import "module/search";
-// @import "module/account-reviews";
 @import "module/cms";
 @import "module/pricing_conditions";
 @import "module/cookies";
-// @import "module/tags";
-// @import "module/captcha";
-// @import "module/split-button";
-// @import "module/account-orders";
-// @import "module/recurring-profiles";
-// @import "module/billing-agreements";
-// @import "module/popular-terms";
 @import "module/widget";
-// @import "module/checkout-multi-address";
 
 
 // ----------------------------------------------
 // Enterprise Modules
 @import "module/enterprise";
-// @import "module/account-rma";
-// @import "module/store-credit";
-// @import "module/gift-registry";
 @import "module/reward";
-// @import "module/gift-message";
-// @import "module/enterprise-wishlist";
-// @import "module/customer-order";
-// @import "module/gift-message";
-// @import "module/catalog-event";
 
 // ----------------------------------------------
 // Override

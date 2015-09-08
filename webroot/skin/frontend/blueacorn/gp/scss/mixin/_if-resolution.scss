@@ -19,7 +19,7 @@
 //
 // @category    design
 // @package     rwd_default
-// @copyright Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+// @copyright Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
 // @license http://www.magento.com/license/enterprise-edition
 //
 
@@ -30,28 +30,34 @@
 // From http://blog.14islands.com/post/37259603246/sass-resolution-mixin
 
 @mixin if-min-resolution($dppx) {
-    @include if-resolution(min, $dppx) {
-        @content;
+    @if $mq-support == true {
+        @include if-resolution(min, $dppx) {
+            @content;
+        }
     }
 }
 
 @mixin if-max-resolution($dppx) {
-    @include if-resolution(max, $dppx) {
-        @content;
+    @if $mq-support == true {
+        @include if-resolution(max, $dppx) {
+            @content;
+        }
     }
 }
 
 @mixin if-resolution($prefix, $dppx) {
-    // 1px = 96dpi
-    $dpi: $dppx * 96;
-    @media
-    (-webkit-#{$prefix}-device-pixel-ratio: #{$dppx}),
-    (   #{$prefix}--moz-device-pixel-ratio: #{$dppx}),
-    (     -o-#{$prefix}-device-pixel-ratio: #{$dppx*2}/2),
-    (        #{$prefix}-device-pixel-ratio: #{$dppx}),
-    (                #{$prefix}-resolution: #{$dpi}dpi),
-    (                #{$prefix}-resolution: #{$dppx}dppx) {
-        @content;
+    @if $mq-support == true {
+        // 1px = 96dpi
+        $dpi: $dppx * 96;
+        @media
+        (-webkit-#{$prefix}-device-pixel-ratio: #{$dppx}),
+        (   #{$prefix}--moz-device-pixel-ratio: #{$dppx}),
+        (     -o-#{$prefix}-device-pixel-ratio: #{$dppx*2}/2),
+        (        #{$prefix}-device-pixel-ratio: #{$dppx}),
+        (                #{$prefix}-resolution: #{$dpi}dpi),
+        (                #{$prefix}-resolution: #{$dppx}dppx) {
+            @content;
+        }
     }
 }
 
