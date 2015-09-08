@@ -6,5 +6,8 @@ images_dir = "../images"
 javascripts_dir = "../js"
 relative_assets = true
 
+add_import_path "../../enterprise/scss/"
+add_import_path "../../default/scss/"
+
 output_style = :expanded
 environment = :development
