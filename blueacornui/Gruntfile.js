@@ -43,7 +43,7 @@ module.exports = function(grunt){
                 options: {
                     map: true,
                     processor: [
-                        require('autoprefixer-core')({
+                        require('autoprefixer')({
                             browsers: [
                                 'last 3 Explorer versions',
                                 'last 2 Chrome versions',
@@ -68,7 +68,7 @@ module.exports = function(grunt){
                 options: {
                     map: false,
                     processor: [
-                        require('autoprefixer-core')({
+                        require('autoprefixer')({
                             browsers: ['Explorer 8']
                         }),
                     ],
@@ -79,7 +79,7 @@ module.exports = function(grunt){
                 options: {
                     map: false,
                     processor: [
-                        require('autoprefixer-core')({
+                        require('autoprefixer')({
                             browsers: [
                                 'last 3 Explorer versions',
                                 'last 2 Chrome versions',
