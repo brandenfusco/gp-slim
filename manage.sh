@@ -64,7 +64,7 @@ pistachio_add(){
 
   # add pistachio to modman
   local LINE="@import pistachios/$TARGET"
-  grep -q "$LINE" "$CWD/modman" || echo "$LINE" >> "$CWD/modman"
+  grep -q "$LINE" "$CWD/../modman" || echo "$LINE" >> "$CWD/../modman"
 
 
   if $AUTO_COMMIT; then
@@ -106,7 +106,7 @@ pistachio_update(){
 
   git submodule update --remote --checkout --recursive --force
   git add -u
-  
+
   if $AUTO_COMMIT; then
     cd pistachios
     git commit -m "auto-updating pistachios"
