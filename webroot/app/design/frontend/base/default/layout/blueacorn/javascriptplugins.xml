@@ -8,6 +8,16 @@
                 <name>blueacorn/lib/fancybox/jquery.fancybox.css</name>
             </action>
 
+            <action method="addItem" ifconfig="javascriptplugins/fancybox_helpers/fancybox_buttons">
+                <type>js_css</type>
+                <name>blueacorn/lib/fancybox/helpers/jquery.fancybox-buttons.css</name>
+            </action>
+
+            <action method="addItem" ifconfig="javascriptplugins/fancybox_helpers/fancybox_thumbs">
+                <type>js_css</type>
+                <name>blueacorn/lib/fancybox/helpers/jquery.fancybox-thumbs.css</name>
+            </action>
+
             <!-- BX Slider-->
             <action method="addItem" ifconfig="javascriptplugins/bxslidergroup/bxslider">
                 <type>js_css</type>
