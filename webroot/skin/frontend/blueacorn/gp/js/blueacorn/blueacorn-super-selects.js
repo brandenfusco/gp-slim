@@ -461,13 +461,7 @@ jQuery(document).ready(function($){
                     $(customOptions).removeClass('selected');
                     $(this).addClass('selected');
                     $(currentSelect).prop('selectedIndex',optionIndex);
-                    if($(currentSelect).attr('onchange')){
-                        $(currentSelect)[0].onChangeEvent = new Function($(currentSelect).attr('onchange'));
-                        $(currentSelect)[0].onChangeEvent();
-                    }
                     $(currentSelect)[0].triggerEvent('change');
-                    self.updateSuperSelectsShiv(currentSelect);
-                    $(currentSelect).siblings('.ba-select-box').find('.ba-shiv').trigger('click');
                     $(document).off('keyup');
                 });
             });
@@ -495,8 +489,7 @@ jQuery(document).ready(function($){
 
                         $(currentSelect).prop('selectedIndex',optionIndex);
                         $(currentSelect)[0].triggerEvent('change');
-                        self.updateSuperSelectsShiv(currentSelect);
-                        $(currentSelect).siblings('.ba-select-box').find('.ba-shiv').trigger('click');
+                        $(document).off('keyup');
                     });
                 });
 
@@ -784,21 +777,23 @@ jQuery(document).ready(function($){
                 optionsArray,
                 html = '';
 
-                if(currentSelect.optionsArray === undefined) {
-                    self.buildOptionsObjects(currentSelect);
-                }
+            self.closeOptions(currentSelect);
 
-                optionsArray = currentSelect.optionsArray[selectedOption];
+            if(currentSelect.optionsArray === undefined) {
+                self.buildOptionsObjects(currentSelect);
+            }
 
-                if(optionsArray.image !== undefined){
-                    html += self.updateShivImage(self.settings.imageType, optionsArray.image, optionsArray.value);
-                }
+            optionsArray = currentSelect.optionsArray[selectedOption];
 
-                if(optionsArray.color !== undefined){
-                    html += self.updateShivColor(optionsArray.color);
-                }
+            if(optionsArray.image !== undefined){
+                html += self.updateShivImage(self.settings.imageType, optionsArray.image, optionsArray.value);
+            }
 
-                html += '<span class="ba-shiv-content">' + self.formatShivContent(currentSelect.optionsArray[selectedOption].content) + '</span>';
+            if(optionsArray.color !== undefined){
+                html += self.updateShivColor(optionsArray.color);
+            }
+
+            html += '<span class="ba-shiv-content">' + self.formatShivContent(currentSelect.optionsArray[selectedOption].content) + '</span>';
 
             $(currentSelect).siblings('.ba-select-box').find('.ba-shiv').html(html + ' <span class="ba-arrow"></span>');
 
