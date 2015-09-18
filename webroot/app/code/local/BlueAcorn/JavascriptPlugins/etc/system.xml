@@ -9,21 +9,20 @@
 -->
 <config>
 
-    <tabs>
-        <blueacorn translate="label" module="javascriptplugins">
-            <label>Blue Acorn</label>
-            <sort_order>99999</sort_order>
-            <class>system-config-blueacorn</class>
-        </blueacorn>
-    </tabs>
-
     <sections>
+
+        <tabs>
+            <blueacorn translate="label" module="styleguide">
+                <label>Blue Acorn</label>
+                <sort_order>99999</sort_order>
+            </blueacorn>
+        </tabs>
 
         <javascriptplugins translate="label">
             <label>JavaScript Plugins</label>
             <tab>blueacorn</tab>
             <frontend_type>text</frontend_type>
-            <sort_order>1000</sort_order>
+            <sort_order>20</sort_order>
             <show_in_default>1</show_in_default>
             <show_in_website>1</show_in_website>
             <show_in_store>1</show_in_store>
