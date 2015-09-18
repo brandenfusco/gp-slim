@@ -30,16 +30,6 @@
                 <name>blueacorn/lib/flexslider/flexslider.css</name>
             </action>
 
-            <!-- Owl Carousel -->
-            <action method="addItem" ifconfig="javascriptplugins/sliders/owl">
-                <type>js_css</type>
-                <name>blueacorn/lib/owlcarousel/owl.carousel.css</name>
-            </action>
-            <action method="addItem" ifconfig="javascriptplugins/sliders/owl">
-                <type>js_css</type>
-                <name>blueacorn/lib/owlcarousel/owl.theme.css</name>
-            </action>
-
             <!-- Owl Carousel 2-->
             <action method="addItem" ifconfig="javascriptplugins/sliders/owl_two">
                 <type>js_css</type>

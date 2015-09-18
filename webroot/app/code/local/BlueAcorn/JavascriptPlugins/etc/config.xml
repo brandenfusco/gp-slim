@@ -44,7 +44,6 @@
 
                 <sliders>
                     <flexslider name="flexslider" />
-                    <owl name="owl" />
                     <owl_two name="owl_two" />
                 </sliders>
                 <ux>
