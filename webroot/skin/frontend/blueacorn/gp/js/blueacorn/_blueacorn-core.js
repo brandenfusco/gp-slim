@@ -46,8 +46,8 @@ BlueAcornCore.prototype = {
     },
 
     triggerCustomEvent: function() {
-        $(document).on('ready', function(){
-            $(document).trigger('baCoreReady');
+        jQuery(document).on('ready', function(){
+            jQuery(document).trigger('baCoreReady');
         });
     },
 
