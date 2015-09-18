@@ -23,6 +23,37 @@
                 </blueacorn_javascriptplugins>
             </updates>
         </layout>
+
+        <jsconfig>
+            <javascriptplugins>
+                <modals>
+                    <fancybox name="fancy_box" />
+                </modals>
+                <bxslidergroup>
+                    <bxslider name="bxslider" />
+                    <bxsliderfitvids name="bxsliderfitvids" />
+                    <bxslidereasing name="bxslidereasing" />
+                </bxslidergroup>
+                <sliders>
+                    <flexslider name="flexslider" />
+                    <owl name="owl" />
+                    <owl_two name="owl_two" />
+                </sliders>
+                <ux>
+                    <headroom name="headroom" />
+                    <parallax name="parallax" />
+                    <scrollto name="scrollto" />
+                    <spinjs name="spinjs" />
+                </ux>
+                <plugins>
+                    <selectivizr name="selectivizr" />
+                    <placeholderjs name="placeholderjs" />
+                    <svginjector name="svginjector" />
+                    <html5shiv name="html5shiv" />
+                    <responsiveimg name="responsiveimg" />
+                </plugins>
+            </javascriptplugins>
+        </jsconfig>
     </frontend>
 
     <adminhtml>
