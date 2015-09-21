@@ -79,7 +79,7 @@
     @include gradient-vertical($white, darken($white, 2%));
     display: none;
     position: absolute;
-    z-index: 999;
+    z-index: 9999;
     top: 0;
     left: 0;
     width: 100%;
@@ -139,7 +139,7 @@
     width: 100%;
     height: 100%;
     background: transparent;
-    z-index: 998;
+    z-index: 9998;
 }
 
 .ba-over {
