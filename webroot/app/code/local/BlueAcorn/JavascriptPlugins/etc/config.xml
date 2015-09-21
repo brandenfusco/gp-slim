@@ -51,6 +51,7 @@
                     <parallax name="parallax" />
                     <scrollto name="scrollto" />
                     <spinjs name="spinjs" />
+                    <focuspoint name="focuspoint" />
                 </ux>
                 <plugins>
                     <selectivizr name="selectivizr" />
