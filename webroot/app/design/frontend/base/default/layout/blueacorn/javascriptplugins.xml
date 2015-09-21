@@ -119,6 +119,12 @@
                 <name>blueacorn/lib/parallax/parallax.min.js</name>
             </action>
 
+            <!-- spin.js -->
+            <action method="addItem" ifconfig="javascriptplugins/ux/spinjs">
+                <type>js</type>
+                <name>blueacorn/lib/spinjs/spin.min.js</name>
+            </action>
+
             <!-- Responsive Images (this one needs to be last) -->
             <action method="addItem" ifconfig="javascriptplugins/plugins/responsiveimg">
                 <type>js</type>
