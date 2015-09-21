@@ -8,6 +8,16 @@
                 <name>blueacorn/lib/fancybox/jquery.fancybox.css</name>
             </action>
 
+            <action method="addItem" ifconfig="javascriptplugins/fancybox_helpers/fancybox_buttons">
+                <type>js_css</type>
+                <name>blueacorn/lib/fancybox/helpers/jquery.fancybox-buttons.css</name>
+            </action>
+
+            <action method="addItem" ifconfig="javascriptplugins/fancybox_helpers/fancybox_thumbs">
+                <type>js_css</type>
+                <name>blueacorn/lib/fancybox/helpers/jquery.fancybox-thumbs.css</name>
+            </action>
+
             <!-- BX Slider-->
             <action method="addItem" ifconfig="javascriptplugins/bxslidergroup/bxslider">
                 <type>js_css</type>
@@ -20,14 +30,10 @@
                 <name>blueacorn/lib/flexslider/flexslider.css</name>
             </action>
 
-            <!-- Owl Carousel -->
-            <action method="addItem" ifconfig="javascriptplugins/sliders/owl">
+            <!-- jQuery FocusPoint -->
+            <action method="addItem" ifconfig="javascriptplugins/ux/focuspoint">
                 <type>js_css</type>
-                <name>blueacorn/lib/owlcarousel/owl.carousel.css</name>
-            </action>
-            <action method="addItem" ifconfig="javascriptplugins/sliders/owl">
-                <type>js_css</type>
-                <name>blueacorn/lib/owlcarousel/owl.theme.css</name>
+                <name>blueacorn/lib/focuspoint/css/focuspoint.css</name>
             </action>
 
             <!-- Owl Carousel 2-->
@@ -37,7 +43,7 @@
             </action>
             <action method="addItem" ifconfig="javascriptplugins/sliders/owl_two">
                 <type>js_css</type>
-                <name>blueacorn/lib/owlcarousel2/assets/owl.theme.green.min.css</name>
+                <name>blueacorn/lib/owlcarousel2/assets/owl.theme.default.min.css</name>
             </action>
         </reference>
 
@@ -86,6 +92,12 @@
             <action method="addItem" ifconfig="javascriptplugins/ux/scrollto">
                 <type>js</type>
                 <name>blueacorn/lib/scrollto/jquery.scrollTo.min.js</name>
+            </action>
+
+            <!-- jQuery FocasPoint -->
+            <action method="addItem" ifconfig="javascriptplugins/ux/focuspoint">
+                <type>js</type>
+                <name>blueacorn/lib/focuspoint/js/jquery.focuspoint.min.js</name>
             </action>
 
             <!-- Selectivizr -->

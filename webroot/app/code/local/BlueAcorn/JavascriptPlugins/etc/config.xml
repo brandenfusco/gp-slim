@@ -29,14 +29,21 @@
                 <modals>
                     <fancybox name="fancy_box" />
                 </modals>
+
+                <fancybox_helpers>
+                    <fancybox_buttons name="fancybox_buttons" />
+                    <fancybox_media name="fancybox_media" />
+                    <fancybox_thumbs name="fancybox_thumbs" />
+                </fancybox_helpers>
+
                 <bxslidergroup>
                     <bxslider name="bxslider" />
                     <bxsliderfitvids name="bxsliderfitvids" />
                     <bxslidereasing name="bxslidereasing" />
                 </bxslidergroup>
+
                 <sliders>
                     <flexslider name="flexslider" />
-                    <owl name="owl" />
                     <owl_two name="owl_two" />
                 </sliders>
                 <ux>
@@ -44,6 +51,7 @@
                     <parallax name="parallax" />
                     <scrollto name="scrollto" />
                     <spinjs name="spinjs" />
+                    <focuspoint name="focuspoint" />
                 </ux>
                 <plugins>
                     <selectivizr name="selectivizr" />

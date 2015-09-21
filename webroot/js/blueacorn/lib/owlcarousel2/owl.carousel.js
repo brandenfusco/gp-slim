@@ -1,6 +1,11 @@
 /**
+ * Owl Carousel v2.0.0-beta.3
+ * Copyright 2013-2015 Smashing Boxes
+ * Licensed under MIT (https://github.com/smashingboxes/OwlCarousel2/blob/master/LICENSE)
+ */
+/**
  * Owl carousel
- * @version 2.0.0
+ * @version 2.0.0-beta.3
  * @author Bartosz Wojciechowski
  * @license The MIT License (MIT)
  * @todo Lazy Load Icon
@@ -982,7 +987,7 @@
 		var n = this._items.length,
 			m = relative ? 0 : this._clones.length;
 
-		if (!$.isNumeric(position) || n < 1) {
+		if (!this.isNumeric(position) || n < 1) {
 			position = undefined;
 		} else if (position < 0 || position >= n + m) {
 			position = ((position - m / 2) % n + n) % n + m / 2;
@@ -1115,7 +1120,9 @@
 	 * @returns {Number|Array.<Number>} - The coordinate of the item in pixel or all coordinates.
 	 */
 	Owl.prototype.coordinates = function(position) {
-		var coordinate = null;
+		var multiplier = 1,
+			newPosition = position - 1,
+			coordinate;
 
 		if (position === undefined) {
 			return $.map(this._coordinates, $.proxy(function(coordinate, index) {
@@ -1124,10 +1131,15 @@
 		}
 
 		if (this.settings.center) {
+			if (this.settings.rtl) {
+				multiplier = -1;
+				newPosition = position + 1;
+			}
+
 			coordinate = this._coordinates[position];
-			coordinate += (this.width() - coordinate + (this._coordinates[position - 1] || 0)) / 2 * (this.settings.rtl ? -1 : 1);
+			coordinate += (this.width() - coordinate + (this._coordinates[newPosition] || 0)) / 2 * multiplier;
 		} else {
-			coordinate = this._coordinates[position - 1] || 0;
+			coordinate = this._coordinates[newPosition] || 0;
 		}
 
 		return coordinate;
@@ -1274,7 +1286,7 @@
 			this._mergers.push(item.find('[data-merge]').andSelf('[data-merge]').attr('data-merge') * 1 || 1);
 		}, this));
 
-		this.reset($.isNumeric(this.settings.startPosition) ? this.settings.startPosition : 0);
+		this.reset(this.isNumeric(this.settings.startPosition) ? this.settings.startPosition : 0);
 
 		this.invalidate('items');
 	};
@@ -1595,6 +1607,16 @@
 	};
 
 	/**
+	 * Determines if the input is a Number or something that can be coerced to a Number
+	 * @protected
+	 * @param {Number|String|Object|Array|Boolean|RegExp|Function|Symbol} - The input to be tested
+	 * @returns {Boolean} - An indication if the input is a Number or can be coerced to a Number
+	 */
+	Owl.prototype.isNumeric = function(number) {
+		return !isNaN(parseFloat(number));
+	};
+
+	/**
 	 * Gets the difference of two vectors.
 	 * @todo #261
 	 * @protected
@@ -1655,7 +1677,7 @@
 
 /**
  * AutoRefresh Plugin
- * @version 2.0.0
+ * @version 2.0.0-beta.3
  * @author Artus Kolanowski
  * @license The MIT License (MIT)
  */
@@ -1766,7 +1788,7 @@
 
 /**
  * Lazy Plugin
- * @version 2.0.0
+ * @version 2.0.0-beta.3
  * @author Bartosz Wojciechowski
  * @license The MIT License (MIT)
  */
@@ -1901,7 +1923,7 @@
 
 /**
  * AutoHeight Plugin
- * @version 2.0.0
+ * @version 2.0.0-beta.3
  * @author Bartosz Wojciechowski
  * @license The MIT License (MIT)
  */
@@ -1966,7 +1988,7 @@
 	AutoHeight.prototype.update = function() {
 		var start = this._core._current,
 			end = start + this._core.settings.items,
-			visible = this._core.$stage.children().toArray().slice(start, end);
+			visible = this._core.$stage.children().toArray().slice(start, end),
 			heights = [],
 			maxheight = 0;
 
@@ -1998,7 +2020,7 @@
 
 /**
  * Video Plugin
- * @version 2.0.0
+ * @version 2.0.0-beta.3
  * @author Bartosz Wojciechowski
  * @license The MIT License (MIT)
  */
@@ -2094,25 +2116,48 @@
 	};
 
 	/**
-	 * Gets the video ID and the type (YouTube/Vimeo only).
+	 * Gets the video ID and the type (YouTube/Vimeo/vzaar only).
 	 * @protected
 	 * @param {jQuery} target - The target containing the video data.
 	 * @param {jQuery} item - The item containing the video.
 	 */
 	Video.prototype.fetch = function(target, item) {
-		var type = target.attr('data-vimeo-id') ? 'vimeo' : 'youtube',
-			id = target.attr('data-vimeo-id') || target.attr('data-youtube-id'),
-			width = target.attr('data-width') || this._core.settings.videoWidth,
-			height = target.attr('data-height') || this._core.settings.videoHeight,
-			url = target.attr('href');
+			var type = (function() {
+					if (target.attr('data-vimeo-id')) {
+						return 'vimeo';
+					} else if (target.attr('data-vzaar-id')) {
+						return 'vzaar'
+					} else {
+						return 'youtube';
+					}
+				})(),
+				id = target.attr('data-vimeo-id') || target.attr('data-youtube-id') || target.attr('data-vzaar-id'),
+				width = target.attr('data-width') || this._core.settings.videoWidth,
+				height = target.attr('data-height') || this._core.settings.videoHeight,
+				url = target.attr('href');
 
 		if (url) {
-			id = url.match(/(http:|https:|)\/\/(player.|www.)?(vimeo\.com|youtu(be\.com|\.be|be\.googleapis\.com))\/(video\/|embed\/|watch\?v=|v\/)?([A-Za-z0-9._%-]*)(\&\S+)?/);
+
+			/*
+					Parses the id's out of the following urls (and probably more):
+					https://www.youtube.com/watch?v=:id
+					https://youtu.be/:id
+					https://vimeo.com/:id
+					https://vimeo.com/channels/:channel/:id
+					https://vimeo.com/groups/:group/videos/:id
+					https://app.vzaar.com/videos/:id
+
+					Visual example: http://regexper.com/#(http%3A%7Chttps%3A%7C)%5C%2F%5C%2F(player.%7Cwww.%7Capp.)%3F(vimeo%5C.com%7Cyoutu(be%5C.com%7C%5C.be%7Cbe%5C.googleapis%5C.com)%7Cvzaar%5C.com)%5C%2F(video%5C%2F%7Cvideos%5C%2F%7Cembed%5C%2F%7Cchannels%5C%2F.%2B%5C%2F%7Cgroups%5C%2F.%2B%5C%2F%7Cwatch%5C%3Fv%3D%7Cv%5C%2F)%3F(%5BA-Za-z0-9._%25-%5D*)(%5C%26%5CS%2B)%3F
+			*/
+
+			id = url.match(/(http:|https:|)\/\/(player.|www.|app.)?(vimeo\.com|youtu(be\.com|\.be|be\.googleapis\.com)|vzaar\.com)\/(video\/|videos\/|embed\/|channels\/.+\/|groups\/.+\/|watch\?v=|v\/)?([A-Za-z0-9._%-]*)(\&\S+)?/);
 
 			if (id[3].indexOf('youtu') > -1) {
 				type = 'youtube';
 			} else if (id[3].indexOf('vimeo') > -1) {
 				type = 'vimeo';
+			} else if (id[3].indexOf('vzaar') > -1) {
+				type = 'vzaar';
 			} else {
 				throw new Error('Video URL not supported.');
 			}
@@ -2177,16 +2222,27 @@
 		}
 
 		if (video.type === 'youtube') {
-			path = "http://img.youtube.com/vi/" + video.id + "/hqdefault.jpg";
+			path = "//img.youtube.com/vi/" + video.id + "/hqdefault.jpg";
 			create(path);
 		} else if (video.type === 'vimeo') {
 			$.ajax({
 				type: 'GET',
-				url: 'http://vimeo.com/api/v2/video/' + video.id + '.json',
+				url: '//vimeo.com/api/v2/video/' + video.id + '.json',
 				jsonp: 'callback',
 				dataType: 'jsonp',
 				success: function(data) {
 					path = data[0].thumbnail_large;
+					create(path);
+				}
+			});
+		} else if (video.type === 'vzaar') {
+			$.ajax({
+				type: 'GET',
+				url: '//vzaar.com/api/videos/' + video.id + '.json',
+				jsonp: 'callback',
+				dataType: 'jsonp',
+				success: function(data) {
+					path = data.framegrab_url;
 					create(path);
 				}
 			});
@@ -2231,12 +2287,16 @@
 		this._core.reset(item.index());
 
 		if (video.type === 'youtube') {
-			html = '<iframe width="' + width + '" height="' + height + '" src="http://www.youtube.com/embed/' +
+			html = '<iframe width="' + width + '" height="' + height + '" src="//www.youtube.com/embed/' +
 				video.id + '?autoplay=1&v=' + video.id + '" frameborder="0" allowfullscreen></iframe>';
 		} else if (video.type === 'vimeo') {
-			html = '<iframe src="http://player.vimeo.com/video/' + video.id +
+			html = '<iframe src="//player.vimeo.com/video/' + video.id +
 				'?autoplay=1" width="' + width + '" height="' + height +
 				'" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+		} else if (video.type === 'vzaar') {
+			html = '<iframe frameborder="0"' + 'height="' + height + '"' + 'width="' + width +
+				'" allowfullscreen mozallowfullscreen webkitAllowFullScreen ' +
+				'src="//view.vzaar.com/' + video.id + '/player?autoplay=true"></iframe>';
 		}
 
 		$('<div class="owl-video-frame">' + html + '</div>').insertAfter(item.find('.owl-video'));
@@ -2279,7 +2339,7 @@
 
 /**
  * Animate Plugin
- * @version 2.0.0
+ * @version 2.0.0-beta.3
  * @author Bartosz Wojciechowski
  * @license The MIT License (MIT)
  */
@@ -2400,7 +2460,7 @@
 
 /**
  * Autoplay Plugin
- * @version 2.0.0
+ * @version 2.0.0-beta.3
  * @author Bartosz Wojciechowski
  * @author Artus Kolanowski
  * @license The MIT License (MIT)
@@ -2562,7 +2622,7 @@
 
 /**
  * Navigation Plugin
- * @version 2.0.0
+ * @version 2.0.0-beta.3
  * @author Artus Kolanowski
  * @license The MIT License (MIT)
  */
@@ -2636,7 +2696,7 @@
 			'prepared.owl.carousel': $.proxy(function(e) {
 				if (e.namespace && this._core.settings.dotsData) {
 					this._templates.push('<div class="' + this._core.settings.dotClass + '">' +
-						$(e.content).find('[data-dot]').andSelf('[data-dot]').attr('data-dot') + '</div>');
+						$(e.content).find('[data-dot]').addBack('[data-dot]').attr('data-dot') + '</div>');
 				}
 			}, this),
 			'added.owl.carousel': $.proxy(function(e) {
@@ -2944,7 +3004,7 @@
 
 /**
  * Hash Plugin
- * @version 2.0.0
+ * @version 2.0.0-beta.3
  * @author Artus Kolanowski
  * @license The MIT License (MIT)
  */
@@ -2990,7 +3050,7 @@
 			}, this),
 			'prepared.owl.carousel': $.proxy(function(e) {
 				if (e.namespace) {
-					var hash = $(e.content).find('[data-hash]').andSelf('[data-hash]').attr('data-hash');
+					var hash = $(e.content).find('[data-hash]').addBack('[data-hash]').attr('data-hash');
 
 					if (!hash) {
 						return;
@@ -3067,7 +3127,7 @@
 /**
  * Support Plugin
  *
- * @version 2.0.0
+ * @version 2.0.0-beta.3
  * @author Vivid Planet Software GmbH
  * @author Artus Kolanowski
  * @license The MIT License (MIT)

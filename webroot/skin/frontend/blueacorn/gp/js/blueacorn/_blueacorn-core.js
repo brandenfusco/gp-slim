@@ -23,6 +23,8 @@ BlueAcornCore.prototype = {
         if (this.settings.debug === true) {
             this.setupDebugging(this.settings);
         }
+
+        this.triggerCustomEvent();
     },
 
     /**
@@ -41,6 +43,12 @@ BlueAcornCore.prototype = {
             this.watchConsole(moduleSettings.moduleName + ' Loaded!!!');
             this.watchConsole(moduleSettings);
         }
+    },
+
+    triggerCustomEvent: function() {
+        jQuery(document).on('ready', function(){
+            jQuery(document).trigger('baCoreReady');
+        });
     },
 
     /**
