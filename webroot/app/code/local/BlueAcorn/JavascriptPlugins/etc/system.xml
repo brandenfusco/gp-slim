@@ -9,14 +9,14 @@
 -->
 <config>
 
+    <tabs>
+        <blueacorn translate="label" module="javascriptplugins">
+            <label>Blue Acorn</label>
+            <sort_order>99999</sort_order>
+        </blueacorn>
+    </tabs>
     <sections>
 
-        <tabs>
-            <blueacorn translate="label" module="styleguide">
-                <label>Blue Acorn</label>
-                <sort_order>99999</sort_order>
-            </blueacorn>
-        </tabs>
 
         <javascriptplugins translate="label">
             <label>JavaScript Plugins</label>
