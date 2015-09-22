@@ -48,7 +48,7 @@ if($storeApplicable != ''){
 }
 
 if(!$currentInstallPage->getId() || !in_array($storeApplicable, $currentInstallPage->getStoreId())){
-    $cmsPages[] = array(
+    $cmsPageData = array(
         'title'             =>  'Style Guide',
         'identifier'        =>  $urlKey,
         'root_template'     =>  $rootTemplate,
@@ -58,9 +58,8 @@ if(!$currentInstallPage->getId() || !in_array($storeApplicable, $currentInstallP
         'stores'            =>  $stores
     );
 
-    foreach ($cmsPages as $data) {
-        Mage::getModel('cms/page')->setData($data)->save();
-    }
+
+    $currentInstallPage->setData($cmsPageData)->save();
 
 }
 
@@ -87,7 +86,7 @@ if($storeApplicable != ''){
 }
 
 if(!$newInstallPage->getId() || !in_array($storeApplicable, $newInstallPage->getStoreId())){
-    $cmsPages[] = array(
+    $cmsPageData = array(
         'title'             =>  'Super Selects',
         'identifier'        =>  $urlKey,
         'root_template'     =>  $rootTemplate,
@@ -97,10 +96,7 @@ if(!$newInstallPage->getId() || !in_array($storeApplicable, $newInstallPage->get
         'stores'            =>  $stores
     );
 
-    foreach ($cmsPages as $data) {
-        Mage::getModel('cms/page')->setData($data)->save();
-    }
-
+    $newInstallPage->setData($cmsPageData)->save();
 }
 
 $installer->endSetup();
