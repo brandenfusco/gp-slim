@@ -1,21 +1,15 @@
-# directories
-webroot/app/code/local/BlueAcorn/JavascriptPlugins/                                  app/code/local/BlueAcorn/JavascriptPlugins/
-webroot/app/code/local/BlueAcorn/StyleGuide/                                         app/code/local/BlueAcorn/StyleGuide/
-webroot/app/code/local/BlueAcorn/SuperSelects/                                       app/code/local/BlueAcorn/SuperSelects/
-webroot/app/design/frontend/blueacorn/gp/                                            app/design/frontend/blueacorn/gp/
-webroot/js/blueacorn/lib/                                                            js/blueacorn/lib/
-webroot/skin/frontend/blueacorn/gp/                                                  skin/frontend/blueacorn/gp/
+# Directories
+webroot/app/code/local/BlueAcorn/GreenPistachio/                                    app/code/local/BlueAcorn/GreenPistachio/
+webroot/app/etc/modules/BlueAcorn_GreenPistachio.xml                                app/etc/modules/BlueAcorn_GreenPistachio.xml
+webroot/app/design/frontend/blueacorn/gp/                                           app/design/frontend/blueacorn/gp/
+webroot/js/blueacorn/lib/                                                           js/blueacorn/lib/
+webroot/skin/frontend/blueacorn/gp/                                                 skin/frontend/blueacorn/gp/
 
-# files
-webroot/app/design/frontend/base/default/layout/blueacorn/javascriptplugins.xml      app/design/frontend/base/default/layout/blueacorn/javascriptplugins.xml
-webroot/app/design/adminhtml/default/default/layout/blueacorn/javascriptplugins.xml  app/design/adminhtml/default/default/layout/blueacorn/javascriptplugins.xml
+# Files
+webroot/app/design/adminhtml/default/default/layout/blueacorn/greenpistachio.xml    app/design/adminhtml/default/default/layout/blueacorn/greenpistachio.xml
 
-webroot/app/etc/modules/BlueAcorn_JavaScriptPlugins.xml                              app/etc/modules/BlueAcorn_JavaScriptPlugins.xml
-webroot/app/etc/modules/BlueAcorn_StyleGuide.xml                                     app/etc/modules/BlueAcorn_StyleGuide.xml
-webroot/app/etc/modules/BlueAcorn_SuperSelects.xml                                     app/etc/modules/BlueAcorn_SuperSelects.xml
-
-webroot/skin/adminhtml/base/default/css/blueacorn.css                                skin/adminhtml/base/default/css/blueacorn.css
-webroot/skin/adminhtml/base/default/images/blueacorn/blueacorn-logo.png              skin/adminhtml/base/default/images/blueacorn/blueacorn-logo.png
+webroot/skin/adminhtml/base/default/css/blueacorn.css                               skin/adminhtml/base/default/css/blueacorn.css
+webroot/skin/adminhtml/base/default/images/blueacorn/blueacorn-logo.png             skin/adminhtml/base/default/images/blueacorn/blueacorn-logo.png
 
 #
 # add blueacorn ui
@@ -32,7 +26,6 @@ webroot/skin/adminhtml/base/default/images/blueacorn/blueacorn-logo.png         
 # (do not edit -- mange through manage.sh)
 @import pistachios/gp-cms-page-style-update
 @import pistachios/gp-footer-assets
-@import pistachios/gp-remove-link-by-name
 @import pistachios/ba-magejsconfig
 @import pistachios/ba-datamock
 @import pistachios/gp-easy-attributes
