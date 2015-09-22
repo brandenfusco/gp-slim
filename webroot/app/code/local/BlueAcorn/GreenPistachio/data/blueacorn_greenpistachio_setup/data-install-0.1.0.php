@@ -14,7 +14,8 @@ $installer->startSetup();
 $urlKey = 'style-guide';
 $rootTemplate = 'one_column';
 $storeApplicable = 'default';
-$currentInstallPage = Mage::getModel('cms/page')->load($urlKey);
+$installPage = $urlKey;
+$currentInstallPage = Mage::getModel('cms/page')->load($installPage);
 
 $installPageContent = <<<CONTENT
 {{block type="core/template" name="style-guide" template="blueacorn/ui/styleguide.phtml"}}
@@ -47,7 +48,7 @@ if($storeApplicable != ''){
 }
 
 if(!$currentInstallPage->getId() || !in_array($storeApplicable, $currentInstallPage->getStoreId())){
-    $cmsPages[] = array(
+    $cmsPageData = array(
         'title'             =>  'Style Guide',
         'identifier'        =>  $urlKey,
         'root_template'     =>  $rootTemplate,
@@ -57,16 +58,16 @@ if(!$currentInstallPage->getId() || !in_array($storeApplicable, $currentInstallP
         'stores'            =>  $stores
     );
 
-    foreach ($cmsPages as $data) {
-        Mage::getModel('cms/page')->setData($data)->save();
-    }
+
+    $currentInstallPage->setData($cmsPageData)->save();
 
 }
 
 $urlKey = 'superselects';
 $rootTemplate = 'one_column';
 $storeApplicable = 'default';
-$currentInstallPage = Mage::getModel('cms/page')->load($urlKey);
+$installPage = $urlKey;
+$newInstallPage = Mage::getModel('cms/page')->load($installPage);
 
 $installPageContent = <<<CONTENT
 {{block type="core/template" name="style-guide" template="blueacorn/ui/super-select.phtml"}}
@@ -84,8 +85,8 @@ if($storeApplicable != ''){
     $stores = array(intval(0));
 }
 
-if(!$currentInstallPage->getId() || !in_array($storeApplicable, $currentInstallPage->getStoreId())){
-    $cmsPages[] = array(
+if(!$newInstallPage->getId() || !in_array($storeApplicable, $newInstallPage->getStoreId())){
+    $cmsPageData = array(
         'title'             =>  'Super Selects',
         'identifier'        =>  $urlKey,
         'root_template'     =>  $rootTemplate,
@@ -95,10 +96,7 @@ if(!$currentInstallPage->getId() || !in_array($storeApplicable, $currentInstallP
         'stores'            =>  $stores
     );
 
-    foreach ($cmsPages as $data) {
-        Mage::getModel('cms/page')->setData($data)->save();
-    }
-
+    $newInstallPage->setData($cmsPageData)->save();
 }
 
 $installer->endSetup();
