@@ -14,7 +14,8 @@ $installer->startSetup();
 $urlKey = 'style-guide';
 $rootTemplate = 'one_column';
 $storeApplicable = 'default';
-$currentInstallPage = Mage::getModel('cms/page')->load($urlKey);
+$installPage = $urlKey;
+$currentInstallPage = Mage::getModel('cms/page')->load($installPage);
 
 $installPageContent = <<<CONTENT
 {{block type="core/template" name="style-guide" template="blueacorn/ui/styleguide.phtml"}}
@@ -66,7 +67,8 @@ if(!$currentInstallPage->getId() || !in_array($storeApplicable, $currentInstallP
 $urlKey = 'superselects';
 $rootTemplate = 'one_column';
 $storeApplicable = 'default';
-$currentInstallPage = Mage::getModel('cms/page')->load($urlKey);
+$installPage = $urlKey;
+$currentInstallPage = Mage::getModel('cms/page')->load($installPage);
 
 $installPageContent = <<<CONTENT
 {{block type="core/template" name="style-guide" template="blueacorn/ui/super-select.phtml"}}
