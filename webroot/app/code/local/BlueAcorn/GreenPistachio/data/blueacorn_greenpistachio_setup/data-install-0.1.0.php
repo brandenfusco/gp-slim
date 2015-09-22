@@ -68,7 +68,7 @@ $urlKey = 'superselects';
 $rootTemplate = 'one_column';
 $storeApplicable = 'default';
 $installPage = $urlKey;
-$currentInstallPage = Mage::getModel('cms/page')->load($installPage);
+$newInstallPage = Mage::getModel('cms/page')->load($installPage);
 
 $installPageContent = <<<CONTENT
 {{block type="core/template" name="style-guide" template="blueacorn/ui/super-select.phtml"}}
@@ -86,7 +86,7 @@ if($storeApplicable != ''){
     $stores = array(intval(0));
 }
 
-if(!$currentInstallPage->getId() || !in_array($storeApplicable, $currentInstallPage->getStoreId())){
+if(!$newInstallPage->getId() || !in_array($storeApplicable, $newInstallPage->getStoreId())){
     $cmsPages[] = array(
         'title'             =>  'Super Selects',
         'identifier'        =>  $urlKey,
