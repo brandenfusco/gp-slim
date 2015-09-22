@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @package     BlueAcorn\GreenPistachio
+ * @version     0.1.0
+ * @author      Blue Acorn, Inc. <code@blueacorn.com>
+ * @copyright   Copyright © 2015 Blue Acorn, Inc.
+ */
+-->
+<config>
+    <modules>
+        <BlueAcorn_GreenPistachio>
+            <version>0.1.0</version>
+        </BlueAcorn_GreenPistachio>
+    </modules>
+    <global>
+        <models>
+            <blueacorn_greenpistachio>
+                <class>BlueAcorn_GreenPistachio_Model</class>
+                <resourceModel>blueacorn_greenpistachio_resource</resourceModel>
+            </blueacorn_greenpistachio>
+            <blueacorn_greenpistachio_resource>
+                <class>BlueAcorn_GreenPistachio_Model_Resource</class>
+            </blueacorn_greenpistachio_resource>
+        </models>
+        <blocks>
+            <blueacorn_greenpistachio>
+                <class>BlueAcorn_GreenPistachio_Block</class>
+            </blueacorn_greenpistachio>
+            <customer>
+                <rewrite>
+                    <account_navigation>BlueAcorn_GreenPistachio_Block_Customer_Account_Navigation</account_navigation>
+                </rewrite>
+            </customer>
+        </blocks>
+        <helpers>
+            <blueacorn_greenpistachio>
+                <class>BlueAcorn_GreenPistachio_Helper</class>
+            </blueacorn_greenpistachio>
+        </helpers>
+        <resources>
+            <blueacorn_greenpistachio_setup>
+                <setup>
+                    <module>BlueAcorn_GreenPistachio</module>
+                </setup>
+            </blueacorn_greenpistachio_setup>
+        </resources>
+    </global>
+    <frontend>
+        <layout>
+            <updates>
+                <blueacorn_greenpistachio>
+                    <file>blueacorn/javascriptplugins.xml</file>
+                    <file>blueacorn/greenpistachio.xml</file>
+                </blueacorn_greenpistachio>
+            </updates>
+        </layout>
+        <jsconfig>
+            <javascriptplugins>
+                <modals>
+                    <fancybox name="fancy_box"/>
+                </modals>
+
+                <fancybox_helpers>
+                    <fancybox_buttons name="fancybox_buttons"/>
+                    <fancybox_media name="fancybox_media"/>
+                    <fancybox_thumbs name="fancybox_thumbs"/>
+                </fancybox_helpers>
+
+                <bxslidergroup>
+                    <bxslider name="bxslider"/>
+                    <bxsliderfitvids name="bxsliderfitvids"/>
+                    <bxslidereasing name="bxslidereasing"/>
+                </bxslidergroup>
+
+                <sliders>
+                    <flexslider name="flexslider"/>
+                    <owl_two name="owl_two"/>
+                </sliders>
+                <ux>
+                    <headroom name="headroom"/>
+                    <parallax name="parallax"/>
+                    <scrollto name="scrollto"/>
+                    <spinjs name="spinjs"/>
+                    <focuspoint name="focuspoint"/>
+                </ux>
+                <plugins>
+                    <selectivizr name="selectivizr"/>
+                    <placeholderjs name="placeholderjs"/>
+                    <svginjector name="svginjector"/>
+                    <html5shiv name="html5shiv"/>
+                    <responsiveimg name="responsiveimg"/>
+                </plugins>
+            </javascriptplugins>
+            <styleguide>
+                <development>
+                    <enable_development>
+                        <type>boolean</type>
+                    </enable_development>
+                </development>
+            </styleguide>
+        </jsconfig>
+    </frontend>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <blueacorn_greenpistachio>
+                    <file>blueacorn/greenpistachio.xml</file>
+                </blueacorn_greenpistachio>
+            </updates>
+        </layout>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <styleguide>
+                                            <title>Green Pistachio Settings</title>
+                                        </styleguide>
+                                        <javascriptplugins>
+                                            <title>Javascript Plugins</title>
+                                        </javascriptplugins>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+</config>

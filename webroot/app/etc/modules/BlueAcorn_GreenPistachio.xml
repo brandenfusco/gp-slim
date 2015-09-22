@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--/**
+ * @package     BlueAcorn\GreenPistachio
+ * @version     0.1.0
+ * @author      Blue Acorn, Inc. <code@blueacorn.com>
+ * @copyright   Copyright © 2015 Blue Acorn, Inc.
+ */-->
+<config>
+    <modules>
+        <BlueAcorn_GreenPistachio>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <BlueAcorn_FooterAssets />
+                <BlueAcorn_MageJsConfig/>
+            </depends>
+        </BlueAcorn_GreenPistachio>
+    </modules>
+</config>
