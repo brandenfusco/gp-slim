@@ -1,5 +1,6 @@
 # Directories
 webroot/app/code/local/BlueAcorn/GreenPistachio/                                    app/code/local/BlueAcorn/GreenPistachio/
+webroot/app/etc/modules/BlueAcorn_GreenPistachio.xml                                app/etc/modules/BlueAcorn_GreenPistachio.xml
 webroot/app/design/frontend/blueacorn/gp/                                           app/design/frontend/blueacorn/gp/
 webroot/js/blueacorn/lib/                                                           js/blueacorn/lib/
 webroot/skin/frontend/blueacorn/gp/                                                 skin/frontend/blueacorn/gp/
