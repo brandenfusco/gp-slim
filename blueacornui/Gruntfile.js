@@ -6,6 +6,7 @@ module.exports = function(grunt){
         skinDir: 'skin',
         pkg: grunt.file.readJSON('package.json'),
         currentYear: grunt.template.today('yyyy'),
+        defaultTheme: 'site',
 
         banner: '/**\n' +
         '* @package     <%= pkg.namespace %>/<%= pkg.module %>\n' +
@@ -170,12 +171,16 @@ module.exports = function(grunt){
                 command: [
                     'mv <%=webRoot%>/app/design/frontend/blueacorn/gp <%=webRoot%>/app/design/frontend/blueacorn/<%=defaultTheme%>',
                     'mv <%=webRoot%>/skin/frontend/blueacorn/gp <%=webRoot%>/skin/frontend/blueacorn/<%=defaultTheme%>',
-                    'ln -s <%=webRoot%>/app/design/frontend/blueacorn/<%=defaultTheme%>/ app',
-                    'ln -s <%=webRoot%>/skin/frontend/blueacorn/<%=defaultTheme%>/ skin',
                     'cd <%=webRoot%>',
                     'n98-magerun.phar config:set design/package/name blueacorn',
                     'n98-magerun.phar config:set design/theme/default site',
                     'n98-magerun.phar config:set dev/template/allow_symlink 1'
+                ].join('&&')
+            },
+            symlink: {
+                command: [
+                    'ln -s <%=webRoot%>/app/design/frontend/blueacorn/<%=defaultTheme%>/ app',
+                    'ln -s <%=webRoot%>/skin/frontend/blueacorn/<%=defaultTheme%>/ skin',
                 ].join('&&')
             }
         },
@@ -328,6 +333,7 @@ module.exports = function(grunt){
         grunt.config.set('defaultTheme', arguments[0]);
         grunt.task.run('concurrent:setup');
         grunt.task.run('shell:setup');
+        grunt.task.run('shell:symlink');
         grunt.task.run('compile');
     });
 
