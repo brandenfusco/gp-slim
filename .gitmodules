@@ -7,9 +7,6 @@
 [submodule "pistachios/gp-remove-link-by-name"]
 	path = pistachios/gp-remove-link-by-name
 	url = git@github.com:BlueAcornInc/gp-remove-link-by-name.git
-[submodule "pistachios/gp-stickyheader"]
-	path = pistachios/gp-stickyheader
-	url = git@github.com:BlueAcornInc/gp-stickyheader.git
 [submodule "pistachios/ba-magejsconfig"]
 	path = pistachios/ba-magejsconfig
 	url = git@github.com:BlueAcornInc/ba-magejsconfig.git
