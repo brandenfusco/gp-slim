@@ -1,13 +1,14 @@
 # Directories
 webroot/app/code/local/BlueAcorn/GreenPistachio/                                    app/code/local/BlueAcorn/GreenPistachio/
-webroot/app/etc/modules/BlueAcorn_GreenPistachio.xml                                app/etc/modules/BlueAcorn_GreenPistachio.xml
+webroot/app/design/frontend/base/default/template/blueacorn/                        app/design/frontend/base/default/template/blueacorn/
 webroot/app/design/frontend/blueacorn/gp/                                           app/design/frontend/blueacorn/gp/
 webroot/js/blueacorn/lib/                                                           js/blueacorn/lib/
 webroot/skin/frontend/blueacorn/gp/                                                 skin/frontend/blueacorn/gp/
 
 # Files
 webroot/app/design/adminhtml/default/default/layout/blueacorn/greenpistachio.xml    app/design/adminhtml/default/default/layout/blueacorn/greenpistachio.xml
-
+webroot/app/etc/modules/BlueAcorn_GreenPistachio.xml                                app/etc/modules/BlueAcorn_GreenPistachio.xml
+webroot/app/design/adminhtml/default/default/layout/blueacorn/javascriptplugins.xml    app/design/adminhtml/default/default/layout/blueacorn/javascriptplugins.xml
 webroot/skin/adminhtml/base/default/css/blueacorn.css                               skin/adminhtml/base/default/css/blueacorn.css
 webroot/skin/adminhtml/base/default/images/blueacorn/blueacorn-logo.png             skin/adminhtml/base/default/images/blueacorn/blueacorn-logo.png
 

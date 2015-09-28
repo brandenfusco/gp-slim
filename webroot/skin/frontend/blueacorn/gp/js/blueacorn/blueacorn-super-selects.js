@@ -198,11 +198,9 @@ jQuery(document).ready(function($){
                 self.setOptionObservers(currentSelect);
             }
 
-            if(self.settings.htmlTag.hasClass('touch') && (self.settings.htmlTag.hasClass('resp-mobile') || self.settings.htmlTag.hasClass('resp-tablet'))) {
-                $(currentSelect).on('change', function(){
-                    self.updateSuperSelectsShiv(currentSelect);
-                });
-            }
+            $(currentSelect).on('change', function(){
+                self.updateSuperSelectsShiv(currentSelect);
+            });
         },
 
         /**
@@ -367,11 +365,9 @@ jQuery(document).ready(function($){
                     });
                 });
 
-                if(self.settings.htmlTag.hasClass('touch') && (self.settings.htmlTag.hasClass('resp-mobile') || self.settings.htmlTag.hasClass('resp-tablet'))) {
-                    $(currentSelect).on('change', function(){
-                        self.updateSuperSelectsShiv(currentSelect);
-                    });
-                }
+                $(currentSelect).on('change', function(){
+                    self.updateSuperSelectsShiv(currentSelect);
+                });
         },
 
         /**
