@@ -10,6 +10,7 @@
     <default>
         <reference name="head">
             <action method="addItem"><type>skin_js</type><name>js/blueacorn-magento-overrides.js</name><params/></action>
+
             <action method="removeItem"><type>skin_css</type><name>css/enterprise.css</name></action>
             <action method="removeItem"><type>skin_css</type><name>css/enterprise-ie8.css</name></action>
             <action method="removeItem"><type>skin_js</type><name>js/lib/jquery.cycle2.min.js</name></action>
@@ -17,6 +18,50 @@
             <action method="removeItem"><type>skin_js</type><name>js/slideshow.js</name></action>
             <action method="removeItem"><type>skin_js</type><name>js/lib/imagesloaded.js</name></action>
             <action method="removeItem"><type>skin_js</type><name>js/minicart.js</name></action>
+
+            <!-- Fancybox -->
+            <action method="addItem" ifconfig="javascriptplugins/modals/fancybox">
+                <type>js_css</type>
+                <name>blueacorn/lib/fancybox/jquery.fancybox.css</name>
+            </action>
+
+            <action method="addItem" ifconfig="javascriptplugins/fancybox_helpers/fancybox_buttons">
+                <type>js_css</type>
+                <name>blueacorn/lib/fancybox/helpers/jquery.fancybox-buttons.css</name>
+            </action>
+
+            <action method="addItem" ifconfig="javascriptplugins/fancybox_helpers/fancybox_thumbs">
+                <type>js_css</type>
+                <name>blueacorn/lib/fancybox/helpers/jquery.fancybox-thumbs.css</name>
+            </action>
+
+            <!-- BX Slider-->
+            <action method="addItem" ifconfig="javascriptplugins/bxslidergroup/bxslider">
+                <type>js_css</type>
+                <name>blueacorn/lib/bxslider/jquery.bxslider.min.css</name>
+            </action>
+
+            <!-- Flexslider -->
+            <action method="addItem" ifconfig="javascriptplugins/sliders/flexslider">
+                <type>js_css</type>
+                <name>blueacorn/lib/flexslider/flexslider.css</name>
+            </action>
+
+            <!-- jQuery FocusPoint -->
+            <action method="addItem" ifconfig="javascriptplugins/ux/focuspoint">
+                <type>js_css</type>
+                <name>blueacorn/lib/focuspoint/css/focuspoint.css</name>
+            </action>
+
+            <!-- Owl Carousel 2-->
+            <action method="addItem" ifconfig="javascriptplugins/sliders/owl_two">
+                <type>js_css</type>
+                <name>blueacorn/lib/owlcarousel2/assets/owl.carousel.min.css</name>
+            </action>
+            <action method="addItem" ifconfig="javascriptplugins/sliders/owl_two">
+                <type>js_css</type>
+                <name>blueacorn/lib/owlcarousel2/assets/owl.theme.default.min.css</name>
+            </action>
         </reference>
         <reference name="scripts_in_footer">
             <action method="addItem"><type>skin_js</type><name>jsmin/blueacorn.min.js</name><params/></action>
@@ -26,6 +71,108 @@
             <action method="addItem"><type>skin_js</type><name>js/slideshow.js</name></action>
             <action method="addItem"><type>skin_js</type><name>js/lib/imagesloaded.js</name></action>
             <action method="addItem"><type>skin_js</type><name>js/minicart.js</name></action>
+
+            <!-- Fancybox -->
+            <action method="addItem" ifconfig="javascriptplugins/modals/fancybox">
+                <type>js</type>
+                <name>blueacorn/lib/fancybox/jquery.fancybox.pack.js</name>
+            </action>
+
+            <!-- BX Slider -->
+            <action method="addItem" ifconfig="javascriptplugins/bxslidergroup/bxslider">
+                <type>js</type>
+                <name>blueacorn/lib/bxslider/jquery.bxslider.min.js</name>
+            </action>
+
+            <action method="addItem" ifconfig="javascriptplugins/bxslidergroup/bxslidereasing">
+                <type>js</type>
+                <name>blueacorn/lib/bxslider/vendor/jquery.easing.1.3.js</name>
+            </action>
+
+            <action method="addItem" ifconfig="javascriptplugins/bxslidergroup/bxsliderfitvids">
+                <type>js</type>
+                <name>blueacorn/lib/bxslider/vendor/jquery.fitvids.js</name>
+            </action>
+
+            <!-- Flexslider -->
+            <action method="addItem" ifconfig="javascriptplugins/sliders/flexslider">
+                <type>js</type>
+                <name>blueacorn/lib/flexslider/jquery.flexslider-min.js</name>
+            </action>
+
+            <!-- Owl Carousel -->
+            <action method="addItem" ifconfig="javascriptplugins/sliders/owl">
+                <type>js</type>
+                <name>blueacorn/lib/owlcarousel/owl.carousel.js</name>
+            </action>
+
+            <!-- Owl Carousel 2 -->
+            <action method="addItem" ifconfig="javascriptplugins/sliders/owl_two">
+                <type>js</type>
+                <name>blueacorn/lib/owlcarousel2/owl.carousel.min.js</name>
+            </action>
+
+            <!-- jQuery ScrollTo -->
+            <action method="addItem" ifconfig="javascriptplugins/ux/scrollto">
+                <type>js</type>
+                <name>blueacorn/lib/scrollto/jquery.scrollTo.min.js</name>
+            </action>
+
+            <!-- jQuery FocasPoint -->
+            <action method="addItem" ifconfig="javascriptplugins/ux/focuspoint">
+                <type>js</type>
+                <name>blueacorn/lib/focuspoint/js/jquery.focuspoint.min.js</name>
+            </action>
+
+            <!-- Selectivizr -->
+            <action method="addItem" ifconfig="javascriptplugins/plugins/selectivizr">
+                <type>js</type>
+                <name>blueacorn/lib/selectivizr/selectivizr-min.js</name>
+                <if>lte IE 8</if>
+            </action>
+
+            <!-- Placeholder.js -->
+            <action method="addItem" ifconfig="javascriptplugins/plugins/placeholderjs">
+                <type>js</type>
+                <name>blueacorn/lib/placeholderjs/placeholders.min.js</name>
+            </action>
+
+            <!-- SVG Injector -->
+            <action method="addItem" ifconfig="javascriptplugins/plugins/svginjector">
+                <type>js</type>
+                <name>blueacorn/lib/svginjector/svg-injector.min.js</name>
+            </action>
+
+            <!-- Headroom.js -->
+            <action method="addItem" ifconfig="javascriptplugins/ux/headroom">
+                <type>js</type>
+                <name>blueacorn/lib/headroom/headroom.min.js</name>
+            </action>
+
+            <!-- Parallax.js -->
+            <action method="addItem" ifconfig="javascriptplugins/ux/parallax">
+                <type>js</type>
+                <name>blueacorn/lib/parallax/parallax.min.js</name>
+            </action>
+
+            <!-- spin.js -->
+            <action method="addItem" ifconfig="javascriptplugins/ux/spinjs">
+                <type>js</type>
+                <name>blueacorn/lib/spinjs/spin.min.js</name>
+            </action>
+
+            <!-- Responsive Images (this one needs to be last) -->
+            <action method="addItem" ifconfig="javascriptplugins/plugins/responsiveimg">
+                <type>js</type>
+                <name>blueacorn/lib/responsiveimg/responsive-img.min.js</name>
+            </action>
+
+            <!-- HTML5Shiv (this one needs to be last) -->
+            <action method="addItem" ifconfig="javascriptplugins/plugins/html5shiv">
+                <type>js</type>
+                <name>blueacorn/lib/html5shiv/html5shiv-printshiv.min.js</name>
+                <if>lt IE 9</if>
+            </action>
         </reference>
     </default>
 

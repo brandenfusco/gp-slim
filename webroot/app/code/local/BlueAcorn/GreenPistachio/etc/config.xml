@@ -50,7 +50,6 @@
         <layout>
             <updates>
                 <blueacorn_greenpistachio>
-                    <file>blueacorn/javascriptplugins.xml</file>
                     <file>blueacorn/greenpistachio.xml</file>
                 </blueacorn_greenpistachio>
             </updates>
