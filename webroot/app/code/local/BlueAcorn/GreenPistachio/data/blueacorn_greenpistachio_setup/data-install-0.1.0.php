@@ -47,20 +47,26 @@ if($storeApplicable != ''){
     $stores = array(intval(0));
 }
 
-if(!$currentInstallPage->getId() || !in_array($storeApplicable, $currentInstallPage->getStoreId())){
-    $cmsPageData = array(
-        'title'             =>  'Style Guide',
-        'identifier'        =>  $urlKey,
-        'root_template'     =>  $rootTemplate,
-        'content'           =>  $installPageContent,
-        'layout_update_xml' =>  $installPageXML,
-        'is_active'         =>  1,
-        'stores'            =>  $stores
-    );
+if($currentInstallPage->isObjectNew()){
+    $currentInstallPage->setData(
+        array(
+            'title'             =>  'Style Guide',
+            'identifier'        =>  $urlKey,
+            'root_template'     =>  $rootTemplate,
+            'content'           =>  $installPageContent,
+            'layout_update_xml' =>  $installPageXML,
+            'is_active'         =>  1,
+            'stores'            =>  $stores
+        )
+    )
+    ->save();
 
-
-    $currentInstallPage->setData($cmsPageData)->save();
-
+} else {
+    $currentInstallPage
+        ->setContent($installPageContent)
+        ->setLayoutUpdateXml($installPageXML)
+        ->setIsActive(1)
+        ->save();
 }
 
 $urlKey = 'superselects';
@@ -85,18 +91,25 @@ if($storeApplicable != ''){
     $stores = array(intval(0));
 }
 
-if(!$newInstallPage->getId() || !in_array($storeApplicable, $newInstallPage->getStoreId())){
-    $cmsPageData = array(
-        'title'             =>  'Super Selects',
-        'identifier'        =>  $urlKey,
-        'root_template'     =>  $rootTemplate,
-        'content'           =>  $installPageContent,
-        'layout_update_xml' =>  $installPageXML,
-        'is_active'         =>  1,
-        'stores'            =>  $stores
-    );
-
-    $newInstallPage->setData($cmsPageData)->save();
+if($newInstallPage->isObjectNew()){
+    $newInstallPage->setData(
+        array(
+            'title'             =>  'Super Selects',
+            'identifier'        =>  $urlKey,
+            'root_template'     =>  $rootTemplate,
+            'content'           =>  $installPageContent,
+            'layout_update_xml' =>  $installPageXML,
+            'is_active'         =>  1,
+            'stores'            =>  $stores
+        )
+    )
+    ->save();
+} else {
+    $newInstallPage
+        ->setContent($installPageContent)
+        ->setLayoutUpdateXml($installPageXML)
+        ->setIsActive(1)
+        ->save();
 }
 
 $installer->endSetup();
