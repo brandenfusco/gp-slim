@@ -9,7 +9,7 @@ function Page(options) {
     this.init(options);
 }
 
-jQuery(document).ready(function ($) {
+(function($){
 
     Page.prototype = {
         init: function (options) {
@@ -104,7 +104,21 @@ jQuery(document).ready(function ($) {
             });
 
             return pageRequest;
-        }
+        },
+        identifyPage: function() {
+            var self = this,
+                pageRequest;
+
+            $.each(self.pageTypes, function(idx, pageType){
+                if(self.getPage(pageType.pageName)){
+
+                    pageRequest = pageType.pageName;
+                    return;
+                }
+            });
+
+            return pageRequest;
+        },
     };
 
     /**
@@ -113,4 +127,4 @@ jQuery(document).ready(function ($) {
      */
     ba.Page = new Page({});
 
-});
+})(jQuery);
