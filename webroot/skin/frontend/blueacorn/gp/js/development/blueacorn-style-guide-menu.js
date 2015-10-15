@@ -9,7 +9,8 @@ function StyleGuideMenu(options) {
     this.init(options);
 }
 
-jQuery(document).ready(function ($) {
+
+;(function($, ba){
 
     StyleGuideMenu.prototype = {
         init: function (options) {
@@ -120,12 +121,17 @@ jQuery(document).ready(function ($) {
         }
     };
 
-    /**
-     * The parameter object is optional.
-     * Must be an object.
-     */
-    if($('.cms-style-guide').length > 0) {
-        ba.StyleGuideMenu = new StyleGuideMenu({});
-    }
 
-});
+    $(document).on("baCoreReady", function() {
+
+        /**
+         * The parameter object is optional.
+         * Must be an object.
+         */
+        if($('.cms-style-guide').length > 0) {
+            ba.StyleGuideMenu = new StyleGuideMenu();
+        }
+
+    });
+
+})(jQuery, ba);

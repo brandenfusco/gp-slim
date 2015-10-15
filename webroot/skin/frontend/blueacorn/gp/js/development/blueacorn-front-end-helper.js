@@ -9,7 +9,7 @@ function FrontEndDevelopmentHelper(options) {
     this.init(options);
 }
 
-(function($){
+;(function($, ba){
 
     FrontEndDevelopmentHelper.prototype = {
         init: function (options) {
@@ -122,4 +122,4 @@ function FrontEndDevelopmentHelper(options) {
         });
 
      }
-})(jQuery);
+})(jQuery, ba);

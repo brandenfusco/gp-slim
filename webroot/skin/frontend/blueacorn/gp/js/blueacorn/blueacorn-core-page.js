@@ -9,13 +9,13 @@ function Page(options) {
     this.init(options);
 }
 
-(function($){
+;(function($, ba){
 
     Page.prototype = {
         init: function (options) {
             this.settings = {
                 'moduleName': 'Page',
-                'bodyTag': $('body'),
+                'bodyTag': $('body')
             };
 
             this.pageTypes = [
@@ -77,6 +77,7 @@ function Page(options) {
             // Start the debugger
             ba.setupDebugging(this.settings);
         },
+
         getPage: function(pageType) {
             var self = this,
                 pageRequest = false;
@@ -105,6 +106,7 @@ function Page(options) {
 
             return pageRequest;
         },
+
         identifyPage: function() {
             var self = this,
                 pageRequest;
@@ -118,13 +120,13 @@ function Page(options) {
             });
 
             return pageRequest;
-        },
+        }
     };
 
     /**
      * The parameter object is optional.
      * Must be an object.
      */
-    ba.Page = new Page({});
+    ba.Page = new Page();
 
-})(jQuery);
+})(jQuery, ba);

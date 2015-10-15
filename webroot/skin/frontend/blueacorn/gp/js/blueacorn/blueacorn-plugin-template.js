@@ -126,7 +126,6 @@
  *
  */
 
-
 ;(function ($, window, document, undefined) {
 
     var pluginName = "htmlTemplate";
@@ -261,7 +260,6 @@
         return new HtmlTemplate(template, pattern);
     };
 
-
     /**
      *  RegExp.escape(str) -> String
      *  - str (String): A string intended to be used in a `RegExp` constructor.
@@ -276,11 +274,4 @@
             return String(str).replace(/([.*+?^=!:${}()|[\]\/\\])/g, '\\$1');
         };
     }
-
-
 })(jQuery, window, document);
-
-jQuery(document).ready(function($){
-    example = $.htmlTemplate('<div>Name: <b>{{ name }}</b>, Age: <b>{{ age }}</b></div>', /(^|.|\r|\n)(\{{\s*(\w+)\s*}})/);
-    //example = $.htmlTemplate('/dir/showAll?lang=#{language}&amp;categ=#{category}&amp;lv=#{levels}');
-});

@@ -9,8 +9,7 @@ function StyleGuide(options) {
     this.init(options);
 }
 
-jQuery(document).ready(function ($) {
-
+;(function($, ba){
     StyleGuide.prototype = {
         init: function (options) {
             this.settings = {
@@ -28,20 +27,23 @@ jQuery(document).ready(function ($) {
 
         fixSidebarOnResize: function() {
             $(window).on('resize', function(){
-            if($('.main > .col-left.sidebar').length > 0){
+                if($('.main > .col-left.sidebar').length > 0){
                     $('.main > .col-left.sidebar').remove();
                 }
             });
         }
-
     };
 
-    /**
-     * The parameter object is optional.
-     * Must be an object.
-     */
-    if($('.cms-style-guide').length > 0) {
-        ba.StyleGuide = new StyleGuide({});
-    }
+    $(document).on("baCoreReady", function() {
 
-});
+        /**
+         * The parameter object is optional.
+         * Must be an object.
+         */
+        if($('.cms-style-guide').length > 0) {
+            ba.StyleGuide = new StyleGuide();
+        }
+
+    });
+
+})(jQuery, ba);
