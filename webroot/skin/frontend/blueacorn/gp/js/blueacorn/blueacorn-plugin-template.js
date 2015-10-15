@@ -126,7 +126,6 @@
  *
  */
 
-
 ;(function ($, window, document, undefined) {
 
     var pluginName = "htmlTemplate";
@@ -261,7 +260,6 @@
         return new HtmlTemplate(template, pattern);
     };
 
-
     /**
      *  RegExp.escape(str) -> String
      *  - str (String): A string intended to be used in a `RegExp` constructor.
@@ -276,6 +274,4 @@
             return String(str).replace(/([.*+?^=!:${}()|[\]\/\\])/g, '\\$1');
         };
     }
-
-
 })(jQuery, window, document);
