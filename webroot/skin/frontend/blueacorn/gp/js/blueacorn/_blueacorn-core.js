@@ -60,7 +60,7 @@ function BlueAcornCore(options) {
          * @param string
          */
         watchConsole: function (message) {
-            if($('.ie6, .ie7, .ie8, .ie9').length === 0) {
+            if(!$('.ie6, .ie7, .ie8, .ie9').length && typeof console !== "undefined") {
                 console.log(message);
             }
         }
