@@ -5,71 +5,76 @@
 * @copyright   Copyright © 2015 Blue Acorn.
 */
 
+var ba;
+
 function BlueAcornCore(options) {
     this.init(options);
 }
 
-BlueAcornCore.prototype = {
-    init: function (options) {
-        this.settings = {
-            'debug': false,
-            'moduleName' : 'BlueAcornCore'
-        };
+;(function($){
 
-        // Overrides the default settings
-        this.overrideSettings(this.settings, options);
+    BlueAcornCore.prototype = {
+        init: function (options) {
+            this.settings = {
+                'debug': false,
+                'moduleName' : 'BlueAcornCore'
+            };
 
-        // Start the debugger
-        if (this.settings.debug === true) {
-            this.setupDebugging(this.settings);
+            // Overrides the default settings
+            this.overrideSettings(this.settings, options);
+
+            // Start the debugger
+            if (this.settings.debug === true) {
+                this.setupDebugging(this.settings);
+            }
+
+            this.triggerCustomEvent();
+        },
+
+        /**
+         * Takes default settings in object scope, and
+         * merges the optional object passed in on initiation
+         * of the class.
+         */
+        overrideSettings: function (settings, options) {
+            if (typeof options === 'object') {
+                settings = jQuery.extend(settings, options);
+            }
+        },
+
+        setupDebugging: function (moduleSettings) {
+            if(typeof moduleSettings === 'object'){
+                this.watchConsole(moduleSettings.moduleName + ' Loaded!!!');
+                this.watchConsole(moduleSettings);
+            }
+        },
+
+        triggerCustomEvent: function() {
+            $(document).on('ready', function(){
+                $(document).trigger('baCoreReady');
+            });
+        },
+
+        /**
+         * Adds console log if degubbing is true
+         * @param string
+         */
+        watchConsole: function (message) {
+            if($('.ie6, .ie7, .ie8, .ie9').length === 0) {
+                console.log(message);
+            }
         }
-
-        this.triggerCustomEvent();
-    },
+    };
 
     /**
-     * Takes default settings in object scope, and
-     * merges the optional object passed in on initiation
-     * of the class.
+     * The parameter object is optional.
+     * Must be an object.
      */
-    overrideSettings: function (settings, options) {
-        if (typeof options === 'object') {
-            settings = jQuery.extend(settings, options);
-        }
-    },
+    ba = new BlueAcornCore({
+        "debug": mageConfig["styleguide/development/enable_development"] > 0 ? true : false
+    });
 
-    setupDebugging: function (moduleSettings) {
-        if(typeof moduleSettings === 'object'){
-            this.watchConsole(moduleSettings.moduleName + ' Loaded!!!');
-            this.watchConsole(moduleSettings);
-        }
-    },
-
-    triggerCustomEvent: function() {
-        jQuery(document).on('ready', function(){
-            jQuery(document).trigger('baCoreReady');
-        });
-    },
-
-    /**
-     * Adds console log if degubbing is true
-     * @param string
-     */
-    watchConsole: function (message) {
-        if(jQuery('.ie6, .ie7, .ie8, .ie9').length === 0) {
-            console.log(message);
-        }
-    }
-
-};
-
-/**
- * The parameter object is optional.
- * Must be an object.
- */
-var ba = new BlueAcornCore({
-    "debug": mageConfig["styleguide/development/enable_development"] > 0 ? true : false
-});
+})(jQuery);
 
 // Deals with issues between jQuery & Prototype Event Triggering
 // @source: http://stackoverflow.com/a/460709

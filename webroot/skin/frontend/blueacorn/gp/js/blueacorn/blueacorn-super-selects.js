@@ -9,7 +9,7 @@ function SuperSelects(options) {
     this.init(options);
 }
 
-jQuery(document).ready(function($){
+;(function($, ba){
 
     SuperSelects.prototype = {
 
@@ -212,15 +212,15 @@ jQuery(document).ready(function($){
             var self        = this,
                 selectShiv  = $(currentSelect).siblings('.ba-select-box').find('.ba-shiv');
 
-                // Add Click Event tot he Super Select Shiv
-                selectShiv.on('click', function(){
-                    // Detect if the Shiv is Already Open
-                    if(!$(currentSelect).siblings('.ba-select-box').hasClass('open')){
-                        self.openOptions(currentSelect);
-                    }else{
-                        self.closeOptions(currentSelect);
-                    }
-                });
+            // Add Click Event tot he Super Select Shiv
+            selectShiv.on('click', function(){
+                // Detect if the Shiv is Already Open
+                if(!$(currentSelect).siblings('.ba-select-box').hasClass('open')){
+                    self.openOptions(currentSelect);
+                }else{
+                    self.closeOptions(currentSelect);
+                }
+            });
         },
 
         /**
@@ -231,25 +231,25 @@ jQuery(document).ready(function($){
             var self        = this,
                 selectShiv  = $(currentSelect).siblings('.ba-select-box').find('.ba-shiv');
 
-                // Add Click Event tot he Super Select Shiv
-                selectShiv.on('click', function(){
-                    // Detect if the Shiv is Already Open
-                    var baSelectBox = $(currentSelect).siblings('.ba-select-box'),
-                        baOptionsBox = $(baSelectBox).find('.ba-options');
+            // Add Click Event tot he Super Select Shiv
+            selectShiv.on('click', function(){
+                // Detect if the Shiv is Already Open
+                var baSelectBox = $(currentSelect).siblings('.ba-select-box'),
+                    baOptionsBox = $(baSelectBox).find('.ba-options');
 
-                    if(!$(baSelectBox).hasClass('open')){
-                        self.openOptions(currentSelect);
-                        var newLeft = $(baOptionsBox).outerWidth() - ($(baOptionsBox).outerWidth() * 2) - 6,
-                            newTop = ($(baOptionsBox).height()/2) - $(baOptionsBox).height();
-                        $(baOptionsBox).css({
-                            "left": newLeft,
-                            "margin-top": newTop
-                        });
+                if(!$(baSelectBox).hasClass('open')){
+                    self.openOptions(currentSelect);
+                    var newLeft = $(baOptionsBox).outerWidth() - ($(baOptionsBox).outerWidth() * 2) - 6,
+                        newTop = ($(baOptionsBox).height()/2) - $(baOptionsBox).height();
+                    $(baOptionsBox).css({
+                        "left": newLeft,
+                        "margin-top": newTop
+                    });
 
-                    }else{
-                        self.closeOptions(currentSelect);
-                    }
-                });
+                }else{
+                    self.closeOptions(currentSelect);
+                }
+            });
         },
 
         /**
@@ -260,26 +260,26 @@ jQuery(document).ready(function($){
             var self        = this,
                 selectShiv  = $(currentSelect).siblings('.ba-select-box').find('.ba-shiv');
 
-                // Add Click Event tot he Super Select Shiv
-                selectShiv.on('click', function(){
-                    // Detect if the Shiv is Already Open
-                    var baSelectBox = $(currentSelect).siblings('.ba-select-box'),
-                        baOptionsBox = $(baSelectBox).find('.ba-options');
-                    if(!$(baSelectBox).hasClass('open')){
+            // Add Click Event tot he Super Select Shiv
+            selectShiv.on('click', function(){
+                // Detect if the Shiv is Already Open
+                var baSelectBox = $(currentSelect).siblings('.ba-select-box'),
+                    baOptionsBox = $(baSelectBox).find('.ba-options');
+                if(!$(baSelectBox).hasClass('open')){
 
-                        self.openOptions(currentSelect);
+                    self.openOptions(currentSelect);
 
-                        var newRight = $(baSelectBox).find('.ba-options').outerWidth() - ($(baOptionsBox).outerWidth() * 2) - 6,
-                            newTop = ($(baOptionsBox).height()/2) - $(baOptionsBox).height();
-                        $(baOptionsBox).css({
-                            "right": newRight,
-                            "margin-top": newTop
-                        });
+                    var newRight = $(baSelectBox).find('.ba-options').outerWidth() - ($(baOptionsBox).outerWidth() * 2) - 6,
+                        newTop = ($(baOptionsBox).height()/2) - $(baOptionsBox).height();
+                    $(baOptionsBox).css({
+                        "right": newRight,
+                        "margin-top": newTop
+                    });
 
-                    }else{
-                        self.closeOptions(currentSelect);
-                    }
-                });
+                }else{
+                    self.closeOptions(currentSelect);
+                }
+            });
         },
 
         /**
@@ -290,23 +290,23 @@ jQuery(document).ready(function($){
             var self        = this,
                 selectShiv  = $(currentSelect).siblings('.ba-select-box').find('.ba-shiv');
 
-                // Add Click Event tot he Super Select Shiv
-                selectShiv.on('click', function(){
-                    // Detect if the Shiv is Already Open
-                    var baSelectBox = $(currentSelect).siblings('.ba-select-box');
-                    if(!$(baSelectBox).hasClass('open')){
+            // Add Click Event tot he Super Select Shiv
+            selectShiv.on('click', function(){
+                // Detect if the Shiv is Already Open
+                var baSelectBox = $(currentSelect).siblings('.ba-select-box');
+                if(!$(baSelectBox).hasClass('open')){
 
-                        self.openOptions(currentSelect);
+                    self.openOptions(currentSelect);
 
-                        var boxHeight = $(baSelectBox).find('.ba-options').height();
-                        var newMargin = boxHeight - (boxHeight * 1.5);
+                    var boxHeight = $(baSelectBox).find('.ba-options').height();
+                    var newMargin = boxHeight - (boxHeight * 1.5);
 
-                        $(baSelectBox).find('.ba-options').css("margin-top", newMargin);
+                    $(baSelectBox).find('.ba-options').css("margin-top", newMargin);
 
-                    }else{
-                        self.closeOptions(currentSelect);
-                    }
-                });
+                }else{
+                    self.closeOptions(currentSelect);
+                }
+            });
         },
 
         /**
@@ -345,29 +345,29 @@ jQuery(document).ready(function($){
             var self        = this,
                 selectShiv  = $(currentSelect).siblings('.ba-select-box').find('.ba-shiv');
 
-                // Add Click Event tot he Super Select Shiv
-                selectShiv.on('click', function(){
-                    // Detect if the Shiv is Already Open
-                    var baSelectBox = $(currentSelect).siblings('.ba-select-box');
-                    if(!$(baSelectBox).hasClass('open')){
-                        self.openOptions(currentSelect);
-                    }else{
-                        self.closeOptions(currentSelect);
-                    }
+            // Add Click Event tot he Super Select Shiv
+            selectShiv.on('click', function(){
+                // Detect if the Shiv is Already Open
+                var baSelectBox = $(currentSelect).siblings('.ba-select-box');
+                if(!$(baSelectBox).hasClass('open')){
+                    self.openOptions(currentSelect);
+                }else{
+                    self.closeOptions(currentSelect);
+                }
 
-                    if(!$(currentSelect).data('setup')) {
-                        $(currentSelect).data('setup', true);
-                        $($(baSelectBox).find('.ba-options li')[0]).remove();
-                    }
+                if(!$(currentSelect).data('setup')) {
+                    $(currentSelect).data('setup', true);
+                    $($(baSelectBox).find('.ba-options li')[0]).remove();
+                }
 
-                    $.each($(baSelectBox).find('.ba-img-span'), function(idx, el){
-                        $(el).css("min-height", $(el).width());
-                    });
+                $.each($(baSelectBox).find('.ba-img-span'), function(idx, el){
+                    $(el).css("min-height", $(el).width());
                 });
+            });
 
-                $(currentSelect).on('change', function(){
-                    self.updateSuperSelectsShiv(currentSelect);
-                });
+            $(currentSelect).on('change', function(){
+                self.updateSuperSelectsShiv(currentSelect);
+            });
         },
 
         /**
@@ -380,17 +380,17 @@ jQuery(document).ready(function($){
                 customOptions = $(currentSelect).siblings('.ba-select-box').find('.ba-options ul'),
                 firstCustomOption = $(customOptions).children()[0];
 
-                if($(firstCustomOption).height() === 0) {
-                    firstCustomOption = $(customOptions).children()[1];
-                }
+            if($(firstCustomOption).height() === 0) {
+                firstCustomOption = $(customOptions).children()[1];
+            }
 
-                if($(customOptions).children().length > self.settings.optionLimits) {
-                    var maxHeight = $(firstCustomOption).height() * self.settings.optionLimits;
-                    $(customOptions).css({
-                        'overflow-y': 'scroll',
-                        'max-height': maxHeight + 'px'
-                    });
-                }
+            if($(customOptions).children().length > self.settings.optionLimits) {
+                var maxHeight = $(firstCustomOption).height() * self.settings.optionLimits;
+                $(customOptions).css({
+                    'overflow-y': 'scroll',
+                    'max-height': maxHeight + 'px'
+                });
+            }
         },
 
         /**
@@ -403,13 +403,13 @@ jQuery(document).ready(function($){
                 var key = String.fromCharCode(event.keyCode),
                     customOptions = $(currentSelect).siblings('.ba-select-box').find('.ba-options ul').children();
 
-                    $.each($(customOptions), function(idx, selectOption){
-                        if($(selectOption).find('.ba-opt-content').text()[0] === key) {
-                            $(selectOption).trigger('click');
-                            $(document).off('keyup');
-                            return false;
-                        }
-                    });
+                $.each($(customOptions), function(idx, selectOption){
+                    if($(selectOption).find('.ba-opt-content').text()[0] === key) {
+                        $(selectOption).trigger('click');
+                        $(document).off('keyup');
+                        return false;
+                    }
+                });
             });
         },
 
@@ -472,31 +472,31 @@ jQuery(document).ready(function($){
             var self = this,
                 customOptions = $(currentSelect).siblings('.ba-select-box').find('.ba-options ul').children();
 
-                $.each($(customOptions), function(optionIndex){
-                    $(this).on('click', function(){
+            $.each($(customOptions), function(optionIndex){
+                $(this).on('click', function(){
 
-                        if(!$(currentSelect).data('setup-first')) {
-                            $(currentSelect).data('setup-first', true);
-                            $(currentSelect).siblings('.ba-select-box').addClass('setup');
-                        }
+                    if(!$(currentSelect).data('setup-first')) {
+                        $(currentSelect).data('setup-first', true);
+                        $(currentSelect).siblings('.ba-select-box').addClass('setup');
+                    }
 
-                        $(customOptions).removeClass('selected');
-                        $(this).addClass('selected');
+                    $(customOptions).removeClass('selected');
+                    $(this).addClass('selected');
 
-                        $(currentSelect).prop('selectedIndex',optionIndex);
-                        $(currentSelect)[0].triggerEvent('change');
-                        $(document).off('keyup');
-                    });
+                    $(currentSelect).prop('selectedIndex',optionIndex);
+                    $(currentSelect)[0].triggerEvent('change');
+                    $(document).off('keyup');
                 });
+            });
 
-                if(self.settings.htmlTag.hasClass('touch') && (self.settings.htmlTag.hasClass('resp-mobile') || self.settings.htmlTag.hasClass('resp-tablet'))) {
-                    $(currentSelect).on('change', function(){
-                        if(!$(currentSelect).data('setup-first')) {
-                            $(currentSelect).data('setup-first', true);
-                            $(currentSelect).siblings('.ba-select-box').addClass('setup');
-                        }
-                    });
-                }
+            if(self.settings.htmlTag.hasClass('touch') && (self.settings.htmlTag.hasClass('resp-mobile') || self.settings.htmlTag.hasClass('resp-tablet'))) {
+                $(currentSelect).on('change', function(){
+                    if(!$(currentSelect).data('setup-first')) {
+                        $(currentSelect).data('setup-first', true);
+                        $(currentSelect).siblings('.ba-select-box').addClass('setup');
+                    }
+                });
+            }
         },
 
         /**
@@ -585,7 +585,7 @@ jQuery(document).ready(function($){
          */
         buildOptionsObjects: function(currentSelect) {
             var self = this,
-            dynamicOptionBuilder = 'buildOptionObject' + self.camelCaseCreator(self.getSelectType(currentSelect));
+                dynamicOptionBuilder = 'buildOptionObject' + self.camelCaseCreator(self.getSelectType(currentSelect));
 
             if($.isFunction(self[dynamicOptionBuilder])){
                 currentSelect.optionsArray = self[dynamicOptionBuilder]($(currentSelect).children());
@@ -629,12 +629,12 @@ jQuery(document).ready(function($){
          */
         buildSelectOption: function(opt, selectOptions) {
             var self = this,
-            optionDisabled = opt.disabled ? ' disabled' : '',
-            optionSelected = opt.selected ? ' selected' : '',
-            optionValue = opt.value !== undefined ? opt.value : '',
-            optionContent = opt.content !== undefined ? opt.content : '',
-            optionColor = opt.color !== undefined ? opt.color : '',
-            optionImage = opt.image !== undefined ? opt.image : '';
+                optionDisabled = opt.disabled ? ' disabled' : '',
+                optionSelected = opt.selected ? ' selected' : '',
+                optionValue = opt.value !== undefined ? opt.value : '',
+                optionContent = opt.content !== undefined ? opt.content : '',
+                optionColor = opt.color !== undefined ? opt.color : '',
+                optionImage = opt.image !== undefined ? opt.image : '';
 
 
             // Template for the Image Option
@@ -649,13 +649,13 @@ jQuery(document).ready(function($){
 
             // Template for the optionLi
             var optionLi =  '<li class="option' +
-                            optionDisabled +
-                            optionSelected + '" ' +
-                            'data-value="' + optionValue + '">' +
-                            optionImage +
-                            optionColor +
-                            '<span class="ba-opt-content">' + optionContent + '</span>' +
-                            '</li>';
+                optionDisabled +
+                optionSelected + '" ' +
+                'data-value="' + optionValue + '">' +
+                optionImage +
+                optionColor +
+                '<span class="ba-opt-content">' + optionContent + '</span>' +
+                '</li>';
 
             // Append the Option to the Un-ordered List Element
             $(selectOptions).find('ul').append(optionLi);
@@ -816,9 +816,9 @@ jQuery(document).ready(function($){
             var self = this,
                 formatedContent = content;
 
-                if(formatedContent.length > self.settings.truncateAmount) {
-                    formatedContent = formatedContent.strip().truncate(self.settings.truncateAmount);
-                }
+            if(formatedContent.length > self.settings.truncateAmount) {
+                formatedContent = formatedContent.strip().truncate(self.settings.truncateAmount);
+            }
 
             return formatedContent;
         },
@@ -858,7 +858,6 @@ jQuery(document).ready(function($){
             var self = this;
 
             $.each(self.settings.blackList, function(idx, listItem){
-
                 $.each($(listItem), function(idx, el){
                     if($(el).prop('tagName') == 'SELECT') {
                         self.unsetSuperSelect(el);
@@ -887,10 +886,8 @@ jQuery(document).ready(function($){
          * Removes Super Select DOM Elements for Black Listed Selects
          */
         unsetSuperSelect: function(el) {
-
             $(el).removeClass('ba-select-input');
             $(el).parent().find('.ba-select').remove();
-
         },
 
         updateInternetExplorer: function() {
@@ -904,12 +901,14 @@ jQuery(document).ready(function($){
         }
     };
 
-    /**
-     * The parameter object is optional.
-     * Must be an object.
-     */
-    if(ba !== undefined) {
-        ba.SuperSelects = new SuperSelects({});
-    }
+    $(document).on("baCoreReady", function() {
 
-});
+        /**
+         * The parameter object is optional.
+         * Must be an object.
+         */
+        ba.SuperSelects = new SuperSelects();
+
+    });
+
+})(jQuery, ba);

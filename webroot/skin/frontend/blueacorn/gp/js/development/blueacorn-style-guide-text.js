@@ -9,7 +9,7 @@ function StyleGuideColor(options) {
     this.init(options);
 }
 
-jQuery(document).ready(function ($) {
+;(function($, ba){
 
     StyleGuideColor.prototype = {
         init: function (options) {
@@ -111,7 +111,7 @@ jQuery(document).ready(function ($) {
                 classList = '';
 
             $.each($(selector).prop('classList'), function(idx, className){
-               classList += '.' + className;
+                classList += '.' + className;
             });
 
             return classList;
@@ -149,16 +149,20 @@ jQuery(document).ready(function ($) {
                 $(this).next('.code').find('code').append(newString);
             });
 
-        },
-
+        }
     };
 
-    /**
-     * The parameter object is optional.
-     * Must be an object.
-     */
-    if($('.cms-style-guide').length > 0) {
-        ba.StyleGuideColor = new StyleGuideColor({});
-    }
 
-});
+    $(document).on("baCoreReady", function() {
+
+        /**
+         * The parameter object is optional.
+         * Must be an object.
+         */
+        if($('.cms-style-guide').length > 0) {
+            ba.StyleGuideColor = new StyleGuideColor();
+        }
+
+    });
+
+})(jQuery, ba);

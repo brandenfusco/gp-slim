@@ -9,8 +9,7 @@ function ResponsiveNotation(options) {
     this.init(options);
 }
 
-jQuery(document).ready(function ($) {
-
+;(function($, ba){
     ResponsiveNotation.prototype = {
         init: function (options) {
             this.settings = {
@@ -57,14 +56,17 @@ jQuery(document).ready(function ($) {
                     $('html').removeClass(self.settings.mobileClass);
                 }
             });
-        },
-
+        }
     };
 
-    /**
-     * The parameter object is optional.
-     * Must be an object.
-     */
-    ba.ResponsiveNotation = new ResponsiveNotation({});
+    $(document).on("baCoreReady", function() {
 
-});
+        /**
+         * The parameter object is optional.
+         * Must be an object.
+         */
+        ba.ResponsiveNotation = new ResponsiveNotation();
+
+    });
+
+})(jQuery, ba);

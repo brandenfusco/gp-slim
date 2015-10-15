@@ -9,8 +9,7 @@ function CustomFormElements(options) {
     this.init(options);
 }
 
-jQuery(document).ready(function ($) {
-
+;(function($, ba){
     CustomFormElements.prototype = {
         init: function (options) {
             this.settings = {
@@ -138,53 +137,53 @@ jQuery(document).ready(function ($) {
         buildCustomInput: function(type, elements) {
             var self = this, inputElements = $(elements);
 
-                if(inputElements.length > 0) {
-                    $.each(inputElements, function(idx, el){
-                        var label = self.getLabel(el),
-                            labelType = self.getLabelType(el);
+            if(inputElements.length > 0) {
+                $.each(inputElements, function(idx, el){
+                    var label = self.getLabel(el),
+                        labelType = self.getLabelType(el);
 
-                        self.resetLabels(label, type + '-label');
-                        self.setProperties(label, el, 'checked');
-                        self.setProperties(label, el, 'disabled');
+                    self.resetLabels(label, type + '-label');
+                    self.setProperties(label, el, 'checked');
+                    self.setProperties(label, el, 'disabled');
 
-                        if(label) {
-                            $(label).addClass(type + '-label');
-                            $(el).addClass('input-custom');
+                    if(label) {
+                        $(label).addClass(type + '-label');
+                        $(el).addClass('input-custom');
 
-                            $(label).off('click').on('click', function(event){
-                                event.stopPropagation();
-                                event.preventDefault();
+                        $(label).off('click').on('click', function(event){
+                            event.stopPropagation();
+                            event.preventDefault();
 
-                                var labelInput = $(event.target).closest(labelType),
-                                    input = self.getLabelInput(labelType, labelInput);
+                            var labelInput = $(event.target).closest(labelType),
+                                input = self.getLabelInput(labelType, labelInput);
 
-                                if($(input).prop('checked')){
-                                    $(labelInput).removeClass('checked');
-                                    $(input).prop('checked', false);
-                                }else{
+                            if($(input).prop('checked')){
+                                $(labelInput).removeClass('checked');
+                                $(input).prop('checked', false);
+                            }else{
+                                $(labelInput).addClass('checked');
+                                $(input).prop('checked', true);
+                            }
+
+                            if(type == 'radio') {
+                                var groupRadio = $(input).attr('name');
+
+                                if(!$(input).prop('disabled')){
+                                    self.updateRadioGroup(groupRadio, labelType);
+
+                                    $(input).prop('checked',true);
                                     $(labelInput).addClass('checked');
-                                    $(input).prop('checked', true);
                                 }
+                            }
 
-                                if(type == 'radio') {
-                                    var groupRadio = $(input).attr('name');
+                            if($(input).attr('onclick')){
+                                $(input)[0].onclick.apply($(input)[0]);
+                            }
 
-                                    if(!$(input).prop('disabled')){
-                                        self.updateRadioGroup(groupRadio, labelType);
-
-                                        $(input).prop('checked',true);
-                                        $(labelInput).addClass('checked');
-                                    }
-                                }
-
-                                if($(input).attr('onclick')){
-                                     $(input)[0].onclick.apply($(input)[0]);
-                                }
-
-                            });
-                        }
-                    });
-                }
+                        });
+                    }
+                });
+            }
         },
 
         // Build out to Create Custom Radios and Assign Applicable Observers
@@ -399,10 +398,14 @@ jQuery(document).ready(function ($) {
         }
     };
 
-    /**
-     * The parameter object is optional.
-     * Must be an object.
-     */
-    ba.CustomFormElements = new CustomFormElements({});
+    $(document).on("baCoreReady", function() {
 
-});
+        /**
+         * The parameter object is optional.
+         * Must be an object.
+         */
+        ba.CustomFormElements = new CustomFormElements();
+
+    });
+
+})(jQuery, ba);
