@@ -22,7 +22,7 @@ module.exports = function(grunt){
                 src: [
                     '<%=skinDir%>/js/blueacorn/**/*.js',
                     '<%=skinDir%>/js/development/**/*.js'
-                ],
+                ]
             },
             options: {
                 "globals": {
@@ -60,8 +60,8 @@ module.exports = function(grunt){
                                 annotation: false,
                                 sourceContent: false
                             }
-                        }),
-                    ],
+                        })
+                    ]
                 },
                 src: ['<%=skinDir%>/css/**/*.css', '!<%=skinDir%>/css/**/*ie8.css']
             },
@@ -71,8 +71,8 @@ module.exports = function(grunt){
                     processor: [
                         require('autoprefixer')({
                             browsers: ['Explorer 8']
-                        }),
-                    ],
+                        })
+                    ]
                 },
                 src: ['<%=skinDir%>/css/**/*ie8.css']
             },
@@ -90,8 +90,8 @@ module.exports = function(grunt){
                                 'last 2 ChromeAndroid versions',
                                 '> 1%'
                             ]
-                        }),
-                    ],
+                        })
+                    ]
                 },
                 src: ['<%=skinDir%>/css/**/*.css', '!<%=skinDir%>/css/**/*ie8.css']
             }
@@ -112,7 +112,6 @@ module.exports = function(grunt){
                 },
                 files: {
                     '<%=skinDir%>/css/styles.css' : '<%=skinDir%>/scss/styles.scss',
-                    '<%=skinDir%>/css/styleguide.css' : '<%=skinDir%>/scss/styleguide.scss',
                     '<%=skinDir%>/css/madisonisland.css' : '<%=skinDir%>/scss/madisonisland.scss',
                     '<%=skinDir%>/css/styles-category.css' : '<%=skinDir%>/scss/styles-category.scss',
                     '<%=skinDir%>/css/styles-product.css' : '<%=skinDir%>/scss/styles-product.scss',
@@ -121,7 +120,7 @@ module.exports = function(grunt){
                     '<%=skinDir%>/css/styles-account.css' : '<%=skinDir%>/scss/styles-account.scss',
                     '<%=skinDir%>/css/styles-cms.css' : '<%=skinDir%>/scss/styles-cms.scss',
                     '<%=skinDir%>/css/styleguide.css' : '<%=skinDir%>/scss/styleguide.scss',
-                    '<%=skinDir%>/css/blueacorn-super-selects.css' : '<%=skinDir%>/scss/blueacorn-super-selects.scss',
+                    '<%=skinDir%>/css/blueacorn-super-selects.css' : '<%=skinDir%>/scss/blueacorn-super-selects.scss'
                 }
             },
             ie: {
@@ -137,7 +136,7 @@ module.exports = function(grunt){
                     '<%=skinDir%>/css/styles-cart-ie8.css' : '<%=skinDir%>/scss/styles-cart-ie8.scss',
                     '<%=skinDir%>/css/styles-checkout-ie8.css' : '<%=skinDir%>/scss/styles-checkout-ie8.scss',
                     '<%=skinDir%>/css/styles-account-ie8.css' : '<%=skinDir%>/scss/styles-account-ie8.scss',
-                    '<%=skinDir%>/css/styles-cms-ie8.css' : '<%=skinDir%>/scss/styles-cms-ie8.scss',
+                    '<%=skinDir%>/css/styles-cms-ie8.css' : '<%=skinDir%>/scss/styles-cms-ie8.scss'
                 }
             },
             production: {
@@ -146,7 +145,6 @@ module.exports = function(grunt){
                 },
                 files: {
                     '<%=skinDir%>/css/styles.css' : '<%=skinDir%>/scss/styles.scss',
-                    '<%=skinDir%>/css/styleguide.css' : '<%=skinDir%>/scss/styleguide.scss',
                     '<%=skinDir%>/css/madisonisland.css' : '<%=skinDir%>/scss/madisonisland.scss',
                     '<%=skinDir%>/css/styles-category.css' : '<%=skinDir%>/scss/styles-category.scss',
                     '<%=skinDir%>/css/styles-product.css' : '<%=skinDir%>/scss/styles-product.scss',
@@ -155,7 +153,7 @@ module.exports = function(grunt){
                     '<%=skinDir%>/css/styles-account.css' : '<%=skinDir%>/scss/styles-account.scss',
                     '<%=skinDir%>/css/styles-cms.css' : '<%=skinDir%>/scss/styles-cms.scss',
                     '<%=skinDir%>/css/styleguide.css' : '<%=skinDir%>/scss/styleguide.scss',
-                    '<%=skinDir%>/css/blueacorn-super-selects.css' : '<%=skinDir%>/scss/blueacorn-super-selects.scss',
+                    '<%=skinDir%>/css/blueacorn-super-selects.css' : '<%=skinDir%>/scss/blueacorn-super-selects.scss'
                 }
             }
         },
@@ -180,7 +178,7 @@ module.exports = function(grunt){
             symlink: {
                 command: [
                     'ln -s <%=webRoot%>/app/design/frontend/blueacorn/<%=defaultTheme%>/ app',
-                    'ln -s <%=webRoot%>/skin/frontend/blueacorn/<%=defaultTheme%>/ skin',
+                    'ln -s <%=webRoot%>/skin/frontend/blueacorn/<%=defaultTheme%>/ skin'
                 ].join('&&')
             }
         },
@@ -194,7 +192,7 @@ module.exports = function(grunt){
                 },
                 files: {
                     '<%=skinDir%>/jsmin/blueacorn.min.js':['<%=skinDir%>/js/blueacorn/**/*.js'],
-                    '<%=skinDir%>/jsmin/blueacorn.development.min.js':['<%=skinDir%>/js/development/**/*.js'],
+                    '<%=skinDir%>/jsmin/blueacorn.development.min.js':['<%=skinDir%>/js/development/**/*.js']
                 }
             },
             production: {
@@ -277,7 +275,7 @@ module.exports = function(grunt){
         watch: {
             app: {
                 files: ['<%=appDir%>/**/*.xml', '<%=appDir%>/**/*.phtml'],
-                tasks: ['shell:cache'],
+                tasks: ['shell:cache']
             },
             sass: {
                 files: ['<%=skinDir%>/scss/**/*.scss'],
@@ -289,7 +287,7 @@ module.exports = function(grunt){
             },
             js: {
                 files: ['<%=skinDir%>/js/**/*.js'],
-                tasks: ['newer:jshint', 'newer:uglify:dev'],
+                tasks: ['newer:jshint', 'newer:uglify:dev']
             },
             livereload: {
                 files: ['<%=skinDir%>/css/**/*.css'],
@@ -301,15 +299,15 @@ module.exports = function(grunt){
             images: {
                 files: ['<%=skinDir%>/src/**.*{png,jpg,gif,svg}'],
                 task: ['newer:imagemin']
-            },
+            }
         },
 
         concurrent: {
             setup: ['copy:app', 'copy:skin'],
             sass: ['sass:dev', 'sass:ie'],
             postcss: ['postcss:dev', 'postcss:ie'],
-            compile: ['concurrent:sass','shell:cache','newer:imagemin'],
-        },
+            compile: ['concurrent:sass','shell:cache','newer:imagemin']
+        }
 
     });
 
@@ -346,4 +344,4 @@ module.exports = function(grunt){
     // Production Deployment Task, used for post-deployment compilation of Frontend Assets on Production.
     grunt.registerTask('production', ['sass:production', 'sass:ie', 'postcss:production', 'postcss:ie', 'jshint', 'uglify:production', 'newer:imagemin', 'shell:cache']);
 
-}
+};
