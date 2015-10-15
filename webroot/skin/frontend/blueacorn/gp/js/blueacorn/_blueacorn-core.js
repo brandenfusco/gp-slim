@@ -13,7 +13,7 @@ BlueAcornCore.prototype = {
     init: function (options) {
         this.settings = {
             'debug': false,
-            'moduleName' : 'BlueAcornCore',
+            'moduleName' : 'BlueAcornCore'
         };
 
         // Overrides the default settings
@@ -59,7 +59,7 @@ BlueAcornCore.prototype = {
         if(jQuery('.ie6, .ie7, .ie8, .ie9').length === 0) {
             console.log(message);
         }
-    },
+    }
 
 };
 

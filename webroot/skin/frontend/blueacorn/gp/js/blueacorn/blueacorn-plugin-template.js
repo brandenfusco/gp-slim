@@ -279,8 +279,3 @@
 
 
 })(jQuery, window, document);
-
-jQuery(document).ready(function($){
-    example = $.htmlTemplate('<div>Name: <b>{{ name }}</b>, Age: <b>{{ age }}</b></div>', /(^|.|\r|\n)(\{{\s*(\w+)\s*}})/);
-    //example = $.htmlTemplate('/dir/showAll?lang=#{language}&amp;categ=#{category}&amp;lv=#{levels}');
-});
