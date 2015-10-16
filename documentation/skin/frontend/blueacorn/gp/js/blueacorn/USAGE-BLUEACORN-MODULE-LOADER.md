@@ -23,7 +23,7 @@ Module Loading does not start until baCoreReady event is fired.
 Using this process, we can store references to any element, and reuse them in other modules.
 
 ```
-ba.moduleLoader.require('Config', [], function() {
+ba.moduleLoader.define('Config', [], function() {
     return {
         elements: {
             'body': $('body'),
@@ -33,7 +33,7 @@ ba.moduleLoader.require('Config', [], function() {
     };
 });
 
-ba.moduleLoader.require('Accordion', ['Config'], function(Config) {
+ba.moduleLoader.define('Accordion', ['Config'], function(Config) {
     Config.elements.toggleLink.on('click', function() {
         $(this).slideToggle(Config.animationSpeed);
     });
@@ -43,7 +43,7 @@ ba.moduleLoader.require('Accordion', ['Config'], function(Config) {
 ## Utilizing other modules methods without use of triggers
 
 ```
-ba.moduleLoader.require('MegaMenu', [], function() {
+ba.moduleLoader.define('MegaMenu', [], function() {
     function MegaMenu() {}
     
     MegaMenu.prototype.resetMenu = function () {/*logic here*/}
@@ -51,7 +51,7 @@ ba.moduleLoader.require('MegaMenu', [], function() {
     return new MegaMenu()
 });
 
-ba.moduleLoader.require('OffCanvasMenu', ['MegaMenu'], function(MegaMenu) {
+ba.moduleLoader.define('OffCanvasMenu', ['MegaMenu'], function(MegaMenu) {
     function OffCanvasMenu() {}
     
     OffCanvasMenu.prototype.skipLinkClicked = function() {
@@ -70,7 +70,7 @@ After defining a new module, when we return 'new' it will act as a singleton whe
 If we return the constructor, we will need to instantiate it and potentially have multiple instances
 
 ```
-ba.moduleLoader.require('ListItem', [], function() {
+ba.moduleLoader.define('ListItem', [], function() {
     function ListItem() {}
     
     ListItem.prototype = {/* Prototype methods here */};
@@ -78,7 +78,7 @@ ba.moduleLoader.require('ListItem', [], function() {
     return ListItem;
 });
 
-ba.moduleLoader.require('SuperHeroList', ['ListItem'], function(ListItem) {
+ba.moduleLoader.define('SuperHeroList', ['ListItem'], function(ListItem) {
     var heroes = ['Bat Man', 'Wonder Woman', 'Super Man', 'Spider Man'];
     
     var html = '';

@@ -34,8 +34,20 @@ function ModuleLoader(options) {
 
             this.setupObservers();
         },
+
+        /**
+         * On baCoreReady, start module loading
+         */
         setupObservers: function() {
-            $(document).on('baCoreReady', $.proxy(this.start, this));
+            var self = this;
+
+            $(document).on('baCoreReady', function() {
+                self.data.ready = true;
+
+                self.data.predefined.each(function(module){
+                    self.require(module);
+                });
+            });
         },
 
         /**
@@ -46,6 +58,12 @@ function ModuleLoader(options) {
          * @param moduleScope
          */
         define: function(moduleName, dependencies, moduleScope) {
+            // If 2nd argument is a function
+            if (typeof dependencies === 'function'){
+                moduleScope = dependencies;
+                dependencies = [];
+            }
+
             if (!this.modules[moduleName]) {
                 this.modules[moduleName] = {
                     name: moduleName,
@@ -62,14 +80,20 @@ function ModuleLoader(options) {
             }
         },
 
+        /**
+         * Get result of all dependencies before loading the module
+         *
+         * @param module
+         */
         require: function(module) {
             // Resolve scoping issues in for each loop
             var self = this;
 
             // If we have dependencies, load them first
-            if (module.dependencies) {
+            if (!!module.dependencies.length) {
                 module.dependencies.each(function(dependency) {
-                    self.require(self.getModuleByName(dependency));
+                    // If we're trying to load something that doesn't exist, we wont need to require it
+                    self.modules[dependency] && self.require(self.modules[dependency]);
                 });
             }
 
@@ -89,24 +113,11 @@ function ModuleLoader(options) {
         load: function(module) {
             var self = this,
                 dependencyInstances = module.dependencies.map(function(dependency) {
-                    return self.modules[dependency].result;
+                    return self.modules[dependency] && self.modules[dependency].result;
                 });
 
             // Call the module, with the instances of the dependencies set up
             return module.moduleScope.apply(this, dependencyInstances);
-        },
-
-        /**
-         * Gets triggered on baCoreReady
-         */
-        start: function() {
-            var self = this;
-
-            self.data.ready = true;
-
-            self.data.predefined.each(function(module){
-                self.require(module);
-            });
         }
     };
 
@@ -115,8 +126,4 @@ function ModuleLoader(options) {
      * Must be an object.
      */
     ba.moduleLoader = new ModuleLoader({});
-
-    ba.moduleLoader.define('Config', [], function() {
-        alert("Config");
-    });
 })(jQuery);
