@@ -9,6 +9,8 @@
 
     <default>
         <reference name="head">
+            <action method="removeItem"><type>skin_css</type><name>css/enterprise.css</name></action>
+            <action method="removeItem"><type>skin_css</type><name>css/enterprise-ie8.css</name></action>
             <action method="removeItem"><type>skin_js</type><name>js/lib/jquery.cycle2.min.js</name></action>
             <action method="removeItem"><type>skin_js</type><name>js/lib/jquery.cycle2.swipe.min.js</name></action>
             <action method="removeItem"><type>skin_js</type><name>js/slideshow.js</name></action>
