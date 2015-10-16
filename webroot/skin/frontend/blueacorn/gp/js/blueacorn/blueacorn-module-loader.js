@@ -66,7 +66,7 @@ function ModuleLoader(options) {
 
             // If we have dependencies, load them first
             if (dependencies) {
-                dependencies.forEach(function(dependency) {
+                dependencies.each(function(dependency) {
                     self.require(self.getModuleByName(dependency));
                 });
             }
@@ -94,8 +94,6 @@ function ModuleLoader(options) {
                     return self.modules[dependency].result;
                 });
 
-            self.watchConsole(module.name + ' loaded!!!');
-
             // Call the module, with the instances of the dependencies set up
             return module.moduleScope.apply(this, dependencyInstances);
         },
@@ -108,7 +106,7 @@ function ModuleLoader(options) {
 
             self.data.ready = true;
 
-            self.data.predefined.forEach(function(module){
+            self.data.predefined.each(function(module){
                 self.require(self.modules[module]);
             });
         }
