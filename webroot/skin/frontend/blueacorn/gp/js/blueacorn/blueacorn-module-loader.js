@@ -37,49 +37,47 @@ function ModuleLoader(options) {
         setupObservers: function() {
             $(document).on('baCoreReady', $.proxy(this.start, this));
         },
-        require: function(moduleName, dependencies, moduleScope) {
-            // If the first parameter is an object, assume it to be a module
-            if (typeof moduleName === "object") {
-                var module = moduleName;
 
-                moduleName = module.name;
-                dependencies = module.dependencies;
-            }
-            // If the module does not already exist, create it
-            else if (!this.modules[moduleName]) {
+        /**
+         * Add module to be loaded
+         *
+         * @param moduleName
+         * @param dependencies
+         * @param moduleScope
+         */
+        define: function(moduleName, dependencies, moduleScope) {
+            if (!this.modules[moduleName]) {
                 this.modules[moduleName] = {
                     name: moduleName,
                     dependencies: dependencies,
                     moduleScope: moduleScope,
                     loaded: false
                 };
-            }
 
-            // If were not ready to start loading then stop here
-            if (!this.data.ready) {
-                this.data.predefined.push(moduleName);
-                return false;
+                if (this.data.ready) {
+                    this.require(this.modules[moduleName]);
+                } else {
+                    this.data.predefined.push(this.modules[moduleName]);
+                }
             }
+        },
 
+        require: function(module) {
             // Resolve scoping issues in for each loop
             var self = this;
 
             // If we have dependencies, load them first
-            if (dependencies) {
-                dependencies.each(function(dependency) {
+            if (module.dependencies) {
+                module.dependencies.each(function(dependency) {
                     self.require(self.getModuleByName(dependency));
                 });
             }
 
             // If the module isnt already loaded, load it.
-            if (!this.modules[moduleName].loaded) {
-                this.modules[moduleName].loaded = true;
-                this.modules[moduleName].result = this.load(this.modules[moduleName]);
+            if (!this.modules[module.name].loaded) {
+                this.modules[module.name].loaded = true;
+                this.modules[module.name].result = this.load(module);
             }
-        },
-
-        getModuleByName: function(moduleName) {
-            return this.modules[moduleName];
         },
 
         /**
@@ -107,7 +105,7 @@ function ModuleLoader(options) {
             self.data.ready = true;
 
             self.data.predefined.each(function(module){
-                self.require(self.modules[module]);
+                self.require(module);
             });
         }
     };
@@ -117,4 +115,8 @@ function ModuleLoader(options) {
      * Must be an object.
      */
     ba.moduleLoader = new ModuleLoader({});
+
+    ba.moduleLoader.define('Config', [], function() {
+        alert("Config");
+    });
 })(jQuery);
