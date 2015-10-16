@@ -9,12 +9,6 @@
 
     <default>
         <reference name="head">
-            <action method="removeItem"><type>skin_css</type><name>css/styles.css</name></action>
-            <action method="removeItem"><type>skin_css</type><name>css/styles-ie8.css</name></action>
-            <action method="removeItem"><type>skin_css</type><name>css/madisonisland.css</name></action>
-            <action method="removeItem"><type>skin_css</type><name>css/madisonisland-ie8.css</name></action>
-            <action method="removeItem"><type>skin_css</type><name>css/enterprise.css</name></action>
-            <action method="removeItem"><type>skin_css</type><name>css/enterprise-ie8.css</name></action>
             <action method="removeItem"><type>skin_js</type><name>js/lib/jquery.cycle2.min.js</name></action>
             <action method="removeItem"><type>skin_js</type><name>js/lib/jquery.cycle2.swipe.min.js</name></action>
             <action method="removeItem"><type>skin_js</type><name>js/slideshow.js</name></action>
@@ -37,10 +31,6 @@
 
             <action method="addItem"><type>skin_js</type><name>js/blueacorn-magento-overrides.js</name><params/></action>
             <action method="addItem"><type>skin_css</type><name>css/fonts.css</name></action>
-            <action method="addItem"><type>skin_css</type><name>css/styles-ie8.css</name><params/><if><![CDATA[ (lte IE 8) & (!IEMobile)]]></if></action>
-            <action method="addItem"><type>skin_css</type><name>css/madisonisland-ie8.css</name><params/><if><![CDATA[ (lte IE 8) & (!IEMobile)]]></if></action>
-            <action method="addItem"><type>skin_css</type><name>css/styles.css</name><params/><if><![CDATA[<!--[if (gte IE 9) | (IEMobile)]><!-->]]></if></action>
-            <action method="addItem"><type>skin_css</type><name>css/madisonisland.css</name><params/><if><![CDATA[<!--[if (gte IE 9) | (IEMobile)]><!-->]]></if></action>
             <action method="addJs"><script>blueacorn/lib/prototype/prototype.js</script></action>
             <action method="addJs"><script>prototype/validation.js</script></action>
             <action method="addJs"><script>varien/js.js</script></action>
