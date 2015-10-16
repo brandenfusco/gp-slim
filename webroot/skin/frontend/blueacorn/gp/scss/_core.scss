@@ -41,14 +41,6 @@
 @import "core/table";
 
 // ----------------------------------------------
-// Vendor
-
-// @import "vendor/abc";
-@import "blueacorn/ss-standard";
-@import "blueacorn/custom-forms";
-@import "blueacorn/super-selects";
-
-// ----------------------------------------------
 // Layout
 
 @import "layout/global";
@@ -58,6 +50,13 @@
 @import "layout/header-account";
 @import "layout/header-cart";
 @import "layout/footer";
+
+// ----------------------------------------------
+// Vendor
+
+// @import "vendor/abc";
+@import "blueacorn/custom-forms";
+@import "blueacorn/super-selects";
 
 // ----------------------------------------------
 // Modules
