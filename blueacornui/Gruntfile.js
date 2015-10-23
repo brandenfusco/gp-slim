@@ -339,9 +339,9 @@ module.exports = function(grunt){
     grunt.registerTask('compile', ['concurrent:compile', 'postcss:dev', 'postcss:ie', 'jshint', 'uglify:dev']);
 
     // Staging Deployment Task, used for post-deployment compilation of Frontend Assets on Staging.
-    grunt.registerTask('staging', ['sass:production', 'sass:ie', 'postcss:production', 'postcss:ie', 'jshint', 'uglify:production', 'newer:imagemin', 'shell:cache']);
+    grunt.registerTask('staging', ['sass:production', 'sass:ie', 'postcss:production', 'postcss:ie', 'jshint', 'uglify:production', 'shell:cache']);
 
     // Production Deployment Task, used for post-deployment compilation of Frontend Assets on Production.
-    grunt.registerTask('production', ['sass:production', 'sass:ie', 'postcss:production', 'postcss:ie', 'jshint', 'uglify:production', 'newer:imagemin', 'shell:cache']);
+    grunt.registerTask('production', ['sass:production', 'sass:ie', 'postcss:production', 'postcss:ie', 'jshint', 'uglify:production', 'shell:cache']);
 
 };
