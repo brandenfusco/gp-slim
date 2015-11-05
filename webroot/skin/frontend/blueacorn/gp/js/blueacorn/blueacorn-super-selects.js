@@ -394,22 +394,33 @@ function SuperSelects(options) {
         },
 
         /**
-         * Add Keyboard Observers to Select First Option
-         * that Matches Keyup
+         * Add Keyboard Observers to Select Option that matches typed keys
+         *
          * @param currentSelect jQueryDOM Object of Select
          */
         setKeyboardObservers: function(currentSelect) {
-            $(document).on('keyup', function(event) {
-                var key = String.fromCharCode(event.keyCode),
-                    customOptions = $(currentSelect).siblings('.ba-select-box').find('.ba-options ul').children();
+            var keys = [],
+                debouncedMethod = ba.debounce(function () {
+                    var searchString = keys.join(''),
+                        searchLength = keys.length,
+                        customOptions = $(currentSelect).siblings('.ba-select-box').find('.ba-options ul').children();
 
-                $.each($(customOptions), function(idx, selectOption){
-                    if($(selectOption).find('.ba-opt-content').text()[0] === key) {
-                        $(selectOption).trigger('click');
-                        $(document).off('keyup');
-                        return false;
-                    }
-                });
+                    $.each($(customOptions), function (idx, selectOption) {
+                        if ($(selectOption).find('.ba-opt-content').text().substring(0, searchLength).toUpperCase() === searchString) {
+                            $(selectOption).trigger('click');
+                            $(document).off('keyup');
+                            return false;
+                        }
+                    });
+
+                    keys = [];
+                }, 500);
+
+            $(document).on('keyup', function(event) {
+                var key = String.fromCharCode(event.keyCode);
+
+                keys.push(key);
+                debouncedMethod();
             });
         },
 
