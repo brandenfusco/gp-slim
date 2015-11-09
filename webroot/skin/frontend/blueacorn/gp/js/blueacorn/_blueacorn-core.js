@@ -63,6 +63,39 @@ function BlueAcornCore(options) {
             if(!$('.ie6, .ie7, .ie8, .ie9').length && typeof console !== "undefined" && this.settings.debug) {
                 console.log(message);
             }
+        },
+
+        /**
+         * Returns a function that will only be triggered once, after inactivity of (wait) ms
+         * Ported from: http://underscorejs.org/docs/underscore.html
+         *
+         * @param func
+         * @param wait
+         * @param immediate
+         * @returns {Function}
+         */
+        debounce: function (func, wait, immediate) {
+            var timeout;
+
+            return function() {
+                var context = this,
+                    args = arguments;
+
+                var later = function() {
+                    timeout = null;
+
+                    if (!immediate) {
+                        func.apply(context, args);
+                    }
+                };
+
+                if (immediate && !timeout) {
+                    func.apply(context, args);
+                }
+
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
         }
     };
 
