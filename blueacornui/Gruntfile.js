@@ -120,7 +120,8 @@ module.exports = function(grunt){
                     '<%=skinDir%>/css/styles-account.css' : '<%=skinDir%>/scss/styles-account.scss',
                     '<%=skinDir%>/css/styles-cms.css' : '<%=skinDir%>/scss/styles-cms.scss',
                     '<%=skinDir%>/css/styleguide.css' : '<%=skinDir%>/scss/styleguide.scss',
-                    '<%=skinDir%>/css/blueacorn-super-selects.css' : '<%=skinDir%>/scss/blueacorn-super-selects.scss'
+                    '<%=skinDir%>/css/blueacorn-super-selects.css' : '<%=skinDir%>/scss/blueacorn-super-selects.scss',
+                    '<%=skinDir%>/css/fonts.css' : '<%=skinDir%>/scss/fonts.scss'
                 }
             },
             ie: {
@@ -153,7 +154,8 @@ module.exports = function(grunt){
                     '<%=skinDir%>/css/styles-account.css' : '<%=skinDir%>/scss/styles-account.scss',
                     '<%=skinDir%>/css/styles-cms.css' : '<%=skinDir%>/scss/styles-cms.scss',
                     '<%=skinDir%>/css/styleguide.css' : '<%=skinDir%>/scss/styleguide.scss',
-                    '<%=skinDir%>/css/blueacorn-super-selects.css' : '<%=skinDir%>/scss/blueacorn-super-selects.scss'
+                    '<%=skinDir%>/css/blueacorn-super-selects.css' : '<%=skinDir%>/scss/blueacorn-super-selects.scss',
+                    '<%=skinDir%>/css/fonts.css' : '<%=skinDir%>/scss/fonts.scss'
                 }
             }
         },
@@ -249,7 +251,7 @@ module.exports = function(grunt){
                 files: [{
                     expand: true,
                     cwd: '<%=skinDir%>/src/',
-                    src: ['**/*.{png,jpg,gif,svg}'],
+                    src: ['**/*.{png,jpg,svg}'],
                     dest: '<%=skinDir%>/images/'
                 }]
             }
@@ -297,7 +299,7 @@ module.exports = function(grunt){
                 }
             },
             images: {
-                files: ['<%=skinDir%>/src/**.*{png,jpg,gif,svg}'],
+                files: ['<%=skinDir%>/src/**.*{png,jpg,svg}'],
                 task: ['newer:imagemin']
             }
         },

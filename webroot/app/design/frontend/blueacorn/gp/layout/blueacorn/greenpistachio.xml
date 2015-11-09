@@ -9,8 +9,6 @@
 
     <default>
         <reference name="head">
-            <action method="addItem"><type>skin_js</type><name>js/blueacorn-magento-overrides.js</name><params/></action>
-
             <action method="removeItem"><type>skin_css</type><name>css/enterprise.css</name></action>
             <action method="removeItem"><type>skin_css</type><name>css/enterprise-ie8.css</name></action>
             <action method="removeItem"><type>skin_js</type><name>js/lib/jquery.cycle2.min.js</name></action>
@@ -18,6 +16,36 @@
             <action method="removeItem"><type>skin_js</type><name>js/slideshow.js</name></action>
             <action method="removeItem"><type>skin_js</type><name>js/lib/imagesloaded.js</name></action>
             <action method="removeItem"><type>skin_js</type><name>js/minicart.js</name></action>
+            <action method="removeItem"><type>js</type><name>lib/jquery/jquery-1.10.2.min.js</name></action>
+            <action method="removeItem"><type>js</type><name>lib/jquery/noconflict.js</name></action>
+            <action method="removeItem"><type>js</type><name>prototype/prototype.js</name></action>
+            <action method="removeItem"><type>js</type><name>prototype/validation.js</name></action>
+            <action method="removeItem"><type>js</type><name>varien/js.js</name></action>
+            <action method="removeItem"><type>js</type><name>varien/form.js</name></action>
+            <action method="removeItem"><type>js</type><name>mage/translate.js</name></action>
+            <action method="removeItem"><type>js</type><name>mage/cookies.js</name></action>
+            <action method="removeItem"><type>js</type><name>lib/ccard.js</name></action>
+            <action method="removeItem"><type>js</type><name>scriptaculous/builder.js</name></action>
+            <action method="removeItem"><type>js</type><name>scriptaculous/effects.js</name></action>
+            <action method="removeItem"><type>js</type><name>scriptaculous/dragdrop.js</name></action>
+            <action method="removeItem"><type>js</type><name>scriptaculous/controls.js</name></action>
+            <action method="removeItem"><type>js</type><name>scriptaculous/slider.js</name></action>
+
+            <action method="addItem"><type>skin_js</type><name>js/blueacorn-magento-overrides.js</name><params/></action>
+            <action method="addItem"><type>skin_css</type><name>css/fonts.css</name></action>
+            <action method="addJs"><script>blueacorn/lib/prototype/prototype.js</script></action>
+            <action method="addJs"><script>prototype/validation.js</script></action>
+            <action method="addJs"><script>varien/js.js</script></action>
+            <action method="addJs"><script>varien/form.js</script></action>
+            <action method="addJs"><script>mage/translate.js</script></action>
+            <action method="addJs"><script>mage/cookies.js</script></action>
+            <action method="addJs"><script>blueacorn/lib/jquery/jquery-1.11.3.min.js</script></action>
+            <action method="addJs"><script>lib/jquery/noconflict.js</script></action>
+            <action method="addJs"><script>blueacorn/lib/scriptaculous/builder.js</script></action>
+            <action method="addJs"><script>blueacorn/lib/scriptaculous/effects.js</script></action>
+            <action method="addJs"><script>blueacorn/lib/scriptaculous/dragdrop.js</script></action>
+            <action method="addJs"><script>blueacorn/lib/scriptaculous/controls.js</script></action>
+            <action method="addJs"><script>blueacorn/lib/scriptaculous/slider.js</script></action>
 
             <!-- Fancybox -->
             <action method="addItem" ifconfig="javascriptplugins/modals/fancybox">
@@ -64,8 +92,8 @@
             </action>
         </reference>
         <reference name="scripts_in_footer">
-            <action method="addItem"><type>skin_js</type><name>jsmin/blueacorn.min.js</name><params/></action>
-            <action method="addItem" ifconfig="styleguide/development/enable_development"><type>skin_js</type><name>jsmin/blueacorn.development.min.js</name><params/></action>
+            <action method="addItem"><type>skin_js</type><name>jsmin/blueacorn.min.js</name><params>async</params></action>
+            <action method="addItem" ifconfig="styleguide/development/enable_development"><type>skin_js</type><name>jsmin/blueacorn.development.min.js</name><params>async</params></action>
             <action method="addItem"><type>skin_js</type><name>js/lib/jquery.cycle2.min.js</name></action>
             <action method="addItem"><type>skin_js</type><name>js/lib/jquery.cycle2.swipe.min.js</name></action>
             <action method="addItem"><type>skin_js</type><name>js/slideshow.js</name></action>
@@ -244,6 +272,9 @@
 
     <checkout_onepage_index>
         <update handle="checkout_theme_changes" />
+        <reference name="head">
+            <action method="addJs"><script>lib/ccard.js</script></action>
+        </reference>
     </checkout_onepage_index>
 
     <checkout_onepage_success>

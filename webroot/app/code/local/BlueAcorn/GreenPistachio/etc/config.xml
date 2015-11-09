@@ -32,6 +32,11 @@
                     <account_navigation>BlueAcorn_GreenPistachio_Block_Customer_Account_Navigation</account_navigation>
                 </rewrite>
             </customer>
+            <page>
+                <rewrite>
+                    <html_head>BlueAcorn_GreenPistachio_Block_Page_Html_Head</html_head>
+                </rewrite>
+            </page>
         </blocks>
         <helpers>
             <blueacorn_greenpistachio>
