@@ -1,11 +1,27 @@
 # Directories
-webroot/app/code/local/BlueAcorn/GreenPistachio/                                    app/code/local/BlueAcorn/GreenPistachio/
-webroot/app/design/frontend/base/default/template/blueacorn/ui/super-select.phtml   app/design/frontend/base/default/template/blueacorn/ui/super-select.phtml
-webroot/app/design/frontend/blueacorn/gp/                                           app/design/frontend/blueacorn/gp/
-webroot/js/blueacorn/lib/                                                           js/blueacorn/lib/
-webroot/skin/frontend/blueacorn/gp/                                                 skin/frontend/blueacorn/gp/
+webroot/app/code/local/BlueAcorn/GreenPistachio/    app/code/local/BlueAcorn/GreenPistachio/
+webroot/app/design/frontend/blueacorn/gp/           app/design/frontend/blueacorn/gp/
+webroot/js/blueacorn/lib/bxslider                   js/blueacorn/lib/bxslider
+webroot/js/blueacorn/lib/fancybox                   js/blueacorn/lib/fancybox
+webroot/js/blueacorn/lib/flexslider                 js/blueacorn/lib/flexslider
+webroot/js/blueacorn/lib/focuspoint                 js/blueacorn/lib/focuspoint
+webroot/js/blueacorn/lib/headroom                   js/blueacorn/lib/headroom
+webroot/js/blueacorn/lib/html5shiv                  js/blueacorn/lib/html5shiv
+webroot/js/blueacorn/lib/jquery                     js/blueacorn/lib/jquery
+webroot/js/blueacorn/lib/owlcarousel2               js/blueacorn/lib/owlcarousel2
+webroot/js/blueacorn/lib/parallax                   js/blueacorn/lib/parallax
+webroot/js/blueacorn/lib/placeholderjs              js/blueacorn/lib/placeholderjs
+webroot/js/blueacorn/lib/prototype                  js/blueacorn/lib/prototype
+webroot/js/blueacorn/lib/responsiveimg              js/blueacorn/lib/responsiveimg
+webroot/js/blueacorn/lib/scriptaculous              js/blueacorn/lib/scriptaculous
+webroot/js/blueacorn/lib/scrollto                   js/blueacorn/lib/scrollto
+webroot/js/blueacorn/lib/selectivizr                js/blueacorn/lib/selectivizr
+webroot/js/blueacorn/lib/spinjs                     js/blueacorn/lib/spinjs
+webroot/js/blueacorn/lib/svginjector                js/blueacorn/lib/svginjector
+webroot/skin/frontend/blueacorn/gp/                 skin/frontend/blueacorn/gp/
 
 # Files
+webroot/app/design/frontend/base/default/template/blueacorn/ui/super-select.phtml   app/design/frontend/base/default/template/blueacorn/ui/super-select.phtml
 webroot/app/design/adminhtml/default/default/layout/blueacorn/greenpistachio.xml    app/design/adminhtml/default/default/layout/blueacorn/greenpistachio.xml
 webroot/app/etc/modules/BlueAcorn_GreenPistachio.xml                                app/etc/modules/BlueAcorn_GreenPistachio.xml
 webroot/skin/adminhtml/base/default/css/blueacorn.css                               skin/adminhtml/base/default/css/blueacorn.css
@@ -29,3 +45,4 @@ webroot/skin/adminhtml/base/default/images/blueacorn/blueacorn-logo.png         
 @import pistachios/ba-magejsconfig
 @import pistachios/ba-datamock
 @import pistachios/gp-easy-attributes
+@import pistachios/ba-product-config-js
