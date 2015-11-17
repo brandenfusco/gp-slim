@@ -92,8 +92,8 @@
             </action>
         </reference>
         <reference name="scripts_in_footer">
-            <action method="addItem"><type>skin_js</type><name>jsmin/blueacorn.min.js</name><params>async</params></action>
-            <action method="addItem" ifconfig="styleguide/development/enable_development"><type>skin_js</type><name>jsmin/blueacorn.development.min.js</name><params>async</params></action>
+            <action method="addItem"><type>skin_js</type><name>jsmin/blueacorn.min.js</name></action>
+            <action method="addItem" ifconfig="styleguide/development/enable_development"><type>skin_js</type><name>jsmin/blueacorn.development.min.js</name></action>
             <action method="addItem"><type>skin_js</type><name>js/lib/jquery.cycle2.min.js</name></action>
             <action method="addItem"><type>skin_js</type><name>js/lib/jquery.cycle2.swipe.min.js</name></action>
             <action method="addItem"><type>skin_js</type><name>js/slideshow.js</name></action>
