@@ -9,7 +9,7 @@ function ModuleLoader(options) {
     this.init(options);
 }
 
-(function($){
+(function($, ba){
 
     ModuleLoader.prototype = {
         init: function (options) {
@@ -126,4 +126,4 @@ function ModuleLoader(options) {
      * Must be an object.
      */
     ba.moduleLoader = new ModuleLoader({});
-})(jQuery);
+})(jQuery, ba);
