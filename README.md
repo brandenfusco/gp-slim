@@ -36,7 +36,8 @@ It's like eating a **handful** of _pre-shelled_ front end magento plugins.
 ## [Quick Start](id:quickstart)
 
 ##### [Module Installation](id:module)
-* ensure you have installed [modman](https://github.com/colinmollenhour/modman)
+* Ensure you have installed [modman](https://github.com/colinmollenhour/modman)
+* Ensure you have installed Magento Enterprise Edition and gone through the installer or pointed your Magento Installation to an active database.
 
 ###### [Using Modman](id:usingmodman)
 
@@ -53,14 +54,11 @@ modman will install a directory named **blueacornui** to your project's root con
 
 * ensure you have nodejs and [npm](https://www.npmjs.com/) installed
 * ensure you have grunt-cli and bower installed globally
-  * `$: sudo npm install -g grunt-cli bower`
 
 **installation (one-time)**
 
 	$: cd /path/to/blueacornui
-	$/path/to/blueacornui/: npm install
-	$/path/to/blueacornui/: bower install
-	$/path/to/blueacornui/: grunt setup:site
+	$/path/to/blueacornui/: sh setup.sh site_setup
 
 **live development**
 Run the following command to watch your app & skin directories for changes and compile SASS & JS on save, as well as clear cache when you modify any XML or PHTML files.
@@ -68,7 +66,6 @@ Run the following command to watch your app & skin directories for changes and c
 	
 	$: cd /path/to/blueacornui
 	$/path/to/blueacornui/: grunt
-
 
 
 **theme compiling**
