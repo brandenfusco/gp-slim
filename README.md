@@ -38,12 +38,13 @@ It's like eating a **handful** of _pre-shelled_ front end magento plugins.
 ##### [Module Installation](id:module)
 * Ensure you have installed [modman](https://github.com/colinmollenhour/modman)
 * Ensure you have installed Magento Enterprise Edition and gone through the installer or pointed your Magento Installation to an active database.
+* Ensure that your Magento Installation uses a **webroot** directory to house your Magento Installtion.
 
 ###### [Using Modman](id:usingmodman)
 
-	$: cd /path/to/magento-webroot
-	$/path/to/magento-webroot/: modman init
-	$/path/to/magento-webroot/: modman clone git@github.com:BlueAcornInc/green-pistachio.git
+	$: cd /path/to/magento/webroot
+	$/path/to/magento/webroot/: modman init
+	$/path/to/magento/webroot/: modman clone git@github.com:BlueAcornInc/green-pistachio.git
 
 
 ##### [Theme Compilation](id:theme)
