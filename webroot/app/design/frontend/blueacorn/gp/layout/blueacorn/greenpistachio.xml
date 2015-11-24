@@ -209,6 +209,15 @@
         <reference name="head">
             <action method="addItem"><type>skin_css</type><name>css/styles-category-ie8.css</name><params/><if><![CDATA[ (lte IE 8) & (!IEMobile)]]></if></action>
             <action method="addItem"><type>skin_css</type><name>css/styles-category.css</name><params/><if><![CDATA[<!--[if (gte IE 9) | (IEMobile)]><!-->]]></if></action>
+            <action method="addItem" ifconfig="lazyloading/settings/enable">
+                <type>js</type>
+                <name>blueacorn/lib/lazyloadxt/jquery.lazyloadxt.min.js</name>
+            </action>
+        </reference>
+        <reference name="product_list">
+            <action method="setTemplate" ifconfig="lazyloading/settings/enable">
+                <template>blueacorn/catalog/product/list.phtml</template>
+            </action>
         </reference>
     </catalog_theme_changes>
 
