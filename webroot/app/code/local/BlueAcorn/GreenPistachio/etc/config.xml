@@ -114,27 +114,5 @@
                 </blueacorn_greenpistachio>
             </updates>
         </layout>
-        <acl>
-            <resources>
-                <admin>
-                    <children>
-                        <system>
-                            <children>
-                                <config>
-                                    <children>
-                                        <styleguide>
-                                            <title>Green Pistachio Settings</title>
-                                        </styleguide>
-                                        <javascriptplugins>
-                                            <title>Javascript Plugins</title>
-                                        </javascriptplugins>
-                                    </children>
-                                </config>
-                            </children>
-                        </system>
-                    </children>
-                </admin>
-            </resources>
-        </acl>
     </adminhtml>
 </config>

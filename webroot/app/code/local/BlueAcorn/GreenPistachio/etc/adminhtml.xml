@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @package     BlueAcorn\GreenPistachio
+ * @version     0.1.0
+ * @author      Blue Acorn, Inc. <code@blueacorn.com>
+ * @copyright   Copyright © 2015 Blue Acorn, Inc.
+ */
+-->
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <styleguide>
+                                        <title>Green Pistachio Settings</title>
+                                    </styleguide>
+                                    <javascriptplugins>
+                                        <title>Javascript Plugins</title>
+                                    </javascriptplugins>
+                                    <lazyloading>
+                                        <title>Lazyload Categories</title>
+                                    </lazyloading>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>
