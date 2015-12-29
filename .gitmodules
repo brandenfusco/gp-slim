@@ -10,9 +10,6 @@
 [submodule "pistachios/ba-datamock"]
 	path = pistachios/ba-datamock
 	url = git@github.com:BlueAcornInc/ba-datamock.git
-[submodule "pistachios/gp-easy-attributes"]
-	path = pistachios/gp-easy-attributes
-	url = git@github.com:BlueAcornInc/gp-easy-attributes.git
 [submodule "pistachios/ba-product-config-js"]
 	path = pistachios/ba-product-config-js
 	url = git@github.com:BlueAcornInc/ba-product-config-js.git

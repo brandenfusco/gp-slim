@@ -44,5 +44,4 @@ webroot/skin/adminhtml/base/default/images/blueacorn/blueacorn-logo.png         
 @import pistachios/gp-footer-assets
 @import pistachios/ba-magejsconfig
 @import pistachios/ba-datamock
-@import pistachios/gp-easy-attributes
 @import pistachios/ba-product-config-js
