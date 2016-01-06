@@ -21,6 +21,7 @@ function SuperSelects(options) {
         init: function (options) {
             this.settings = {
                 'moduleName': 'SuperSelects',
+                'enabled': true,
                 'displayMethod': 'show', //[show, fade, slide]
                 'displayType': 'over', // [over, under, right, left, circle, overlay, fullscreen, thumbnail, fullthumb, rotate, custom],
                 'typeArray': ['over', 'under', 'right', 'left', 'circle', 'overlay', 'fullscreen', 'thumbnail', 'fullthumb'],
@@ -40,6 +41,9 @@ function SuperSelects(options) {
 
             // Start the debugger
             ba.setupDebugging(this.settings);
+
+            // Check if enabled
+            if(!this.settings.enabled) return;
 
             this.setCustomEventObservers();
             this.createSuperSelect();
@@ -918,7 +922,9 @@ function SuperSelects(options) {
          * The parameter object is optional.
          * Must be an object.
          */
-        ba.SuperSelects = new SuperSelects();
+        ba.SuperSelects = new SuperSelects({
+            "enabled": mageConfig["styleguide/superselects/enable_superselects"] > 0 ? true : false
+        });
 
     });
 
