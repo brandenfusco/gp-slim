@@ -25,11 +25,9 @@
     "grunt": "*",
     "grunt-banner": "*",
     "grunt-concurrent": "*",
-    "grunt-contrib-copy": "*",
     "grunt-contrib-imagemin": "*",
     "grunt-contrib-jshint": "*",
     "grunt-contrib-uglify": "*",
-    "grunt-githooks": "*",
     "grunt-postcss": "*",
     "grunt-newer": "*",
     "grunt-sass": "*",
@@ -39,6 +37,8 @@
     "jit-grunt": "*"
   },
   "devDependencies": {
-    "grunt-contrib-watch": "*"
+    "grunt-contrib-copy": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-githooks": "*"
   }
 }
