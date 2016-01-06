@@ -102,6 +102,11 @@
                         <type>boolean</type>
                     </enable_development>
                 </development>
+                <superselects>
+                    <enable_superselects>
+                        <type>boolean</type>
+                    </enable_superselects>
+                </superselects>
             </styleguide>
         </jsconfig>
     </frontend>
@@ -115,4 +120,12 @@
             </updates>
         </layout>
     </adminhtml>
+
+    <default>
+        <styleguide>
+            <superselects>
+                <enable_superselects>1</enable_superselects>
+            </superselects>
+        </styleguide>
+    </default>
 </config>
