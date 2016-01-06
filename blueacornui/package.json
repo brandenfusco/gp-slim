@@ -20,7 +20,7 @@
     "jquery",
     "compass"
   ],
-  "devDependencies": {
+  "dependencies": {
     "autoprefixer": "*",
     "grunt": "*",
     "grunt-banner": "*",
@@ -29,7 +29,6 @@
     "grunt-contrib-imagemin": "*",
     "grunt-contrib-jshint": "*",
     "grunt-contrib-uglify": "*",
-    "grunt-contrib-watch": "*",
     "grunt-githooks": "*",
     "grunt-postcss": "*",
     "grunt-newer": "*",
@@ -38,5 +37,8 @@
     "grunt-usebanner": "*",
     "time-grunt": "*",
     "jit-grunt": "*"
+  },
+  "devDependencies": {
+    "grunt-contrib-watch": "*"
   }
 }
