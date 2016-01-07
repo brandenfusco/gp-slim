@@ -89,6 +89,7 @@
                     <focuspoint name="focuspoint"/>
                 </ux>
                 <plugins>
+                    <headjs name="headjs"/>
                     <selectivizr name="selectivizr"/>
                     <placeholderjs name="placeholderjs"/>
                     <svginjector name="svginjector"/>
