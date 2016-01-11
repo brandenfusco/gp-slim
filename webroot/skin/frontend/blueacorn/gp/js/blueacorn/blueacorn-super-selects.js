@@ -21,7 +21,6 @@ function SuperSelects(options) {
         init: function (options) {
             this.settings = {
                 'moduleName': 'SuperSelects',
-                'enabled': true,
                 'displayMethod': 'show', //[show, fade, slide]
                 'displayType': 'over', // [over, under, right, left, circle, overlay, fullscreen, thumbnail, fullthumb, rotate, custom],
                 'typeArray': ['over', 'under', 'right', 'left', 'circle', 'overlay', 'fullscreen', 'thumbnail', 'fullthumb'],
@@ -41,9 +40,6 @@ function SuperSelects(options) {
 
             // Start the debugger
             ba.setupDebugging(this.settings);
-
-            // Check if enabled
-            if(!this.settings.enabled) return;
 
             this.setCustomEventObservers();
             this.createSuperSelect();
@@ -116,6 +112,8 @@ function SuperSelects(options) {
                 // Iterate through the select options to create the individual super select options & attach to Select
                 self.buildOptionsObjects(currentSelect);
 
+                console.log(currentSelect);
+
                 // Create Individual List of Items for the Super Select
                 dynamicSelectOption = 'buildSelectOption' + self.camelCaseCreator(self.getSelectType(currentSelect));
 
@@ -158,6 +156,7 @@ function SuperSelects(options) {
                 }else{
                     $(currentSelect).wrap('<div class="input-box ba-select-container"></div>');
                 }
+
             }
 
             if($(currentSelect).hasClass(self.settings.smallClass) && !$(currentSelect).parent().hasClass(self.settings.smallClass)) {
@@ -469,6 +468,7 @@ function SuperSelects(options) {
 
             $.each($(customOptions), function(optionIndex){
                 $(this).on('click', function(){
+                    $(currentSelect).data('optionselected','true');
                     $(customOptions).removeClass('selected');
                     $(this).addClass('selected');
                     $(currentSelect).prop('selectedIndex',optionIndex);
@@ -494,6 +494,8 @@ function SuperSelects(options) {
                         $(currentSelect).data('setup-first', true);
                         $(currentSelect).siblings('.ba-select-box').addClass('setup');
                     }
+
+                    $(currentSelect).data('optionselected','true');
 
                     $(customOptions).removeClass('selected');
                     $(this).addClass('selected');
@@ -820,6 +822,10 @@ function SuperSelects(options) {
                 $(currentSelect).parent('.ba-select-container').removeClass('disabled');
             }
 
+            if($(currentSelect).data('optionselected') === 'true'){
+                $(currentSelect).parent('.ba-select-container').addClass('option-selected');
+            }
+
         },
 
         /**
@@ -922,9 +928,7 @@ function SuperSelects(options) {
          * The parameter object is optional.
          * Must be an object.
          */
-        ba.SuperSelects = new SuperSelects({
-            "enabled": mageConfig["styleguide/superselects/enable_superselects"] > 0 ? true : false
-        });
+        ba.SuperSelects = new SuperSelects();
 
     });
 
