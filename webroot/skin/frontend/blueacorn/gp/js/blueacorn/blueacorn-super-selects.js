@@ -30,7 +30,7 @@ function SuperSelects(options) {
                 'optionLimits': 10, // [Numeric Value]
                 'imageType': "span", // [span, image],
                 'htmlTag': $('html'),
-                'selects': $('select'), // jQuery DOM Object Selector
+                'selects': $('select').not('select[multiple]'), // jQuery DOM Object Selector
                 'smallSelects': $('#select-language, .toolbar select, .review-heading .pager select, .review-customer-index .pager select, .small-select'), // List of known Small Selects
                 'smallClass': 'sm', // Class for Small Selects
                 'blackList': ['.no-style','.swatch-select'] //Black List for Selects that should not be styled, Array of classes to look for, not DOM selectors
