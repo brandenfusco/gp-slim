@@ -66,7 +66,7 @@ function BlueAcornCore(options) {
          */
         checkForElement: function($element){
             if(!($element instanceof jQuery)){
-                $element = $($element);
+                $element = jQuery($element);
             }
             return $element.length >= 1;
         },
