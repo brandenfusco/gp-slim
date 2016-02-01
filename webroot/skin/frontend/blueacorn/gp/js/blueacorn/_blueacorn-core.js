@@ -56,6 +56,22 @@ function BlueAcornCore(options) {
         },
 
         /**
+         * Checks if the specified jQuery element exists.
+         *
+         * If regular HTML element is passed, will change into
+         * jQuery selector for use in this function.
+         *
+         * @param $element - jQuery object
+         * @returns {boolean}
+         */
+        checkForElement: function($element){
+            if(!($element instanceof jQuery)){
+                $element = jQuery($element);
+            }
+            return $element.length >= 1;
+        },
+
+        /**
          * Adds console log if degubbing is true
          * @param string
          */
