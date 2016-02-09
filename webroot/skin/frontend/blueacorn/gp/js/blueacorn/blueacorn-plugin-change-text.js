@@ -22,7 +22,7 @@
  * });
  *
  * If you by chance want to change the element back to the original
- * text, you can simply pass in nothing into the changeText() method.
+ * text, you can simply pass in nothing into the updateText() method.
  *
  * $pageTitle.updateText();
  *
