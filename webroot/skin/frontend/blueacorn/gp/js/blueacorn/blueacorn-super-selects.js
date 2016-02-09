@@ -33,7 +33,7 @@ function SuperSelects(options) {
                 'selects': $('select'), // jQuery DOM Object Selector
                 'smallSelects': $('#select-language, .toolbar select, .review-heading .pager select, .review-customer-index .pager select, .small-select'), // List of known Small Selects
                 'smallClass': 'sm', // Class for Small Selects
-                'blackList': ['.no-style','.swatch-select', 'select[multiple]'] //Black List for Selects that should not be styled, Array of classes to look for, not DOM selectors
+                'blackList': ['.no-style','.swatch-select','select[multiple]'] //Black List for Selects that should not be styled, Array of classes to look for, not DOM selectors
             };
 
             // Overrides the default settings
