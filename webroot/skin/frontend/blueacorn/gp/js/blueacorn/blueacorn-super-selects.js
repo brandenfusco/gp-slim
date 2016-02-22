@@ -116,8 +116,6 @@ function SuperSelects(options) {
                 // Iterate through the select options to create the individual super select options & attach to Select
                 self.buildOptionsObjects(currentSelect);
 
-                console.log(currentSelect);
-
                 // Create Individual List of Items for the Super Select
                 dynamicSelectOption = 'buildSelectOption' + self.camelCaseCreator(self.getSelectType(currentSelect));
 
