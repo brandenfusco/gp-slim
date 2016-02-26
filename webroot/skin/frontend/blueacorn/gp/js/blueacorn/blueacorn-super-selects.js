@@ -609,9 +609,9 @@ function SuperSelects(options) {
                 dynamicOptionBuilder = 'buildOptionObject' + self.camelCaseCreator(self.getSelectType(currentSelect));
 
             if($.isFunction(self[dynamicOptionBuilder])){
-                currentSelect.optionsArray = self[dynamicOptionBuilder]($(currentSelect).children());
+                currentSelect.optionsArray = self[dynamicOptionBuilder]($(currentSelect).find('option'));
             }else{
-                currentSelect.optionsArray = self.buildOptionObject($(currentSelect).children());
+                currentSelect.optionsArray = self.buildOptionObject($(currentSelect).find('option'));
             }
         },
 
