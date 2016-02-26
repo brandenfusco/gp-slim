@@ -265,10 +265,19 @@ module.exports = function(grunt){
                 },
                 files: {
                     src: [
-                        '<%=skinDir%>/**/css/style-guide.css',
-                        '<%=skinDir%>/**/css/styles.css',
-                        '<%=skinDir%>/**/jsmin/blueacorn.min.js',
-                        '<%=skinDir%>/**/jsmin/blueacorn.development.min.js'
+                        '<%=skinDir%>/css/style-guide.css',
+                        '<%=skinDir%>/css/styles.css',
+                        '<%=skinDir%>/jsmin/blueacorn.min.js',
+                        '<%=skinDir%>/jsmin/blueacorn.development.min.js',
+                        '<%=skinDir%>/css/styles-category.css',
+                        '<%=skinDir%>/css/styles-product.css',
+                        '<%=skinDir%>/css/styles-cart.css',
+                        '<%=skinDir%>/css/styles-checkout.css',
+                        '<%=skinDir%>/css/styles-account.css',
+                        '<%=skinDir%>/css/styles-cms.css',
+                        '<%=skinDir%>/css/styleguide.css',
+                        '<%=skinDir%>/css/blueacorn-super-selects.css',
+                        '<%=skinDir%>/css/fonts.css'
                     ]
                 }
             }
@@ -289,7 +298,7 @@ module.exports = function(grunt){
             },
             js: {
                 files: ['<%=skinDir%>/js/**/*.js'],
-                tasks: ['newer:jshint', 'newer:uglify:dev']
+                tasks: ['jshint', 'uglify:dev']
             },
             livereload: {
                 files: ['<%=skinDir%>/css/**/*.css'],
@@ -300,7 +309,7 @@ module.exports = function(grunt){
             },
             images: {
                 files: ['<%=skinDir%>/src/**.*{png,jpg,svg}'],
-                task: ['newer:imagemin']
+                task: ['imagemin']
             }
         },
 
@@ -308,7 +317,7 @@ module.exports = function(grunt){
             setup: ['copy:app', 'copy:skin'],
             sass: ['sass:dev', 'sass:ie'],
             postcss: ['postcss:dev', 'postcss:ie'],
-            compile: ['concurrent:sass','shell:cache','newer:imagemin']
+            compile: ['concurrent:sass','shell:cache','imagemin']
         }
 
     });
@@ -323,7 +332,7 @@ module.exports = function(grunt){
     grunt.registerTask('default', ['watch']);
 
     // Quality Control Task, used to verify content quality of Frontend Assets
-    grunt.registerTask('qc', ['newer:jshint']);
+    grunt.registerTask('qc', ['jshint']);
 
     // Grunt compile githook task on post-checkout and post-merge
     grunt.registerTask('dev-githooks', ['githooks:dev']);
@@ -341,9 +350,9 @@ module.exports = function(grunt){
     grunt.registerTask('compile', ['concurrent:compile', 'postcss:dev', 'postcss:ie', 'jshint', 'uglify:dev']);
 
     // Staging Deployment Task, used for post-deployment compilation of Frontend Assets on Staging.
-    grunt.registerTask('staging', ['sass:production', 'sass:ie', 'postcss:production', 'postcss:ie', 'jshint', 'uglify:production', 'shell:cache']);
+    grunt.registerTask('staging', ['sass:production', 'sass:ie', 'postcss:production', 'postcss:ie', 'jshint', 'uglify:production', 'usebanner:production', 'shell:cache']);
 
     // Production Deployment Task, used for post-deployment compilation of Frontend Assets on Production.
-    grunt.registerTask('production', ['sass:production', 'sass:ie', 'postcss:production', 'postcss:ie', 'jshint', 'uglify:production', 'shell:cache']);
+    grunt.registerTask('production', ['sass:production', 'sass:ie', 'postcss:production', 'postcss:ie', 'jshint', 'uglify:production', 'usebanner:production', 'shell:cache']);
 
 };

@@ -29,7 +29,6 @@
     "grunt-contrib-jshint": "*",
     "grunt-contrib-uglify": "*",
     "grunt-postcss": "*",
-    "grunt-newer": "*",
     "grunt-sass": "*",
     "grunt-shell": "*",
     "grunt-usebanner": "*",

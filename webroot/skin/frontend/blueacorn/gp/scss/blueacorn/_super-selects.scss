@@ -596,7 +596,9 @@
         }
         li {
             padding: 0;
-            @include g-item(d, 5, false);
+            @include g-item(max, $bp-large + 1, 5, 980, 19.5);
+            @include g-item($bp-large, $bp-small + 1, 3, 600, 13);
+            @include g-item($bp-small, 320px, 2, 320, 6.5);
             margin-bottom: 20px;
             clear: none;
             float: left;

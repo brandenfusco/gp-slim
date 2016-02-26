@@ -14,16 +14,7 @@
     @return $gutter;
 }
 
-@function contraints($prefix) {
-
-  @if $prefix == m  { @return (false,false,false,false,false,false); }
-  @if $prefix == t  { @return (false,false,false,false,false,false,false,false); }
-  @if $prefix == d  { @return (false,false,false,false,false,false,false,false); }
-
-}
-
 @function gutter-offset($width, $cols, $grid, $first-margin) {
-
     $gutter-offset: $cols;
     $additional-width: #{(gutter($grid)/$gutter-offset)};
 
@@ -32,7 +23,6 @@
     } @else {
         @return #{$width + '%'}
     }
-
 }
 
 @mixin grid-media($prefix, $type: false) {
@@ -42,7 +32,7 @@
         @if ($type == min) {
             @media only screen and (min-width: 320px) { @content; }
         } @else {
-            @media only screen and (min-width: 320px) and (max-width: 767px) { @content; }
+            @media only screen and (min-width: 320px) and (max-width: ($bp-medium - 1)) { @content; }
         }
     }
     @else { @content; }
@@ -50,16 +40,16 @@
   @else if $prefix == t {
     @if ($type == min) or ($type == min-max) {
         @if ($type == min) {
-            @media only screen and (min-width: 768px) { @content; }
+            @media only screen and (min-width: $bp-medium) { @content; }
         } @else {
-            @media only screen and (min-width: 768px) and (max-width: 1023px){ @content; }
+            @media only screen and (min-width: $bp-medium) and (max-width: $bp-large){ @content; }
         }
     }
     @else { @content; }
   }
   @else if $prefix == d {
     @if ($type == min) or ($type == min-max) {
-        @media only screen and (min-width: 1024px) { @content; }
+        @media only screen and (min-width: $bp-large + 1) { @content; }
     }
     @else { @content; }
   }
@@ -103,9 +93,6 @@
             $i: $i + 1;
         }
     } @else {
-        $conscols: contraints($grid);
-        $conscol: nth($conscols, $start);
-
         $measure: nth($cols, $start);
     }
 
@@ -138,19 +125,21 @@
     }
 }
 
-@mixin g-item($grid, $cols, $first-margin: false) {
+@mixin g-item($max, $min, $cols, $parent-width, $margin) {
     $column-division: (1/$cols)*100;
-    $column-margin: $column-division - gutter($grid);
-    $additional-width: gutter($grid)/$cols;
+    $gutter: ($margin/$parent-width) * 100;
+    $column-margin: $column-division - $gutter;
+    $additional-width: $gutter/$cols;
 
-    margin-left: #{gutter($grid) + '%'};
-    @if ((1/$cols)*100) > gutter($grid) {
-        width: #{($additional-width + $column-margin) + '%'};
-    } @else {
-        width: #{$column-division + '%'};
-    }
+    @include bpmm($min, $max) {
+        margin-left: #{$gutter + '%'};
 
-    @if $first-margin == false {
+        @if ((1/$cols)*100) > $gutter {
+            width: #{($additional-width + $column-margin) + '%'};
+        } @else {
+            width: #{$column-division + '%'};
+        }
+
         &:nth-child(#{$cols + 'n'} + #{'1'}){
             margin-left: 0;
             clear: both;
