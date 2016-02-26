@@ -43,7 +43,7 @@ function CustomFormElements(options) {
                 self.unsetCustom();
             });
 
-            $(document).on('section:update update:inputs', this.updateAll.bind(this));
+            $(document).on('section:update update:all update:inputs', this.updateAll.bind(this));
 
             if(!this.settings.superSelects){
                 $(document).on('update:selects', function(){
