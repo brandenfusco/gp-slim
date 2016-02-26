@@ -21,7 +21,7 @@
             }
             .field {
                 float: left;
-                @include g-item(m, 2, false);
+                @include g-item(max, $bp-medium + 1, 2, 980, 19.5);
                 @include bp(max-width, $bp-medium) {
                     width: 100%;
                     clear: both;

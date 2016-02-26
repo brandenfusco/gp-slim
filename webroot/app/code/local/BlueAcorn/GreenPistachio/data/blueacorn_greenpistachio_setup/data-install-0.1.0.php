@@ -24,11 +24,6 @@ CONTENT;
 $installPageXML = <<<CONTENT
 <reference name="head">
 <action method="addItem"><type>skin_css</type><name>css/styleguide.css</name><params/></action>
-<action method="addItem"><type>skin_css</type><name>css/vendor/prism.css</name><params/></action>
-<action method="addItem"><type>skin_js</type><name>js/vendor/prism.js</name><params>data-manual</params></action>
-<action method="addItem" ifconfig="sales/msrp/enabled"><type>skin_js</type><name>js/msrp.js</name></action>
-<action method="addItem" ifconfig="sales/msrp/enabled"><type>skin_js</type><name>js/msrp_rwd.js</name></action>
-<action method="addItem"><type>skin_js</type><script>js/lib/elevatezoom/jquery.elevateZoom-3.0.8.min.js</script></action>
 </reference>
 
 <reference name="cms.wrapper">
@@ -37,7 +32,6 @@ $installPageXML = <<<CONTENT
 
 <reference name="content">
 <action method="insert"><name>cms_page</name></action>
-<block type="core/template" template="catalog/msrp/popup.phtml" name="product.tooltip"></block>
 </reference>
 CONTENT;
 

@@ -116,6 +116,8 @@ function SuperSelects(options) {
                 // Iterate through the select options to create the individual super select options & attach to Select
                 self.buildOptionsObjects(currentSelect);
 
+                console.log(currentSelect);
+
                 // Create Individual List of Items for the Super Select
                 dynamicSelectOption = 'buildSelectOption' + self.camelCaseCreator(self.getSelectType(currentSelect));
 
@@ -552,7 +554,7 @@ function SuperSelects(options) {
         getSelectType: function(currentSelect) {
             var self = this;
 
-            if($(currentSelect).data('type') !== "undefined"){
+            if($(currentSelect).data('type') !== undefined){
                 return $(currentSelect).data('type');
             }else{
                 var currentType = '',
@@ -650,10 +652,10 @@ function SuperSelects(options) {
             var self = this,
                 optionDisabled = opt.disabled ? ' disabled' : '',
                 optionSelected = opt.selected ? ' selected' : '',
-                optionValue = opt.value !== "undefined" ? opt.value : '',
-                optionContent = opt.content !== "undefined" ? opt.content : '',
-                optionColor = opt.color !== "undefined" ? opt.color : '',
-                optionImage = opt.image !== "undefined" ? opt.image : '';
+                optionValue = opt.value !== "" ? opt.value : '',
+                optionContent = opt.content !== "" ? opt.content : '',
+                optionColor = opt.color !== "" ? opt.color : '',
+                optionImage = opt.image !== "" ? opt.image : '';
 
 
             // Template for the Image Option
@@ -794,17 +796,17 @@ function SuperSelects(options) {
 
             self.closeOptions(currentSelect);
 
-            if(currentSelect.optionsArray === "undefined") {
+            if(currentSelect.optionsArray === undefined && currentSelect.optionsArray !== "") {
                 self.buildOptionsObjects(currentSelect);
             }
 
             optionsArray = currentSelect.optionsArray[selectedOption];
 
-            if(optionsArray.image !== "undefined"){
+            if(optionsArray.image !== undefined && optionsArray.image !== ""){
                 html += self.updateShivImage(self.settings.imageType, optionsArray.image, optionsArray.value);
             }
 
-            if(optionsArray.color !== "undefined"){
+            if(optionsArray.color !== undefined && optionsArray.color !== ""){
                 html += self.updateShivColor(optionsArray.color);
             }
 
