@@ -36,8 +36,8 @@ var uglifyOptions = {
         mangle: false,
         beautify: true,
         compress: false,
-        sourceMap: true,
-        wrap: true
+        sourceMap: false,
+        wrap: false
     }
 };
 

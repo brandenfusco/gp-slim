@@ -9,7 +9,7 @@ function FrontEndDevelopmentHelper(options) {
     this.init(options);
 }
 
-;(function($, ba){
+;(function($){
 
     FrontEndDevelopmentHelper.prototype = {
         init: function (options) {
@@ -19,7 +19,7 @@ function FrontEndDevelopmentHelper(options) {
                     'id': 'viewport-width-helper',
                     'position': 'fixed',
                     'bottom': '0',
-                    'left': '50%',
+                    'left': '50%', 
                     'zIndex': '9999',
                     'color': '#fff',
                     'padding': '0 7px',
@@ -122,4 +122,4 @@ function FrontEndDevelopmentHelper(options) {
         });
 
      }
-})(jQuery, ba);
+})(jQuery);
