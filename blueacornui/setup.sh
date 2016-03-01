@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+#/**
+# * @package     BlueAcorn/GreenPistachio
+# * @version     4.0.0
+# * @author      Blue Acorn, Inc. <code@blueacorn.com>
+# * @copyright   Copyright © 2016 Blue Acorn, Inc.
+# */
+
 ###########
 # Utility #
 ###########
@@ -93,7 +100,7 @@ workflow_site_setup () {
   install_dependancies
 
   # Setting up the Site
-  grunt setup:site
+  grunt setup
 
 }
 
