@@ -32,6 +32,13 @@ _.each(themes, function(theme, name) {
             }
         };
 
+        themeOptions[name + 'Images'] = {
+            files: [
+                combo.autopath(name, 'skin') + 'src/**/*.{svg,png,gif,jpg}',
+            ],
+            tasks: ['concurrent:' + name + 'Images']
+        };
+
         themeOptions[name + 'Js'] = {
             files: [
                 combo.autopath(name, 'skin') + 'js/**/*.js'

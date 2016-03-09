@@ -19,6 +19,7 @@ module.exports = function(grunt) {
             grunt.task.run('concurrent:' + arguments[0] + 'Postcss');
             grunt.task.run('jshint:' + arguments[0]);
             grunt.task.run('uglify:' + arguments[0] + 'Dev');
+            grunt.task.run('concurrent:' + arguments[0] + 'Images');
             grunt.task.run('shell:cache');
         }else{
             _.each(themes, function(theme, name){
@@ -27,6 +28,7 @@ module.exports = function(grunt) {
                     grunt.task.run('concurrent:' + name + 'Postcss');
                     grunt.task.run('jshint:' + name);
                     grunt.task.run('uglify:' + name + 'Dev');
+                    grunt.task.run('concurrent:' + name + 'Images');
                 }
             });
             grunt.task.run('shell:cache');

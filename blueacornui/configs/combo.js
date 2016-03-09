@@ -60,8 +60,11 @@ module.exports = {
 
                 for(i; i < theme[themeName].jsdirs.length; i++) {
                     var subName = '';
-                    if(theme[themeName].jsdirs[i] !== 'blueacorn') {
+                    if(theme[themeName].jsdirs[i] !== 'blueacorn' || theme[themeName].jsdirs[i].indexOf('blueacorn') === -1) {
                         subName = '.' + theme[themeName].jsdirs[i];
+                    }
+                    if(theme[themeName].jsdirs[i].indexOf('blueacorn') != -1) {
+                        subName = theme[themeName].jsdirs[i].replace('blueacorn','');
                     }
 
                     minStringArray[i] = this.autopath(themeName, 'skin') + 'jsmin/blueacorn' + subName + '.min.js';

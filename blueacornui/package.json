@@ -42,6 +42,8 @@
     "grunt-contrib-copy": "*",
     "grunt-contrib-watch": "*",
     "grunt-githooks": "*",
-    "grunt-contrib-imagemin": "*"
+    "grunt-newer": "*",
+    "grunt-contrib-imagemin": "*",
+    "grunt-svgmin": "*"
   }
 }
