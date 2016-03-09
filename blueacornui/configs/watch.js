@@ -1,6 +1,6 @@
 /**
 * @package     BlueAcorn/GreenPistachio
-* @version     4.0.0
+* @version     4.1.0
 * @author      Blue Acorn, Inc. <code@blueacorn.com>
 * @copyright   Copyright © 2016 Blue Acorn, Inc.
 */
@@ -30,6 +30,13 @@ _.each(themes, function(theme, name) {
             options: {
                 sourceMap: true
             }
+        };
+
+        themeOptions[name + 'Images'] = {
+            files: [
+                combo.autopath(name, 'skin') + 'src/**/*.{svg,png,gif,jpg}',
+            ],
+            tasks: ['concurrent:' + name + 'Images']
         };
 
         themeOptions[name + 'Js'] = {

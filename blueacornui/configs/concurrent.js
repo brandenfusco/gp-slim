@@ -1,6 +1,6 @@
 /**
 * @package     BlueAcorn/GreenPistachio
-* @version     4.0.0
+* @version     4.1.0
 * @author      Blue Acorn, Inc. <code@blueacorn.com>
 * @copyright   Copyright © 2016 Blue Acorn, Inc.
 */
@@ -20,6 +20,7 @@ _.each(themes, function(theme, name) {
         themeOptions[name + 'Postcss'] = ['postcss:' + name + 'Dev', 'postcss:' + name + 'IE'];
         themeOptions[name + 'PostcssProduction'] = ['postcss:' + name + 'Production', 'postcss:' + name + 'IE'];
         themeOptions[name + 'UseBanner'] = ['usebanner:' + name + 'Css', 'usebanner:' + name + 'Js'];
+        themeOptions[name + 'Images'] = ['newer:imagemin:' + name + 'Dev', 'newer:svgmin:' + name + 'Dev'];
     }
 });
 
