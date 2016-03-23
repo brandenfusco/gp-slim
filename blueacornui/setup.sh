@@ -20,9 +20,9 @@ cat <<-EOF
   Usage: setup.sh <command> [options]
 
   Commands:
-    dev_setup     Installs Dependancies, Sets up Symlinks.
-    site_setup    Setting up a Site/Repo for the First Time
-    update        Update Dependancies if they've Changed
+    dev     Installs Dependancies.
+    site    Setting up a Site/Repo for the First Time
+    update  Update Dependancies if they've Changed
 
   Options:
     None at this time.
@@ -70,9 +70,6 @@ workflow_dev_setup () {
 
   # Updating
   workflow_update
-
-  # Setting up Important Symlinks
-  grunt shell:symlink
 
   # Compiling
   grunt compile
@@ -126,8 +123,8 @@ else
   while [ $# -ne 0 ]; do
     case $1 in
       -h|--help|help)    display_help ;;
-      dev_setup)         runstr="workflow_dev_setup" ; shift ;;
-      site_setup)        runstr="workflow_site_setup" ; shift ;;
+      dev)         runstr="workflow_dev_setup" ; shift ;;
+      site)        runstr="workflow_site_setup" ; shift ;;
       update)            runstr="workflow_update" ;;
     esac
     shift
