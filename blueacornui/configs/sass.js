@@ -17,8 +17,8 @@ _.each(themes, function(theme, name) {
     if(theme.grunt) {
         themeOptions[name + 'Dev'] = {
             options: {
-                sourceMap: false,
-                sourceMapEmbed: true,
+                sourceMap: true,
+                sourceMapEmbed: false,
                 includePaths: combo.themeFallback(name)
             },
             files: combo.scssFiles(name)

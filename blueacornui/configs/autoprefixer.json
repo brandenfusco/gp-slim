@@ -12,7 +12,7 @@
                 "> 1%"
             ],
             "map": {
-                "inline": true,
+                "inline": false,
                 "prev": true,
                 "annotation": "!",
                 "sourceContent": false
