@@ -1,6 +1,6 @@
 /**
 * @package     BlueAcorn/GreenPistachio
-* @version     
+* @version
 * @author      Blue Acorn, Inc. <code@blueacorn.com>
 * @copyright   Copyright © 2016 Blue Acorn, Inc.
 */
@@ -28,7 +28,7 @@ _.each(themes, function(theme, name) {
                     })
                 ]
             },
-            src: [combo.autopath(name,'skin') + '**/*.css', '!' + combo.autopath(name, 'skin') + '**/*ie8.css']
+            src: [combo.autopath(name,'skin') + 'css/**/*.css', '!' + combo.autopath(name, 'skin') + 'css/**/*ie8.css']
         };
 
         themeOptions[name + 'IE'] = {
@@ -42,7 +42,7 @@ _.each(themes, function(theme, name) {
                     })
                 ]
             },
-            src: [combo.autopath(name, 'skin') + '**/*ie8.css']
+            src: [combo.autopath(name, 'skin') + 'css/**/*ie8.css']
         };
 
         themeOptions[name + 'Production'] = {
@@ -56,7 +56,7 @@ _.each(themes, function(theme, name) {
                     })
                 ]
             },
-            src: [combo.autopath(name,'skin') + '**/*.css', '!' + combo.autopath(name, 'skin') + '**/*ie8.css']
+            src: [combo.autopath(name,'skin') + 'css/**/*.css', '!' + combo.autopath(name, 'skin') + 'css/**/*ie8.css']
         };
     }
 });
