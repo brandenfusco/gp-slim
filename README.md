@@ -19,6 +19,7 @@ It's like eating a **handful** of _pre-shelled_ front end magento plugins.
 
 ##### [Features](id:features)
 * Sass compilation of the 1.14 theme with LibSass
+* Multi Theme Support with Theme Hierarchy Compilation
 * Faster Development with Caching Turned on, cache only gets cleared when you make a change to an XML or PHTML file within your blueacornui/app directories.
 * JS Linting for Code Quality Checks
 * Staging Compilation Settings
@@ -30,7 +31,6 @@ It's like eating a **handful** of _pre-shelled_ front end magento plugins.
 ##### [Handfull of Shelled Pistachios](id:pistachios)
 * Footer Assets module ([documentation](https://github.com/BlueAcornInc/ba-footer-assets/tree/master))
 * CMS Page Style Update ([documentation](https://github.com/BlueAcornInc/gp-cms-page-style-update/tree/master))
-* Sticky Header ([documentation](https://github.com/BlueAcornInc/gp-stickyheader/tree/master))
 * Remove Link by Name ([documentation](https://github.com/BlueAcornInc/gp-remove-link-by-name/tree/master))
 
 ## [Quick Start](id:quickstart)
@@ -59,12 +59,12 @@ modman will install a directory named **blueacornui** to your project's root con
 **installation (one-time)**
 
 	$: cd /path/to/blueacornui
-	$/path/to/blueacornui/: sh setup.sh site_setup
+	$/path/to/blueacornui/: sh setup.sh site
 
 **live development**
 Run the following command to watch your app & skin directories for changes and compile SASS & JS on save, as well as clear cache when you modify any XML or PHTML files.
 
-	
+
 	$: cd /path/to/blueacornui
 	$/path/to/blueacornui/: grunt
 
@@ -79,12 +79,12 @@ If you modify a layout xml or phtml file within your package, the grunt shell co
 
 ##### [Theme Setup](id:setup)
 
-You'll need to update `webroot/app/design/frontend/blueacorn/enterprise/etc/theme.xml` and change `<parent>rwd/default</parent>` to `<parent>blueacorn/default</parent>`.
+You'll need to update `blueacornui/configs/themes.js` and include the themes you will want for compilation.
 
 ## Usage
 
 [Green Pistachio Skin Usage Guide](documentation/README.MD)
-	
+
 
 ## [Javascript Plugins Overview](id:overview)
 

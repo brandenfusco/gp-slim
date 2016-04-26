@@ -1,6 +1,6 @@
 /**
 * @package     BlueAcorn/GreenPistachio
-* @version     
+* @version     4.3.0
 * @author      Blue Acorn, Inc. <code@blueacorn.com>
 * @copyright   Copyright © 2016 Blue Acorn, Inc.
 */
@@ -45,6 +45,11 @@ module.exports = function(grunt) {
             grunt.task.run('shell:setup');
             grunt.task.run('compile');
         }
+
+        sync: function() {
+            grunt.task.run('browserSync');
+            grunt.task.run('watch');
+        },
 
     }, function(task, name) {
         grunt.registerTask(name, task);

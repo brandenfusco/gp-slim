@@ -1,6 +1,6 @@
 {
   "name": "blueacorn_green_pistachio",
-  "version": "",
+  "version": "4.3.0",
   "description": "Rapid Development Boilerplate for Responsive Magento Enterprise Websites",
   "private": "true",
   "namespace": "BlueAcorn",
@@ -44,6 +44,7 @@
     "grunt-githooks": "*",
     "grunt-newer": "*",
     "grunt-contrib-imagemin": "*",
-    "grunt-svgmin": "*"
+    "grunt-svgmin": "*",
+    "grunt-browser-sync": "*"
   }
 }
