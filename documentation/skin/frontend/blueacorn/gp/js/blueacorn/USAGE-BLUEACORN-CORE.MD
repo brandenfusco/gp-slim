@@ -1,11 +1,27 @@
 # BlueAcorn/Core
 
+* Events
+	*  [baCoreReady](#ready)
+	*  [Native Browser Events](#native)
+
 * Usage
     * [ba - BlueAcornCore](#ba)
     * [overrideSettings](#overridesettings)
     * [setupDebugging](#setupdebugging)
     * [watchConsole](#watch)
+    * [checkForElement](#check)
+    * [debounce](#debounce)
+    * [triggerEvent](#triggerEvent)
 
+## Events
+
+###[baCoreReady](id:ready)
+
+Established for dependencies, `baCoreReady` fires on `document:ready` when the `ba` instance of `BlueAcornCore` is instantiated. 
+
+##### Example:
+
+		$(document).on('baCoreReady', customFunction);
 
 ## Usage
 
@@ -57,7 +73,7 @@
 		
 ###[setupDebugging](id:setupdebugging)
 
-`setupDebugging(moduleSettings)` displays module specific information information in the console when Development Mode is set to `yes` in **System > Config > Blue Acorn > Style Guide**
+`setupDebugging(moduleSettings)` displays module specific information information in the console when Development Mode is set to `yes` in **System > Config > Blue Acorn > Green Pistachio Settings**
 
 ##### Parameters:
 
@@ -88,8 +104,44 @@
 			 }
 		};
 		
-		ba.myObject = new MyObject(){});
+		ba.myObject = new MyObject({});
 		
 ###[watchConsole](id:watch)
 
-`watchConsole(message)` will console log development debugging information if **System > Config > Blue Acorn > Style Guide** Development Mode is set to `yes`.
+`watchConsole(message)` will console log development debugging information if **System > Config > Blue Acorn > Green Pistachio Settings** Development Mode is set to `yes`.
+
+###[checkForElement](id:check)
+
+`checkForElement($element)` returns if the element passed exists in the `DOM`.
+
+| `@param` | Description |
+|----------|-------------|
+| `$element` | `DOM` element you would like to detect passed as `String` |
+
+##### Example:
+
+		function MyObject(options) {
+			this.init(options)
+		}
+		
+		MyObject.prototype = {
+			init: function(options) {
+				this.settings = {
+					'moduleName': 'MyObject',
+					'debug': false
+				}
+				
+				if(ba.checkForElement('body')){
+					// Execute Custom JS
+				}
+		};
+		
+		ba.myObject = new MyObject({});
+		
+###[debounce](id:debounce)
+
+`debounce(func, wait, immediate)`  Returns a function that will only be triggered once, after inactivity of `wait` ms, ported from [_underscore.js](http://underscorejs.org/docs/underscore.html)
+
+###[triggerEvent](id:triggerEvent)
+
+Attached to `Element.prototype`, fires native events on elements, such as `change`, `click`, `focus`, etc.  Better alternative to `jQuery` `Element.trigger` and `PrototypeJS` `Element.fire`

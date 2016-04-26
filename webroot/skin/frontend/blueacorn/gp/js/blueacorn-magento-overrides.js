@@ -102,11 +102,28 @@ Event.observe(window, 'load', function () {
 
         // Adding functionality to Fire Applicable method when clicking Label instead of Form Element due to Race Condition
         if(typeof Payment.prototype.switchCustomerBalanceCheckbox !== "undefined") {
-            if($('use_customer_balance').up().down('.checkbox-label').length > 0) {
+            if($('use_customer_balance').up().down('.checkbox-label') !== "undefined") {
                 $('use_customer_balance').up().down('.checkbox-label').observe('click', function(){
-                    setTimeout(payment.switchCustomerBalanceCheckbox, 100);
+                   // setTimeout(payment.switchCustomerBalanceCheckbox, 100);
+                    if($(this).hasClassName('checked')){
+                        $('use_customer_balance').checked = true;
+                    }
+                    window.setTimeout(function(){
+                        payment.switchCustomerBalanceCheckbox();
+                    }, 100);
+
                 });
             }
+        }
+
+        // Firing Custom Events in Payment when switching method
+        if(typeof Payment.prototype.switchMethod !== "undefined") {
+            Payment.prototype.switchMethod = Payment.prototype.switchMethod.wrap(
+                function(parentFunction, method){
+                    parentFunction(method);
+                    jQuery(document).trigger('payment:method:switch');
+                    jQuery(document).trigger('section:update');
+            });
         }
     }
 
@@ -157,6 +174,15 @@ Event.observe(window, 'load', function () {
         Billing.prototype.nextStep = Billing.prototype.nextStep.wrap(
             function(parentFunction, transport) {
                 parentFunction(transport);
+                jQuery(document).trigger('section:update');
+            }
+        );
+
+        // Firing Custom Checkout Step Event when adding a new
+        // address in Billing Form
+        Billing.prototype.newAddress = Billing.prototype.newAddress.wrap(
+            function(parentFunction, isNew) {
+                parentFunction(isNew);
                 jQuery(document).trigger('section:update');
             }
         );

@@ -1,6 +1,6 @@
 /**
 * @package     BlueAcorn/GreenPistachio
-* @version     
+* @version     4.3.0
 * @author      Blue Acorn, Inc. <code@blueacorn.com>
 * @copyright   Copyright © 2016 Blue Acorn, Inc.
 */
@@ -53,6 +53,7 @@ module.exports = {
         area: 'frontend',
         name: 'blueacorn/site',
         locale: 'en_US',
+        dev_url: 'gp.dev',
         files: [
             'blueacorn-super-selects',
             'fonts',

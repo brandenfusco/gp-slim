@@ -19,21 +19,17 @@ All BlueAcorn developed Javascript file should be saved in **blueacornui/skin/js
 	* [BlueAcorn/CustomFormElements](skin/frontend/blueacorn/gp/js/blueacorn/USAGE-BLUEACORN-CUSTOM-FORM-ELEMENTS.MD)
 	* [BlueAcorn/ResponsiveNote](skin/frontend/blueacorn/gp/js/blueacorn/USAGE-BLUEACORN-RESPONSIVENOTE.MD)
 	* [BlueAcorn/SuperSelects](https://github.com/BlueAcornInc/gp-super-selects)
-* Development
-	* [BlueAcorn/DevelopmentCore](skin/frontend/blueacorn/gp/js/development/USAGE-BLUEACORN-DEVELOPMENT-CORE.MD)
-	* [BlueAcorn/StyleGuide](skin/frontend/blueacorn/gp/js/development/USAGE-BLUEACORN-STYLEGUIDE.MD)
-	* [BlueAcorn/StyleGuideMenu](skin/frontend/blueacorn/gp/js/development/USAGE-BLUEACORN-STYLEGUIDE-MENU.MD)
 * [BlueAcorn/MagentoOverrides](skin/frontend/blueacorn/gp/js/USAGE-BLUEACORN-MAGENTO-OVERRIDES.MD)
 
 ## [Images](id:images)
 
-New/Edited Images should be saved to **blueacornui/skin/src**, the images will be automatically minified and saved to the **blueacornui/skin/images** directory.
+New/Edited Images should be saved to **skin/frontend/[package]/[theme]/src**, the images will be automatically minified and saved to the **bskin/frontend/[package]/[theme]/images** directory.
 
 ###### Example:
 
-An image called **sprite.png** (72kb) should get saved to **blueacornui/skin/src/sprite.png** that file will be minified and saved to **blueacornui/skin/images/sprite.png** and might get reduced to 70kb
+An image called **sprite.png** (72kb) should get saved to **skin/frontend/[package]/[theme]/src/sprite.png** that file will be minified and saved to **skin/frontend/[package]/[theme]/sprite.png** and might get reduced to 70kb
 
-This works recursively as well, if you save an image to **blueacornui/skin/src/myimages/** it would then be minified and saved to **blueacornui/skin/images/myimages/**
+This works recursively as well, if you save an image to **skin/frontend/[package]/[theme]/src/myimages/** it would then be minified and saved to **skin/frontend/[package]/[theme]/images/myimages/**
 
 ## [SASS](id:sass)
 

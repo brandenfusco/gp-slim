@@ -4,7 +4,8 @@
 
 * Usage
 	* [getPage](#getpage)
-		* [Page Types](#pagetypes)
+	* [identifyPage](#identifypage)
+	* [Page Types](#pagetypes)
 	
 ## Usage
 
@@ -15,6 +16,10 @@
 | `@param` | Type | Description |
 |----------|------|-------------|
 | `pageType` | `String` | String Value of the Page Type you're trying to detect, see available [Page Types](#pagetypes) below. |
+
+### [identifyPage](id:identifypage)
+
+`identifyPage()` returns the `String` value of the page you're currently on, see [Page Types](#pagetypes).
 
 ##### [Page Types](id:pagetypes)
 
