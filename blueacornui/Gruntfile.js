@@ -44,12 +44,12 @@ module.exports = function(grunt) {
         setup: function() {
             grunt.task.run('shell:setup');
             grunt.task.run('compile');
-        }
+        },
 
         sync: function() {
             grunt.task.run('browserSync');
             grunt.task.run('watch');
-        },
+        }
 
     }, function(task, name) {
         grunt.registerTask(name, task);
