@@ -24,7 +24,7 @@ _.each(themes, function(theme, name) {
                 compress: true,
                 beautify: false,
                 sourceMap: false,
-                wrap: true
+                wrap: false
             },
             files: combo.jsFiles(name)
         };
