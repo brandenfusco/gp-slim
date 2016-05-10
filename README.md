@@ -93,18 +93,18 @@ The Base Module allows developers to enable/disable various JavaScript plugins f
 ##### [plugins](id:javascriptplugins)
 The following plugins are currently available in Version 0.1.0
 
-* Fancybox V 2.1.5
-* BX Slider V 4.2.5
-* Flexslider V 2.5.0
-* jQuery ScrollTo V 2.1.1
-* Selectivizr V 1.0.2
-* Placeholder.js V 3.0.2
-* SVG Injector V 1.1.3
-* Headroom.js V 0.7.0
-* Parallax.js V 1.3.1
-* HTML5 Shiv V 3.7.3
+* Fancybox V 2.1.5 [Documentation](http://fancyapps.com/fancybox/)
+* BX Slider V 4.2.5 [Documentation](https://github.com/stevenwanderski/bxslider-4)
+* Flexslider V 2.5.0 [Documentation](https://github.com/woothemes/FlexSlider)
+* jQuery ScrollTo V 2.1.1 [Documentation](https://github.com/flesler/jquery.scrollTo)
+* Selectivizr V 1.0.2 [Documentation](http://selectivizr.com/)
+* Placeholder.js V 3.0.2 [Documentation](https://github.com/jamesallardice/Placeholders.js)
+* SVG Injector V 1.1.3 [Documentation](https://github.com/iconic/SVGInjector)
+* Headroom.js V 0.7.0 [Documentation](https://github.com/WickyNilliams/headroom.js)
+* Parallax.js V 1.3.1 [Documentation](http://pixelcog.github.io/parallax.js/)
+* HTML5 Shiv V 3.7.3 [Documentation](https://github.com/aFarkas/html5shiv)
 
-Documentation for each plugin can be found by clicking on the **Source** link under each plugin's selectbox within the Admin
+Documentation for each plugin can also be found by clicking on the **Source** link under each plugin's selectbox within the Admin
 
 ##### [Javascript Plugins Usage](id:jspluginsusage)
 After you've installed this module, log into the Admin section of your store, and navigate to:
