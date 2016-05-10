@@ -91,18 +91,24 @@ You'll need to update `blueacornui/configs/themes.js` and include the themes you
 The Base Module allows developers to enable/disable various JavaScript plugins from the Admin in the **System > Configuration** section. Each plugin's dependencies (stylesheets, images, and minified JavaScript files) will be automatically loaded before the closing **&lt;/body&gt;** tag. This module has two other module dependencies:
 
 ##### [plugins](id:javascriptplugins)
-The following plugins are currently available in Version 0.1.0
+The following plugins are currently available in Version 4.3.0
 
-* Fancybox V 2.1.5 [Documentation](http://fancyapps.com/fancybox/)
-* BX Slider V 4.2.5 [Documentation](https://github.com/stevenwanderski/bxslider-4)
-* Flexslider V 2.5.0 [Documentation](https://github.com/woothemes/FlexSlider)
-* jQuery ScrollTo V 2.1.1 [Documentation](https://github.com/flesler/jquery.scrollTo)
-* Selectivizr V 1.0.2 [Documentation](http://selectivizr.com/)
-* Placeholder.js V 3.0.2 [Documentation](https://github.com/jamesallardice/Placeholders.js)
-* SVG Injector V 1.1.3 [Documentation](https://github.com/iconic/SVGInjector)
-* Headroom.js V 0.7.0 [Documentation](https://github.com/WickyNilliams/headroom.js)
-* Parallax.js V 1.3.1 [Documentation](http://pixelcog.github.io/parallax.js/)
-* HTML5 Shiv V 3.7.3 [Documentation](https://github.com/aFarkas/html5shiv)
+| Plugin Name      | Version        | Documentation Link |
+|------------------|----------------|--------------------|
+|BX Slider         | 4.2.5          | [Documentation](https://github.com/stevenwanderski/bxslider-4)
+|Fancybox          | 2.1.5          | [Documentation](http://fancyapps.com/fancybox/)
+|Flexslider        | 2.5.0          | [Documentation](https://github.com/woothemes/FlexSlider)
+|Focus Point       | 1.1.1          | [Documentation](https://github.com/jonom/jquery-focuspoint)
+|Headroom.js       | 0.7.0          | [Documentation](https://github.com/WickyNilliams/headroom.js)
+|HTML5 Shiv        | 3.7.3          | [Documentation](https://github.com/aFarkas/html5shiv)
+|jQuery ScrollTo   | 2.1.1          | [Documentation](https://github.com/flesler/jquery.scrollTo)
+|Owl Carousel      | 2.0.0-beta.2.4 | [Documentation](https://github.com/OwlCarousel2/OwlCarousel2)
+|Parallax.js       | 1.3.1          | [Documentation](http://pixelcog.github.io/parallax.js/)
+|Placeholder.js    | 3.0.2          | [Documentation](https://github.com/jamesallardice/Placeholders.js)
+|Responsive Images | 1.1            | [Documentation](https://github.com/kvendrik/responsive-images.js)
+|Selectivizr       | 1.0.2          | [Documentation](http://selectivizr.com/)
+|Spin.js           | 2.3.2          | [Documentation](http://spin.js.org/)
+|SVG Injector      | 1.1.3          | [Documentation](https://github.com/iconic/SVGInjector)
 
 Documentation for each plugin can also be found by clicking on the **Source** link under each plugin's selectbox within the Admin
 
