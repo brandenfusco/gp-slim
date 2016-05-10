@@ -16,8 +16,7 @@ You may need to change the name of your theme and the URL used for development.
 
 ### Example
 
-```
-site: {
+```site: {
     grunt: true,
     area: 'frontend',
     name: 'blueacorn/site',
@@ -32,8 +31,7 @@ Only the partial name is required. Do not include the underscore or the .scss ex
 
 ### Example
 
-```
-files: [
+```files: [
     'blueacorn-super-selects',
     'fonts',
     'madisonisland',
@@ -63,6 +61,5 @@ ieFiles: [
 
 Here you will include your theme fallback. Add the name in single quotes, seperated by a comma.
 
-```
-    theme_fallback: ['enterprise','rwd']
+```theme_fallback: ['enterprise','rwd']
 ```
