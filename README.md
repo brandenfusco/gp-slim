@@ -42,10 +42,11 @@ It's like eating a **handful** of _pre-shelled_ front end magento plugins.
 
 ###### [Using Modman](id:usingmodman)
 
-	$: cd /path/to/magento/webroot
-	$/path/to/magento/webroot/: modman init
-	$/path/to/magento/webroot/: modman clone git@github.com:BlueAcornInc/green-pistachio.git
-
+```shell
+$: cd webroot
+$: modman init
+$: modman clone git@github.com:BlueAcornInc/green-pistachio.git
+```
 
 ##### [Theme Compilation](id:theme)
 
@@ -58,24 +59,27 @@ modman will install a directory named **blueacornui** to your project's root con
 
 **installation (one-time)**
 
-	$: cd /path/to/blueacornui
-	$/path/to/blueacornui/: sh setup.sh site
-
+```shell
+$: cd blueacornui
+$ blueacornui/: sh setup.sh site
+```
 **live development**
 Run the following command to watch your app & skin directories for changes and compile SASS & JS on save, as well as clear cache when you modify any XML or PHTML files.
 
-
-	$: cd /path/to/blueacornui
-	$/path/to/blueacornui/: grunt
-
+```shell
+$: cd blueacornui
+$ blueacornui/: grunt
+```
 
 **theme compiling**
 This will lint & compile all your SASS & JS files to css & minified js whenever you save a js, scss file.
 
 If you modify a layout xml or phtml file within your package, the grunt shell command will automatically clear your magento cache.
 
-	$: cd /path/to/blueacornui
-	$/path/to/blueacornui/: grunt compile
+```shell
+$: cd blueacornui
+$ blueacornui/: grunt compile
+```
 
 ##### [Theme Setup](id:setup)
 
