@@ -107,14 +107,12 @@ Used to set base pixel value of fonts for `pem()` function.
 
 IE8 Specific Mixins, `ie8()` & `not-ie8`]
 
-```
-`ie8()`
+```sass
+@incude ie8() { }
+//Takes content and appends `.ie8` in front of it for IE8 specific stylesheets.
 
-Takes content and appends `.ie8` in front of it for IE8 specific stylesheets.
-
-`not-ie8()`
-
-Takes content and renders it only in non IE8 stylesheets.
+@include not-ie8() { }
+//Takes content and renders it only in non IE8 stylesheets.
 ```
 
 ### [_if-resolution.scss](id:if-resolution) [*](https://github.com/BlueAcornInc/green-pistachio/blob/master/webroot/skin/frontend/blueacorn/gp/scss/mixin/_if-resolution.scss)
