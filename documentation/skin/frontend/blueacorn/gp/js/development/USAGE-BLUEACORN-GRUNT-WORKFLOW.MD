@@ -49,7 +49,7 @@ Directories where files are written to after compiling.
 
 Follow link below for additional information on the config files.
 
-* [blueacronui/configs](https://github.com/BlueAcornInc/green-pistachio/tree/master/documentation/skin/frontend/blueacorn/site/js/development/USAGE-BLUEACORN-GRUNT-CONFIGS.MD)
+* [blueacronui/configs](https://github.com/BlueAcornInc/green-pistachio/tree/master/documentation/skin/frontend/blueacorn/gp/js/development/USAGE-BLUEACORN-GRUNT-CONFIGS.MD)
 
 ### Information on the rest of the files
 
