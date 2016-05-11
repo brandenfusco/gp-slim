@@ -20,9 +20,9 @@
 Established for dependencies, `baCoreReady` fires on `document:ready` when the `ba` instance of `BlueAcornCore` is instantiated. 
 
 ##### Example:
-
-		$(document).on('baCoreReady', customFunction);
-
+```javascript
+$(document).on('baCoreReady', customFunction);
+```
 ## Usage
 
 ###[ba](id:ba)
@@ -49,28 +49,29 @@ Established for dependencies, `baCoreReady` fires on `document:ready` when the `
 | `options` | Additional Options Object passed to your module on instantiation. |
 
 ##### Example:
+```javascript
+function MyObject(options) {
+	this.init(options);
+}
 
-		function MyObject(options) {
-			this.init(options);
+MyObject.prototype = {
+	init: function(options) {
+		this.settings {
+			'moduleName': 'MyObject'
+			'debug': false
 		}
 		
-		MyObject.prototype = {
-			init: function(options) {
-				this.settings {
-					'moduleName': 'MyObject'
-					'debug': false
-				}
-				
-				ba.overrideSettings(this.settings, options);
-				
-				ba.watchConsole(this.settings); // Will return {'moduleName':'MyObject','debug':true}
-			}
-		};
+		ba.overrideSettings(this.settings, options);
 		
-		ba.myObject = new MyObject({
-			'debug': true
-		});
-		
+		ba.watchConsole(this.settings); // Will return {'moduleName':'MyObject','debug':true}
+	}
+};
+
+ba.myObject = new MyObject({
+	'debug': true
+});
+```
+
 ###[setupDebugging](id:setupdebugging)
 
 `setupDebugging(moduleSettings)` displays module specific information information in the console when Development Mode is set to `yes` in **System > Config > Blue Acorn > Green Pistachio Settings**
@@ -82,30 +83,30 @@ Established for dependencies, `baCoreReady` fires on `document:ready` when the `
 | `moduleSettings` | Default Settings Object for your Module, generally `this.settings` |
 
 ##### Example:
+```javascript
+function MyObject(options) {
+	this.init(options);
+}
 
-		function MyObject(options) {
-			this.init(options);
+MyObject.prototype = {
+	init: function(options) {
+		this.settings = {
+			'moduleName': 'MyObject',
+			'debug': false
 		}
+	
+		ba.setupDebugging(this.settings);
 		
-		MyObject.prototype = {
-			init: function(options) {
-				this.settings = {
-					'moduleName': 'MyObject',
-					'debug': false
-				}
-			
-				ba.setupDebugging(this.settings);
-				
-				/* 
-				 * Will Console Log:
-				 * MyObject Loaded!!!
-				 * {'moduleName':'MyObject','debug':false}
-				 */
-			 }
-		};
-		
-		ba.myObject = new MyObject({});
-		
+		/* 
+		 * Will Console Log:
+		 * MyObject Loaded!!!
+		 * {'moduleName':'MyObject','debug':false}
+		 */
+	 }
+};
+
+ba.myObject = new MyObject({});
+```	
 ###[watchConsole](id:watch)
 
 `watchConsole(message)` will console log development debugging information if **System > Config > Blue Acorn > Green Pistachio Settings** Development Mode is set to `yes`.
@@ -119,25 +120,25 @@ Established for dependencies, `baCoreReady` fires on `document:ready` when the `
 | `$element` | `DOM` element you would like to detect passed as `String` |
 
 ##### Example:
+```javascript
+function MyObject(options) {
+	this.init(options)
+}
 
-		function MyObject(options) {
-			this.init(options)
+MyObject.prototype = {
+	init: function(options) {
+		this.settings = {
+			'moduleName': 'MyObject',
+			'debug': false
 		}
 		
-		MyObject.prototype = {
-			init: function(options) {
-				this.settings = {
-					'moduleName': 'MyObject',
-					'debug': false
-				}
-				
-				if(ba.checkForElement('body')){
-					// Execute Custom JS
-				}
-		};
-		
-		ba.myObject = new MyObject({});
-		
+		if(ba.checkForElement('body')){
+			// Execute Custom JS
+		}
+};
+
+ba.myObject = new MyObject({});
+```	
 ###[debounce](id:debounce)
 
 `debounce(func, wait, immediate)`  Returns a function that will only be triggered once, after inactivity of `wait` ms, ported from [_underscore.js](http://underscorejs.org/docs/underscore.html)
