@@ -61,7 +61,8 @@ ieFiles: [
 
 ## Specify your theme fallback structure
 
-Here you will include your theme fallback. Add the name in single quotes, seperated by a comma.
+Here you will include your theme fallback. Add the name in single quotes, separated by a comma.
 
-```theme_fallback: ['enterprise','rwd']
+```javascript
+theme_fallback: ['enterprise','rwd']
 ```
