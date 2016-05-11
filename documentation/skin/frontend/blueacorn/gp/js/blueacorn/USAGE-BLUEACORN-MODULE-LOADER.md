@@ -22,7 +22,7 @@ Module Loading does not start until baCoreReady event is fired.
 
 Using this process, we can store references to any element, and reuse them in other modules.
 
-```
+```javascript
 ba.moduleLoader.define('Config', [], function() {
     return {
         elements: {
@@ -42,7 +42,7 @@ ba.moduleLoader.define('Accordion', ['Config'], function(Config) {
 
 ## Utilizing other modules methods without use of triggers
 
-```
+```javascript
 ba.moduleLoader.define('MegaMenu', [], function() {
     function MegaMenu() {}
     
@@ -69,7 +69,7 @@ After defining a new module, when we return 'new' it will act as a singleton whe
 
 If we return the constructor, we will need to instantiate it and potentially have multiple instances
 
-```
+```javascript
 ba.moduleLoader.define('ListItem', [], function() {
     function ListItem() {}
     
