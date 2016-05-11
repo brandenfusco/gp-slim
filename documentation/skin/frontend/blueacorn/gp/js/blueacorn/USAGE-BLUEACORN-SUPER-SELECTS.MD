@@ -34,13 +34,19 @@
 
 3. Edit Your Grunt File and add the Super Selects CMS Page Style Sheet to your SASS Task where applicable:
         
-        '<%=skinDir%>/css/blueacorn-super-selects.css' : '<%=skinDir%>/scss/blueacorn-super-selects.scss'
+```javascript
+<%=skinDir%>/css/blueacorn-super-selects.css' : '<%=skinDir%>/scss/blueacorn-super-selects.scss
+```
 4. Update your `scss/_core.scss` file to include the Super Select Partials, usually with your other Blue Acorn stuff:
 
-        '@import "blueacorn/super-selects";
+```sass
+@import "blueacorn/super-selects";
+```
 5. Add `scss/mixins/_ie8.scss` to the bottom of your `scss/_framework.scss` file:
 
-        '@import "mixin/ie8";
+```sass
+@import "mixin/ie8";
+```
 6. Recompile your SASS/CSS & JavaScript with **Grunt**
 
 
@@ -69,15 +75,16 @@
 | `blackList` | Array of css classes/selectors to not be styled by Super Selects Javascript | `['.no-style']`
 
 ###Example Configuration, made by editing `skin/js/blueacorn/blueacorn-super-selects.js`:
-
-        if(ba !== undefined) {
-            ba.SuperSelect = new SuperSelects({
-                'displayType': 'under',
-                'truncateAmount': 46,
-                'imageType': 'image',
-                'optionLimites': 20,
-            });
-        }
+```javascript
+if(ba !== undefined) {
+    ba.SuperSelect = new SuperSelects({
+        'displayType': 'under',
+        'truncateAmount': 46,
+        'imageType': 'image',
+        'optionLimites': 20,
+    });
+}
+```
 ##[Extending Super Selects](id:extend)
 
 Super Selects are easily extendible out of the box to create any kind of custom interaction you may need.  Along with the Out of the Box options, follow the instructions below to extend, included is an example of a `top` `displayType` that could be added.
@@ -86,7 +93,9 @@ Super Selects are easily extendible out of the box to create any kind of custom 
 
 1. The first step to adding your own select interaction is by extending the typeArray, to add your new `displayType`:
 
-        SuperSelects.prototype.settings.typeArray.push('top');
+```javascript
+SuperSelects.prototype.settings.typeArray.push('top');
+```
         
 2. Next you'll want to create the appropriate methods that will be called dynamically for your select type.  The methods specific to `top` will be called dynamically, and will rollback to the default methods if you don't need to extend all of them.
 
@@ -99,134 +108,138 @@ Super Selects are easily extendible out of the box to create any kind of custom 
 
     **Example usafe of the dynamic methods**
     
-        (function($){
-            
-            /**
-             * Build Array of Objects with Values of Current Select
-             * Options for Top Selects
-             * @param opts Array of Option Elements within Current Select
-             * @return Array | Array of Select Options
-             */
-            SuperSelects.prototype.buildOptionObjectTop = function(opts) {
-                var optionsArray = [];
+```javascript    
+(function($){
+    
+    /**
+     * Build Array of Objects with Values of Current Select
+     * Options for Top Selects
+     * @param opts Array of Option Elements within Current Select
+     * @return Array | Array of Select Options
+     */
+    SuperSelects.prototype.buildOptionObjectTop = function(opts) {
+        var optionsArray = [];
 
-                $.each($(opts), function(idx, opt){
-                    var superSelectOption = {
-                        'value': $(opt).attr('value').length > 0 ? $(opt).attr('value') : '',
-                        'selected': $(opt).prop('selected'),
-                        'disabled': $(opt).prop('disabled'),
-                        'content': $(opt).html()
-                    };
-    
-                    optionsArray.push(superSelectOption);
-                });
-    
-                return optionsArray;
+        $.each($(opts), function(idx, opt){
+            var superSelectOption = {
+                'value': $(opt).attr('value').length > 0 ? $(opt).attr('value') : '',
+                'selected': $(opt).prop('selected'),
+                'disabled': $(opt).prop('disabled'),
+                'content': $(opt).html()
             };
-            
-            /**
-             * Build the LI Elements within the Current Top Super
-             * Select Options
-             * @param  opt Individual Select Option Object
-             * @param  selectOptions jQuery DOM Object of ba-options Div
-             */
-            SuperSelects.prototype.buildSelectOptionTop = function(opt, selectOptions) {
-                this.buildSelectOptionWithDelay(opt, selectOptions, idx, 0.15, 0.10);
-            };
-            
-            /**
-             * Click Observer for Super Select that opens to the Top
-             * @param currentSelect jQueryDOM Object of Select
-             */
-            setClickObserverTop = function(currentSelect) {
-                var self        = this,
-                    selectShiv  = $(currentSelect).siblings('.ba-select-box').find('.ba-shiv');
+
+            optionsArray.push(superSelectOption);
+        });
+
+        return optionsArray;
+    };
     
-                    // Add Click Event tot he Super Select Shiv
-                    selectShiv.on('click touchstart', function(){
-                        // Detect if the Shiv is Already Open
-                        var baSelectBox = $(currentSelect).siblings('.ba-select-box');
-                        if(!$(baSelectBox).hasClass('open')){
+    /**
+     * Build the LI Elements within the Current Top Super
+     * Select Options
+     * @param  opt Individual Select Option Object
+     * @param  selectOptions jQuery DOM Object of ba-options Div
+     */
+    SuperSelects.prototype.buildSelectOptionTop = function(opt, selectOptions) {
+        this.buildSelectOptionWithDelay(opt, selectOptions, idx, 0.15, 0.10);
+    };
     
-                            self.openOptions(currentSelect);
+    /**
+     * Click Observer for Super Select that opens to the Top
+     * @param currentSelect jQueryDOM Object of Select
+     */
+    setClickObserverTop = function(currentSelect) {
+        var self        = this,
+            selectShiv  = $(currentSelect).siblings('.ba-select-box').find('.ba-shiv');
+
+            // Add Click Event tot he Super Select Shiv
+            selectShiv.on('click touchstart', function(){
+                // Detect if the Shiv is Already Open
+                var baSelectBox = $(currentSelect).siblings('.ba-select-box');
+                if(!$(baSelectBox).hasClass('open')){
+
+                    self.openOptions(currentSelect);
+
+                    var boxHeight = $(baSelectBox).find('.ba-options').height();
+                    var newMargin = boxHeight - (boxHeight * 2);
+
+                    $(baSelectBox).find('.ba-options').css("margin-top", newMargin);
+
+                }else{
+                    self.closeOptions(currentSelect);
+                }
+            });
+    };
     
-                            var boxHeight = $(baSelectBox).find('.ba-options').height();
-                            var newMargin = boxHeight - (boxHeight * 2);
+    /**
+     *  Click Observer for Individual Options, it's really un-needed.
+     *
+     *  setOptionObserversTop = function(currentSelect) {
+     *
+     *  };
+     */
     
-                            $(baSelectBox).find('.ba-options').css("margin-top", newMargin);
-    
-                        }else{
-                            self.closeOptions(currentSelect);
-                        }
-                    });
-            };
-            
-            /**
-             *  Click Observer for Individual Options, it's really un-needed.
-             *
-             *  setOptionObserversTop = function(currentSelect) {
-             *
-             *  };
-             */
-            
-        })(jQuery)
+})(jQuery)
+```
         
 3.  You'll want to add CSS to finish out your customizations.  So you'll want to modify your `scss/blueacorn/_super-selects.scss` file:
-        
-        .ba-select-box.ba-top {
-            .ba-options {
-                display: block;
-                float: left;
-                width: 100%;
-                position: absolute;
-                top: 0;
-                opacity: 0;
-                visibility: hidden;
-                transition: transform 0.3s, opacity 0.3s, visibility 0.3s;
-                transform: scale(.85) translate3d(0, -10%, 0);
-                &:after {
-                    position: absolute;
-                    display: block;
-                    visibility: visible;
-                    content: " ";
-                    text-indent: -999em;
-                    bottom: -14px;
-                    top: auto;
-                    left: 50%;
-                    margin-left: -10px;
-                    width: 19px;
-                    height: 14px;
-                    background: url('../images/blueacorn/super-selects/super-selects-sprite.png') no-repeat -68px -68px;
-                    @include rotate(180deg);
-                }
-            }
-            &.open {
-                .ba-options {
-                    opacity: 1;
-                    visibility: visible;
-                    transform: scale(1) translate3d(0, 0, 0);
-                    &:after {
-                        visibility: visible;
-                        opacity: 1;
-                    }
-                }
-                .ba-shiv {
-                    color: $white;
-                    border-color: $black-60;
-                    @include gradient-vertical($black-60, $black-70);
-                }
-                .ba-shiv-content { color: $white; }
-                .ba-arrow { background-position: -34px 0; }
+
+```sass        
+.ba-select-box.ba-top {
+    .ba-options {
+        display: block;
+        float: left;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: transform 0.3s, opacity 0.3s, visibility 0.3s;
+        transform: scale(.85) translate3d(0, -10%, 0);
+        &:after {
+            position: absolute;
+            display: block;
+            visibility: visible;
+            content: " ";
+            text-indent: -999em;
+            bottom: -14px;
+            top: auto;
+            left: 50%;
+            margin-left: -10px;
+            width: 19px;
+            height: 14px;
+            background: url('../images/blueacorn/super-selects/super-selects-sprite.png') no-repeat -68px -68px;
+            @include rotate(180deg);
+        }
+    }
+    &.open {
+        .ba-options {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1) translate3d(0, 0, 0);
+            &:after {
+                visibility: visible;
+                opacity: 1;
             }
         }
+        .ba-shiv {
+            color: $white;
+            border-color: $black-60;
+            @include gradient-vertical($black-60, $black-70);
+        }
+        .ba-shiv-content { color: $white; }
+        .ba-arrow { background-position: -34px 0; }
+    }
+}
+```
 
 4. Finally update your select to use your `.ba-top` class:
-
-        <select name="top" id="overthetop" class="ba-top">
-            <option>Is Blankman the best movie Ever?</option>
-            <option value="1">Yes</option>
-            <option value="1000">YES!</option>
-            <option value="100000">There are other movies?</option>
-            <option value="-1">The Meteor Man was better, all that Gold Hair!</option>
-        </select>
-        
+```html
+<select name="top" id="overthetop" class="ba-top">
+    <option>Is Blankman the best movie Ever?</option>
+    <option value="1">Yes</option>
+    <option value="1000">YES!</option>
+    <option value="100000">There are other movies?</option>
+    <option value="-1">The Meteor Man was better, all that Gold Hair!</option>
+</select>
+```
