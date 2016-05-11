@@ -35,3 +35,54 @@
 | `checkout-success` | Checkout Success Page |
 | `private-sales` | When logged in Private Sales |
 | `my-account` | My Account Pages, Account Signup, Login | 
+
+### Examples
+
+```
+FROM: blueacorn-core-page.js
+
+identifyPage: function() {
+    var self = this,
+        pageRequest;
+
+    $.each(self.pageTypes, function(idx, pageType){
+        if(self.getPage(pageType.pageName)){
+
+            pageRequest = pageType.pageName;
+            return;
+        }
+    });
+
+    return pageRequest;
+}
+```
+
+```
+FROM: ga_module_library.js
+
+getPage: function(pageType) {
+    var self = this,
+        pageRequest = false,
+        len = self.pageTypes.length,
+        i = 0,
+        pageObj;
+
+    loop1:
+    for(i; i < len; i++){
+        pageObj = self.pageTypes[i];
+
+        if(pageObj.pageName === pageType && !pageRequest){
+            var i2 = 0, len2 = pageObj.bodyClass.length;
+
+            for(i2; i2 < len2; i2++){
+                if($('body').hasClass(pageObj.bodyClass[i2])){
+                    pageRequest = true;
+                    break loop1;
+                }
+            }
+        }
+    }
+
+    return pageRequest;
+}
+```
