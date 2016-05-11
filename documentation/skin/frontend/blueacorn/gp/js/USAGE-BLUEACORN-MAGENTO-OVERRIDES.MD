@@ -23,7 +23,7 @@
 | Method | Description |
 |--------|-------------|
 | `resetChildren` | **After** the `Product.Config.prototype.resetChildren` method is hit `update:selects` custom event fires. |
-| `configureForValues | Fires jQuery `change` event on Configurable Product Selects when `Product.Config.prototype.configureForValues` method is hit. |
+| `configureForValues` | Fires jQuery `change` event on Configurable Product Selects when `Product.Config.prototype.configureForValues` method is hit. |
 | `configureElement` | **After** the `Product.Config.prototype.configureElement` method is hit `update:selects` custom event fires. |
 
 ### [Product.Bundle](id:bundle)
