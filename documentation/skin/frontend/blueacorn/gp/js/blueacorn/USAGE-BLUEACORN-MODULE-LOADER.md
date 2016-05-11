@@ -27,7 +27,7 @@ ba.moduleLoader.define('Config', [], function() {
     return {
         elements: {
             'body': $('body'),
-            'toggleLink: $('.toggle-link');
+            'toggleLink': $('.toggle-link')
         },
         'animationSpeed': 200
     };
