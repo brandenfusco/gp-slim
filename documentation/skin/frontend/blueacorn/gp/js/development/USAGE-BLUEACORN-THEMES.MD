@@ -16,7 +16,8 @@ You may need to change the name of your theme and the URL used for development.
 
 ### Example
 
-```site: {
+```javascript
+site: {
     grunt: true,
     area: 'frontend',
     name: 'blueacorn/site',
@@ -31,7 +32,8 @@ Only the partial name is required. Do not include the underscore or the .scss ex
 
 ### Example
 
-```files: [
+```javascript
+files: [
     'blueacorn-super-selects',
     'fonts',
     'madisonisland',
