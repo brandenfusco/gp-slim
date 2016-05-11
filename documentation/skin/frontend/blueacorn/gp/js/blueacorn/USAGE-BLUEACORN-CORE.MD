@@ -30,9 +30,9 @@ $(document).on('baCoreReady', customFunction);
 `ba` is a global object in which all Blue Acorn Developed Front End Javascript should be attached.
 
 ##### How to attach a javascript object to `ba`:
-
-		ba.myObject = new MyObject({});
-
+```javascript
+ba.myObject = new MyObject({});
+```
 ##### When to use `ba`:
 
 `ba` should be used whenever you are creating custom javascript functionality for Magento's frontend.  The easiest way to do so is by using the `jsmodule` snippet available in [Blue Acorn's Developer Bootstrap](https://github.com/BlueAcornInc/developer-bootstrap)
