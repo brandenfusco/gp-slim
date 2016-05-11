@@ -37,10 +37,8 @@
 | `my-account` | My Account Pages, Account Signup, Login | 
 
 ### Examples
-
-```
 FROM: blueacorn-core-page.js
-
+```javascript
 identifyPage: function() {
     var self = this,
         pageRequest;
@@ -56,10 +54,8 @@ identifyPage: function() {
     return pageRequest;
 }
 ```
-
-```
 FROM: ga_module_library.js
-
+```javascript
 getPage: function(pageType) {
     var self = this,
         pageRequest = false,
