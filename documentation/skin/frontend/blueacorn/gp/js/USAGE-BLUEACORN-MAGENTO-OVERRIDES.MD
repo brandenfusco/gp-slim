@@ -70,6 +70,7 @@
 | Method | Description |
 |--------|-------------|
 | `switchCustomerBalanceCheckbox` | Fix for `customCheckboxes` if `#use_customer_balance` checkbox's `label` is clicked, trigger `payment.switchCustomerBalanceCheckbox` on **100ms** delay. |
+| `switchMethod` |Firing Custom Events in Payment when switching method. |
 
 ### [Shipping](id:shipping)
 
@@ -85,6 +86,7 @@
 | Method | Description |
 |--------|-------------|
 | `nextStep` | **After** the `Billing.prototype.nextStep` method is hit `section:update` custom event fires. |
+| `newAddress` | Firing Custom Checkout Step Event when adding a new address in Billing Form. |
 
 ### [Shipping Method](id:shippingmethod)
 
