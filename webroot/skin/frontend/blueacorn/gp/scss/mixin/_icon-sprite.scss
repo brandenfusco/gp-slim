@@ -1,0 +1,22 @@
+/* -------------------------------------------- *
+ * Icons
+ */
+
+ $icon-sprite-background-width: 100px;
+ $icon-sprite-background-height: 1000px;
+
+ @mixin icon-sprite() {
+     background-image: url(../images/icon_sprite.png);
+     background-repeat: no-repeat;
+     @include image-replacement;
+     @if $mq-support == true {
+         @include if-min-resolution(2) {
+             background-image: url(../images/icon_sprite@2x.png);
+             background-size: $icon-sprite-background-width $icon-sprite-background-height;
+         }
+     }
+ }
+
+.icon-sprite {
+    @include icon-sprite();
+}
