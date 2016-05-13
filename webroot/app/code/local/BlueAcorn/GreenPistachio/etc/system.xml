@@ -39,7 +39,7 @@
                             </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>1</sort_order>
+                            <sort_order>10</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -55,7 +55,7 @@
                                     <label>FancyBox Buttons Helper</label>
                                     <frontend_type>select</frontend_type>
                                     <source_model>adminhtml/system_config_source_yesno</source_model>
-                                    <sort_order>1</sort_order>
+                                    <sort_order>10</sort_order>
                                     <show_in_default>1</show_in_default>
                                     <show_in_website>1</show_in_website>
                                     <show_in_store>1</show_in_store>
@@ -64,7 +64,7 @@
                                     <label>FancyBox Media Helper</label>
                                     <frontend_type>select</frontend_type>
                                     <source_model>adminhtml/system_config_source_yesno</source_model>
-                                    <sort_order>1</sort_order>
+                                    <sort_order>20</sort_order>
                                     <show_in_default>1</show_in_default>
                                     <show_in_website>1</show_in_website>
                                     <show_in_store>1</show_in_store>
@@ -73,7 +73,7 @@
                                     <label>FancyBox Thumbnails Helper</label>
                                     <frontend_type>select</frontend_type>
                                     <source_model>adminhtml/system_config_source_yesno</source_model>
-                                    <sort_order>1</sort_order>
+                                    <sort_order>30</sort_order>
                                     <show_in_default>1</show_in_default>
                                     <show_in_website>1</show_in_website>
                                     <show_in_store>1</show_in_store>
@@ -84,14 +84,14 @@
                 </modals>
                 <sliders translate="label">
                     <label>Slideshow Plugins</label>
-                    <sort_order>101</sort_order>
+                    <sort_order>110</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                     <fields>
                         <bxslidergroup type="group" translate="label">
                             <label>BX Slider</label>
-                            <sort_order>1</sort_order>
+                            <sort_order>10</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -137,7 +137,7 @@
                             </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>10</sort_order>
+                            <sort_order>20</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -149,7 +149,7 @@
                             </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>12</sort_order>
+                            <sort_order>30</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -158,59 +158,11 @@
                 </sliders>
                 <ux>
                     <label>UX Plugins</label>
-                    <sort_order>102</sort_order>
+                    <sort_order>120</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                     <fields>
-                        <headroom translate="label comment">
-                            <label>Headroom.js (V 0.7.0)</label>
-                            <comment>
-                                <![CDATA[<a href="http://wicky.nillia.ms/headroom.js/" target="_blank">Source</a>]]>
-                            </comment>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>9</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </headroom>
-                        <parallax translate="label comment">
-                            <label>Parallax.js (V 1.3.1)</label>
-                            <comment>
-                                <![CDATA[<a href="http://pixelcog.com/parallax.js/" target="_blank">Source</a>]]>
-                            </comment>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>10</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </parallax>
-                        <scrollto translate="label comment">
-                            <label>jQuery ScrollTo (V 2.1.1)</label>
-                            <comment>
-                                <![CDATA[<a href="http://demos.flesler.com/jquery/scrollTo/" target="_blank">Source</a>]]>
-                            </comment>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>4</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </scrollto>
-                        <spinjs>
-                            <label>Spin.js (V 2.3.2)</label>
-                            <comment>
-                                <![CDATA[<a href="http://spin.js.org/" target="_blank">Source</a>]]>
-                            </comment>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>5</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </spinjs>
                         <focuspoint>
                             <label>Focus Point (V 1.1.1)</label>
                             <comment>
@@ -218,16 +170,64 @@
                             </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>6</sort_order>
+                            <sort_order>10</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </focuspoint>
+                        <headroom translate="label comment">
+                            <label>Headroom.js (V 0.7.0)</label>
+                            <comment>
+                                <![CDATA[<a href="http://wicky.nillia.ms/headroom.js/" target="_blank">Source</a>]]>
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </headroom>
+                        <scrollto translate="label comment">
+                            <label>jQuery ScrollTo (V 2.1.1)</label>
+                            <comment>
+                                <![CDATA[<a href="http://demos.flesler.com/jquery/scrollTo/" target="_blank">Source</a>]]>
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </scrollto>
+                        <parallax translate="label comment">
+                            <label>Parallax.js (V 1.3.1)</label>
+                            <comment>
+                                <![CDATA[<a href="http://pixelcog.com/parallax.js/" target="_blank">Source</a>]]>
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </parallax>
+                        <spinjs>
+                            <label>Spin.js (V 2.3.2)</label>
+                            <comment>
+                                <![CDATA[<a href="http://spin.js.org/" target="_blank">Source</a>]]>
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </spinjs>
                     </fields>
                 </ux>
                 <plugins translate="label">
                     <label>Polyfills and Browser Support</label>
-                    <sort_order>103</sort_order>
+                    <sort_order>130</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
@@ -239,47 +239,11 @@
                             </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>4</sort_order>
+                            <sort_order>10</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </headjs>
-                        <selectivizr translate="label comment">
-                            <label>Selectivizr (V 1.0.2)</label>
-                            <comment>
-                                <![CDATA[<a href="http://selectivizr.com/" target="_blank">Source</a>]]>
-                            </comment>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>5</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </selectivizr>
-                        <placeholderjs translate="label comment">
-                            <label>Placeholders.js (V 4.0.1)</label>
-                            <comment>
-                                <![CDATA[<a href="http://jamesallardice.github.io/Placeholders.js/" target="_blank">Source</a>]]>
-                            </comment>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>7</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </placeholderjs>
-                        <svginjector translate="label comment">
-                            <label>SVG Injector (V 1.1.3)</label>
-                            <comment>
-                                <![CDATA[<a href="https://github.com/iconic/SVGInjector" target="_blank">Source</a>]]>
-                            </comment>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>8</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </svginjector>
                         <html5shiv translate="label comment">
                             <label>HTML5Shiv (V 3.7.3)</label>
                             <comment>
@@ -287,11 +251,23 @@
                             </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>11</sort_order>
+                            <sort_order>20</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </html5shiv>
+                        <placeholderjs translate="label comment">
+                            <label>Placeholders.js (V 4.0.1)</label>
+                            <comment>
+                                <![CDATA[<a href="http://jamesallardice.github.io/Placeholders.js/" target="_blank">Source</a>]]>
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </placeholderjs>
                         <responsiveimg>
                             <label>Responsive Images (V 1.1)</label>
                             <comment>
@@ -299,11 +275,35 @@
                             </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>12</sort_order>
+                            <sort_order>40</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </responsiveimg>
+                        <selectivizr translate="label comment">
+                            <label>Selectivizr (V 1.0.2)</label>
+                            <comment>
+                                <![CDATA[<a href="http://selectivizr.com/" target="_blank">Source</a>]]>
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </selectivizr>
+                        <svginjector translate="label comment">
+                            <label>SVG Injector (V 1.1.3)</label>
+                            <comment>
+                                <![CDATA[<a href="https://github.com/iconic/SVGInjector" target="_blank">Source</a>]]>
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </svginjector>
                     </fields>
                 </plugins>
             </groups>
@@ -313,7 +313,7 @@
             <label>Green Pistachio Settings</label>
             <tab>blueacorn</tab>
             <frontend_type>text</frontend_type>
-            <sort_order>1001</sort_order>
+            <sort_order>2000</sort_order>
             <show_in_default>1</show_in_default>
             <show_in_website>1</show_in_website>
             <show_in_store>1</show_in_store>
@@ -333,7 +333,7 @@
                             </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>1</sort_order>
+                            <sort_order>10</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -343,7 +343,7 @@
                 <superselects translate="label">
                     <label>Super Selects</label>
                     <frontend_type>text</frontend_type>
-                    <sort_order>101</sort_order>
+                    <sort_order>200</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
@@ -355,7 +355,7 @@
                             </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>1</sort_order>
+                            <sort_order>10</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -369,7 +369,7 @@
             <label>Lazyload Categories</label>
             <tab>blueacorn</tab>
             <frontend_type>text</frontend_type>
-            <sort_order>1002</sort_order>
+            <sort_order>3000</sort_order>
             <show_in_default>1</show_in_default>
             <show_in_website>1</show_in_website>
             <show_in_store>1</show_in_store>
@@ -388,7 +388,7 @@
                             </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>1</sort_order>
+                            <sort_order>10</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
