@@ -82,19 +82,19 @@
                     <owl_two name="owl_two"/>
                 </sliders>
                 <ux>
+                    <focuspoint name="focuspoint"/>
                     <headroom name="headroom"/>
                     <parallax name="parallax"/>
                     <scrollto name="scrollto"/>
                     <spinjs name="spinjs"/>
-                    <focuspoint name="focuspoint"/>
                 </ux>
                 <plugins>
                     <headjs name="headjs"/>
-                    <selectivizr name="selectivizr"/>
-                    <placeholderjs name="placeholderjs"/>
-                    <svginjector name="svginjector"/>
                     <html5shiv name="html5shiv"/>
+                    <placeholderjs name="placeholderjs"/>
                     <responsiveimg name="responsiveimg"/>
+                    <selectivizr name="selectivizr"/>
+                    <svginjector name="svginjector"/>
                 </plugins>
             </javascriptplugins>
             <styleguide>
