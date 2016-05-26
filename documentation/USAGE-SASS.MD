@@ -13,7 +13,8 @@
     * [_common.scss](#common)
 * [mixins](#mixins)
     * [_breakpoint.scss](#breakpoint)
-	* [_ie8.scss](#ie8)
+    * [_family.scss](#family)
+    * [_ie8.scss](#ie8)
     * [_if-resolution.scss](#if-resolution)
     * [_product-list.scss](#product-list)
     * [_touch-button.scss](#touch-button)
@@ -102,6 +103,12 @@ Used to set base pixel value of fonts for `pem()` function.
 ### [_breakpoint.scss](id:breakpoint) [*](https://github.com/BlueAcornInc/green-pistachio/blob/master/webroot/skin/frontend/blueacorn/gp/scss/mixin/_breakpoint.scss)
 
 `TBD`
+
+### [_family.scss](id:family) [*](https://github.com/BlueAcornInc/green-pistachio/blob/master/webroot/skin/frontend/blueacorn/gp/scss/mixin/_family.scss)
+
+`Family.scss is a set of 20 smart Sass mixins which will help you to manage the style of :nth-child'ified elements, in an easy and classy way.`
+
+[Family.scss website](https://lukyvj.github.io/family.scss/)
 
 ### [_ie8.scss](id:ie8) [*](https://github.com/BlueAcornInc/green-pistachio/blob/master/webroot/skin/frontend/blueacorn/gp/scss/mixin/_ie8.scss)
 
