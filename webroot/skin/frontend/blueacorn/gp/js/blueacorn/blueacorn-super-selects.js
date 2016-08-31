@@ -796,7 +796,7 @@ function SuperSelects(options) {
 
             self.closeOptions(currentSelect);
 
-            if(currentSelect.optionsArray === undefined && currentSelect.optionsArray !== "") {
+            if((currentSelect.optionsArray === undefined && currentSelect.optionsArray !== "") || currentSelect.optionsArray.length !== $(currentSelect).children().length) {
                 self.buildOptionsObjects(currentSelect);
             }
 
