@@ -15,8 +15,8 @@ module.exports = function(grunt) {
 
     grunt.registerTask('staging', 'Staging Theme Compilation', function() {
         if(arguments[0]) {
-            grunt.task.run('concurrent:' + arguments[0] + 'Production');
-            grunt.task.run('concurrent:' + arguments[0] + 'PostcssProduction');
+            grunt.task.run('sass:' + arguments[0] + 'Production');
+            grunt.task.run('postcss:' + arguments[0] + 'Production');
             grunt.task.run('jshint:' + arguments[0]);
             grunt.task.run('uglify:' + arguments[0] + 'Production');
             grunt.task.run('concurrent:' + arguments[0] + 'UseBanner');
@@ -24,8 +24,8 @@ module.exports = function(grunt) {
         }else{
             _.each(themes, function(theme, name){
                 if(theme.grunt) {
-                    grunt.task.run('concurrent:' + name + 'Production');
-                    grunt.task.run('concurrent:' + name + 'PostcssProduction');
+                    grunt.task.run('sass:' + name + 'Production');
+                    grunt.task.run('postcss:' + name + 'Production');
                     grunt.task.run('jshint:' + name);
                     grunt.task.run('uglify:' + name + 'Production');
                     grunt.task.run('concurrent:' + name + 'UseBanner');

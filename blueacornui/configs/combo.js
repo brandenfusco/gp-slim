@@ -27,11 +27,6 @@ module.exports = {
                 'css/' + theme[themeName].files[i] + '.css';
         }
 
-        for (i = 0; i < theme[themeName].ieFiles.length; i ++) {
-            cssStringArray[v] = this.autopath(themeName, 'skin') + 'css/' + theme[themeName].ieFiles[i] + '.css';
-            v++;
-        }
-
         return cssStringArray;
     },
     scssFiles: function(themeName) {
@@ -75,23 +70,6 @@ module.exports = {
                 }
                 return jsFiles;
         }
-    },
-    ieFiles: function(themeName) {
-        var scssStringArray = [],
-            cssStringArray = [],
-            scssFiles = {},
-            i = 0;
-
-        for(i; i < theme[themeName].ieFiles.length; i++) {
-            cssStringArray[i] = this.autopath(themeName, 'skin') +
-                'css/' + theme[themeName].ieFiles[i] + '.css';
-
-            scssStringArray[i] = this.autopath(themeName, 'skin') +
-                'scss/' + theme[themeName].ieFiles[i] + '.scss';
-
-            scssFiles[cssStringArray[i]] = scssStringArray[i];
-        }
-        return scssFiles;
     },
     themeFallback: function(themeName) {
         var self = this,

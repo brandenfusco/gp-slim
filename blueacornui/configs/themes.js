@@ -67,17 +67,6 @@ module.exports = {
             'styles-product',
             'styles'
         ],
-        ieFiles: [
-            'madisonisland-ie8',
-            'styleguide-ie8',
-            'styles-account-ie8',
-            'styles-cart-ie8',
-            'styles-category-ie8',
-            'styles-checkout-ie8',
-            'styles-cms-ie8',
-            'styles-product-ie8',
-            'styles-ie8'
-        ],
         jsdirs: [
             'blueacorn',
             'development'
@@ -96,9 +85,6 @@ module.exports = {
     //     locale: 'en_US',
     //     files: [
     //         'test'
-    //     ],
-    //     ieFiles: [
-    //         'test-ie8'
     //     ],
     //     jsdirs: [
     //         'blueacorn'
