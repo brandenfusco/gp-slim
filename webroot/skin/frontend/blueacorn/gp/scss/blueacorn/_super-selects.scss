@@ -47,18 +47,14 @@
     padding: 0 40px 0 10px;
     position: relative;
     width: 100%;
-    @include ie8 {
-        border: 1px solid $black-20;
-    }
+
     .ba-shiv-content {
         color: $black-80;
         display: inline-block;
         font: 300 1em/30px $f-stack-default;
-        // @include not-ie8() {
-            height: 100%;
-            float: left;
-            overflow: hidden;
-        // }
+        height: 100%;
+        float: left;
+        overflow: hidden;
 
     }
     .ba-arrow {
@@ -81,25 +77,18 @@
     top: 0;
     left: 0;
     width: 100%;
-    @include not-ie8() {
-        width: auto;
-        min-width: 100%;
-    }
+    width: auto;
+    min-width: 100%;
     padding: 0 10px;
     border-radius: 5px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, .25);
-    @include ie8 {
-        border: 1px solid $black-20;
-    }
     border: 1px solid $white;
     cursor: pointer !important;
     ul {
         list-style: none;
         margin: 0;
         width: 100%;
-        @include not-ie8() {
-            float: left;
-        }
+        float: left;
         li {
             padding: 0;
             margin: 0;
@@ -109,16 +98,9 @@
             cursor: pointer;
             font: 300 1em/30px $f-stack-default !important;
             color: $black-80;
-            @include not-ie8() {
-                white-space: nowrap;
-            }
+            white-space: nowrap;
             &:hover {
                 color: $brand-primary;
-            }
-            @include ie8 {
-                &.hover {
-                    color: $brand-primary;
-                }
             }
             span {
                 font-style: normal;
@@ -144,64 +126,51 @@
     .ba-options {
         display: block;
         visibility: hidden;
-        @include not-ie8 {
-            background: none;
-            box-shadow: 0 0 0 rgba(255,255,255,0);
-            border: 0;
-            &:before {
-                content: "";
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                left: 0;
-                top: 0;
-                transform: scale3d(1,0,1);
-                transform-origin: 50% 0%;
-                @include gradient-vertical($white, darken($white, 2%));
-                border-radius: 5px;
-                box-shadow: 0 1px 4px rgba(0,0,0,.25);
-                border: 1px solid $white;
-                transition: transform 0.4s;
-            }
-            ul li {
-                opacity: 0;
-                transition: opacity 0.4s;
-                transition-delay: 0.2s;
-                &:first-child {
-                    opacity: 1;
-                }
-            }
-        }
-        @include ie8 {
-            border: 1px solid $white;
-            left: 0;
+        background: none;
+        box-shadow: 0 0 0 rgba(255,255,255,0);
+        border: 0;
+        &:before {
+            content: "";
             position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
             top: 0;
+            transform: scale3d(1,0,1);
+            transform-origin: 50% 0%;
             @include gradient-vertical($white, darken($white, 2%));
+            border-radius: 5px;
+            box-shadow: 0 1px 4px rgba(0,0,0,.25);
+            border: 1px solid $white;
+            transition: transform 0.4s;
+        }
+        ul li {
+            opacity: 0;
+            transition: opacity 0.4s;
+            transition-delay: 0.2s;
+            &:first-child {
+                opacity: 1;
+            }
         }
     }
     &.open {
-        ul li { opacity: 1; }
         .ba-options {
             visibility: visible;
-            @include not-ie8() {
-                &:before {
-                    transform: scale3d(1,1,1);
-                    z-index: -1;
-                }
+            ul li { opacity: 1; }
+            &:before {
+                transform: scale3d(1,1,1);
+                z-index: -1;
             }
         }
     }
 }
 
-.ba-select-box.ba-left, .ba-select-box.ba-right, .ba-select-box.ba-under {
+.ba-left, .ba-right, .ba-under {
     .ba-options {
         display: block;
         float: left;
         width: auto;
-        @include not-ie8() {
-            min-width: 0;
-        }
+        min-width: 0;
         position: absolute;
         left: auto;
         opacity: 0;
@@ -231,7 +200,8 @@
         }
         .ba-shiv-content { color: $white; }
     }
-}.ba-left, .ba-right {
+}
+.ba-left, .ba-right {
      .ba-options { top: 50%; }
  }
 .ba-left {
@@ -307,38 +277,23 @@
         visibility: hidden;
         box-shadow: 0 0 0 rgba(255,255,255,0);
         border: 0;
-        @include not-ie8 {
-            &:before {
-                content: "";
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                left: 0;
-                top: 0;
-                transform: scale3d(1,0,1);
-                transform-origin: 50% 0%;
-                @include gradient-vertical($white, darken($white, 2%));
-                border-radius: 5px;
-                box-shadow: 0 1px 4px rgba(0,0,0,.25);
-                border: 1px solid $white;
-                transition: transform 0.4s;
-            }
-        }
-        @include ie8 {
-            border: 1px solid $black-20;
-            left: 0;
+
+        &:before {
+            content: "";
             position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
             top: 0;
+            transform: scale3d(1,0,1);
+            transform-origin: 50% 0%;
             @include gradient-vertical($white, darken($white, 2%));
-            ul {
-                width: 100%;
-                float: left;
-                li.first-child {
-                    float: left;
-                    width: 100%;
-                }
-            }
+            border-radius: 5px;
+            box-shadow: 0 1px 4px rgba(0,0,0,.25);
+            border: 1px solid $white;
+            transition: transform 0.4s;
         }
+
     }
     .ba-shiv {
         height: 52px;
@@ -365,9 +320,6 @@
         }
         transition: opacity 0.4s;
         transition-delay: 0.2s;
-        @include ie8 {
-            ul li { opacity: 1; }
-        }
     }
     .ba-img-span {
         display: inline-block;
@@ -402,42 +354,26 @@
         display: block;
         visibility: hidden;
         overflow: hidden;
-        @include not-ie8 {
-            box-shadow: 0 0 0 rgba(255,255,255,0);
-            border: 0;
-            transform: scale3d(1,0,1);
-            transform-origin: 50% 50%;
-            transition: transform 0.4s;
-            &:before {
-                content: "";
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                left: 0;
-                top: 0;
-                transform: scale3d(1,0,1);
-                transform-origin: 50% 50%;
-                @include gradient-vertical($white, darken($white, 2%));
-                border-radius: 5px;
-                box-shadow: 0 1px 4px rgba(0,0,0,.25);
-                border: 1px solid $white;
-                transition: transform 0.4s;
-            }
-        }
-        @include ie8 {
+        box-shadow: 0 0 0 rgba(255,255,255,0);
+        border: 0;
+        transform: scale3d(1,0,1);
+        transform-origin: 50% 50%;
+        transition: transform 0.4s;
+
+        &:before {
+            content: "";
             position: absolute;
-            border: 1px solid $black-20;
+            width: 100%;
+            height: 100%;
             left: 0;
             top: 0;
+            transform: scale3d(1,0,1);
+            transform-origin: 50% 50%;
             @include gradient-vertical($white, darken($white, 2%));
-            ul {
-                width: 100%;
-                float: left;
-                li.first-child {
-                    float: left;
-                    width: 100%;
-                }
-            }
+            border-radius: 5px;
+            box-shadow: 0 1px 4px rgba(0,0,0,.25);
+            border: 1px solid $white;
+            transition: transform 0.4s;
         }
     }
     &.open .ba-options {
@@ -477,12 +413,6 @@
                 opacity: 0;
                 transform: translate3d(30%, 0, 0);
                 transition: transform 0.3s, opacity 0.3s;
-                @include ie8 {
-                    &.hover span {
-                        border-bottom: 2px solid $black;
-                        color: $black;
-                    }
-                }
             }
             li span {
                 font-size: 32px;
@@ -548,9 +478,7 @@
             position: relative;
             top: 5px;
             display: none;
-            @include not-ie8() {
-                float: left;
-            }
+            float: left;
         }
     }
     &.setup {
@@ -578,17 +506,17 @@
         ul {
             width: 100%;
             padding: 20px;
-            @include not-ie8() {
-                li { white-space: normal; }
-            }
-            li span {
-                font-size: 32px;
-                line-height: 40px;
-                color: $brand-primary;
-                border-bottom: 2px solid rgba(255,255,255,0);
-                &:hover {
-                    border-bottom: 2px solid $black;
-                    color: $black;
+            li {
+                white-space: normal;
+                span {
+                    font-size: 32px;
+                    line-height: 40px;
+                    color: $brand-primary;
+                    border-bottom: 2px solid rgba(255,255,255,0);
+                    &:hover {
+                        border-bottom: 2px solid $black;
+                        color: $black;
+                    }
                 }
             }
         }
@@ -607,12 +535,7 @@
             transform: scale3d(0.8,0.8,1);
             height: 95%;
             opacity: 0;
-            @include ie8 {
-                &.hover span {
-                    border-bottom: 2px solid $black;
-                    color: $black;
-                }
-            }
+
             &.first {
                 display: none;
             }
@@ -687,40 +610,27 @@
     .ba-options li:hover {
         color: $black-80 !important;
     }
-    @include not-ie8 {
-        .ba-options:before {
-            @include gradient-vertical(lighten($brand-danger, 5%), $brand-danger);
-            text-shadow: 0 2px 0 lighten($brand-danger, 5%);
-            border-color: $brand-danger;
-            &:hover {
-                background: $brand-danger;
-            }
-        }
-        .ba-over .ba-options, .ba-thumbnail .ba-options {
-            background: none;
-            border: 0;
-            box-shadow: 0 0 0 rgba(255, 255, 255, 0);
-        }
-        .ba-fullscreen .ba-options, .ba-fullthumb .ba-options {
-            background: rgba(255,255,255,.9);
-            border: 0;
-            text-shadow: none;
-        }
-        .ba-fullthumb .ba-options {
-            background: rgba(0,0,0,.75);
+
+    .ba-options:before {
+        @include gradient-vertical(lighten($brand-danger, 5%), $brand-danger);
+        text-shadow: 0 2px 0 lighten($brand-danger, 5%);
+        border-color: $brand-danger;
+        &:hover {
+            background: $brand-danger;
         }
     }
-    @include ie8 {
-        .ba-shiv {
-            border-color: darken($brand-danger, 20%);
-        }
-        .ba-options {
-            @include gradient-vertical(lighten($brand-danger, 5%), $brand-danger);
-            border-color: darken($brand-danger, 20%);
-            li.hover, li.hover span {
-                color: $black-80;
-            }
-        }
+    .ba-over .ba-options, .ba-thumbnail .ba-options {
+        background: none;
+        border: 0;
+        box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+    }
+    .ba-fullscreen .ba-options, .ba-fullthumb .ba-options {
+        background: rgba(255,255,255,.9);
+        border: 0;
+        text-shadow: none;
+    }
+    .ba-fullthumb .ba-options {
+        background: rgba(0,0,0,.75);
     }
 }
 
@@ -750,11 +660,9 @@ html.touch.resp-mobile, html.touch.resp-tablet {
         height: 24px;
         line-height: 27px;
     }
-    @include not-ie8() {
-        .ba-options ul li {
-            margin: 0;
-            padding: 0;
-            font: 300 1em/24px $f-stack-default;
-        }
+    .ba-options ul li {
+        margin: 0;
+        padding: 0;
+        font: 300 1em/24px $f-stack-default;
     }
 }
