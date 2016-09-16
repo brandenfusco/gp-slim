@@ -11,6 +11,7 @@
         <reference name="head">
             <action method="removeItem"><type>skin_css</type><name>css/enterprise.css</name></action>
             <action method="removeItem"><type>skin_css</type><name>css/enterprise-ie8.css</name></action>
+            <action method="removeItem"><type>skin_css</type><name>css/styles-ie8.css</name></action> 
             <action method="removeItem"><type>skin_js</type><name>js/lib/jquery.cycle2.min.js</name></action>
             <action method="removeItem"><type>skin_js</type><name>js/lib/jquery.cycle2.swipe.min.js</name></action>
             <action method="removeItem"><type>skin_js</type><name>js/slideshow.js</name></action>
@@ -213,8 +214,7 @@
     <!-- Adding Page Specific Style Sheets to Category & Search Result Pages -->
     <catalog_theme_changes>
         <reference name="head">
-            <action method="addItem"><type>skin_css</type><name>css/styles-category-ie8.css</name><params/><if><![CDATA[ (lte IE 8) & (!IEMobile)]]></if></action>
-            <action method="addItem"><type>skin_css</type><name>css/styles-category.css</name><params/><if><![CDATA[<!--[if (gte IE 9) | (IEMobile)]><!-->]]></if></action>
+            <action method="addItem"><type>skin_css</type><name>css/styles-category.css</name><params/></action>
             <action method="addItem" ifconfig="lazyloading/settings/enable">
                 <type>js</type>
                 <name>blueacorn/lib/lazyloadxt/jquery.lazyloadxt.min.js</name>
@@ -258,8 +258,7 @@
     <!-- Adding Page Specific Style Sheets to Product Pages -->
     <product_theme_changes>
         <reference name="head">
-            <action method="addItem"><type>skin_css</type><name>css/styles-product-ie8.css</name><params/><if><![CDATA[ (lte IE 8) & (!IEMobile)]]></if></action>
-            <action method="addItem"><type>skin_css</type><name>css/styles-product.css</name><params/><if><![CDATA[<!--[if (gte IE 9) | (IEMobile)]><!-->]]></if></action>
+            <action method="addItem"><type>skin_css</type><name>css/styles-product.css</name><params/></action>
         </reference>
     </product_theme_changes>
 
@@ -269,8 +268,7 @@
 
     <cart_theme_changes>
         <reference name="head">
-            <action method="addItem"><type>skin_css</type><name>css/styles-cart-ie8.css</name><params/><if><![CDATA[ (lte IE 8) & (!IEMobile)]]></if></action>
-            <action method="addItem"><type>skin_css</type><name>css/styles-cart.css</name><params/><if><![CDATA[<!--[if (gte IE 9) | (IEMobile)]><!-->]]></if></action>
+            <action method="addItem"><type>skin_css</type><name>css/styles-cart.css</name><params/></action>
         </reference>
     </cart_theme_changes>
 
@@ -280,8 +278,7 @@
 
     <checkout_theme_changes>
         <reference name="head">
-            <action method="addItem"><type>skin_css</type><name>css/styles-checkout-ie8.css</name><params/><if><![CDATA[ (lte IE 8) & (!IEMobile)]]></if></action>
-            <action method="addItem"><type>skin_css</type><name>css/styles-checkout.css</name><params/><if><![CDATA[<!--[if (gte IE 9) | (IEMobile)]><!-->]]></if></action>
+            <action method="addItem"><type>skin_css</type><name>css/styles-checkout.css</name><params/></action>
         </reference>
     </checkout_theme_changes>
 
@@ -298,8 +295,7 @@
 
     <customer_theme_changes>
         <reference name="head">
-            <action method="addItem"><type>skin_css</type><name>css/styles-account-ie8.css</name><params/><if><![CDATA[ (lte IE 8) & (!IEMobile)]]></if></action>
-            <action method="addItem"><type>skin_css</type><name>css/styles-account.css</name><params/><if><![CDATA[<!--[if (gte IE 9) | (IEMobile)]><!-->]]></if></action>
+            <action method="addItem"><type>skin_css</type><name>css/styles-account.css</name><params/></action>
         </reference>
     </customer_theme_changes>
 

@@ -26,7 +26,7 @@ _.each(themes, function(theme, name) {
             files: [
                 combo.themeFallbackSass(name)
             ],
-            tasks: ['concurrent:' + name + 'Sass', 'concurrent:' + name + 'Postcss'],
+            tasks: ['sass:' + name + 'Dev', 'postcss:' + name + 'Dev'],
             options: {
                 sourceMap: true
             }

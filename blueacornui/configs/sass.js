@@ -24,14 +24,6 @@ _.each(themes, function(theme, name) {
             files: combo.scssFiles(name)
         };
 
-        themeOptions[name + 'IE'] = {
-            options: {
-                sourceMap: false,
-                includePaths: combo.themeFallback(name)
-            },
-            files: combo.ieFiles(name)
-        };
-
         themeOptions[name + 'Production'] = {
             options: {
                 sourceMap: false,

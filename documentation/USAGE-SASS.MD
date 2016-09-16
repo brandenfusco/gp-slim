@@ -14,7 +14,6 @@
 * [mixins](#mixins)
     * [_breakpoint.scss](#breakpoint)
     * [_family.scss](#family)
-    * [_ie8.scss](#ie8)
     * [_if-resolution.scss](#if-resolution)
     * [_product-list.scss](#product-list)
     * [_touch-button.scss](#touch-button)
@@ -36,22 +35,13 @@
     * [email-inline.scss](#email-inline)
     * [email-non-inline.scss](#email-non-inline)
     * [fonts.scss](#fonts)
-    * [madisonisland-ie8.scss](#madisonisland-ie8)
     * [madisonisland.scss](#madisonisland)
-    * [styleguide-ie8.scss](#styleguide-ie8)
     * [styleguide.scss](#styleguide)
-    * [styles-account-ie8.scss](#styles-account-ie8)
     * [styles-account.scss](#styles-account)
-    * [styles-cart-ie8.scss](#styles-cart-ie8)
     * [styles-cart.scss](#styles-cart)
-    * [styles-category-ie8.scss](#styles-category-ie8)
     * [styles-category.scss](#styles-category)
-    * [styles-checkout-ie8.scss](#styles-checkout-ie8)
     * [styles-checkout.scss](#styles-checkout)
-    * [styles-cms-ie8.scss](#styles-cms-ie8)
     * [styles-cms.scss](#styles-cms)
-    * [styles-ie8.scss](#styles-ie8)
-    * [styles-product-ie8.scss](#styles-product-ie8)
     * [styles-product.scss](#styles-product)
     * [styles.scss](#styles)
 
@@ -109,18 +99,6 @@ Used to set base pixel value of fonts for `pem()` function.
 `Family.scss is a set of 20 smart Sass mixins which will help you to manage the style of :nth-child'ified elements, in an easy and classy way.`
 
 [Family.scss website](https://lukyvj.github.io/family.scss/)
-
-### [_ie8.scss](id:ie8) [*](https://github.com/BlueAcornInc/green-pistachio/blob/master/webroot/skin/frontend/blueacorn/gp/scss/mixin/_ie8.scss)
-
-IE8 Specific Mixins, `ie8()` & `not-ie8`]
-
-```sass
-@incude ie8() { }
-//Takes content and appends `.ie8` in front of it for IE8 specific stylesheets.
-
-@include not-ie8() { }
-//Takes content and renders it only in non IE8 stylesheets.
-```
 
 ### [_if-resolution.scss](id:if-resolution) [*](https://github.com/BlueAcornInc/green-pistachio/blob/master/webroot/skin/frontend/blueacorn/gp/scss/mixin/_if-resolution.scss)
 
@@ -203,15 +181,7 @@ Style Sheet for Super Selects CMS Page.
 
 CSS File for loading Webfonts.
 
-### [madisonisland-ie8.scss](id:madisonisland-ie8) [*](https://github.com/BlueAcornInc/green-pistachio/blob/master/webroot/skin/frontend/blueacorn/gp/scss/madisonisland-ie8.scss)
-
-`TBD`
-
 ### [madisonisland.scss](id:madisonisland) [*](https://github.com/BlueAcornInc/green-pistachio/blob/master/webroot/skin/frontend/blueacorn/gp/scss/madisonisland.scss)
-
-`TBD`
-
-### [styleguide-ie8.scss](id:styleguide-ie8) [*](https://github.com/BlueAcornInc/green-pistachio/blob/master/webroot/skin/frontend/blueacorn/gp/scss/styleguide-ie8.scss)
 
 `TBD`
 
@@ -219,15 +189,7 @@ CSS File for loading Webfonts.
 
 `TBD`
 
-### [styles-account-ie8.scss](id:styles-account-ie8) [*](https://github.com/BlueAcornInc/green-pistachio/blob/master/webroot/skin/frontend/blueacorn/gp/scss/styles-account-ie8.scss)
-
-`TBD`
-
 ### [styles-account.scss](id:styles-account) [*](https://github.com/BlueAcornInc/green-pistachio/blob/master/webroot/skin/frontend/blueacorn/gp/scss/styles-account.scss)
-
-`TBD`
-
-### [styles-cart-ie8.scss](id:styles-cart-ie8) [*](https://github.com/BlueAcornInc/green-pistachio/blob/master/webroot/skin/frontend/blueacorn/gp/scss/styles-cart-ie8.scss)
 
 `TBD`
 
@@ -235,15 +197,7 @@ CSS File for loading Webfonts.
 
 `TBD`
 
-### [styles-category-ie8.scss](id:styles-category-ie8) [*](https://github.com/BlueAcornInc/green-pistachio/blob/master/webroot/skin/frontend/blueacorn/gp/scss/styles-category-ie8.scss)
-
-`TBD`
-
 ### [styles-category.scss](id:styles-category) [*](https://github.com/BlueAcornInc/green-pistachio/blob/master/webroot/skin/frontend/blueacorn/gp/scss/styles-category.scss)
-
-`TBD`
-
-### [styles-checkout-ie8.scss](id:styles-checkout-ie8) [*](https://github.com/BlueAcornInc/green-pistachio/blob/master/webroot/skin/frontend/blueacorn/gp/scss/styles-checkout-ie8.scss)
 
 `TBD`
 
@@ -251,19 +205,7 @@ CSS File for loading Webfonts.
 
 `TBD`
 
-### [styles-cms-ie8.scss](id:styles-cms-ie8) [*](https://github.com/BlueAcornInc/green-pistachio/blob/master/webroot/skin/frontend/blueacorn/gp/scss/styles-cms-ie8.scss)
-
-`TBD`
-
 ### [styles-cms.scss](id:styles-cms) [*](https://github.com/BlueAcornInc/green-pistachio/blob/master/webroot/skin/frontend/blueacorn/gp/scss/styles-cms.scss)
-
-`TBD`
-
-### [styles-ie8.scss](id:styles-ie8) [*](https://github.com/BlueAcornInc/green-pistachio/blob/master/webroot/skin/frontend/blueacorn/gp/scss/styles-ie8.scss)
-
-`TBD`
-
-### [styles-product-ie8.scss](id:styles-product-ie8) [*](https://github.com/BlueAcornInc/green-pistachio/blob/master/webroot/skin/frontend/blueacorn/gp/scss/styles-product-ie8.scss)
 
 `TBD`
 
@@ -294,6 +236,3 @@ There are page specific stylesheets for the following Magento sections, these st
 
 * Style Guide - [_core-styleguide.scss](id:core-styleguide) [*](https://github.com/BlueAcornInc/green-pistachio/blob/master/webroot/skin/frontend/blueacorn/gp/scss/_core-styleguide.scss)
 * Super Selects - [_core-superselects.scss](id:core-superselects) [*](https://github.com/BlueAcornInc/green-pistachio/blob/master/webroot/skin/frontend/blueacorn/gp/scss/_core-superselects.scss)
-
-
-

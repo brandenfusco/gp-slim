@@ -19,11 +19,11 @@
     * Fullscreen Thumbnail Select - Thumbnails Appear with a Fullscreen Overlay
     * Color Selects - Alternate to Thumbnails shows colors instead, works with Fullscreen Thumbnail Select as well.
     * Validation Styles - Show your users when they internet wrong.
-* Works in IE8+, Chrome, Safari, Firefox
+* Works in IE9+, Chrome, Safari, Firefox
 * Keyboard Observer for Quick Option Finding
 * Graceful Fallback for Touchscreen Devices
 * Ability to Add Any Select Style you want. (See [Extending](#extend))
-        
+
 
 
 ##[Installation Manually](id:installation)
@@ -33,7 +33,7 @@
 2. Move the files form this repo, except this README, to your Magento Installation
 
 3. Edit Your Grunt File and add the Super Selects CMS Page Style Sheet to your SASS Task where applicable:
-        
+
 ```javascript
 <%=skinDir%>/css/blueacorn-super-selects.css' : '<%=skinDir%>/scss/blueacorn-super-selects.scss
 ```
@@ -42,12 +42,8 @@
 ```sass
 @import "blueacorn/super-selects";
 ```
-5. Add `scss/mixins/_ie8.scss` to the bottom of your `scss/_framework.scss` file:
 
-```sass
-@import "mixin/ie8";
-```
-6. Recompile your SASS/CSS & JavaScript with **Grunt**
+5. Recompile your SASS/CSS & JavaScript with **Grunt**
 
 
 
@@ -96,7 +92,7 @@ Super Selects are easily extendible out of the box to create any kind of custom 
 ```javascript
 SuperSelects.prototype.settings.typeArray.push('top');
 ```
-        
+
 2. Next you'll want to create the appropriate methods that will be called dynamically for your select type.  The methods specific to `top` will be called dynamically, and will rollback to the default methods if you don't need to extend all of them.
 
     | MethodName | Method Description | Example for `top` |
@@ -107,10 +103,10 @@ SuperSelects.prototype.settings.typeArray.push('top');
     | `setOptionObservers` | Sets Click Observers for the individual Options of your Super Select | `setOptionObserversTop` |
 
     **Example usafe of the dynamic methods**
-    
-```javascript    
+
+```javascript
 (function($){
-    
+
     /**
      * Build Array of Objects with Values of Current Select
      * Options for Top Selects
@@ -133,7 +129,7 @@ SuperSelects.prototype.settings.typeArray.push('top');
 
         return optionsArray;
     };
-    
+
     /**
      * Build the LI Elements within the Current Top Super
      * Select Options
@@ -143,7 +139,7 @@ SuperSelects.prototype.settings.typeArray.push('top');
     SuperSelects.prototype.buildSelectOptionTop = function(opt, selectOptions) {
         this.buildSelectOptionWithDelay(opt, selectOptions, idx, 0.15, 0.10);
     };
-    
+
     /**
      * Click Observer for Super Select that opens to the Top
      * @param currentSelect jQueryDOM Object of Select
@@ -170,7 +166,7 @@ SuperSelects.prototype.settings.typeArray.push('top');
                 }
             });
     };
-    
+
     /**
      *  Click Observer for Individual Options, it's really un-needed.
      *
@@ -178,13 +174,13 @@ SuperSelects.prototype.settings.typeArray.push('top');
      *
      *  };
      */
-    
+
 })(jQuery)
 ```
-        
+
 3.  You'll want to add CSS to finish out your customizations.  So you'll want to modify your `scss/blueacorn/_super-selects.scss` file:
 
-```sass        
+```sass
 .ba-select-box.ba-top {
     .ba-options {
         display: block;

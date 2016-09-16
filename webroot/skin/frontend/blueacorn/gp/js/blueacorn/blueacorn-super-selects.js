@@ -48,7 +48,6 @@ function SuperSelects(options) {
             this.setCustomEventObservers();
             this.createSuperSelect();
             this.unsetCustom();
-            this.updateInternetExplorer();
         },
 
         /**
@@ -64,7 +63,6 @@ function SuperSelects(options) {
                 self.unsetAll();
                 self.createSuperSelect();
                 self.unsetCustom();
-                self.updateInternetExplorer();
             });
 
         },
@@ -913,16 +911,6 @@ function SuperSelects(options) {
         unsetSuperSelect: function(el) {
             $(el).removeClass('ba-select-input');
             $(el).parent().find('.ba-select').remove();
-        },
-
-        updateInternetExplorer: function() {
-            if($('html').hasClass('ie8')){
-                $('.ba-options li').on('mouseover', function() {
-                    $(this).addClass('hover');
-                }).on('mouseleave', function() {
-                    $(this).removeClass('hover');
-                });
-            }
         }
     };
 

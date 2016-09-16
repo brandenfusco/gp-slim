@@ -31,20 +31,6 @@ _.each(themes, function(theme, name) {
             src: [combo.autopath(name,'skin') + 'css/**/*.css', '!' + combo.autopath(name, 'skin') + 'css/**/*ie8.css']
         };
 
-        themeOptions[name + 'IE'] = {
-            options: {
-                map: ap.ie.map,
-                processors: [
-                    require('autoprefixer')({
-                        browsers: ap.ie.options.browsers,
-                        add: true,
-                        remove: true
-                    })
-                ]
-            },
-            src: [combo.autopath(name, 'skin') + 'css/**/*ie8.css']
-        };
-
         themeOptions[name + 'Production'] = {
             options: {
                 map: ap.production.map,
