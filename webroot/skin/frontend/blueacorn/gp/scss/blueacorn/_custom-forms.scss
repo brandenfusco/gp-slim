@@ -1,3 +1,15 @@
+@mixin custom-inputs($status: 'default') {
+    @if $status == 'debug' {
+        position: relative;
+        top: 0;
+        left: 0;
+        z-index: 999;
+    } @else {
+        position: relative;
+        left: -999em;
+    }
+}
+
 .fields {
     clear: both;
     margin-left: 0;
@@ -7,194 +19,72 @@
     }
 }
 
-.input-custom {
-    position: absolute;
-    left: -999em;
-    // z-index: 999; //Debugging Only
-}
-
-.select-custom {
-    float: left;
-    clear: both;
-    width: 100%;
-    position: absolute;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    display: block;
-    float: left;
-    cursor: pointer;
-    @if $mq-support == true {
-        -webkit-appearance: menulist-button;
-    }
-    width: 100%;
-    height: 32px;
-    @include opacity(0);
-}
-
-.custom-shiv {
-    float: left;
-    clear: both;
-    width: 100%;
-    height: 32px;
-    overflow: hidden;
-    box-shadow: 0 1px 4px rgba(0,0,0,.25);
-    padding: 0 30px 0 15px;
-    font: normal pem(14)/30px $f-stack-default;
-    @include gradient-vertical($white, darken($white, 2%));
-    color: $black-80;
-    position: relative;
-    cursor: pointer;
-    letter-spacing: 1px;
-    border-radius: 5px;
-    span:after {
-        position: absolute;
-        right: 0;
-        top: 0;
-        width: 32px;
-        height: 32px;
-        content: '';
-        font-family: $f-stack-icon;
-        line-height: 36px;
-        display: block;
-        text-align: center;
-    }
-}
-
-.select-container {
-    padding-top: 0;
-    position: relative;
-    display: inline-block;
-    &.validation-error {
-        .custom-shiv {
-            @include gradient-vertical(lighten($brand-danger, 5%), $brand-danger);
-            text-shadow: 0 2px 0 lighten($brand-danger, 5%);
-        }
-        &:hover .custom-shiv {
-            background: $brand-danger;
-        }
-    }
-    &:hover {
-        .custom-shiv {
-            color: $c-blue;
-        }
-    }
-    &.validation-error:hover {
-        .custom-shiv { color: $black-80; }
-    }
-    &.disabled {
-        @include opacity(.5);
-    }
-    &.small {
-        top: 4px;
-        .select-custom {
-            height: 18px;
-        }
-        .custom-shiv {
-            display: inline-block;
-            height: 18px;
-            line-height: 18px;
-            font-size: pem(12);
-            text-transform: none;
-            padding-right: 26px;
-            padding-left: 5px;
-            span:after {
-                width: 26px;
-                height: 18px;
-                font-size: 12px;
-                line-height: 22px;
-            }
-        }
-    }
-}
-
-label.radio-label, label.checkbox-label, span.label.radio-label, span.label.checkbox-label {
-    position: relative;
-    line-height: 20px;
-    cursor: pointer;
-    padding: 0 0 0 30px !important;
-    &:before {
-        content: '';
-        display: block;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 20px;
-        height: 20px;
-        background-color: $white;
-        border: 1px solid $c-input-border;
-        color: $brand-primary;
-        font-family: $f-stack-icon;
-        text-align: center;
+.radio:not(.no-style), .checkbox:not(.no-style) {
+    @include custom-inputs();
+    & + label {
+        position: relative;
         line-height: 20px;
-        font-size: 10px;
-        @include box-shadow(inset 1px 1px 0 rgba(255,255,255,.75));
-    }
-    &:hover {
-        &:before { background-color: $black-5; }
-    }
-    &.disabled {
-        pointer-events: none;
-        @include opacity(.75);
-        &:before { background-color: $black-5; }
-    }
-}
-
-label.radio-label, span.label.radio-label {
-    &:before { border-radius: 50%; }
-    &.checked:before { content: '●'; }
-}
-
-label.checkbox-label, span.label.checkbox-label {
-    &.checked:before { content: '␡'; }
-}
-
-span.label.radio-label, span.label.checkbox-label {
-    label { padding: 0; }
-}
-
-.form-list .select-container {
-    display: block;
-    width: 100%;
-    clear: both;
-}
-
-.form-list select {
-    margin-top: 0;
-    width: 100%;
-}
-
-.box-related .checkbox-label {
-    float: left;
-    margin-top: 36px;
-    margin-right: 10px;
-}
-
-.shipping #co-shipping-method-form .sp-methods dd label.radio-label {
-    border: 0;
-    font-style: normal;
-}
-
-.opc {
-    .select-container {
-        width: 365px;
-        &.v-fix {
-            width: auto;
-            clear: none;
+        cursor: pointer;
+        padding: 0 0 0 30px !important;
+        &:before {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background-color: $white;
+            border: 1px solid $c-input-border;
+            text-align: center;
+            line-height: 20px;
+            font-size: 10px;
+            box-shadow: inset 1px 1px 0 rgba(255,255,255,.75);
+            border-radius: 2px;
         }
-        select {
-            margin-top: 0;
-            width: 100%;
+        &:after {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            transform: scale(0) translateX(0) translateY(0);
+            opacity: 0;
+            width: 20px;
+            height: 20px;
+            background-color: $brand-primary;
+            z-index: 1;
+            transition: all 100ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border-radius: 2px;
+        }
+    }
+    &:checked + label {
+        &:after {
+            opacity: 1;
+            transform: scale(1) translateX(0) translateY(0);
+        }
+    }
+    &:disabled + label {
+        opacity: .5;
+        &:before { background-color: darken($white,4%); }
+        &:after { background-color: $c-input-border; }
+    }
+}
+
+.radio:not(.no-style) {
+    & + label {
+        &:before, &:after {
+            border-radius: 50%;
         }
     }
 }
 
-.customer-address-form {
-    .form-list .select-container {
-        width: 365px;
+.checkbox:not(.no-style) {
+    & + label {
+        &:after {
+            text-align: center;
+            content: '✓';
+            color: $white;
+        }
     }
-}
-
-.reset {
-    clear: none;
 }

@@ -44,7 +44,7 @@ function ModuleLoader(options) {
             $(document).on('baCoreReady', function() {
                 self.data.ready = true;
 
-                self.data.predefined.each(function(module){
+                self.data.predefined.forEach(function(module){
                     self.require(module);
                 });
             });
@@ -91,7 +91,7 @@ function ModuleLoader(options) {
 
             // If we have dependencies, load them first
             if (!!module.dependencies.length) {
-                module.dependencies.each(function(dependency) {
+                module.dependencies.forEach(function(dependency) {
                     // If we're trying to load something that doesn't exist, we wont need to require it
                     self.modules[dependency] && self.require(self.modules[dependency]);
                 });
@@ -118,6 +118,16 @@ function ModuleLoader(options) {
 
             // Call the module, with the instances of the dependencies set up
             return module.moduleScope.apply(this, dependencyInstances);
+        },
+
+        /**
+         * Utility method used for easier reference of module content
+         *
+         * @param module
+         * @returns module prototype
+         */
+        get: function(module) {
+            return this.modules[module].result;
         }
     };
 
@@ -126,4 +136,8 @@ function ModuleLoader(options) {
      * Must be an object.
      */
     ba.moduleLoader = new ModuleLoader({});
+
+    ba.moduleLoader.define('jQuery', function(){
+        return jQuery;
+    });
 })(jQuery, ba);
