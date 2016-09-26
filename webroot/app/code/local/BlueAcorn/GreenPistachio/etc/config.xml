@@ -90,10 +90,7 @@
                 </ux>
                 <plugins>
                     <headjs name="headjs"/>
-                    <html5shiv name="html5shiv"/>
-                    <placeholderjs name="placeholderjs"/>
                     <responsiveimg name="responsiveimg"/>
-                    <selectivizr name="selectivizr"/>
                     <svginjector name="svginjector"/>
                 </plugins>
             </javascriptplugins>

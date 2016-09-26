@@ -135,12 +135,6 @@
                 <name>blueacorn/lib/flexslider/jquery.flexslider-min.js</name>
             </action>
 
-            <!-- Owl Carousel -->
-            <action method="addItem" ifconfig="javascriptplugins/sliders/owl">
-                <type>js</type>
-                <name>blueacorn/lib/owlcarousel/owl.carousel.js</name>
-            </action>
-
             <!-- Owl Carousel 2 -->
             <action method="addItem" ifconfig="javascriptplugins/sliders/owl_two">
                 <type>js</type>
@@ -157,19 +151,6 @@
             <action method="addItem" ifconfig="javascriptplugins/ux/focuspoint">
                 <type>js</type>
                 <name>blueacorn/lib/focuspoint/js/jquery.focuspoint.min.js</name>
-            </action>
-
-            <!-- Selectivizr -->
-            <action method="addItem" ifconfig="javascriptplugins/plugins/selectivizr">
-                <type>js</type>
-                <name>blueacorn/lib/selectivizr/selectivizr-min.js</name>
-                <if>lte IE 8</if>
-            </action>
-
-            <!-- Placeholder.js -->
-            <action method="addItem" ifconfig="javascriptplugins/plugins/placeholderjs">
-                <type>js</type>
-                <name>blueacorn/lib/placeholderjs/placeholders.min.js</name>
             </action>
 
             <!-- SVG Injector -->
@@ -202,12 +183,6 @@
                 <name>blueacorn/lib/responsiveimg/responsive-img.min.js</name>
             </action>
 
-            <!-- HTML5Shiv (this one needs to be last) -->
-            <action method="addItem" ifconfig="javascriptplugins/plugins/html5shiv">
-                <type>js</type>
-                <name>blueacorn/lib/html5shiv/html5shiv-printshiv.min.js</name>
-                <if>lt IE 9</if>
-            </action>
         </reference>
     </default>
 
