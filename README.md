@@ -104,13 +104,10 @@ The following plugins are currently available in Version 4.3.0
 |Flexslider        | 2.5.0          | [Documentation](https://github.com/woothemes/FlexSlider)
 |Focus Point       | 1.1.1          | [Documentation](https://github.com/jonom/jquery-focuspoint)
 |Headroom.js       | 0.7.0          | [Documentation](https://github.com/WickyNilliams/headroom.js)
-|HTML5 Shiv        | 3.7.3          | [Documentation](https://github.com/aFarkas/html5shiv)
 |jQuery ScrollTo   | 2.1.1          | [Documentation](https://github.com/flesler/jquery.scrollTo)
 |Owl Carousel      | 2.0.0-beta.2.4 | [Documentation](https://github.com/OwlCarousel2/OwlCarousel2)
 |Parallax.js       | 1.3.1          | [Documentation](http://pixelcog.github.io/parallax.js/)
-|Placeholder.js    | 3.0.2          | [Documentation](https://github.com/jamesallardice/Placeholders.js)
 |Responsive Images | 1.1            | [Documentation](https://github.com/kvendrik/responsive-images.js)
-|Selectivizr       | 1.0.2          | [Documentation](http://selectivizr.com/)
 |Spin.js           | 2.3.2          | [Documentation](http://spin.js.org/)
 |SVG Injector      | 1.1.3          | [Documentation](https://github.com/iconic/SVGInjector)
 

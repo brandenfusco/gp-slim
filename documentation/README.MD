@@ -15,8 +15,8 @@ All BlueAcorn developed Javascript file should be saved in **blueacornui/skin/js
 * BlueAcorn
 	* [BlueAcorn/Core](skin/frontend/blueacorn/gp/js/blueacorn/USAGE-BLUEACORN-CORE.MD)
 	* [BlueAcorn/Page](skin/frontend/blueacorn/gp/js/blueacorn/USAGE-BLUEACORN-PAGE.MD)
+    * [BlueAcorn/ModuleLoader](skin/frontend/blueacorn/gp/js/blueacorn/USAGE-MODULE-LOADER.MD)
 	* [BlueAcorn/HTMLTemplate](skin/frontend/blueacorn/gp/js/blueacorn/USAGE-BLUEACORN-TEMPLATE.MD)
-	* [BlueAcorn/CustomFormElements](skin/frontend/blueacorn/gp/js/blueacorn/USAGE-BLUEACORN-CUSTOM-FORM-ELEMENTS.MD)
 	* [BlueAcorn/ResponsiveNote](skin/frontend/blueacorn/gp/js/blueacorn/USAGE-BLUEACORN-RESPONSIVENOTE.MD)
 	* [BlueAcorn/SuperSelects](https://github.com/BlueAcornInc/gp-super-selects)
 * [BlueAcorn/MagentoOverrides](skin/frontend/blueacorn/gp/js/USAGE-BLUEACORN-MAGENTO-OVERRIDES.MD)
