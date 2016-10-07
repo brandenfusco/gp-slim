@@ -88,6 +88,9 @@ function SuperSelectsCore(options) {
             this.createSuperSelect();
         },
 
+        /**
+         * Set Custom Observers for updating all of the selects.
+         */
         setCustomObservers: function() {
             var self = this,
                 customEvents = (self.settings.defaultObservers.join(" ") + " " + self.settings.additionalObservers.join(" ")).trim();
@@ -271,6 +274,11 @@ function SuperSelectsCore(options) {
             $(currentSelect).before(html);
         },
 
+        /**
+         * Add Super Select Search Template before the Current Select
+         * Element
+         * @param currentSelect jQueryDOM Object of Select
+         */
         createSuperSelectElementSearch: function(currentSelect) {
             var self = this,
                 settings = self.settings,
@@ -336,6 +344,12 @@ function SuperSelectsCore(options) {
             return optionsArray;
         },
 
+        /**
+         * Build Object with First Letters as keys to allow quick selection of options.
+         * @param  opts Array of Option Elements within
+         * Current Select
+         * @return Object | Object of first letters as keys, and arrays of option indexes as values.
+         */
         buildOptionAlphaMap: function(opts) {
             var alphaMap = {};
 
@@ -496,6 +510,10 @@ function SuperSelectsCore(options) {
             }
         },
 
+        /**
+         * Updates Shiv for Short Buttons
+         * @param currentSelect jQueryDOM Object of Select
+         */
         updateAfterSuperSelectsShivShortbuttons: function(currentSelect) {
             var self = this,
                 settings = self.settings,
@@ -565,6 +583,10 @@ function SuperSelectsCore(options) {
             }
         },
 
+        /**
+         * Set Select Specific or Generic Observers
+         * @param currentSelect jQueryDOM Object of Select
+         */
         setSelectObservers: function(currentSelect) {
             var self = this,
                 dynamicClickObserver,
@@ -694,6 +716,10 @@ function SuperSelectsCore(options) {
             });
         },
 
+        /**
+         * Add Keyboard Observers to the Search Selects for the Search Input Field
+         * @param currentSelect jQueryDOM Object of Select
+         */
         setKeyboardObserversSearch: function(currentSelect) {
             var keys = [],
                 self = this,
@@ -792,6 +818,10 @@ function SuperSelectsCore(options) {
             }
         },
 
+        /**
+         * Vertically Centers Element
+         * @param element | jQuery DOM Element you wish to be vertically centered.
+         */
         verticallyCenterElements: function(element) {
             var marginTop = $(element).height()/2 * -1;
 
@@ -800,6 +830,10 @@ function SuperSelectsCore(options) {
             });
         },
 
+        /**
+         * Open Options Method for Overlay Selects
+         * @param currentSelect jQueryDOM Object of Select
+         */
         openOptionsOverlay: function(currentSelect) {
             var self = this,
                 optionsBox = $(self.getOptionsContainer(currentSelect));
@@ -808,6 +842,10 @@ function SuperSelectsCore(options) {
             self.openOptions(currentSelect);
         },
 
+        /**
+         * Open Options Method for Fullscreen Selects
+         * @param currentSelect jQueryDOM Object of Select
+         */
         openOptionsFullscreen: function(currentSelect) {
             var self = this,
                 optionsList = $(self.getSelectBox(currentSelect)).find(self.formatClass('optionsContainerClass') + ' ul');
@@ -816,6 +854,10 @@ function SuperSelectsCore(options) {
             self.openOptions(currentSelect);
         },
 
+        /**
+         * Open Options Method for Fullthumb Selects
+         * @param currentSelect jQueryDOM Object of Select
+         */
         openOptionsFullthumb: function(currentSelect) {
             var self = this,
                 settings = self.settings,
@@ -852,6 +894,10 @@ function SuperSelectsCore(options) {
             }
         },
 
+        /**
+         * Open Options Method for Search Selects
+         * @param currentSelect jQueryDOM Object of Select
+         */
         openOptionsSearch: function(currentSelect) {
             var self = this,
                 settings = self.settings,
@@ -872,6 +918,10 @@ function SuperSelectsCore(options) {
             }
         },
 
+        /**
+         * Close Options Method for All Selects
+         * @param currentSelect jQueryDOM Object of Select
+         */
         setCloseObserver: function(currentSelect) {
             var self = this,
                 settings = self.settings,
@@ -955,18 +1005,33 @@ function SuperSelectsCore(options) {
                 $(newOption).focus();
         },
 
+        /**
+         * Helper to Easily get Current Select's Parent
+         * @param currentSelect jQueryDOM Object of Select
+         * @returns Object jQuery DOM Object of Current Super Select's Parent
+         */
         getParentContainer: function(currentSelect) {
             var self = this;
 
             return $(currentSelect).parent(self.formatClass('containerClass'));
         },
 
+        /**
+         * Helper to Easily get Current Select's Box Container
+         * @param currentSelect jQueryDOM Object of Select
+         * @returns Object jQuery DOM Object of Current Super Select's Box Container
+         */
         getSelectBox: function(currentSelect) {
             var self = this;
 
             return $(currentSelect).siblings(self.formatClass('boxClass'));
         },
 
+        /**
+         * Helper to Easily get Current Select's Options Container
+         * @param currentSelect jQueryDOM Object of Select
+         * @returns Object jQuery DOM Object of Current Super Select's Options Container
+         */
         getOptionsContainer: function(currentSelect) {
             var self = this;
 
