@@ -23,15 +23,15 @@ CONTENT;
 
 $installPageXML = <<<CONTENT
 <reference name="head">
-<action method="addItem"><type>skin_css</type><name>css/styleguide.css</name><params/></action>
+    <action method="addItem"><type>skin_css</type><name>css/styleguide.css</name><params/></action>
 </reference>
 
-<reference name="cms.wrapper">
-<action method="unsetChild"><name>cms_page</name></action>
+<reference name="root">
+    <remove name="cms.wrapper" />
 </reference>
 
 <reference name="content">
-<action method="insert"><name>cms_page</name></action>
+    <block type="cms/page" name="cms_page"/>
 </reference>
 CONTENT;
 
@@ -75,7 +75,15 @@ CONTENT;
 
 $installPageXML = <<<CONTENT
 <reference name="head">
-<action method="addItem"><type>skin_css</type><name>css/blueacorn-super-selects.css</name></action>
+    <action method="addItem"><type>skin_css</type><name>css/blueacorn-super-selects.css</name></action>
+</reference>
+
+<reference name="root">
+    <remove name="cms.wrapper" />
+</reference>
+
+<reference name="content">
+    <block type="cms/page" name="cms_page"/>
 </reference>
 CONTENT;
 

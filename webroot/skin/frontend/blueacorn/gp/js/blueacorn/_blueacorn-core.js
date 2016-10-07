@@ -8,7 +8,7 @@
 var ba;
 
 function BlueAcornCore(options) {
-    this.init(options);
+    this.init(options); 
 }
 
 ;(function($){
@@ -112,7 +112,16 @@ function BlueAcornCore(options) {
                 clearTimeout(timeout);
                 timeout = setTimeout(later, wait);
             };
-        }
+        },
+
+        /**
+         * Convert First Character of String to Capital Character
+         * @param  stringText Text to Convert
+         * @return String Converted Text
+         */
+        camelCaseCreator: function(stringText){
+            return stringText.charAt(0).toUpperCase() + stringText.slice(1);
+        },
     };
 
     /**
