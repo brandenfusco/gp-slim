@@ -759,10 +759,14 @@ function SuperSelectsCore(options) {
                         customOptions = self.getCustomOptions(currentSelect);
                     if(currentSearch.val() !== '') {
                         $.each(currentSelect.optionsArray, function(idx, opt){
-                            if(opt.content.indexOf(currentSearch.val()) > -1) {
-                                customOptions[idx].show();
+                            if(typeof customOptions[idx] !== "undefined") {
+                                if(opt.content.indexOf(currentSearch.val()) > -1) {
+                                    customOptions[idx].show();
+                                }else{
+                                    customOptions[idx].hide();
+                                }
                             }else{
-                                customOptions[idx].hide();
+                                return;
                             }
                         });
                     }else{
@@ -955,7 +959,7 @@ function SuperSelectsCore(options) {
 
             // Trigger Close Event when on Close Element
             $(document).on('keydown', function(e){
-                if($(e.target).context === $(closeElement)[0]) {
+                if(closeElement.length >= 0 && $(e.target).context === closeElement[0]) {
                     if(e.keyCode === settings.keyCodes.SPACE || e.keyCode == settings.keyCodes.ENTER) {
                         e.preventDefault();
                         closeElement.trigger('click');
