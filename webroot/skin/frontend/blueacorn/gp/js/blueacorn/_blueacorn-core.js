@@ -50,7 +50,7 @@ function BlueAcornCore(options) {
         },
 
         triggerCustomEvent: function() {
-            $(document).on('ready', function(){
+            $(document).ready(function(){
                 $(document).trigger('baCoreReady');
             });
         },
