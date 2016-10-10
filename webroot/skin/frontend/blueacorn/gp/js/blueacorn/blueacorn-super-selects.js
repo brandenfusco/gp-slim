@@ -111,13 +111,13 @@ function SuperSelectsCore(options) {
 
             self.superSelectsBefore();
 
-            $.each($(settings.selects).not(settings.blackList), function(idx, select) {
+            $.each(settings.selects.not(settings.blackList), function(idx, select) {
                 var currentSelect = $(select),
                     selectOptions,
                     dynamicSelectOption,
                     dynamicCreateSuperSelectElement;
 
-                if($(this).siblings(self.formatClass('boxClass')).length > 0) {
+                if(currentSelect.siblings(self.formatClass('boxClass')).length > 0) {
                     self.updateSuperSelectsShiv(currentSelect);
                     return;
                 }
@@ -137,7 +137,7 @@ function SuperSelectsCore(options) {
                 }
 
                 //Set optionsBox to a variable
-                selectOptions = $(self.getSelectBox(currentSelect)).find('.ba-options');
+                selectOptions = self.getOptionsContainer(currentSelect);
 
                 //Iterate through the select options to create the individual super select options & attach it to the select.
                 self.buildOptionsObjects(currentSelect);
@@ -183,18 +183,19 @@ function SuperSelectsCore(options) {
          * Form Element
          */
         setParentStyle: function(currentSelect) {
-            var settings = this.settings;
+            var settings = this.settings,
+                selectParent = currentSelect.parent();
 
-            if($(currentSelect).parent().hasClass(settings.classes.containerClass)) {
+            if(selectParent.hasClass(settings.classes.containerClass)) {
                 return;
-            }else if($(currentSelect).parent().hasClass('input-box')){
-                $(currentSelect).parent().addClass(settings.classes.containerClass);
+            }else if(selectParent.hasClass('input-box')){
+                selectParent.addClass(settings.classes.containerClass);
             }else{
-                $(currentSelect).wrap('<div class="input-box ' + settings.classes.containerClass + '"></div>');
+                currentSelect.wrap('<div class="input-box ' + settings.classes.containerClass + '"></div>');
             }
 
-            if($(currentSelect).hasClass(settings.classes.smallClass) && !$(currentSelect).parent(settings.classes.smallClass)) {
-                $(currentSelect).parent().addClass(settings.classes.smallClass);
+            if(currentSelect.hasClass(settings.classes.smallClass) && !currentSelect.parent(settings.classes.smallClass)) {
+                selectParent.addClass(settings.classes.smallClass);
             }
         },
 
@@ -206,7 +207,7 @@ function SuperSelectsCore(options) {
         setSelectType: function(currentSelect) {
             var self = this;
 
-            $(currentSelect).data('type', self.getSelectType(currentSelect));
+            currentSelect.data('type', self.getSelectType(currentSelect));
         },
 
         /**
@@ -221,11 +222,11 @@ function SuperSelectsCore(options) {
                 currentType = '',
                 typeArray = settings.typeArray;
 
-            if($(currentSelect).data('type')) {
-                return $(currentSelect).data('type');
+            if(currentSelect.data('type')) {
+                return currentSelect.data('type');
             }else{
                 $.each(typeArray, function(idx, val){
-                    if($(currentSelect).hasClass('ba-' + val)){
+                    if(currentSelect.hasClass('ba-' + val)){
                         currentType = val;
                     }
                 });
@@ -240,7 +241,7 @@ function SuperSelectsCore(options) {
          * @return String Disabled Status of Select Element
          */
         getSelectStatus: function(currentSelect) {
-            return ($(currentSelect).prop('disabled')) ? 'disabled' : '';
+            return (currentSelect.prop('disabled')) ? 'disabled' : '';
         },
 
         /**
@@ -271,7 +272,7 @@ function SuperSelectsCore(options) {
 
             html = superSelectTemplate.evaluate(superSelectClasses);
 
-            $(currentSelect).before(html);
+            currentSelect.before(html);
         },
 
         /**
@@ -285,7 +286,7 @@ function SuperSelectsCore(options) {
                 searchFieldObject = {
                     'searchFieldClass': settings.classes.searchFieldClass,
                     'searchFieldContainerClass': settings.classes.searchFieldContainerClass,
-                    'searchFieldName': $(currentSelect).attr('name'),
+                    'searchFieldName': currentSelect.attr('name'),
                     'searchPlaceholder': 'Search'
                 },
                 html,
@@ -301,7 +302,7 @@ function SuperSelectsCore(options) {
 
             html = searchTemplate.evaluate(searchFieldObject);
 
-            $(self.getOptionsContainer(currentSelect)).before(html);
+            self.getOptionsContainer(currentSelect).before(html);
         },
 
         /**
@@ -310,15 +311,16 @@ function SuperSelectsCore(options) {
          */
         buildOptionsObjects: function(currentSelect) {
             var self = this,
-                dynamicOptionBuild = 'buildOptionObject' + self.getDynamicSelectName(currentSelect);
+                dynamicOptionBuild = 'buildOptionObject' + self.getDynamicSelectName(currentSelect),
+                currentSelectOption = currentSelect.find('option');
 
             if($.isFunction(self[dynamicOptionBuild])) {
-                currentSelect.optionsArray = self[dynamicOptionBuild](S(currentSelect).find('option'));
+                currentSelect.optionsArray = self[dynamicOptionBuild](currentSelectOption);
             }else{
-                currentSelect.optionsArray = self.buildOptionObject($(currentSelect).find('option'));
+                currentSelect.optionsArray = self.buildOptionObject(currentSelectOption);
             }
 
-            currentSelect.alphaMap = self.buildOptionAlphaMap($(currentSelect).find('option'));
+            currentSelect.alphaMap = self.buildOptionAlphaMap(currentSelectOption);
         },
 
         /**
@@ -332,13 +334,15 @@ function SuperSelectsCore(options) {
             var optionsArray = [];
 
             $.each($(opts), function(idx, opt){
+                var currentOption = $(opt);
+
                 optionsArray.push({
-                    value: $(opt).attr('value') ? $(opt).attr('value') : '',
-                    selected: $(opt).prop('selected'),
-                    disabled: $(opt).prop('disabled'),
-                    content: $(opt).html() ? $(opt).html() : '',
-                    color: $(opt).data('color') ? $(opt).data('color') : '',
-                    image: $(opt).data('image') ? $(opt).data('image') : ''
+                    value: currentOption.attr('value') ? currentOption.attr('value') : '',
+                    selected: currentOption.prop('selected'),
+                    disabled: currentOption.prop('disabled'),
+                    content: currentOption.html() ? currentOption.html() : '',
+                    color: currentOption.data('color') ? currentOption.data('color') : '',
+                    image: currentOption.data('image') ? currentOption.data('image') : ''
                 });
             });
             return optionsArray;
@@ -354,10 +358,12 @@ function SuperSelectsCore(options) {
             var alphaMap = {};
 
             $.each($(opts), function(idx, opt) {
-                if(alphaMap[$(opt).html().charAt(0).toLowerCase()] === undefined) {
-                    alphaMap[$(opt).html().charAt(0).toLowerCase()] = [idx];
+                var currentOption = $(opt);
+
+                if(alphaMap[currentOption.html().charAt(0).toLowerCase()] === undefined) {
+                    alphaMap[currentOption.html().charAt(0).toLowerCase()] = [idx];
                 }else{
-                    alphaMap[$(opt).html().charAt(0).toLowerCase()].push(idx);
+                    alphaMap[currentOption.html().charAt(0).toLowerCase()].push(idx);
                 }
             });
 
@@ -397,7 +403,7 @@ function SuperSelectsCore(options) {
                 '</li>'
             );
 
-            $(selectOptions).find('ul').append(optionLi.evaluate(opt));
+            selectOptions.find('ul').append(optionLi.evaluate(opt));
         },
 
         /**
@@ -451,7 +457,7 @@ function SuperSelectsCore(options) {
          */
         updateSuperSelectsShiv: function(currentSelect) {
             var self = this,
-                selectedOption = $(currentSelect).prop('selectedIndex'),
+                selectedOption = currentSelect.prop('selectedIndex'),
                 childOptions = self.getCustomOptions(currentSelect),
                 dynamicAfterUpdateSuperSelectsShiv = 'updateAfterSuperSelectsShiv' + self.getDynamicSelectName(currentSelect),
                 currentOption,
@@ -460,7 +466,7 @@ function SuperSelectsCore(options) {
 
             self.closeOptions(currentSelect);
 
-            if((currentSelect.optionsArray === undefined && currentSelect.optionsArray !== "") || currentSelect.optionsArray.length !== $(currentSelect).children().length) {
+            if((currentSelect.optionsArray === undefined && currentSelect.optionsArray !== "") || currentSelect.optionsArray.length !== currentSelect.children().length) {
                 self.buildOptionsObjects(currentSelect);
             }
 
@@ -480,29 +486,29 @@ function SuperSelectsCore(options) {
 
             html += '<span class="' + settings.classes.shivContentClass + '">' + self.formatShivContent(currentSelect.optionsArray[selectedOption].content) + '</span>';
 
-            $(self.getSelectBox(currentSelect)).find(self.formatClass('shivClass')).html(html + ' <span class="' + settings.classes.arrowClass + '"></span>');
+            self.getSelectBox(currentSelect).find(self.formatClass('shivClass')).html(html + ' <span class="' + settings.classes.arrowClass + '"></span>');
 
-            if($(currentSelect).css('display') === 'none'){
-                $(currentSelect).siblings(self.formatClass('selectClass')).css('display','none');
+            if(currentSelect.css('display') === 'none'){
+                currentSelect.siblings(self.formatClass('selectClass')).css('display','none');
             }else{
-                $(currentSelect).siblings(self.formatClass('selectClass')).css('display','');
+                currentSelect.siblings(self.formatClass('selectClass')).css('display','');
             }
 
-            if($(currentSelect).prop('disabled')){
-                $(self.getParentContainer(currentSelect)).addClass(settings.classes.disabledClass);
+            if(currentSelect.prop('disabled')){
+                self.getParentContainer(currentSelect).addClass(settings.classes.disabledClass);
             }else{
-                $(self.getParentContainer(currentSelect)).removeClass(settings.classes.disabledClass);
+                self.getParentContainer(currentSelect).removeClass(settings.classes.disabledClass);
             }
 
-            if($(currentSelect).data('optionselected') === 'true'){
-                $(self.getParentContainer(currentSelect)).addClass(settings.classes.selectedClass);
+            if(currentSelect.data('optionselected') === 'true'){
+                self.getParentContainer(currentSelect).addClass(settings.classes.selectedClass);
             }
 
-            if($(currentSelect).hasClass(settings.classes.smallClass)) {
-                $(self.getParentContainer(currentSelect)).addClass(settings.classes.smallClass);
+            if(currentSelect.hasClass(settings.classes.smallClass)) {
+                self.getParentContainer(currentSelect).addClass(settings.classes.smallClass);
             }
 
-            $(childOptions).removeClass(settings.classes.selectedClass);
+            childOptions.removeClass(settings.classes.selectedClass);
             $(childOptions[selectedOption]).addClass(settings.classes.selectedClass);
 
             if($.isFunction(self[dynamicAfterUpdateSuperSelectsShiv])) {
@@ -517,7 +523,7 @@ function SuperSelectsCore(options) {
         updateAfterSuperSelectsShivShortbuttons: function(currentSelect) {
             var self = this,
                 settings = self.settings,
-                selectParent = $(self.getSelectBox(currentSelect));
+                selectParent = self.getSelectBox(currentSelect);
 
             if(currentSelect.optionsArray.length <= settings.shortbuttonsOptions.buttonsLimit) {
                 selectParent.addClass(settings.shortbuttonsOptions.activeClass);
@@ -536,8 +542,8 @@ function SuperSelectsCore(options) {
                 settings = self.settings;
 
             // Remove the Open Class from the Shiv, and Remove the Closing Element from the DOM.
-            $(self.getSelectBox(currentSelect)).removeClass(settings.classes.openClass);
-            $(currentSelect).siblings(self.formatClass('closeClass')).remove();
+            self.getSelectBox(currentSelect).removeClass(settings.classes.openClass);
+            currentSelect.siblings(self.formatClass('closeClass')).remove();
         },
 
         /**
@@ -575,7 +581,7 @@ function SuperSelectsCore(options) {
 
                 if(optionsLimit > 0) {
                     var maxHeight = ($(firstCustomOption).height() + $(firstCustomOption).css('margin-bottom').replace(/[^-\d\.]/g, '')*1) * optionsLimit;
-                    $(self.getOptionsContainer(currentSelect)).css({
+                    self.getOptionsContainer(currentSelect).css({
                         'overflow-y': 'scroll',
                         'max-height': maxHeight + 'px'
                     });
@@ -608,7 +614,7 @@ function SuperSelectsCore(options) {
                 self.setOptionObservers(currentSelect);
             }
 
-            $(currentSelect).on('change', function(){
+            currentSelect.on('change', function(){
                 self.updateSuperSelectsShiv(currentSelect);
             });
         },
@@ -621,14 +627,14 @@ function SuperSelectsCore(options) {
         setClickObserver: function(currentSelect) {
             var self = this,
                 settings = self.settings,
-                selectShiv = $(self.getSelectBox(currentSelect)).find(self.formatClass('shivClass')),
+                selectShiv = self.getSelectBox(currentSelect).find(self.formatClass('shivClass')),
                 dynamicOpenOptions = 'openOptions' + self.getDynamicSelectName(currentSelect),
                 dynamicCloseOptions = 'closeOptions' + self.getDynamicSelectName(currentSelect);
 
             // Add Click Event tot he Super Select Shiv
             selectShiv.on('click focus', function(){
                 // Detect if the Shiv is Already Open
-                if(!$(self.getSelectBox(currentSelect)).hasClass(settings.classes.openClass)){
+                if(!self.getSelectBox(currentSelect).hasClass(settings.classes.openClass)){
                     if($.isFunction(self[dynamicOpenOptions])) {
                         self[dynamicOpenOptions](currentSelect);
                     }else{
@@ -671,7 +677,7 @@ function SuperSelectsCore(options) {
             var keys = [],
                 self = this,
                 settings = self.settings,
-                selectedOption = $(currentSelect).prop('selectedIndex'),
+                selectedOption = currentSelect.prop('selectedIndex'),
                 debounceMethod = ba.debounce(function (e) {
                     var searchKey = keys.length - 1,
                         alphaMap = currentSelect.alphaMap,
@@ -680,14 +686,14 @@ function SuperSelectsCore(options) {
                         if(alphaMap[keys[searchKey]]) {
                             $.each(alphaMap[keys[searchKey]], function(idx, keyIndex){
                                if((alphaMap[keys[searchKey]].length - 1) === idx){
-                                   $(customOptions)[keyIndex].focus();
+                                   customOptions[keyIndex].focus();
                                    selectedOption = keyIndex;
                                    return false;
                                }else{
                                    if(selectedOption === keyIndex) {
                                        return true;
                                    }else{
-                                       $(customOptions)[keyIndex].focus();
+                                       customOptions[keyIndex].focus();
                                        selectedOption = keyIndex;
                                        return false;
                                    }
@@ -698,7 +704,6 @@ function SuperSelectsCore(options) {
                 }, 100);
 
             $(document).on('keydown', function(e) {
-                console.log(e.keyCode);
                 if(e.keyCode === settings.keyCodes.SPACE || e.keyCode === settings.keyCodes.ENTER) {
                     e.preventDefault();
                     $(e.target).trigger('click');
@@ -724,7 +729,7 @@ function SuperSelectsCore(options) {
             var keys = [],
                 self = this,
                 settings = self.settings,
-                selectedOption = $(currentSelect).prop('selectedIndex'),
+                selectedOption = currentSelect.prop('selectedIndex'),
                 debounceMethod = ba.debounce(function (e) {
                     var searchKey = keys.length - 1,
                         alphaMap = currentSelect.alphaMap,
@@ -733,14 +738,14 @@ function SuperSelectsCore(options) {
                     if(alphaMap[keys[searchKey]]) {
                         $.each(alphaMap[keys[searchKey]], function(idx, keyIndex){
                             if((alphaMap[keys[searchKey]].length - 1) === idx){
-                                $(customOptions)[keyIndex].focus();
+                                customOptions[keyIndex].focus();
                                 selectedOption = keyIndex;
                                 return false;
                             }else{
                                 if(selectedOption === keyIndex) {
                                     return true;
                                 }else{
-                                    $(customOptions)[keyIndex].focus();
+                                    customOptions[keyIndex].focus();
                                     selectedOption = keyIndex;
                                     return false;
                                 }
@@ -750,18 +755,18 @@ function SuperSelectsCore(options) {
                     keys = [];
                 }, 100),
                 searchFieldMethod = ba.debounce(function (e) {
-                    var currentSearch = $(self.getSelectBox(currentSelect)).find(self.formatClass('searchFieldClass')),
+                    var currentSearch = self.getSelectBox(currentSelect).find(self.formatClass('searchFieldClass')),
                         customOptions = self.getCustomOptions(currentSelect);
-                    if($(currentSearch).val() !== '') {
+                    if(currentSearch.val() !== '') {
                         $.each(currentSelect.optionsArray, function(idx, opt){
-                            if(opt.content.indexOf($(currentSearch).val()) > -1) {
-                                $(customOptions[idx]).show();
+                            if(opt.content.indexOf(currentSearch.val()) > -1) {
+                                customOptions[idx].show();
                             }else{
-                                $(customOptions[idx]).hide();
+                                customOptions[idx].hide();
                             }
                         });
                     }else{
-                        $(customOptions).show();
+                        customOptions.show();
                     }
                 }, 100);
 
@@ -797,24 +802,27 @@ function SuperSelectsCore(options) {
             var self = this,
                 settings = self.settings,
                 customOptions = self.getCustomOptions(currentSelect),
-                selectedOption = $(currentSelect).prop('selectedIndex');
+                selectedOption = currentSelect.prop('selectedIndex');
 
             // Add Open Class to the Shiv, Create the Closing Element, and Attach Closing Element Events
-            $(self.getSelectBox(currentSelect)).addClass(settings.classes.openClass)
+            self.getSelectBox(currentSelect).addClass(settings.classes.openClass)
                 .after('<div class="' + settings.classes.closeClass + '" tabindex="' + (customOptions.length + 1) + '"></div>');
 
             $.each(customOptions, function(idx, opt){
-               $(opt).attr('tabindex', idx + 1);
+                var currentOption = $(opt);
+
+                currentOption.attr('tabindex', idx + 1);
+
                 if(idx === selectedOption) {
-                    $(opt).focus();
+                    currentOption.focus();
                 }
             });
 
             self.setKeyObservers(currentSelect);
             self.setCloseObserver(currentSelect);
 
-            if($(currentSelect).attr('onclick') !== ''){
-                $(currentSelect).trigger('click');
+            if(currentSelect.attr('onclick') !== ''){
+                currentSelect.trigger('click');
             }
         },
 
@@ -836,7 +844,7 @@ function SuperSelectsCore(options) {
          */
         openOptionsOverlay: function(currentSelect) {
             var self = this,
-                optionsBox = $(self.getOptionsContainer(currentSelect));
+                optionsBox = self.getOptionsContainer(currentSelect);
 
             self.verticallyCenterElements(optionsBox);
             self.openOptions(currentSelect);
@@ -848,7 +856,7 @@ function SuperSelectsCore(options) {
          */
         openOptionsFullscreen: function(currentSelect) {
             var self = this,
-                optionsList = $(self.getSelectBox(currentSelect)).find(self.formatClass('optionsContainerClass') + ' ul');
+                optionsList = self.getSelectBox(currentSelect).find(self.formatClass('optionsContainerClass') + ' ul');
 
             self.verticallyCenterElements(optionsList);
             self.openOptions(currentSelect);
@@ -862,25 +870,27 @@ function SuperSelectsCore(options) {
             var self = this,
                 settings = self.settings,
                 customOptions = self.getCustomOptions(currentSelect),
-                selectedOption = $(currentSelect).prop('selectedIndex');
+                selectedOption = currentSelect.prop('selectedIndex');
 
             // Add Open Class to the Shiv, Create the Closing Element, and Attach Closing Element Events
-            $(self.getSelectBox(currentSelect))
+            self.getSelectBox(currentSelect)
                 .addClass(settings.classes.openClass)
                 .addClass(settings.classes.setupClass)
                 .after('<div class="' + settings.classes.closeClass + '" tabindex="' + (customOptions.length + 1) + '"></div>');
 
             $.each(customOptions, function(idx, opt){
-                $(opt).attr('tabindex', idx + 1);
+                var currentOption = $(opt);
+
+                currentOption.attr('tabindex', idx + 1);
                 if(idx === selectedOption) {
-                    $(opt).focus();
+                    currentOption.focus();
                 }
             });
 
-            if($(currentSelect).hasClass(settings.classes.hideFirstClass)) {
-                $(customOptions).first().hide();
+            if(currentSelect.hasClass(settings.classes.hideFirstClass)) {
+                customOptions.first().hide();
                 $.each(customOptions, function(idx, opt){
-                   if(selectedOption === 0 && idx === ($(customOptions).first().attr('tabindex') + 1)) {
+                   if(selectedOption === 0 && idx === (customOptions.first().attr('tabindex') + 1)) {
                        $(opt).focus();
                    }
                 });
@@ -889,8 +899,8 @@ function SuperSelectsCore(options) {
             self.setKeyObservers(currentSelect);
             self.setCloseObserver(currentSelect);
 
-            if($(currentSelect).attr('onclick') !== ''){
-                $(currentSelect).trigger('click');
+            if(currentSelect.attr('onclick') !== ''){
+                currentSelect.trigger('click');
             }
         },
 
@@ -902,19 +912,19 @@ function SuperSelectsCore(options) {
             var self = this,
                 settings = self.settings,
                 customOptions = self.getCustomOptions(currentSelect),
-                searchField = $(self.getSelectBox(currentSelect)).find(self.formatClass('searchFieldClass'));
+                searchField = self.getSelectBox(currentSelect).find(self.formatClass('searchFieldClass'));
 
             // Add Open Class to the Shiv, Create the Closing Element, and Attach Closing Element Events
-            $(self.getSelectBox(currentSelect)).addClass(settings.classes.openClass)
+            self.getSelectBox(currentSelect).addClass(settings.classes.openClass)
                 .after('<div class="' + settings.classes.closeClass + '" tabindex="' + (customOptions.length + 1) + '"></div>');
 
-            $(searchField).focus();
+            searchField.focus();
 
             self.setKeyboardObserversSearch(currentSelect);
             self.setCloseObserver(currentSelect);
 
-            if($(currentSelect).attr('onclick') !== ''){
-                $(currentSelect).trigger('click');
+            if(currentSelect.attr('onclick') !== ''){
+                currentSelect.trigger('click');
             }
         },
 
@@ -925,10 +935,11 @@ function SuperSelectsCore(options) {
         setCloseObserver: function(currentSelect) {
             var self = this,
                 settings = self.settings,
-                customOptions;
+                customOptions,
+                closeElement = currentSelect.siblings(self.formatClass('closeClass'));
 
-            $(currentSelect).siblings(self.formatClass('closeClass')).on('click', function(){
-               $(self.getSelectBox(currentSelect))
+            closeElement.on('click', function(){
+               self.getSelectBox(currentSelect)
                    .find(self.formatClass('shivClass'))
                    .trigger('click');
 
@@ -938,22 +949,22 @@ function SuperSelectsCore(options) {
                     $(opt).attr('tabindex','-1');
                 });
 
-                $(currentSelect).focus().trigger('custom:blur');
+                currentSelect.focus().trigger('custom:blur');
                 $(document).off('keydown');
             });
 
             // Trigger Close Event when on Close Element
             $(document).on('keydown', function(e){
-                if($(e.target).context === $(currentSelect.siblings(self.formatClass('closeClass')))[0]) {
+                if($(e.target).context === $(closeElement)[0]) {
                     if(e.keyCode === settings.keyCodes.SPACE || e.keyCode == settings.keyCodes.ENTER) {
                         e.preventDefault();
-                        $(currentSelect).siblings(self.formatClass('closeClass')).trigger('click');
+                        closeElement.trigger('click');
                     }
                 }
             });
 
-            $(currentSelect).on('blur', function(){
-                $(currentSelect).siblings(self.formatClass('closeClass')).trigger('click');
+            currentSelect.on('blur', function(){
+                closeElement.trigger('click');
             });
         },
 
@@ -965,13 +976,14 @@ function SuperSelectsCore(options) {
             var self = this,
                 customOptions = self.getCustomOptions(currentSelect);
 
-            $.each($(customOptions), function(optionIndex, opt){
-                $(opt).on('click', function(){
-                    $(currentSelect).data('optionselected','true');
-                    $(customOptions).removeClass('selected');
-                    $(opt).addClass('selected');
-                    $(currentSelect).prop('selectedIndex',optionIndex);
-                    $(currentSelect)[0].triggerEvent('change');
+            $.each(customOptions, function(optionIndex, opt){
+                var currentOption = $(opt);
+                currentOption.on('click', function(){
+                    currentSelect.data('optionselected','true');
+                    customOptions.removeClass('selected');
+                    currentOption.addClass('selected');
+                    currentSelect.prop('selectedIndex',optionIndex);
+                    currentSelect[0].triggerEvent('change');
                     $(document).off('keydown');
                 });
             });
@@ -990,19 +1002,19 @@ function SuperSelectsCore(options) {
 
                 if(direction === 'down') {
                     if((selectedOption.attr('tabindex')*1) === customOptions.length) {
-                        newOption = $(target).parent().find('li').first();
+                        newOption = selectedOption.parent().find('li').first();
                     }else{
-                        newOption = $(target).next();
+                        newOption = selectedOption.next();
                     }
                 }else{
                     if((selectedOption.attr('tabindex') - 1) === 0) {
-                        newOption = $(target).parent().find('li').last();
+                        newOption = selectedOption.parent().find('li').last();
                     }else{
-                        newOption = $(target).prev();
+                        newOption = selectedOption.prev();
                     }
                 }
 
-                $(newOption).focus();
+                newOption.focus();
         },
 
         /**
@@ -1013,7 +1025,7 @@ function SuperSelectsCore(options) {
         getParentContainer: function(currentSelect) {
             var self = this;
 
-            return $(currentSelect).parent(self.formatClass('containerClass'));
+            return currentSelect.parent(self.formatClass('containerClass'));
         },
 
         /**
@@ -1024,7 +1036,7 @@ function SuperSelectsCore(options) {
         getSelectBox: function(currentSelect) {
             var self = this;
 
-            return $(currentSelect).siblings(self.formatClass('boxClass'));
+            return currentSelect.siblings(self.formatClass('boxClass'));
         },
 
         /**
@@ -1035,7 +1047,7 @@ function SuperSelectsCore(options) {
         getOptionsContainer: function(currentSelect) {
             var self = this;
 
-            return $(self.getSelectBox(currentSelect)).find(self.formatClass('optionsContainerClass'));
+            return self.getSelectBox(currentSelect).find(self.formatClass('optionsContainerClass'));
         },
 
         /**
@@ -1046,7 +1058,7 @@ function SuperSelectsCore(options) {
         getCustomOptions: function(currentSelect) {
             var self = this,
                 selectBox = self.getSelectBox(currentSelect),
-                customOptions = $(selectBox)
+                customOptions = selectBox
                     .find(self.formatClass('optionsContainerClass') + ' ul')
                     .children();
 
