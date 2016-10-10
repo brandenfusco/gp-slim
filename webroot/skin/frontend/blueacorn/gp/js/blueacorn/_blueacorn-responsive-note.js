@@ -16,7 +16,8 @@ function ResponsiveNotation(options) {
                 'moduleName' : 'ResponsiveNotation',
                 'mobileClass': 'resp-mobile',
                 'tabletClass': 'resp-tablet',
-                'desktopClass': 'resp-desktop'
+                'desktopClass': 'resp-desktop',
+                'html': $('html')
             };
 
             // Overrides the default settings
@@ -36,30 +37,30 @@ function ResponsiveNotation(options) {
             var self = this;
             enquire.register('screen and (min-width:' + (bp.large + 1) + 'px)', {
                 match: function() {
-                    $('html').addClass(self.settings.desktopClass);
+                    self.settings.html.addClass(self.settings.desktopClass);
                 },
                 unmatch: function() {
-                    $('html').removeClass(self.settings.desktopClass);
+                    self.settings.html.removeClass(self.settings.desktopClass);
                 }
             }).register('screen and (min-width:' + (bp.small + 1) + 'px) and (max-width:' + bp.large + 'px)', {
                 match: function() {
-                    $('html').addClass(self.settings.tabletClass);
+                    self.settings.html.addClass(self.settings.tabletClass);
                 },
                 unmatch: function() {
-                    $('html').removeClass(self.settings.tabletClass);
+                    self.settings.html.removeClass(self.settings.tabletClass);
                 }
             }).register('screen and (max-width:' + bp.small + 'px)', {
                 match: function() {
-                    $('html').addClass(self.settings.mobileClass);
+                    self.settings.html.addClass(self.settings.mobileClass);
                 },
                 unmatch: function() {
-                    $('html').removeClass(self.settings.mobileClass);
+                    self.settings.html.removeClass(self.settings.mobileClass);
                 }
             });
         },
 
         is: function(device) {
-            return $('html').hasClass(device);
+            return self.settings.html.hasClass(device);
         },
 
         isMobile: function() {
