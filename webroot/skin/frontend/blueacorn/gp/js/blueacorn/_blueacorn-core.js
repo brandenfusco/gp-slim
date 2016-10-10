@@ -76,7 +76,7 @@ function BlueAcornCore(options) {
          * @param string
          */
         watchConsole: function (message) {
-            if(!$('.ie6, .ie7, .ie8, .ie9').length && typeof console !== "undefined" && this.settings.debug) {
+            if(typeof console !== "undefined" && this.settings.debug) {
                 console.log(message);
             }
         },
