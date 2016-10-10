@@ -470,17 +470,17 @@ function SuperSelectsCore(options) {
                 self.buildOptionsObjects(currentSelect);
             }
 
-            if(currentSelect.alphaMap === undefined && currentSelect.alphaMap !== "") {
+            if(typeof currentSelect.alphaMap !== "undefined" && currentSelect.alphaMap !== "") {
                 self.buildOptionAlphaMap(currentSelect);
             }
 
             currentOption = currentSelect.optionsArray[selectedOption];
 
-            if(currentOption.image !== undefined && currentOption.image !== ""){
+            if(typeof currentOption.image !== "undefined" && currentOption.image !== ""){
                 html += self.updateShivImage(self.settings.imageType, currentOption.image, currentOption.value);
             }
 
-            if(currentOption.color !== undefined && currentOption.color !== ""){
+            if(typeof currentOption.color !== "undefined" && currentOption.color !== ""){
                 html += self.updateShivColor(currentOption.color);
             }
 
