@@ -9,35 +9,43 @@
 // @copyright   Copyright © 2015 Blue Acorn, Inc.
 //
 
-.select-custom {
-    float: left;
-    clear: both;
-    width: 100%;
-    position: absolute;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    display: block;
-    float: left;
-    cursor: pointer;
-    @if $mq-support == true {
-        -webkit-appearance: menulist-button;
-    }
-    width: 100%;
-    height: 32px;
-    opacity: 0;
+$select-height-default: 44px;
+$select-border-default: 1px;
+$select-border-color-default: #E6E6E6;
+$select-border-color-error: #E6B8B8;
+$select-lineheight-default: #{($select-height-default - ($select-border-default*2))};
+$select-color-default: #737480;
+$select-color-error:  #996B6B;
+$select-bg-default: #8AB8E6;
+$select-bg-error: #E68A8A;
+$select-easing-default: cubic-bezier(0.215, 0.61, 0.355, 1);
+$select-sprite-image: '../images/blueacorn/super-selects/super-selects-sprite.png';
+$select-sprite-image2x: '../images/blueacorn/super-selects/super-selects-sprite@2x.png';
+$select-sprite-width: 39px;
+$select-sprite-height: 269px;
+$select-animation-time-default: 0.3s;
+
+.input-box.ba-select-container {
+    padding-top: 0;
+}
+
+.ba-select-container * {
+    -webkit-font-smoothing: antialiased;
 }
 
 .ba-select-input {
-    left: -999em;
+    z-index: -1;
+    left: 0;
+    top: 0;
     position: absolute;
+    visibility: hidden;
 }
 
 .ba-select-box {
     position: relative;
     &.open {
         .ba-options { display: block; }
-        &.ba-over, &.ba-thumbnail {
+        &.ba-over {
             .ba-shiv {
                 box-shadow: 0 0 0 rgba(255, 255, 255, 0);
             }
@@ -54,54 +62,52 @@
 }
 
 .ba-shiv {
-    @include gradient-vertical($white, darken($white, 2%));
-    border: 1px solid $white;
-    border-radius: 5px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, .25);
-    color: $black-80;
+    border: 1px solid $select-border-color-default;
+    border-radius: 2px;
+    color: $select-color-default;
+    background: $white;
     cursor: pointer;
     float: left;
-    font: 300 1em/30px $f-stack-default;
-    height: 32px;
+    font: 400 1em/#{$select-lineheight-default} $f-stack-default;
+    height: 44px;
     padding: 0 40px 0 10px;
     position: relative;
     width: 100%;
-
     .ba-shiv-content {
-        color: $black-80;
+        color: $select-color-default;
         display: inline-block;
-        font: 300 1em/30px $f-stack-default;
+        font: 400 1em/#{$select-lineheight-default} $f-stack-default;
         height: 100%;
         float: left;
         overflow: hidden;
-
+        text-overflow: ellipsis;
     }
     .ba-arrow {
-        background: url('../images/blueacorn/super-selects/super-selects-sprite.png') no-repeat 0 0;
-        width: 14px;
-        height: 11px;
+        @include retina-image($select-sprite-image, $select-sprite-image2x, $select-sprite-width, $select-sprite-height);
+        width: 10px;
+        height: 6px;
         display: block;
-        right: 10px;
+        right: 20px;
         top: 50%;
-        margin-top: -5px;
+        margin-top: -3px;
         position: absolute;
     }
 }
 
 .ba-options {
-    @include gradient-vertical($white, darken($white, 2%));
+    background: $white;
     display: none;
     position: absolute;
     z-index: 9999;
     top: 0;
     left: 0;
-    width: 100%;
     width: auto;
     min-width: 100%;
-    padding: 0 10px;
-    border-radius: 5px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, .25);
-    border: 1px solid $white;
+    padding: 0;
+    border-radius: 2px;
+    @include border-top-radius(0);
+    border: 1px solid $select-border-color-default;
+    border-top: 0;
     cursor: pointer !important;
     ul {
         list-style: none;
@@ -109,25 +115,29 @@
         width: 100%;
         float: left;
         li {
-            padding: 0;
+            padding: 0 10px;
             margin: 0;
             float: left;
             width: 100%;
             clear: both;
             cursor: pointer;
-            font: 300 1em/30px $f-stack-default !important;
+            font: 400 1em/30px $f-stack-default !important;
             color: $black-80;
             white-space: nowrap;
-            &:hover {
+            &:hover, &:focus {
                 color: $brand-primary;
+                outline: none;
             }
             span {
                 font-style: normal;
             }
-            &.selected {
-                color: $brand-secondary;
-            }
         }
+    }
+    .option-selected, .option-selected:hover, .option-selected:focus {
+        color: $white;
+        font-weight: bold;
+        background: $select-bg-default;
+        text-shadow: 0 4px 4px rgba(53,65,76,0.15), 0 2px 2px rgba(53,65,76,0.10);
     }
 }
 
@@ -137,7 +147,7 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background: transparent;
+    background: rgba(0,0,0,0);
     z-index: 9998;
 }
 
@@ -184,216 +194,99 @@
     }
 }
 
-.ba-left, .ba-right, .ba-under {
+.ba-select-box {
     .ba-options {
         display: block;
         float: left;
-        width: auto;
         min-width: 0;
+        width: 100%;
         position: absolute;
         left: auto;
         opacity: 0;
         visibility: hidden;
-        transition: transform 0.3s, opacity 0.3s, visibility 0.3s;
-        &:after {
-            position: absolute;
-            display: block;
-            visibility: visible;
-            content: " ";
-            text-indent: -999em;
-        }
+        top: 100%;
+        transform: scale(1,0);
+        transform-origin: left top;
+        transition: transform $select-animation-time-default $select-easing-default;
+    }
+    .ba-arrow {
+        transition: transform $select-animation-time-default $select-easing-default;
     }
     &.open {
+        .ba-arrow {
+            transform: rotate(180deg);
+        }
         .ba-options {
             opacity: 1;
             visibility: visible;
-            &:after {
-                visibility: visible;
-                opacity: 1;
-            }
+            transform: scale(1,1);
         }
         .ba-shiv {
-            color: $white;
-            border-color: $black-60;
-            @include gradient-vertical($black-60, $black-70);
+            border-bottom: 1px solid $white;
+            @include border-bottom-radius(0);
+            &:after {
+                content: '';
+                position: absolute;
+                display: block;
+                bottom: -1px;
+                left: 10px;
+                width: calc(100% - 20px);
+                height: 1px;
+                background: $select-border-color-default;
+            }
         }
-        .ba-shiv-content { color: $white; }
-    }
-}
-.ba-left, .ba-right {
-     .ba-options { top: 50%; }
- }
-.ba-left {
-    .ba-options { transform: translate3d(30%, 0, 0); }
-    .ba-options:after {
-        content: "  ";
-        display: block;
-        right: -14px;
-        background: url('../images/blueacorn/super-selects/super-selects-sprite.png') no-repeat -73px -2px;
-        width: 14px;
-        height: 20px;
-        top: 50%;
-        margin-top: -10px;
-    }
-    &.open {
-        .ba-options { transform: translate3d(0, 0, 0); }
-        .ba-arrow {
-            background-position: -36px -77px;
-            width: 10px;
-            height: 15px;
-            margin-top: -8px;
-        }
-    }
-}
-.ba-right {
-    .ba-options { transform: translate3d(-30%, 0, 0); }
-    .ba-options:after {
-        content: "   ";
-        display: block;
-        left: -14px;
-        background: url('../images/blueacorn/super-selects/super-selects-sprite.png') no-repeat -70px -35px;
-        width: 14px;
-        height: 20px;
-        top: 50%;
-        margin-top: -10px;
-    }
-    &.open {
-        .ba-options { transform: translate3d(0, 0, 0); }
-        .ba-arrow {
-            background-position: -36px -37px;
-            width: 10px;
-            height: 15px;
-            margin-top: -8px;
-        }
-    }
-}
-
-.ba-under {
-    .ba-options {
-        top: 100%;
-        width: 100%;
-        transform: scale(.85) translate3d(0, -10%, 0);
-        &:after {
-            content: "    ";
-            top: -14px;
-            left: 50%;
-            margin-left: -10px;
-            width: 19px;
-            height: 14px;
-            background: url('../images/blueacorn/super-selects/super-selects-sprite.png') no-repeat -68px -68px;
-        }
-    }
-    &.open {
-        .ba-options { transform: scale(1) translate3d(0, 0, 0); }
-        .ba-arrow { background-position: -34px 0; }
+        .ba-shiv-content { color: $select-color-default; }
     }
 }
 
 .ba-thumbnail {
-    .ba-options {
-        background: none;
-        display: block;
-        visibility: hidden;
-        box-shadow: 0 0 0 rgba(255,255,255,0);
-        border: 0;
-
-        &:before {
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            left: 0;
-            top: 0;
-            transform: scale3d(1,0,1);
-            transform-origin: 50% 0%;
-            @include gradient-vertical($white, darken($white, 2%));
-            border-radius: 5px;
-            box-shadow: 0 1px 4px rgba(0,0,0,.25);
-            border: 1px solid $white;
-            transition: transform 0.4s;
-        }
-
-    }
     .ba-shiv {
         height: 52px;
-        padding-left: 0;
-        .ba-shiv-content, .ba-img-span, .ba-img {
-            float: left;
-            line-height: 50px;
-            margin-right: 5px;
-        }
+        padding-left: 10px;
         .ba-arrow:after {
             height: 52px;
             line-height: 52px;
         }
     }
-    ul li {
-        padding: 5px;
-        width: 20%;
-        clear: none;
+
+    .ba-img-span, .ba-opt-content, .ba-shiv-content {
+        display: inline-block;
         float: left;
-        text-align: center;
-        opacity: 0;
-        &.first-child {
-            width: 100%;
-        }
-        transition: opacity 0.4s;
-        transition-delay: 0.2s;
+        height: 50px;
+        line-height: 50px;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     .ba-img-span {
-        display: inline-block;
         width: 50px;
-        height: 50px;
         background-position: 50% 50%;
         background-size: 100% auto;
-        border-radius: 5px;
-    }
-    .ba-opt-content {
-        @include g-all();
-    }
-    &.open {
-        ul li { opacity: 1; }
-        .ba-options {
-            visibility: visible;
-            &:before {
-                transform: scale3d(1,1,1);
-                z-index: -1;
-            }
+        border-radius: 2px;
+        & + .ba-shiv-content, & + .ba-opt-content {
+            max-width: calc(100% - 50px);
         }
+    }
+    .ba-opt-content, .ba-shiv-content {
+        padding-left: 10px;
+    }
+    .ba-options ul li {
+        margin-bottom: 5px;
     }
 }
 
 .ba-overlay {
-    &.open .ba-shiv {
-        @include box-shadow(0 0 0 rgba(255,255,255,0));
-    }
     .ba-options {
         top: 50%;
         background: none;
         display: block;
         visibility: hidden;
         overflow: hidden;
-        box-shadow: 0 0 0 rgba(255,255,255,0);
-        border: 0;
         transform: scale3d(1,0,1);
         transform-origin: 50% 50%;
         transition: transform 0.4s;
-
-        &:before {
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            left: 0;
-            top: 0;
-            transform: scale3d(1,0,1);
-            transform-origin: 50% 50%;
-            @include gradient-vertical($white, darken($white, 2%));
-            border-radius: 5px;
-            box-shadow: 0 1px 4px rgba(0,0,0,.25);
-            border: 1px solid $white;
-            transition: transform 0.4s;
-        }
+        background: $white;
+        border: 1px solid darken($select-border-color-default, 10%);
+        border-radius: 2px;
     }
     &.open .ba-options {
         visibility: visible;
@@ -404,8 +297,47 @@
         }
     }
     & + .ba-select-close {
-        background: url('../images/blueacorn/super-selects/overlay-background.png') 0 0 repeat;
+        background: rgba(0,0,0,0.15);
     }
+}
+
+.ba-shortbuttons.active {
+    .ba-shiv { display: none; }
+    .ba-options {
+        visibility: visible;
+        opacity: 1;
+        transform: scale(1);
+        position: relative;
+        border: 0;
+        background: none;
+        padding: 0;
+        z-index: auto;
+        ul {
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            flex-wrap: wrap;
+            li {
+                flex: 1 1 25%;
+                border: 1px solid $select-border-color-default;
+                height: $select-height-default;
+                padding: 0 10px;
+                margin: 0 10px 10px 0;
+                border-radius: 2px;
+                span {
+                    float: left;
+                    width: 100%;
+                    height: $select-height-default - 2;
+                    line-height: $select-height-default - 2;
+                    text-align: center;
+                }
+                &.option-selected, &.option-selected:hover, &.option-selected:focus  {
+                    border-color: $select-bg-default;
+                }
+            }
+        }
+    }
+
 }
 
 .ba-fullscreen {
@@ -419,46 +351,52 @@
         left: 0;
         border-radius: 0;
         box-shadow: 0 0 0 rgba(255,255,255,0);
-        background: url('../images/blueacorn/super-selects/overlay-background-white.png') 0 0 repeat;
+        background: rgba(255,255,255,0.9);
         visibility: hidden;
         opacity: 0;
         transform: scale(.9);
-        transition: transform 0.2s, opacity 0.2s, visibility 0s 0.2s;
+        transform-origin: 50% 50%;
+        transition: transform $select-animation-time-default, opacity $select-animation-time-default, visibility $select-animation-time-default;
         ul {
             position: absolute;
             top: 50%;
             width: 100%;
             li {
                 opacity: 0;
-                transform: translate3d(30%, 0, 0);
-                transition: transform 0.3s, opacity 0.3s;
+                transition: opacity $select-animation-time-default;
             }
-            li span {
-                font-size: 32px;
-                line-height: 40px;
-                margin-bottom: 20px;
-                color: $brand-primary;
-                border-bottom: 2px solid rgba(255,255,255,0);
-                &:hover {
-                    border-bottom: 2px solid $black;
-                    color: $black;
+            li {
+                span {
+                    font-size: 32px;
+                    line-height: 40px;
+                    margin-bottom: 20px;
+                    color: $brand-primary;
+                    border-bottom: 2px solid rgba(255, 255, 255, 0);
+                    &:hover {
+                        border-bottom: 2px solid $black;
+                        color: $black;
+                    }
                 }
-            }
-            li.selected span {
-                border-bottom: 2px solid $brand-primary;
+                &.option-selected {
+                    background: none;
+                    text-shadow: 0 0 0 rgba(0,0,0,0);
+                    span {
+                        border-bottom: 2px solid $select-bg-default;
+                        &:hover {
+                            color: $select-bg-default;
+                        }
+                    }
+                }
             }
         }
     }
     &.open .ba-options {
         visibility: visible;
         opacity: 1;
-        -webkit-transform: scale(1);
         transform: scale(1);
-        -webkit-transition: -webkit-transform 0.5s, opacity 0.5s;
-        transition: transform 0.5s, opacity 0.5s;
+        transition: transform $select-animation-time-default, opacity $select-animation-time-default;
         li {
             opacity: 1;
-            transform: translate3d(0, 0, 0);
         }
     }
     & + .ba-select-close {
@@ -475,25 +413,25 @@
             position: absolute;
             left: 0;
             top: 0;
-            content: "␡";
-            color: $black;
-            font-family: $f-stack-icon;
-            font-size: 40px;
-            text-align: right;
+            width: 39px;
+            height: 39px;
+            content: "";
+            background-position: 0 -84px;
+            @include retina-image($select-sprite-image, $select-sprite-image2x, $select-sprite-width, $select-sprite-height);
+
         }
     }
 }
 
 .ba-fullthumb {
     .ba-shiv {
-        line-height: 30px;
         .ba-color-name, .ba-shiv-content {
             display: inline-block;
         }
         .ba-color-box {
-            width: 20px;
-            height: 20px;
-            border-radius: 3px;
+            width: 32px;
+            height: 32px;
+            border-radius: 2px;
             position: relative;
             top: 5px;
             display: none;
@@ -518,61 +456,63 @@
         left: 0;
         border-radius: 0;
         box-shadow: 0 0 0 rgba(255,255,255,0);
-        background: url('../images/blueacorn/super-selects/overlay-background.png') 0 0 repeat;
+        background: rgba(255,255,255,0.9);
         visibility: hidden;
         opacity: 0;
         transition: opacity 0.2s, visibility 0s 0.2s;
         ul {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
             width: 100%;
-            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            flex-wrap: wrap;
+            flex-flow: row wrap;
+            align-content: stretch;
             li {
                 white-space: normal;
+                flex: 1;
+                min-width: 24%;
+                min-height: 24%;
+                margin: 0.5%;
+                position: relative;
+                border-radius: 2px;
                 span {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
                     font-size: 32px;
                     line-height: 40px;
                     color: $brand-primary;
-                    border-bottom: 2px solid rgba(255,255,255,0);
-                    &:hover {
-                        border-bottom: 2px solid $black;
-                        color: $black;
+                    text-shadow: 0 4px 4px rgba(0,0,0,.1),
+                                 0 8px 8px rgba(0,0,0,.1),
+                                 0 16px 16px rgba(0,0,0,.1),
+                                 0 32px 32px rgba(0,0,0,.15),
+                                 0 64px 64px rgba(0,0,0,.15);
+
+                }
+                &:hover, &:focus {
+                    .ba-color-box, .ba-img-span {
+                        border: 4px solid $select-bg-default;
                     }
                 }
             }
         }
-        li {
-            padding: 0;
-            @include g-item(max, $bp-large + 1, 5, 980, 19.5);
-            @include g-item($bp-large, $bp-small + 1, 3, 600, 13);
-            @include g-item($bp-small, 320px, 2, 320, 6.5);
-            margin-bottom: 20px;
-            clear: none;
-            float: left;
-            text-align: center;
-            background: $white;
-            border-radius: 5px;
-            transition: transform 0.3s, opacity 0.3s;
-            transform: scale3d(0.8,0.8,1);
-            height: 95%;
-            opacity: 0;
-
-            &.first {
-                display: none;
-            }
-            &.selected .ba-color-box {
-                position: relative;
-                &:before {
-                    content: "✓";
-                    font: normal 32px/38px $f-stack-icon;
-                    color: $white;
-                    width: 32px;
-                    height: 32px;
-                    text-align: center;
-                    position: absolute;
-                    left: 50%;
-                    top: 50%;
-                    margin-left: -16px;
-                    margin-top: -16px;
-                }
+        .option-selected .ba-color-box, .option-selected:hover .ba-color-box, .option-selected:focus .ba-color-box {
+            &:before {
+                content: "✓";
+                font: normal 32px/38px $f-stack-icon;
+                color: $white;
+                width: 100%;
+                height: 32px;
+                text-align: center;
+                position: absolute;
+                left: 0;
+                top: 25%;
             }
         }
         .ba-img-span, .ba-color-box {
@@ -583,12 +523,15 @@
             min-height: 100px;
             background-position: 50% 50%;
             background-size: 100% auto;
-        }
-        .ba-color-box {
-            @include border-top-radius(5px);
+            border-radius: 2px;
         }
         .ba-opt-content {
+            position: absolute;
+            left: 0;
+            top: 50%;
             width: 100%;
+            margin-top: -20px;
+            color: $white;
         }
     }
     &.open .ba-options {
@@ -599,6 +542,13 @@
             opacity: 1;
         }
     }
+    &.hide-first .ba-options {
+        ul {
+            li:first-child {
+                display: none;
+            }
+        }
+    }
 }
 
 .ba-color-name {
@@ -606,50 +556,71 @@
     font-size: 16px;
 }
 
+.ba-search {
+    .ba-search-container {
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 100%;
+        height: 54px;
+        width: 100%;
+        padding: 0 10px 5px;
+        background: $white;
+        border: 1px solid $select-border-color-default;
+        border-top: 0;
+        border-bottom: 0;
+        z-index: 9999;
+        &:after {
+            width: 13px;
+            height: 13px;
+            content: '';
+            display: inline-block;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            margin-top: -12px;
+            @include retina-image($select-sprite-image, $select-sprite-image2x, $select-sprite-width, $select-sprite-height);
+            background-position: 0 -39px;
+        }
+    }
+    .ba-search-field {
+        width: 100%;
+        height: 44px;
+        border: 1px solid lighten($select-border-color-default, 3%);
+        border-radius: 2px;
+        padding: 0 10px;
+    }
+    &.open {
+        .ba-shiv:after { display: none; }
+        .ba-options {
+            top: calc(100% + 54px);
+        }
+        .ba-search-container {
+            display: block;
+        }
+    }
+}
+
 .validation-error {
     .ba-shiv, .ba-options {
-        @include gradient-vertical(lighten($brand-danger, 5%), $brand-danger);
-        border-color: $brand-danger;
-        &:hover {
-            background: $brand-danger;
-        }
-    }
-    .ba-shiv .ba-arrow {
-        background-position: -34px 0;
-    }
-    .ba-left, .ba-right, .ba-under {
-        .ba-shiv {
-            text-shadow: none;
-        }
-    }
-    .ba-left .ba-options:after { background-position: -103px -2px; }
-    .ba-right .ba-options:after { background-position: -100px -35px; }
-    .ba-under .ba-options:after { background-position: -98px -68px; }
-    .ba-options li, .ba-shiv-content, .ba-shiv-content:hover { color: $white; }
-    .ba-options li:hover {
-        color: $black-80 !important;
+        border-color: $select-border-color-error;
     }
 
-    .ba-options:before {
-        @include gradient-vertical(lighten($brand-danger, 5%), $brand-danger);
-        text-shadow: 0 2px 0 lighten($brand-danger, 5%);
-        border-color: $brand-danger;
-        &:hover {
-            background: $brand-danger;
-        }
+    .open .ba-shiv:after {
+        background: $select-border-color-error;
     }
-    .ba-over .ba-options, .ba-thumbnail .ba-options {
-        background: none;
-        border: 0;
-        box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+
+    .ba-shiv-content, .ba-opt-content, .open .ba-shiv-content {
+        color: $select-color-error;
     }
-    .ba-fullscreen .ba-options, .ba-fullthumb .ba-options {
-        background: rgba(255,255,255,.9);
-        border: 0;
-        text-shadow: none;
+
+    .ba-arrow {
+        background-position: 0 -146px;
     }
-    .ba-fullthumb .ba-options {
-        background: rgba(0,0,0,.75);
+
+    .option-selected, .option-selected:hover, .option-selected:focus  {
+        background: $select-bg-error;
+        .ba-opt-content { color: $white; }
     }
 }
 
@@ -660,18 +631,37 @@ html.touch.resp-mobile, html.touch.resp-tablet {
         width: 100%;
     }
     .ba-select-input {
-        @extend .select-custom;
+        float: left;
+        clear: both;
+        width: 100%;
+        position: absolute;
+        z-index: 100;
+        left: 0;
+        top: 0;
+        display: block;
+        cursor: pointer;
+        visibility: visible;
+        @if $mq-support == true {
+            -webkit-appearance: menulist-button;
+        }
+        height: $select-height-default;
+        opacity: 0;
+        margin: 0;
     }
 }
 
 .ba-select-container.sm {
+    height: 28px;
     .ba-shiv {
-        height: 24px;
+        height: 28px;
         padding: 0 30px 0 10px;
-        font: 300 1em/24px $f-stack-default;
+        font: 400 1em/26px $f-stack-default;
     }
     .ba-shiv-content {
-        font: 300 1em/24px $f-stack-default;
+        font: 400 1em/26px $f-stack-default;
+    }
+    .ba-arrow {
+        right: 10px;
     }
     .ba-arrow:after {
         font-size: 12px;
@@ -681,7 +671,7 @@ html.touch.resp-mobile, html.touch.resp-tablet {
     }
     .ba-options ul li {
         margin: 0;
-        padding: 0;
-        font: 300 1em/24px $f-stack-default;
+        padding: 0 10px;
+        font: 400 1em/24px $f-stack-default;
     }
 }

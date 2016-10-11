@@ -16,7 +16,8 @@ function ResponsiveNotation(options) {
                 'moduleName' : 'ResponsiveNotation',
                 'mobileClass': 'resp-mobile',
                 'tabletClass': 'resp-tablet',
-                'desktopClass': 'resp-desktop'
+                'desktopClass': 'resp-desktop',
+                'html': $('html')
             };
 
             // Overrides the default settings
@@ -36,37 +37,70 @@ function ResponsiveNotation(options) {
             var self = this;
             enquire.register('screen and (min-width:' + (bp.large + 1) + 'px)', {
                 match: function() {
-                    $('html').addClass(self.settings.desktopClass);
+                    self.settings.html.addClass(self.settings.desktopClass);
                 },
                 unmatch: function() {
-                    $('html').removeClass(self.settings.desktopClass);
+                    self.settings.html.removeClass(self.settings.desktopClass);
                 }
             }).register('screen and (min-width:' + (bp.small + 1) + 'px) and (max-width:' + bp.large + 'px)', {
                 match: function() {
-                    $('html').addClass(self.settings.tabletClass);
+                    self.settings.html.addClass(self.settings.tabletClass);
                 },
                 unmatch: function() {
-                    $('html').removeClass(self.settings.tabletClass);
+                    self.settings.html.removeClass(self.settings.tabletClass);
                 }
             }).register('screen and (max-width:' + bp.small + 'px)', {
                 match: function() {
-                    $('html').addClass(self.settings.mobileClass);
+                    self.settings.html.addClass(self.settings.mobileClass);
                 },
                 unmatch: function() {
-                    $('html').removeClass(self.settings.mobileClass);
+                    self.settings.html.removeClass(self.settings.mobileClass);
                 }
             });
+        },
+
+        is: function(device) {
+            return self.settings.html.hasClass(device);
+        },
+
+        isMobile: function() {
+            return this.is(this.settings.mobileClass);
+        },
+
+        isTablet: function() {
+            return this.is(this.settings.tabletClass);
+        },
+
+        isDesktop: function() {
+            return this.is(this.settings.desktopClass);
+        },
+
+        isTouch: function() {
+            return this.is('touch');
         }
     };
 
-    $(document).on("baCoreReady", function() {
+    /**
+     * The parameter object is optional.
+     * Must be an object.
+     */
+    ba.ResponsiveNotation = new ResponsiveNotation();
 
-        /**
-         * The parameter object is optional.
-         * Must be an object.
-         */
-        ba.ResponsiveNotation = new ResponsiveNotation();
+    ba.isDesktop = function() {
+        return ba.ResponsiveNotation.isDesktop();
+    };
 
-    });
+    ba.isTablet = function() {
+        return ba.ResponsiveNotation.isTablet();
+    };
+
+    ba.isMobile = function() {
+        return ba.ResponsiveNotation.isMobile();
+    };
+
+    ba.isTouch = function() {
+        return ba.ResponsiveNotation.isTouch();
+    };
+
 
 })(jQuery, ba);

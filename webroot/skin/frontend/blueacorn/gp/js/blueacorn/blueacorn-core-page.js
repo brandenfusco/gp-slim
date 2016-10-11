@@ -109,11 +109,10 @@ function Page(options) {
 
         identifyPage: function() {
             var self = this,
-                pageRequest;
+                pageRequest = '';
 
             $.each(self.pageTypes, function(idx, pageType){
                 if(self.getPage(pageType.pageName)){
-
                     pageRequest = pageType.pageName;
                     return;
                 }

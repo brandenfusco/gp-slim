@@ -1,70 +1,104 @@
 /**
- * @package     Blueacorn/SuperSelects
- * @version     1.0
+ * @package     BlueAcorn/SuperSelects
+ * @version     2.0
  * @author      Blue Acorn <code@blueacorn.com>
- * @copyright   Copyright © 2015 Blue Acorn.
+ * @copyright   Copyright © 2016 Blue Acorn.
  */
 
-function SuperSelects(options) {
+function SuperSelectsCore(options) {
     this.init(options);
 }
 
-;(function($, ba){
+;(function($){
 
-    SuperSelects.prototype = {
-
-        /**
-         * Override Settings & Execute Base Methods
-         * @param  options key/value for Super Select Settings
-         * @return DOM Manipulation for Select Elements
-         */
-        init: function (options) {
+    SuperSelectsCore.prototype = {
+        init: function(options) {
             this.settings = {
-                'moduleName': 'SuperSelects',
+                'moduleName': 'SuperSelectsCore',
                 'enabled': true,
-                'displayMethod': 'show', //[show, fade, slide]
-                'displayType': 'over', // [over, under, right, left, circle, overlay, fullscreen, thumbnail, fullthumb, rotate, custom],
-                'typeArray': ['over', 'under', 'right', 'left', 'circle', 'overlay', 'fullscreen', 'thumbnail', 'fullthumb'],
-                'truncate': true, // [true, false]
-                'truncateAmount': 30, // [Numeric Value]
-                'optionLimits': 10, // [Numeric Value]
-                'imageType': "span", // [span, image],
+                'displayMethod': 'show',
+                'displayType': 'under',
+                'typeArray': ['under', 'overlay', 'fullscreen', 'shortbuttons', 'search', 'thumbnail', 'fullthumb'],
+                'truncate': true,
+                'truncateAmount': 255,
+                'optionsLimit': 10,
+                'imageType': 'span',
                 'htmlTag': $('html'),
-                'selects': $('select'), // jQuery DOM Object Selector
-                'smallSelects': $('#select-language, .toolbar select, .review-heading .pager select, .review-customer-index .pager select, .small-select'), // List of known Small Selects
-                'smallClass': 'sm', // Class for Small Selects
-                'blackList': ['.no-style','.swatch-select','select[multiple]'] //Black List for Selects that should not be styled, Array of classes to look for, not DOM selectors
+                'selects': $('select'),
+                'smallSelects': $('#select-language, .toolbar select, .review-heading .pager select, .review-customer-index .pager select, .small-select'),
+                'alternateDataAttributes': ['alternate-select'],
+                'blackList': '.no-style, .swatch-select, select[multiple]',
+                'defaultObservers': [
+                    'update:selects',
+                    'update:all',
+                    'section:update'
+                ],
+                'additionalObservers': [],
+                'classes': {
+                    'containerClass': 'ba-select-container',
+                    'boxClass': 'ba-select-box',
+                    'selectClass': 'ba-select',
+                    'smallClass': 'sm',
+                    'shivClass': 'ba-shiv',
+                    'shivContentClass': 'ba-shiv-content',
+                    'optionsContainerClass': 'ba-options',
+                    'originalSelectElementClass': 'ba-select-input',
+                    'optionClass': 'option',
+                    'optionContentClass': 'ba-opt-content',
+                    'imageClass': 'ba-img',
+                    'imageSpanClass': 'ba-img-span',
+                    'colorClass': 'ba-color-box',
+                    'closeClass': 'ba-select-close',
+                    'openClass': 'open',
+                    'arrowClass': 'ba-arrow',
+                    'disabledClass': 'disabled',
+                    'selectedClass': 'option-selected',
+                    'focusClass': 'focus',
+                    'hideFirstClass': 'hide-first',
+                    'setupClass': 'setup',
+                    'searchFieldClass': 'ba-search-field',
+                    'searchFieldContainerClass': 'ba-search-container'
+                },
+                'keyCodes': {
+                    'SPACE': 32,
+                    'ENTER': 13,
+                    'TAB': 9,
+                    'DOWN': 40,
+                    'UP': 38
+                },
+                'thumbnailOptions': {
+                    'optionsLimit': 5
+                },
+                'shortbuttonsOptions': {
+                    'buttonsLimit': 6,
+                    'activeClass': 'active'
+                },
+                'fullthumbOptions': {
+                    'optionsLimit': 0
+                }
             };
 
-            // Overrides the default settings
             ba.overrideSettings(this.settings, options);
 
-            // Start the debugger
-            ba.setupDebugging(this.settings);
+            if(this.settings.enabled === false) {
+                return false;
+            }
 
-            // Check if enabled
-            if(!this.settings.enabled) return;
-
-            this.setCustomEventObservers();
+            this.setCustomObservers();
             this.createSuperSelect();
-            this.unsetCustom();
         },
 
         /**
-         * Set Custom Event Observers for Updating Form Elements
-         * that may or may not be already setup.
+         * Set Custom Observers for updating all of the selects.
          */
-        setCustomEventObservers: function() {
-            var self = this;
+        setCustomObservers: function() {
+            var self = this,
+                customEvents = (self.settings.defaultObservers.join(" ") + " " + self.settings.additionalObservers.join(" ")).trim();
 
-            // Watching update:selects, update:all & section:update Custom Events
-            $(document).on('update:selects update:all section:update', function() {
-                self.settings.selects = $('select');
-                self.unsetAll();
+            $(document).on(customEvents, function(){
+                self.settings.selects = $(self.settings.selects);
                 self.createSuperSelect();
-                self.unsetCustom();
             });
-
         },
 
         /**
@@ -73,70 +107,71 @@ function SuperSelects(options) {
          */
         createSuperSelect: function() {
             var self = this,
-                settings = self.settings;
+                settings = this.settings;
 
-            this.superSelectsBefore();
+            self.superSelectsBefore();
 
-            // Start Iterating through Select Elements
-            $.each(settings.selects, function(idx, select){
+            $.each(settings.selects.not(settings.blackList), function(idx, select) {
                 var currentSelect = $(select),
                     selectOptions,
-                    dynamicSelectOption;
+                    dynamicSelectOption,
+                    dynamicCreateSuperSelectElement;
 
-                // Detects if the Super Select DOM Customizations alread
-                // exist in the DOM.
-                if($(this).siblings('.ba-select-box').length > 0) {
+                if(currentSelect.siblings(self.formatClass('boxClass')).length > 0) {
                     self.updateSuperSelectsShiv(currentSelect);
                     return;
                 }
 
                 self.setParentStyle(currentSelect);
-
                 self.setSelectType(currentSelect);
 
-                // Create the Super Select Elements
-                self.createSuperSelectElement(currentSelect);
+                // Add class to original <select> to hide it.
+                currentSelect.addClass(settings.classes.originalSelectElementClass);
 
-                // Add a class to the original select
-                // to hide it.
-                $(currentSelect).addClass('ba-select-input');
+                dynamicCreateSuperSelectElement = 'createSuperSelectElement' + self.getDynamicSelectName(currentSelect);
 
-                if(self.settings.htmlTag.hasClass('touch') && (self.settings.htmlTag.hasClass('resp-mobile') || self.settings.htmlTag.hasClass('resp-tablet'))) {
-                    $(currentSelect).height($('.ba-select-box').height());
-                    $(currentSelect).parent().addClass('ba-select-container');
+                if($.isFunction(self[dynamicCreateSuperSelectElement])) {
+                    self[dynamicCreateSuperSelectElement](currentSelect);
+                }else{
+                    self.createSuperSelectElement(currentSelect);
                 }
 
-                // Bind super select option to a
-                // Variable and append list element.
-                selectOptions = $(currentSelect).siblings('.ba-select-box').find('.ba-options');
-                $(selectOptions).append('<ul></ul>');
+                //Set optionsBox to a variable
+                selectOptions = self.getOptionsContainer(currentSelect);
 
-                // Iterate through the select options to create the individual super select options & attach to Select
+                //Iterate through the select options to create the individual super select options & attach it to the select.
                 self.buildOptionsObjects(currentSelect);
 
-                console.log(currentSelect);
-
-                // Create Individual List of Items for the Super Select
-                dynamicSelectOption = 'buildSelectOption' + self.camelCaseCreator(self.getSelectType(currentSelect));
+                dynamicSelectOption = 'buildSelectOption' + self.getDynamicSelectName(currentSelect);
 
                 $.each(currentSelect.optionsArray, function(idx) {
-                    if($.isFunction(self[dynamicSelectOption])){
-                        self[dynamicSelectOption](this, selectOptions, idx);
-                    }else{
-                        self.buildSelectOption(this, selectOptions, idx);
-                    }
+                   if($.isFunction(self[dynamicSelectOption])) {
+                       self[dynamicSelectOption](this, selectOptions, idx);
+                   }else{
+                       self.buildSelectOption(this, selectOptions, idx);
+                   }
                 });
 
-                // Populate the Shiv
+                //Populate the Shiv
                 self.updateSuperSelectsShiv(currentSelect);
 
-                // Make sure max height is
+                // Make sure max height is set
                 self.setMaxOptionsHeight(currentSelect);
 
-                // Add Observers
+                // Set Observers on the Selects
                 self.setSelectObservers(currentSelect);
-
             });
+        },
+
+        /**
+         * Add Small Class to Selects that need to display smaller
+         * for the User Interface
+         * @return DOM Manipulation, Add SMALL Class to Element
+         */
+        superSelectsBefore: function() {
+            var settings = this.settings;
+
+            $(settings.smallSelects).addClass(settings.classes.smallClass);
         },
 
         /**
@@ -148,388 +183,20 @@ function SuperSelects(options) {
          * Form Element
          */
         setParentStyle: function(currentSelect) {
-            var self = this;
+            var settings = this.settings,
+                selectParent = currentSelect.parent();
 
-            if($(currentSelect).parent().hasClass('ba-select-container')) {
+            if(selectParent.hasClass(settings.classes.containerClass)) {
                 return;
+            }else if(selectParent.hasClass('input-box')){
+                selectParent.addClass(settings.classes.containerClass);
             }else{
-                if($(currentSelect).parent().hasClass('input-box')){
-                    $(currentSelect).parent().addClass('ba-select-container');
-                }else{
-                    $(currentSelect).wrap('<div class="input-box ba-select-container"></div>');
-                }
-
+                currentSelect.wrap('<div class="input-box ' + settings.classes.containerClass + '"></div>');
             }
 
-            if($(currentSelect).hasClass(self.settings.smallClass) && !$(currentSelect).parent().hasClass(self.settings.smallClass)) {
-                $(currentSelect).parent().addClass(self.settings.smallClass);
+            if(currentSelect.hasClass(settings.classes.smallClass) && !currentSelect.parent(settings.classes.smallClass)) {
+                selectParent.addClass(settings.classes.smallClass);
             }
-
-        },
-
-        /**
-         * Add Small Class to Selects that need to display smaller
-         * for the User Interface
-         * @return DOM Manipulation, Add SMALL Class to Element
-         */
-        superSelectsBefore: function() {
-            var self = this;
-
-            $(self.settings.smallSelects).addClass(self.settings.smallClass);
-        },
-
-        /**
-         * Add Click & Option Observers to the Current Select Element
-         * @param currentSelect jQueryDOM Object of Select
-         * Form Element
-         */
-        setSelectObservers: function(currentSelect) {
-            var self = this, dynamicClickObserver, dynamicOptionObservers;
-
-            // Set Click Observer
-            dynamicClickObserver = 'setClickObserver' + self.camelCaseCreator(self.getSelectType(currentSelect));
-
-            if($.isFunction(self[dynamicClickObserver])){
-                self[dynamicClickObserver](currentSelect);
-            }else{
-                self.setClickObserver(currentSelect);
-            }
-
-            // Set Option Observers
-            dynamicOptionObservers = 'setOptionObservers' + self.camelCaseCreator(self.getSelectType(currentSelect));
-            if($.isFunction(self[dynamicOptionObservers])){
-                self[dynamicOptionObservers](currentSelect);
-            }else{
-                self.setOptionObservers(currentSelect);
-            }
-
-            $(currentSelect).on('change', function(){
-                self.updateSuperSelectsShiv(currentSelect);
-            });
-        },
-
-        /**
-         * Default Click Observer for Select Shiv to Open Select Options
-         * @param currentSelect jQueryDOM Object of Select
-         * Form Element
-         */
-        setClickObserver: function(currentSelect) {
-            var self        = this,
-                selectShiv  = $(currentSelect).siblings('.ba-select-box').find('.ba-shiv');
-
-            // Add Click Event tot he Super Select Shiv
-            selectShiv.on('click', function(){
-                // Detect if the Shiv is Already Open
-                if(!$(currentSelect).siblings('.ba-select-box').hasClass('open')){
-                    self.openOptions(currentSelect);
-                }else{
-                    self.closeOptions(currentSelect);
-                }
-            });
-        },
-
-        /**
-         * Click Observer for Super Select that opens to the Left
-         * @param currentSelect jQueryDOM Object of Select
-         */
-        setClickObserverLeft: function(currentSelect) {
-            var self        = this,
-                selectShiv  = $(currentSelect).siblings('.ba-select-box').find('.ba-shiv');
-
-            // Add Click Event tot he Super Select Shiv
-            selectShiv.on('click', function(){
-                // Detect if the Shiv is Already Open
-                var baSelectBox = $(currentSelect).siblings('.ba-select-box'),
-                    baOptionsBox = $(baSelectBox).find('.ba-options');
-
-                if(!$(baSelectBox).hasClass('open')){
-                    self.openOptions(currentSelect);
-                    var newLeft = $(baOptionsBox).outerWidth() - ($(baOptionsBox).outerWidth() * 2) - 6,
-                        newTop = ($(baOptionsBox).height()/2) - $(baOptionsBox).height();
-                    $(baOptionsBox).css({
-                        "left": newLeft,
-                        "margin-top": newTop
-                    });
-
-                }else{
-                    self.closeOptions(currentSelect);
-                }
-            });
-        },
-
-        /**
-         * Click Observer for Super Select that opens to the Right
-         * @param currentSelect jQueryDOM Object of Select
-         */
-        setClickObserverRight: function(currentSelect) {
-            var self        = this,
-                selectShiv  = $(currentSelect).siblings('.ba-select-box').find('.ba-shiv');
-
-            // Add Click Event tot he Super Select Shiv
-            selectShiv.on('click', function(){
-                // Detect if the Shiv is Already Open
-                var baSelectBox = $(currentSelect).siblings('.ba-select-box'),
-                    baOptionsBox = $(baSelectBox).find('.ba-options');
-                if(!$(baSelectBox).hasClass('open')){
-
-                    self.openOptions(currentSelect);
-
-                    var newRight = $(baSelectBox).find('.ba-options').outerWidth() - ($(baOptionsBox).outerWidth() * 2) - 6,
-                        newTop = ($(baOptionsBox).height()/2) - $(baOptionsBox).height();
-                    $(baOptionsBox).css({
-                        "right": newRight,
-                        "margin-top": newTop
-                    });
-
-                }else{
-                    self.closeOptions(currentSelect);
-                }
-            });
-        },
-
-        /**
-         * Click Observer for Super Select that opens with an Overlay
-         * @param currentSelect jQueryDOM Object of Select
-         */
-        setClickObserverOverlay: function(currentSelect) {
-            var self        = this,
-                selectShiv  = $(currentSelect).siblings('.ba-select-box').find('.ba-shiv');
-
-            // Add Click Event tot he Super Select Shiv
-            selectShiv.on('click', function(){
-                // Detect if the Shiv is Already Open
-                var baSelectBox = $(currentSelect).siblings('.ba-select-box');
-                if(!$(baSelectBox).hasClass('open')){
-
-                    self.openOptions(currentSelect);
-
-                    var boxHeight = $(baSelectBox).find('.ba-options').height();
-                    var newMargin = boxHeight - (boxHeight * 1.5);
-
-                    $(baSelectBox).find('.ba-options').css("margin-top", newMargin);
-
-                }else{
-                    self.closeOptions(currentSelect);
-                }
-            });
-        },
-
-        /**
-         * Click Observer for Super Select that opens Full Screen
-         * @param currentSelect jQueryDOM Object of Select
-         */
-        setClickObserverFullscreen: function(currentSelect) {
-            var self        = this,
-                selectShiv  = $(currentSelect).siblings('.ba-select-box').find('.ba-shiv');
-
-            // Add Click Event tot he Super Select Shiv
-            selectShiv.on('click', function(){
-                // Detect if the Shiv is Already Open
-                var baSelectBox = $(currentSelect).siblings('.ba-select-box');
-                if(!$(baSelectBox).hasClass('open')){
-
-                    self.openOptions(currentSelect);
-
-                    var boxHeight = $(baSelectBox).find('.ba-options ul').height();
-                    var newMargin = boxHeight - (boxHeight * 1.5);
-
-                    $(baSelectBox).find('.ba-options ul').css("margin-top", newMargin);
-
-                }else{
-                    self.closeOptions(currentSelect);
-                }
-            });
-        },
-
-        /**
-         * Click Observer for Super Select that opens Full Screen with
-         * Thumbnails
-         * @param currentSelect jQueryDOM Object of Select
-         */
-        setClickObserverFullthumb: function(currentSelect) {
-            var self        = this,
-                selectShiv  = $(currentSelect).siblings('.ba-select-box').find('.ba-shiv');
-
-            // Add Click Event tot he Super Select Shiv
-            selectShiv.on('click', function(){
-                // Detect if the Shiv is Already Open
-                var baSelectBox = $(currentSelect).siblings('.ba-select-box');
-                if(!$(baSelectBox).hasClass('open')){
-                    self.openOptions(currentSelect);
-                }else{
-                    self.closeOptions(currentSelect);
-                }
-
-                if(!$(currentSelect).data('setup')) {
-                    $(currentSelect).data('setup', true);
-                    $($(baSelectBox).find('.ba-options li')[0]).remove();
-                }
-
-                $.each($(baSelectBox).find('.ba-img-span'), function(idx, el){
-                    $(el).css("min-height", $(el).width());
-                });
-            });
-
-            $(currentSelect).on('change', function(){
-                self.updateSuperSelectsShiv(currentSelect);
-            });
-        },
-
-        /**
-         * Set the Max Height of Of the Open Super Select to force
-         * scrolling on Selects with Many Options
-         * @param currentSelect jQueryDOM Object of Select
-         */
-        setMaxOptionsHeight: function(currentSelect) {
-            var self = this,
-                customOptions = $(currentSelect).siblings('.ba-select-box').find('.ba-options ul'),
-                firstCustomOption = $(customOptions).children()[0];
-
-            if($(firstCustomOption).height() === 0) {
-                firstCustomOption = $(customOptions).children()[1];
-            }
-
-            if($(customOptions).children().length > self.settings.optionLimits) {
-                var maxHeight = $(firstCustomOption).height() * self.settings.optionLimits;
-                $(customOptions).css({
-                    'overflow-y': 'scroll',
-                    'max-height': maxHeight + 'px'
-                });
-            }
-        },
-
-        /**
-         * Add Keyboard Observers to Select Option that matches typed keys
-         *
-         * @param currentSelect jQueryDOM Object of Select
-         */
-        setKeyboardObservers: function(currentSelect) {
-            var keys = [],
-                debouncedMethod = ba.debounce(function () {
-                    var searchString = keys.join(''),
-                        searchLength = keys.length,
-                        customOptions = $(currentSelect).siblings('.ba-select-box').find('.ba-options ul').children();
-
-                    $.each($(customOptions), function (idx, selectOption) {
-                        if ($(selectOption).find('.ba-opt-content').text().substring(0, searchLength).toUpperCase() === searchString) {
-                            $(selectOption).trigger('click');
-                            $(document).off('keyup');
-                            return false;
-                        }
-                    });
-
-                    keys = [];
-                }, 500);
-
-            $(document).on('keyup', function(event) {
-                var key = String.fromCharCode(event.keyCode);
-
-                keys.push(key);
-                debouncedMethod();
-            });
-        },
-
-        /**
-         * Standard Method that runs when any of the Super Selects
-         * are triggered to open.
-         * @param currentSelect jQueryDOM Object of Select
-         */
-        openOptions: function(currentSelect) {
-            var self = this;
-
-            // Add Open Class to the Shiv, Create the Closing Element, and Attach Closing Element Events
-            $(currentSelect).siblings('.ba-select-box').addClass('open').after('<div class="ba-select-close"></div>');
-
-            self.setKeyboardObservers(currentSelect);
-
-            self.setCloseObserver(currentSelect);
-
-            if($(currentSelect).attr('onclick') !== ''){
-                $(currentSelect).trigger('click');
-            }
-        },
-
-        /**
-         * Standard Method that runs when any of the Super Selects are
-         * triggered to close.
-         * @param currentSelect jQueryDOM Object of Select
-         */
-        closeOptions: function(currentSelect) {
-            // Remove the Open Class from the Shiv, and Remove the Closing Element from the DOM.
-            $(currentSelect).siblings('.ba-select-box').removeClass('open');
-            $(currentSelect).siblings('.ba-select-close').remove();
-        },
-
-        /**
-         * Default Method that sets Observers on Super Select Options
-         * @param currentSelect jQueryDOM Object of Select
-         */
-        setOptionObservers: function(currentSelect) {
-            var self = this,
-                customOptions = $(currentSelect).siblings('.ba-select-box').find('.ba-options ul').children();
-
-            $.each($(customOptions), function(optionIndex){
-                $(this).on('click', function(){
-                    $(currentSelect).data('optionselected','true');
-                    $(customOptions).removeClass('selected');
-                    $(this).addClass('selected');
-                    $(currentSelect).prop('selectedIndex',optionIndex);
-                    $(currentSelect)[0].triggerEvent('change');
-                    $(document).off('keyup');
-                });
-            });
-        },
-
-        /**
-         * Method that handles customizations for Full Screen Thumbnail
-         * Options & sets Observers on Super Select Options
-         * @param currentSelect jQueryDOM Object of Select
-         */
-        setOptionObserversFullthumb: function(currentSelect) {
-            var self = this,
-                customOptions = $(currentSelect).siblings('.ba-select-box').find('.ba-options ul').children();
-
-            $.each($(customOptions), function(optionIndex){
-                $(this).on('click', function(){
-
-                    if(!$(currentSelect).data('setup-first')) {
-                        $(currentSelect).data('setup-first', true);
-                        $(currentSelect).siblings('.ba-select-box').addClass('setup');
-                    }
-
-                    $(currentSelect).data('optionselected','true');
-
-                    $(customOptions).removeClass('selected');
-                    $(this).addClass('selected');
-
-                    $(currentSelect).prop('selectedIndex',optionIndex);
-                    $(currentSelect)[0].triggerEvent('change');
-                    $(document).off('keyup');
-                });
-            });
-
-            if(self.settings.htmlTag.hasClass('touch') && (self.settings.htmlTag.hasClass('resp-mobile') || self.settings.htmlTag.hasClass('resp-tablet'))) {
-                $(currentSelect).on('change', function(){
-                    if(!$(currentSelect).data('setup-first')) {
-                        $(currentSelect).data('setup-first', true);
-                        $(currentSelect).siblings('.ba-select-box').addClass('setup');
-                    }
-                });
-            }
-        },
-
-        /**
-         * Observer set on multiple Elements to trigger close of
-         * Super Selects
-         * @param currentSelect jQueryDOM Object of Select
-         */
-        setCloseObserver: function(currentSelect) {
-            // Detect Closing Element Click
-            $(currentSelect).siblings('.ba-select-close').on('click', function(){
-                // Fire Click Event on Element Shiv
-                $(currentSelect).siblings('.ba-select-box').find('.ba-shiv').trigger('click');
-                $(currentSelect).trigger('custom:blur');
-            });
         },
 
         /**
@@ -539,7 +206,8 @@ function SuperSelects(options) {
          */
         setSelectType: function(currentSelect) {
             var self = this;
-            $(currentSelect).data('type', self.getSelectType(currentSelect));
+
+            currentSelect.data('type', self.getSelectType(currentSelect));
         },
 
         /**
@@ -550,20 +218,20 @@ function SuperSelects(options) {
          * @return String currentType Current Super Select Type
          */
         getSelectType: function(currentSelect) {
-            var self = this;
+            var settings = this.settings,
+                currentType = '',
+                typeArray = settings.typeArray;
 
-            if($(currentSelect).data('type') !== undefined){
-                return $(currentSelect).data('type');
+            if(currentSelect.data('type')) {
+                return currentSelect.data('type');
             }else{
-                var currentType = '',
-                    typeArray = self.settings.typeArray;
                 $.each(typeArray, function(idx, val){
-                    if($(currentSelect).hasClass('ba-' + val)){
+                    if(currentSelect.hasClass('ba-' + val)){
                         currentType = val;
                     }
                 });
 
-                return currentType === '' ? self.settings.displayType : currentType;
+                return currentType === '' ? settings.displayType : currentType;
             }
         },
 
@@ -573,16 +241,7 @@ function SuperSelects(options) {
          * @return String Disabled Status of Select Element
          */
         getSelectStatus: function(currentSelect) {
-            return ($(currentSelect).prop('disabled')) ? 'disabled' : '';
-        },
-
-        /**
-         * Convert First Character of String to Capital Character
-         * @param  stringText Text to Convert
-         * @return String Converted Text
-         */
-        camelCaseCreator: function(stringText){
-            return stringText.charAt(0).toUpperCase() + stringText.slice(1);
+            return (currentSelect.prop('disabled')) ? 'disabled' : '';
         },
 
         /**
@@ -591,11 +250,59 @@ function SuperSelects(options) {
          * @param currentSelect jQueryDOM Object of Select
          */
         createSuperSelectElement: function(currentSelect) {
-            var self = this, superSelectTemplate;
+            var self = this,
+                settings = self.settings,
+                superSelectTemplate,
+                html,
+                superSelectClasses = {
+                    selectClass: settings.classes.selectClass,
+                    boxClass: settings.classes.boxClass,
+                    selectType: self.getSelectType(currentSelect),
+                    selectStatus: self.getSelectStatus(currentSelect),
+                    shivClass: settings.classes.shivClass,
+                    optionsContainerClass: settings.classes.optionsContainerClass
+                };
 
-            superSelectTemplate = '<div class="ba-select ba-select-box ba-' + self.getSelectType(currentSelect) + ' ' + self.getSelectStatus(currentSelect) + '"><span class="ba-shiv"><span></span></span><div class="ba-options"></div></div>';
+            superSelectTemplate = $.htmlTemplate(
+                '<div class="#{selectClass} #{boxClass} ba-#{selectType} #{selectStatus}">' +
+                    '<span class="#{shivClass}"><span></span></span>' +
+                    '<div class="#{optionsContainerClass}"><ul></ul></div>' +
+                '</div>'
+            );
 
-            $(currentSelect).before(superSelectTemplate);
+            html = superSelectTemplate.evaluate(superSelectClasses);
+
+            currentSelect.before(html);
+        },
+
+        /**
+         * Add Super Select Search Template before the Current Select
+         * Element
+         * @param currentSelect jQueryDOM Object of Select
+         */
+        createSuperSelectElementSearch: function(currentSelect) {
+            var self = this,
+                settings = self.settings,
+                searchFieldObject = {
+                    'searchFieldClass': settings.classes.searchFieldClass,
+                    'searchFieldContainerClass': settings.classes.searchFieldContainerClass,
+                    'searchFieldName': currentSelect.attr('name'),
+                    'searchPlaceholder': 'Search'
+                },
+                html,
+                searchTemplate;
+
+            self.createSuperSelectElement(currentSelect);
+
+            searchTemplate = $.htmlTemplate(
+                '<div class="#{searchFieldContainerClass}">' +
+                    '<input name="#{searchFieldName}" value="" placeholder="#{searchPlaceholder}" class="#{searchFieldClass}" />' +
+                '</div>'
+            );
+
+            html = searchTemplate.evaluate(searchFieldObject);
+
+            self.getOptionsContainer(currentSelect).before(html);
         },
 
         /**
@@ -604,13 +311,16 @@ function SuperSelects(options) {
          */
         buildOptionsObjects: function(currentSelect) {
             var self = this,
-                dynamicOptionBuilder = 'buildOptionObject' + self.camelCaseCreator(self.getSelectType(currentSelect));
+                dynamicOptionBuild = 'buildOptionObject' + self.getDynamicSelectName(currentSelect),
+                currentSelectOption = currentSelect.find('option');
 
-            if($.isFunction(self[dynamicOptionBuilder])){
-                currentSelect.optionsArray = self[dynamicOptionBuilder]($(currentSelect).find('option'));
+            if($.isFunction(self[dynamicOptionBuild])) {
+                currentSelect.optionsArray = self[dynamicOptionBuild](currentSelectOption);
             }else{
-                currentSelect.optionsArray = self.buildOptionObject($(currentSelect).find('option'));
+                currentSelect.optionsArray = self.buildOptionObject(currentSelectOption);
             }
+
+            currentSelect.alphaMap = self.buildOptionAlphaMap(currentSelectOption);
         },
 
         /**
@@ -624,160 +334,120 @@ function SuperSelects(options) {
             var optionsArray = [];
 
             $.each($(opts), function(idx, opt){
+                var currentOption = $(opt);
 
-                var superSelectOption = {};
+                optionsArray.push({
+                    value: currentOption.attr('value') ? currentOption.attr('value') : '',
+                    selected: currentOption.prop('selected'),
+                    disabled: currentOption.prop('disabled'),
+                    content: currentOption.html() ? currentOption.html() : '',
+                    color: currentOption.data('color') ? currentOption.data('color') : '',
+                    image: currentOption.data('image') ? currentOption.data('image') : ''
+                });
+            });
+            return optionsArray;
+        },
 
-                superSelectOption.value = $(opt).attr('value') ? $(opt).attr('value') : '';
-                superSelectOption.selected = $(opt).prop('selected');
-                superSelectOption.disabled = $(opt).prop('disabled');
-                superSelectOption.content = $(opt).html() ? $(opt).html() : '';
-                superSelectOption.color = $(opt).data('color') ? $(opt).data('color') : '';
-                superSelectOption.image = $(opt).data('image') ? $(opt).data('image') : '';
+        /**
+         * Build Object with First Letters as keys to allow quick selection of options.
+         * @param  opts Array of Option Elements within
+         * Current Select
+         * @return Object | Object of first letters as keys, and arrays of option indexes as values.
+         */
+        buildOptionAlphaMap: function(opts) {
+            var alphaMap = {};
 
-                optionsArray.push(superSelectOption);
+            $.each($(opts), function(idx, opt) {
+                var currentOption = $(opt);
+
+                if(alphaMap[currentOption.html().charAt(0).toLowerCase()] === undefined) {
+                    alphaMap[currentOption.html().charAt(0).toLowerCase()] = [idx];
+                }else{
+                    alphaMap[currentOption.html().charAt(0).toLowerCase()].push(idx);
+                }
             });
 
-            return optionsArray;
+            return alphaMap;
         },
 
         /**
          * Build the LI Elements within the Current Super
          * Select Options
          * @param  opt Individual Select Option Object
-         * @param  selectOptions jQuery DOM Object of ba-optiosn Div
+         * @param  selectOptions jQuery DOM Object of ba-option Div
          */
         buildSelectOption: function(opt, selectOptions) {
             var self = this,
-                optionDisabled = opt.disabled ? ' disabled' : '',
-                optionSelected = opt.selected ? ' selected' : '',
-                optionValue = opt.value !== "" ? opt.value : '',
-                optionContent = opt.content !== "" ? opt.content : '',
-                optionColor = opt.color !== "" ? opt.color : '',
-                optionImage = opt.image !== "" ? opt.image : '';
+                settings = this.settings;
 
+            opt.optionClass = settings.classes.optionClass;
+            opt.optionContentClass = settings.classes.optionContentClass;
+            opt.disabledClass = opt.disabled ? settings.classes.disabledClass : '';
+            opt.selectedClass = opt.selected ? settings.classes.selectedClass : '';
+            opt.colorMarkup = '';
+            opt.imageMarkup = '';
 
-            // Template for the Image Option
-            if(optionImage !== '') {
-                optionImage = self.updateShivImage(self.settings.imageType, optionImage, optionValue);
+            if(opt.image !== '' && opt.image !== undefined) {
+                opt.imageMarkup = self.updateShivImage(settings.imageType, opt.image, opt.value);
             }
 
-            // Template for the Color Option
-            if(optionColor !== ''){
-                optionColor = self.updateShivColor(optionColor);
+            if(opt.color !== '') {
+                opt.colorMarkup = self.updateShivColor(opt.color);
             }
 
-            // Template for the optionLi
-            var optionLi =  '<li class="option' +
-                optionDisabled +
-                optionSelected + '" ' +
-                'data-value="' + optionValue + '">' +
-                optionImage +
-                optionColor +
-                '<span class="ba-opt-content">' + optionContent + '</span>' +
-                '</li>';
+            var optionLi = $.htmlTemplate(
+                '<li class="#{optionClass} #{disabledClass} #{selectedClass}" data-value="#{value}">' +
+                        '#{imageMarkup}' +
+                        '#{colorMarkup}' +
+                        '<span class="#{optionContentClass}">#{content}</span>' +
+                '</li>'
+            );
 
-            // Append the Option to the Un-ordered List Element
-            $(selectOptions).find('ul').append(optionLi);
-
+            selectOptions.find('ul').append(optionLi.evaluate(opt));
         },
 
         /**
-         * Adds Escalating CSS Transition-Delay to Options to add Cascading
-         * Display Effect
-         * @param  delay  Initial Delay for First Option
-         * @param  idx    Index of Current Option
-         * @param  offset Offset used to multiply Cascading Delay
-         * @return String Final Transition Delay Calculated
+         * If the Shiv Needs to Display an Image This Updates the Shiv Image
+         * @param  imageType Image Type (either span or img)
+         * @param  image     Url to Image
+         * @param  value     Value of Selected Option
+         * @return String    DOM HTML of Shiv Image
          */
-        getSelectOptionTransitionDelay: function(delay, idx, offset) {
-            var transitionDelay,
-                offsetDelay = (offset) ? offset : delay;
+        updateShivImage: function(imageType, image, value) {
+            var html,
+                settings = this.settings,
+                imageObject = {
+                    image: image,
+                    class: settings.classes.imageClass,
+                    value: value
+                };
 
-            if(idx === 0) {
-                transitionDelay = delay + 's';
-            } else {
-                transitionDelay = (((idx + 1) * (delay * 100) / 100) + offsetDelay) + 's';
+            if(imageType === 'span') {
+                imageObject.class = settings.classes.imageSpanClass;
+                html = $.htmlTemplate('<span class="#{class}" style="background-image: url(\'#{image}\');"></span>');
+            }else{
+                html = $.htmlTemplate('<span class="#{class}"><img src="#{image}" alt="#{value}"/></span>');
             }
 
-            return transitionDelay;
+            return html.evaluate(imageObject);
         },
 
         /**
-         * Add CSS Transition Delay to the Current DOM Element
-         * @param transitionDelay CSS Attribute Value for Transition Delay
-         * @param selectOptions   jQuery DOM Object of Super Select Options
-         * @param idx             Index of Current Super Select Option
+         * If the Shiv Needs to Display Color this Updates the Shiv Color
+         * @param  color   HEX Color Value of Selected Option
+         * @return String DOM HTML of Shiv Color
          */
-        setSelectOptionTransitionDelay: function(transitionDelay, selectOptions, idx) {
+        updateShivColor: function(color) {
+            var html,
+                settings = this.settings,
+                colorData = {
+                    className: settings.classes.colorClass,
+                    color: color
+                };
 
-            $($(selectOptions).find('li')[idx]).css({
-                '-webkit-transition-delay' : transitionDelay,
-                'transition-delay': transitionDelay
-            });
-        },
+            html = $.htmlTemplate('<span class="#{className}" style="background: #{color};"></span>');
 
-        /**
-         * Build Out Select with Transition Delay for Individual Option Elements
-         * @param  opt           Current DOM Option Object
-         * @param  selectOptions DOM Object of Super Select Options
-         * @param  delay         Initial Delay for First Option
-         * @param  idx           Index of Current Option
-         * @param  offset        Offset used to multiply Cascading
-         *                                Delay
-         */
-        buildSelectOptionWithDelay: function(opt, selectOptions, idx, delay, offset) {
-            var self = this, transitionDelay;
-
-            self.buildSelectOption(opt, selectOptions, idx);
-
-            transitionDelay = self.getSelectOptionTransitionDelay(delay, idx, offset);
-
-            self.setSelectOptionTransitionDelay(transitionDelay, selectOptions, idx);
-        },
-
-        /**
-         * Add Transition Delay for Super Select - Over Type
-         * @param  opt           Current DOM Option Object
-         * @param  selectOptions DOM Object of Super Select Options
-         * @param  idx           Index of Current Super Select Option
-         */
-        buildSelectOptionOver: function(opt, selectOptions, idx) {
-            this.buildSelectOptionWithDelay(opt, selectOptions, idx, 0.02, false);
-        },
-
-        /**
-         * Add Transition Delay for Super Select - Thumbnail & First Child Class
-         * to First Option
-         * @param  opt           Current DOM Option Object
-         * @param  selectOptions DOM Object of Super Select Options
-         * @param  idx           Index of Current Super Select Option
-         */
-        buildSelectOptionThumbnail: function(opt, selectOptions, idx) {
-            this.buildSelectOptionWithDelay(opt, selectOptions, idx, 0.02, false);
-
-            if(idx === 0){
-                $($(selectOptions).find('ul li')[idx]).addClass('first-child');
-            }
-        },
-
-        /**
-         * Add Transition Delay for Super Select - Fullscreen
-         * @param  opt           Current DOM Option Object
-         * @param  selectOptions DOM Object of Super Select Options
-         * @param  idx           Index of Current Super Select Option
-         */
-        buildSelectOptionFullscreen: function(opt, selectOptions, idx) {
-            this.buildSelectOptionWithDelay(opt, selectOptions, idx, 0.10, 0.05);
-        },
-
-        /**
-         * Add Transition Delay for Super Select - Fullscreen Thumbnails
-         * @param  opt           Current DOM Option Object
-         * @param  selectOptions DOM Object of Super Select Options
-         * @param  idx           Index of Current Super Select Option
-         */
-        buildSelectOptionFullthumb: function(opt, selectOptions, idx) {
-            this.buildSelectOptionWithDelay(opt, selectOptions, idx, 0.03, false);
+            return html.evaluate(colorData);
         },
 
         /**
@@ -786,48 +456,94 @@ function SuperSelects(options) {
          * @param currentSelect jQueryDOM Object of Select
          */
         updateSuperSelectsShiv: function(currentSelect) {
-
             var self = this,
-                selectedOption = $(currentSelect).prop('selectedIndex'),
-                optionsArray,
+                selectedOption = currentSelect.prop('selectedIndex'),
+                childOptions = self.getCustomOptions(currentSelect),
+                dynamicAfterUpdateSuperSelectsShiv = 'updateAfterSuperSelectsShiv' + self.getDynamicSelectName(currentSelect),
+                currentOption,
+                settings = self.settings,
                 html = '';
 
             self.closeOptions(currentSelect);
 
-            if((currentSelect.optionsArray === undefined && currentSelect.optionsArray !== "") || currentSelect.optionsArray.length !== $(currentSelect).children().length) {
+            if((currentSelect.optionsArray === undefined && currentSelect.optionsArray !== "") || currentSelect.optionsArray.length !== currentSelect.children().length) {
                 self.buildOptionsObjects(currentSelect);
             }
 
-            optionsArray = currentSelect.optionsArray[selectedOption];
-
-            if(optionsArray.image !== undefined && optionsArray.image !== ""){
-                html += self.updateShivImage(self.settings.imageType, optionsArray.image, optionsArray.value);
+            if(typeof currentSelect.alphaMap !== "undefined" && currentSelect.alphaMap !== "") {
+                self.buildOptionAlphaMap(currentSelect);
             }
 
-            if(optionsArray.color !== undefined && optionsArray.color !== ""){
-                html += self.updateShivColor(optionsArray.color);
+            currentOption = currentSelect.optionsArray[selectedOption];
+
+            if(typeof currentOption.image !== "undefined" && currentOption.image !== ""){
+                html += self.updateShivImage(self.settings.imageType, currentOption.image, currentOption.value);
             }
 
-            html += '<span class="ba-shiv-content">' + self.formatShivContent(currentSelect.optionsArray[selectedOption].content) + '</span>';
+            if(typeof currentOption.color !== "undefined" && currentOption.color !== ""){
+                html += self.updateShivColor(currentOption.color);
+            }
 
-            $(currentSelect).siblings('.ba-select-box').find('.ba-shiv').html(html + ' <span class="ba-arrow"></span>');
+            html += '<span class="' + settings.classes.shivContentClass + '">' + self.formatShivContent(currentSelect.optionsArray[selectedOption].content) + '</span>';
 
-            if($(currentSelect).css('display') === 'none'){
-                $(currentSelect).siblings('.ba-select').css('display','none');
+            self.getSelectBox(currentSelect).find(self.formatClass('shivClass')).html(html + ' <span class="' + settings.classes.arrowClass + '"></span>');
+
+            if(currentSelect.css('display') === 'none'){
+                currentSelect.siblings(self.formatClass('selectClass')).css('display','none');
             }else{
-                $(currentSelect).siblings('.ba-select').css('display','');
+                currentSelect.siblings(self.formatClass('selectClass')).css('display','');
             }
 
-            if($(currentSelect).prop('disabled')){
-                $(currentSelect).parent('.ba-select-container').addClass('disabled');
+            if(currentSelect.prop('disabled')){
+                self.getParentContainer(currentSelect).addClass(settings.classes.disabledClass);
             }else{
-                $(currentSelect).parent('.ba-select-container').removeClass('disabled');
+                self.getParentContainer(currentSelect).removeClass(settings.classes.disabledClass);
             }
 
-            if($(currentSelect).data('optionselected') === 'true'){
-                $(currentSelect).parent('.ba-select-container').addClass('option-selected');
+            if(currentSelect.data('optionselected') === 'true'){
+                self.getParentContainer(currentSelect).addClass(settings.classes.selectedClass);
             }
 
+            if(currentSelect.hasClass(settings.classes.smallClass)) {
+                self.getParentContainer(currentSelect).addClass(settings.classes.smallClass);
+            }
+
+            childOptions.removeClass(settings.classes.selectedClass);
+            $(childOptions[selectedOption]).addClass(settings.classes.selectedClass);
+
+            if($.isFunction(self[dynamicAfterUpdateSuperSelectsShiv])) {
+                self[dynamicAfterUpdateSuperSelectsShiv](currentSelect);
+            }
+        },
+
+        /**
+         * Updates Shiv for Short Buttons
+         * @param currentSelect jQueryDOM Object of Select
+         */
+        updateAfterSuperSelectsShivShortbuttons: function(currentSelect) {
+            var self = this,
+                settings = self.settings,
+                selectParent = self.getSelectBox(currentSelect);
+
+            if(currentSelect.optionsArray.length <= settings.shortbuttonsOptions.buttonsLimit) {
+                selectParent.addClass(settings.shortbuttonsOptions.activeClass);
+            }else{
+                selectParent.removeClass(settings.shortbuttonsOptions.activeClass);
+            }
+        },
+
+        /**
+         * Standard Method that runs when any of the Super Selects are
+         * triggered to close.
+         * @param currentSelect jQueryDOM Object of Select
+         */
+        closeOptions: function(currentSelect) {
+            var self = this,
+                settings = self.settings;
+
+            // Remove the Open Class from the Shiv, and Remove the Closing Element from the DOM.
+            self.getSelectBox(currentSelect).removeClass(settings.classes.openClass);
+            currentSelect.siblings(self.formatClass('closeClass')).remove();
         },
 
         /**
@@ -847,83 +563,542 @@ function SuperSelects(options) {
         },
 
         /**
-         * If the Shiv Needs to Display an Image This Updates the Shiv Image
-         * @param  imageType Image Type (either span or img)
-         * @param  image     Url to Image
-         * @param  value     Value of Selected Option
-         * @return String    DOM HTML of Shiv Image
+         * Set the Max Height of Of the Open Super Select to force
+         * scrolling on Selects with Many Options
+         * @param currentSelect jQueryDOM Object of Select
          */
-        updateShivImage: function(imageType, image, value) {
-            var html;
+        setMaxOptionsHeight: function(currentSelect) {
+            var self = this,
+                optionsLimit = self.settings.optionsLimit,
+                selectType = self.getSelectType(currentSelect),
+                customOptions = self.getCustomOptions(currentSelect),
+                firstCustomOption = $(customOptions)[0] === 0 ? $(customOptions)[1] : $(customOptions)[0];
 
-            if(imageType === 'span') {
-                html = '<span class="ba-img-span" style="background-image: url(\'' + image + '\');"></span>';
+            if($(customOptions).children().length > self.settings.optionsLimit) {
+                if(typeof self.settings[selectType + 'Options'] === "object" && self.settings[selectType + 'Options'].optionsLimit > -1) {
+                    optionsLimit = self.settings[selectType + 'Options'].optionsLimit;
+                }
+
+                if(optionsLimit > 0) {
+                    var maxHeight = ($(firstCustomOption).height() + $(firstCustomOption).css('margin-bottom').replace(/[^-\d\.]/g, '')*1) * optionsLimit;
+                    self.getOptionsContainer(currentSelect).css({
+                        'overflow-y': 'scroll',
+                        'max-height': maxHeight + 'px'
+                    });
+                }
+            }
+        },
+
+        /**
+         * Set Select Specific or Generic Observers
+         * @param currentSelect jQueryDOM Object of Select
+         */
+        setSelectObservers: function(currentSelect) {
+            var self = this,
+                dynamicClickObserver,
+                dynamicOptionObservers;
+
+            dynamicClickObserver = 'setClickObserver' + self.getDynamicSelectName(currentSelect);
+
+            if($.isFunction(self[dynamicClickObserver])){
+                self[dynamicClickObserver](currentSelect);
             }else{
-                html = '<span class="ba-img"><img src="' + image + ' " alt="' + value + '"/></span>';
+                self.setClickObserver(currentSelect);
             }
 
-            return html;
-        },
+            //Set Option Observers
+            dynamicOptionObservers = 'setOptionObservers' + self.getDynamicSelectName(currentSelect);
+            if($.isFunction(self[dynamicOptionObservers])){
+                self[dynamicOptionObservers](currentSelect);
+            }else{
+                self.setOptionObservers(currentSelect);
+            }
 
-        /**
-         * If the Shiv Needs to Display Color this Updates the Shiv Color
-         * @param  color   HEX Color Value of Selected Option
-         * @return String DOM HTML of Shiv Color
-         */
-        updateShivColor: function(color) {
-            return '<span class="ba-color-box" style="background: ' + color + ';"></span>';
-        },
-
-        /**
-         * Removes Super Select Customizations for Black Listed Selects
-         */
-        unsetCustom: function() {
-            var self = this;
-
-            $.each(self.settings.blackList, function(idx, listItem){
-                $.each($(listItem), function(idx, el){
-                    if($(el).prop('tagName') == 'SELECT') {
-                        self.unsetSuperSelect(el);
-                    }
-                });
-
+            currentSelect.on('change', function(){
+                self.updateSuperSelectsShiv(currentSelect);
             });
         },
 
         /**
-         * Unsets all super selects on rebuild.
+         * Default Click Observer for Select Shiv to Open Select Options
+         * @param currentSelect jQueryDOM Object of Select
+         * Form Element
          */
-        unsetAll: function() {
-            var self = this;
+        setClickObserver: function(currentSelect) {
+            var self = this,
+                settings = self.settings,
+                selectShiv = self.getSelectBox(currentSelect).find(self.formatClass('shivClass')),
+                dynamicOpenOptions = 'openOptions' + self.getDynamicSelectName(currentSelect),
+                dynamicCloseOptions = 'closeOptions' + self.getDynamicSelectName(currentSelect);
 
-            $.each(self.settings.selects, function(idx, listItem){
-                $.each($(listItem), function (idx, el) {
-                    if ($(el).prop('tagName') == 'SELECT') {
-                        self.unsetSuperSelect(el);
+            // Add Click Event tot he Super Select Shiv
+            selectShiv.on('click focus', function(){
+                // Detect if the Shiv is Already Open
+                if(!self.getSelectBox(currentSelect).hasClass(settings.classes.openClass)){
+                    if($.isFunction(self[dynamicOpenOptions])) {
+                        self[dynamicOpenOptions](currentSelect);
+                    }else{
+                        self.openOptions(currentSelect);
                     }
+                }else{
+                    if($.isFunction(self[dynamicCloseOptions])) {
+                        self[dynamicCloseOptions](currentSelect);
+                    }else{
+                        self.closeOptions(currentSelect);
+                    }
+                }
+            });
+        },
+
+        /**
+         * Set either super select specific keyboard observers or
+         * standard keyboard observers for controlling super selects
+         * without a mouse.
+         * @param currentSelect
+         */
+        setKeyObservers: function(currentSelect) {
+            var self = this,
+                dynamicKeyboardObservers;
+
+            // Set Option Observers
+            dynamicKeyboardObservers = 'setKeyboardObservers' + self.getDynamicSelectName(currentSelect);
+            if($.isFunction(self[dynamicKeyboardObservers])){
+                self[dynamicKeyboardObservers](currentSelect);
+            }else{
+                self.setKeyboardObservers(currentSelect);
+            }
+        },
+
+        /**
+         * Add Keyboard Observers to Select Option that matches typed keys
+         * @param currentSelect jQueryDOM Object of Select
+         */
+        setKeyboardObservers: function(currentSelect) {
+            var keys = [],
+                self = this,
+                settings = self.settings,
+                selectedOption = currentSelect.prop('selectedIndex'),
+                debounceMethod = ba.debounce(function (e) {
+                    var searchKey = keys.length - 1,
+                        alphaMap = currentSelect.alphaMap,
+                        customOptions = self.getCustomOptions(currentSelect);
+
+                        if(alphaMap[keys[searchKey]]) {
+                            $.each(alphaMap[keys[searchKey]], function(idx, keyIndex){
+                               if((alphaMap[keys[searchKey]].length - 1) === idx){
+                                   customOptions[keyIndex].focus();
+                                   selectedOption = keyIndex;
+                                   return false;
+                               }else{
+                                   if(selectedOption === keyIndex) {
+                                       return true;
+                                   }else{
+                                       customOptions[keyIndex].focus();
+                                       selectedOption = keyIndex;
+                                       return false;
+                                   }
+                               }
+                            });
+                        }
+                    keys = [];
+                }, 100);
+
+            $(document).on('keydown', function(e) {
+                if(e.keyCode === settings.keyCodes.SPACE || e.keyCode === settings.keyCodes.ENTER) {
+                    e.preventDefault();
+                    $(e.target).trigger('click');
+                }else if(e.keyCode === settings.keyCodes.DOWN) {
+                    e.preventDefault();
+                    self.moveToOption(currentSelect, 'down', e.target);
+                }else if(e.keyCode === settings.keyCodes.UP){
+                    e.preventDefault();
+                    self.moveToOption(currentSelect, 'up', e.target);
+                }else{
+                    var key = String.fromCharCode(e.keyCode).toLowerCase();
+                    keys.push(key);
+                    debounceMethod(e);
+                }
+            });
+        },
+
+        /**
+         * Add Keyboard Observers to the Search Selects for the Search Input Field
+         * @param currentSelect jQueryDOM Object of Select
+         */
+        setKeyboardObserversSearch: function(currentSelect) {
+            var keys = [],
+                self = this,
+                settings = self.settings,
+                selectedOption = currentSelect.prop('selectedIndex'),
+                debounceMethod = ba.debounce(function (e) {
+                    var searchKey = keys.length - 1,
+                        alphaMap = currentSelect.alphaMap,
+                        customOptions = self.getCustomOptions(currentSelect);
+
+                    if(alphaMap[keys[searchKey]]) {
+                        $.each(alphaMap[keys[searchKey]], function(idx, keyIndex){
+                            if((alphaMap[keys[searchKey]].length - 1) === idx){
+                                customOptions[keyIndex].focus();
+                                selectedOption = keyIndex;
+                                return false;
+                            }else{
+                                if(selectedOption === keyIndex) {
+                                    return true;
+                                }else{
+                                    customOptions[keyIndex].focus();
+                                    selectedOption = keyIndex;
+                                    return false;
+                                }
+                            }
+                        });
+                    }
+                    keys = [];
+                }, 100),
+                searchFieldMethod = ba.debounce(function (e) {
+                    var currentSearch = self.getSelectBox(currentSelect).find(self.formatClass('searchFieldClass')),
+                        customOptions = self.getCustomOptions(currentSelect);
+                    if(currentSearch.val() !== '') {
+                        $.each(currentSelect.optionsArray, function(idx, opt){
+                            if(typeof customOptions[idx] !== "undefined") {
+                                if(opt.content.indexOf(currentSearch.val()) > -1) {
+                                    customOptions[idx].show();
+                                }else{
+                                    customOptions[idx].hide();
+                                }
+                            }else{
+                                return;
+                            }
+                        });
+                    }else{
+                        customOptions.show();
+                    }
+                }, 100);
+
+            $(document).on('keydown', function(e) {
+                var key;
+                if($(e.target).hasClass(self.settings.classes.searchFieldClass)) {
+                    searchFieldMethod(e);
+                }else{
+                    if(e.keyCode === settings.keyCodes.SPACE || e.keyCode === settings.keyCodes.ENTER) {
+                        e.preventDefault();
+                        $(e.target).trigger('click');
+                    }else if(e.keyCode === settings.keyCodes.DOWN) {
+                        e.preventDefault();
+                        self.moveToOption(currentSelect, 'down', e.target);
+                    }else if(e.keyCode === settings.keyCodes.UP){
+                        e.preventDefault();
+                        self.moveToOption(currentSelect, 'up', e.target);
+                    }else{
+                        key = String.fromCharCode(e.keyCode).toLowerCase();
+                        keys.push(key);
+                        debounceMethod(e);
+                    }
+                }
+            });
+        },
+
+        /**
+         * Standard Method that runs when any of the Super Selects
+         * are triggered to open.
+         * @param currentSelect jQueryDOM Object of Select
+         */
+        openOptions: function(currentSelect) {
+            var self = this,
+                settings = self.settings,
+                customOptions = self.getCustomOptions(currentSelect),
+                selectedOption = currentSelect.prop('selectedIndex');
+
+            // Add Open Class to the Shiv, Create the Closing Element, and Attach Closing Element Events
+            self.getSelectBox(currentSelect).addClass(settings.classes.openClass)
+                .after('<div class="' + settings.classes.closeClass + '" tabindex="' + (customOptions.length + 1) + '"></div>');
+
+            $.each(customOptions, function(idx, opt){
+                var currentOption = $(opt);
+
+                currentOption.attr('tabindex', idx + 1);
+
+                if(idx === selectedOption) {
+                    currentOption.focus();
+                }
+            });
+
+            self.setKeyObservers(currentSelect);
+            self.setCloseObserver(currentSelect);
+
+            if(currentSelect.attr('onclick') !== ''){
+                currentSelect.trigger('click');
+            }
+        },
+
+        /**
+         * Vertically Centers Element
+         * @param element | jQuery DOM Element you wish to be vertically centered.
+         */
+        verticallyCenterElements: function(element) {
+            var marginTop = $(element).height()/2 * -1;
+
+            $(element).css({
+                'margin-top': marginTop + 'px'
+            });
+        },
+
+        /**
+         * Open Options Method for Overlay Selects
+         * @param currentSelect jQueryDOM Object of Select
+         */
+        openOptionsOverlay: function(currentSelect) {
+            var self = this,
+                optionsBox = self.getOptionsContainer(currentSelect);
+
+            self.verticallyCenterElements(optionsBox);
+            self.openOptions(currentSelect);
+        },
+
+        /**
+         * Open Options Method for Fullscreen Selects
+         * @param currentSelect jQueryDOM Object of Select
+         */
+        openOptionsFullscreen: function(currentSelect) {
+            var self = this,
+                optionsList = self.getSelectBox(currentSelect).find(self.formatClass('optionsContainerClass') + ' ul');
+
+            self.verticallyCenterElements(optionsList);
+            self.openOptions(currentSelect);
+        },
+
+        /**
+         * Open Options Method for Fullthumb Selects
+         * @param currentSelect jQueryDOM Object of Select
+         */
+        openOptionsFullthumb: function(currentSelect) {
+            var self = this,
+                settings = self.settings,
+                customOptions = self.getCustomOptions(currentSelect),
+                selectedOption = currentSelect.prop('selectedIndex');
+
+            // Add Open Class to the Shiv, Create the Closing Element, and Attach Closing Element Events
+            self.getSelectBox(currentSelect)
+                .addClass(settings.classes.openClass)
+                .addClass(settings.classes.setupClass)
+                .after('<div class="' + settings.classes.closeClass + '" tabindex="' + (customOptions.length + 1) + '"></div>');
+
+            $.each(customOptions, function(idx, opt){
+                var currentOption = $(opt);
+
+                currentOption.attr('tabindex', idx + 1);
+                if(idx === selectedOption) {
+                    currentOption.focus();
+                }
+            });
+
+            if(currentSelect.hasClass(settings.classes.hideFirstClass)) {
+                customOptions.first().hide();
+                $.each(customOptions, function(idx, opt){
+                   if(selectedOption === 0 && idx === (customOptions.first().attr('tabindex') + 1)) {
+                       $(opt).focus();
+                   }
+                });
+            }
+
+            self.setKeyObservers(currentSelect);
+            self.setCloseObserver(currentSelect);
+
+            if(currentSelect.attr('onclick') !== ''){
+                currentSelect.trigger('click');
+            }
+        },
+
+        /**
+         * Open Options Method for Search Selects
+         * @param currentSelect jQueryDOM Object of Select
+         */
+        openOptionsSearch: function(currentSelect) {
+            var self = this,
+                settings = self.settings,
+                customOptions = self.getCustomOptions(currentSelect),
+                searchField = self.getSelectBox(currentSelect).find(self.formatClass('searchFieldClass'));
+
+            // Add Open Class to the Shiv, Create the Closing Element, and Attach Closing Element Events
+            self.getSelectBox(currentSelect).addClass(settings.classes.openClass)
+                .after('<div class="' + settings.classes.closeClass + '" tabindex="' + (customOptions.length + 1) + '"></div>');
+
+            searchField.focus();
+
+            self.setKeyboardObserversSearch(currentSelect);
+            self.setCloseObserver(currentSelect);
+
+            if(currentSelect.attr('onclick') !== ''){
+                currentSelect.trigger('click');
+            }
+        },
+
+        /**
+         * Close Options Method for All Selects
+         * @param currentSelect jQueryDOM Object of Select
+         */
+        setCloseObserver: function(currentSelect) {
+            var self = this,
+                settings = self.settings,
+                customOptions,
+                closeElement = currentSelect.siblings(self.formatClass('closeClass'));
+
+            closeElement.on('click', function(){
+               self.getSelectBox(currentSelect)
+                   .find(self.formatClass('shivClass'))
+                   .trigger('click');
+
+                customOptions = self.getCustomOptions(currentSelect);
+
+                $.each(customOptions, function(idx, opt){
+                    $(opt).attr('tabindex','-1');
+                });
+
+                currentSelect.focus().trigger('custom:blur');
+                $(document).off('keydown');
+            });
+
+            // Trigger Close Event when on Close Element
+            $(document).on('keydown', function(e){
+                if(closeElement.length >= 0 && $(e.target).context === closeElement[0]) {
+                    if(e.keyCode === settings.keyCodes.SPACE || e.keyCode == settings.keyCodes.ENTER) {
+                        e.preventDefault();
+                        closeElement.trigger('click');
+                    }
+                }
+            });
+
+            currentSelect.on('blur', function(){
+                closeElement.trigger('click');
+            });
+        },
+
+        /**
+         * Default Method that sets Observers on Super Select Options
+         * @param currentSelect jQueryDOM Object of Select
+         */
+        setOptionObservers: function(currentSelect) {
+            var self = this,
+                customOptions = self.getCustomOptions(currentSelect);
+
+            $.each(customOptions, function(optionIndex, opt){
+                var currentOption = $(opt);
+                currentOption.on('click', function(){
+                    currentSelect.data('optionselected','true');
+                    customOptions.removeClass('selected');
+                    currentOption.addClass('selected');
+                    currentSelect.prop('selectedIndex',optionIndex);
+                    currentSelect[0].triggerEvent('change');
+                    $(document).off('keydown');
                 });
             });
         },
 
         /**
-         * Removes Super Select DOM Elements for Black Listed Selects
+         * Move to the next or previous option.
+         * @param currentSelect jQueryDOM Object of Select
+         * @param direction string based on arrow key pressed.
          */
-        unsetSuperSelect: function(el) {
-            $(el).removeClass('ba-select-input');
-            $(el).parent().find('.ba-select').remove();
-        }
+        moveToOption: function(currentSelect, direction, target) {
+            var self = this,
+                selectedOption = $(target),
+                customOptions = self.getCustomOptions(currentSelect),
+                newOption;
+
+                if(direction === 'down') {
+                    if((selectedOption.attr('tabindex')*1) === customOptions.length) {
+                        newOption = selectedOption.parent().find('li').first();
+                    }else{
+                        newOption = selectedOption.next();
+                    }
+                }else{
+                    if((selectedOption.attr('tabindex') - 1) === 0) {
+                        newOption = selectedOption.parent().find('li').last();
+                    }else{
+                        newOption = selectedOption.prev();
+                    }
+                }
+
+                newOption.focus();
+        },
+
+        /**
+         * Helper to Easily get Current Select's Parent
+         * @param currentSelect jQueryDOM Object of Select
+         * @returns Object jQuery DOM Object of Current Super Select's Parent
+         */
+        getParentContainer: function(currentSelect) {
+            var self = this;
+
+            return currentSelect.parent(self.formatClass('containerClass'));
+        },
+
+        /**
+         * Helper to Easily get Current Select's Box Container
+         * @param currentSelect jQueryDOM Object of Select
+         * @returns Object jQuery DOM Object of Current Super Select's Box Container
+         */
+        getSelectBox: function(currentSelect) {
+            var self = this;
+
+            return currentSelect.siblings(self.formatClass('boxClass'));
+        },
+
+        /**
+         * Helper to Easily get Current Select's Options Container
+         * @param currentSelect jQueryDOM Object of Select
+         * @returns Object jQuery DOM Object of Current Super Select's Options Container
+         */
+        getOptionsContainer: function(currentSelect) {
+            var self = this;
+
+            return self.getSelectBox(currentSelect).find(self.formatClass('optionsContainerClass'));
+        },
+
+        /**
+         * Returns Custom Options of current Super Select
+         * @param currentSelect jQuery DOM Object of Select
+         * @returns Object jQuery DOM Object of Current Super Selects Children
+         */
+        getCustomOptions: function(currentSelect) {
+            var self = this,
+                selectBox = self.getSelectBox(currentSelect),
+                customOptions = selectBox
+                    .find(self.formatClass('optionsContainerClass') + ' ul')
+                    .children();
+
+            return customOptions;
+        },
+
+        /**
+         * Returns the Camel Case Name of the current select type.
+         * Used for dynamically calling methods based on the select
+         * type.
+         * @param currentSelect jQuery DOM Object of Select
+         * @returns {*|String} Name of current select type in Camel Case.
+         */
+        getDynamicSelectName: function(currentSelect) {
+            var self = this;
+            return ba.camelCaseCreator(self.getSelectType(currentSelect));
+        },
+
+        /**
+         * Converts Class into css selector.
+         * @param classString setting value you wish to convert to css selector.
+         * @returns {string} css selector.
+         */
+        formatClass: function(classString) {
+            return '.' + this.settings.classes[classString];
+        },
     };
 
-    $(document).on("baCoreReady", function() {
+})(jQuery);
 
-        /**
-         * The parameter object is optional.
-         * Must be an object.
-         */
-        ba.SuperSelects = new SuperSelects({
-             "enabled": mageConfig["styleguide/superselects/enable_superselects"] > 0 ? true : false
-        });
+ba.moduleLoader.define('SuperSelectsCore', ['jQuery'], function($) {
+    return SuperSelectsCore;
+});
 
+ba.moduleLoader.define('SuperSelects', ['jQuery', 'SuperSelectsCore'], function($, SuperSelectsCore){
+    return new SuperSelectsCore({
+        'moduleName': 'SuperSelects'
     });
-
-})(jQuery, ba);
+});

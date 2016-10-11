@@ -6,6 +6,27 @@
         <ul class="form-list">
             <li class="fields">
                 <div class="field">
+                    <label for="custom-select" class="required"><em>*</em>Custom Select</label>
+                    <div class="input-box">
+                        <select id="custom-select" name="custom-select" title="Custom Select" class="validate-select required-entry">
+                            <option value="">Would you like to know more?</option>
+                            <option value="1">Yes</option>
+                            <option value="3">The only good bug, is a dead bug.</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="custom-select" class="required"><em>*</em>Custom Select - Validation Error</label>
+                    <div class="input-box validation-error">
+                        <select id="custom-select" name="custom-select" title="Custom Select" class="validate-select required-entry validation-failed">
+                            <option value="">Would you like to know more?</option>
+                            <option value="1">Yes</option>
+                            <option value="3">The only good bug, is a dead bug.</option>
+                        </select>
+                        <div class="validation-advice">Please select an option.</div>
+                    </div>
+                </div>
+                <div class="field">
                     <label for="custom-select" class="required"><em>*</em>Thumbnail Select</label>
                     <div class="input-box">
                         <select id="custom-select" name="custom-select" title="Custom Select" class="validate-select required-entry ba-thumbnail">
@@ -27,43 +48,6 @@
                         </select>
                     </div>
                 </div>
-                <div class="field">
-                    <label for="custom-select" class="required"><em>*</em>Custom Select - Validation Error</label>
-                    <div class="input-box validation-error">
-                        <select id="custom-select" name="custom-select" title="Custom Select" class="validate-select required-entry validation-failed">
-                            <option value="">Would you like to know more?</option>
-                            <option value="1">Yes</option>
-                            <option value="3">The only good bug, is a dead bug.</option>
-                        </select>
-                        <div class="validation-advice">Please select an option.</div>
-                    </div>
-                </div>
-            </li>
-            <li class="fields">
-                <div class="field">
-                    <label for="">Custom Select - Right</label>
-                    <div class="input-box">
-                        <select name="custom-select-right" class="ba-right" id="custom-select-right">
-                            <option value="1">Select Magento Version</option>
-                            <option value="2">Enterprise Edition 1.13</option>
-                            <option value="3">Community Edition 1.8</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="field">
-                    <label for="">Custom Select - Left</label>
-                    <div class="input-box">
-                        <select name="custom-select-left" id="custom-select-left" class="ba-left">
-                            <option value="1" selected>Select Magento Version</option>
-                            <option value="2">Enterprise Edition 1.13</option>
-                            <option value="3">Community Edition 1.8</option>
-                            <option value="2">Enterprise Edition 1.14</option>
-                            <option value="3">Community Edition 1.9</option>
-                        </select>
-                    </div>
-                </div>
-            </li>
-            <li class="fields">
                 <div class="field">
                     <label for="">Custom Select - Under</label>
                     <div class="input-box">
@@ -101,9 +85,22 @@
                     </div>
                 </div>
                 <div class="field">
+                    <label for="">Custom Select - Short Buttons</label>
+                    <div class="input-box">
+                        <select name="custom-select-shortbuttons" id="custom-select-shortbuttons" class="ba-shortbuttons">
+                            <option value="1" selected>Pen</option>
+                            <option value="2">Apple</option>
+                            <option value="3">Apple-Pen</option>
+                            <option value="3">Pineapple</option>
+                            <option value="2">Pineapple-Pen</option>
+                            <option value="2">Pineapple-Apple-Pen</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="field">
                     <label for="custom-select" class="required"><em>*</em>Fullscreen Thumbnail Select</label>
                     <div class="input-box">
-                        <select id="custom-select" name="custom-select" title="Custom Select" class="validate-select required-entry ba-fullthumb">
+                        <select id="custom-select" name="custom-select" title="Custom Select" class="validate-select required-entry ba-fullthumb hide-first">
                             <option value="" data-color="#fff">Pick Your Favorite Color</option>
                             <option value="1" data-color="#4A90E2">Leonardo</option>
                             <option value="2" data-color="#F5A623">Michelangelo</option>
@@ -119,6 +116,89 @@
                             <option value="12" data-color="#933123">Beabop</option>
                             <option value="13" data-color="#9B9B9B">Rocksteady</option>
                             <option value="14" data-color="#14B97F">Leatherhead</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="custom-select" class="required"><em>*</em>Search Select</label>
+                    <div class="input-box">
+                        <select id="billing:region_id" name="billing[region_id]" title="State/Province" class="validate-select required-entry ba-search" defaultvalue="">
+                            <option value="">Please select region, state or province</option>
+                            <option value="1">Alabama</option>
+                            <option value="2">Alaska</option>
+                            <option value="3">American Samoa</option>
+                            <option value="4">Arizona</option>
+                            <option value="5">Arkansas</option>
+                            <option value="6">Armed Forces Africa</option>
+                            <option value="7">Armed Forces Americas</option>
+                            <option value="8">Armed Forces Canada</option>
+                            <option value="9">Armed Forces Europe</option>
+                            <option value="10">Armed Forces Middle East</option>
+                            <option value="11">Armed Forces Pacific</option>
+                            <option value="12">California</option>
+                            <option value="13">Colorado</option>
+                            <option value="14">Connecticut</option>
+                            <option value="15">Delaware</option>
+                            <option value="16">District of Columbia</option>
+                            <option value="17">Federated States Of Micronesia</option>
+                            <option value="18">Florida</option>
+                            <option value="19">Georgia</option>
+                            <option value="20">Guam</option>
+                            <option value="21">Hawaii</option>
+                            <option value="22">Idaho</option>
+                            <option value="23">Illinois</option>
+                            <option value="24">Indiana</option>
+                            <option value="25">Iowa</option>
+                            <option value="26">Kansas</option>
+                            <option value="27">Kentucky</option>
+                            <option value="28">Louisiana</option>
+                            <option value="29">Maine</option>
+                            <option value="30">Marshall Islands</option>
+                            <option value="31">Maryland</option>
+                            <option value="32">Massachusetts</option>
+                            <option value="33">Michigan</option>
+                            <option value="34">Minnesota</option>
+                            <option value="35">Mississippi</option>
+                            <option value="36">Missouri</option>
+                            <option value="37">Montana</option>
+                            <option value="38">Nebraska</option>
+                            <option value="39">Nevada</option>
+                            <option value="40">New Hampshire</option>
+                            <option value="41">New Jersey</option>
+                            <option value="42">New Mexico</option>
+                            <option value="43">New York</option>
+                            <option value="44">North Carolina</option>
+                            <option value="45">North Dakota</option>
+                            <option value="46">Northern Mariana Islands</option>
+                            <option value="47">Ohio</option>
+                            <option value="48">Oklahoma</option>
+                            <option value="49">Oregon</option>
+                            <option value="50">Palau</option>
+                            <option value="51">Pennsylvania</option>
+                            <option value="52">Puerto Rico</option>
+                            <option value="53">Rhode Island</option>
+                            <option value="54">South Carolina</option>
+                            <option value="55">South Dakota</option>
+                            <option value="56">Tennessee</option>
+                            <option value="57">Texas</option>
+                            <option value="58">Utah</option>
+                            <option value="59">Vermont</option>
+                            <option value="60">Virgin Islands</option>
+                            <option value="61">Virginia</option>
+                            <option value="62">Washington</option>
+                            <option value="63">West Virginia</option>
+                            <option value="64">Wisconsin</option>
+                            <option value="65">Wyoming</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="custom-select" class="required"><em>*</em>Small Select</label>
+                    <div class="input-box">
+                        <select title="Sort By" class="sm ba-select-input">
+                            <option value="Position" selected="selected">Position</option>
+                            <option value="Name">Name</option>
+                            <option value="Price">Price</option>
                         </select>
                     </div>
                 </div>
@@ -151,90 +231,6 @@
                         <option value="2">Sky Corrigan.</option>
                         <option value="3">Steve Butabi.</option>
                     </select>
-                </div>
-            </li>
-            <li class="fields">
-                <div class="field">
-                    <label for="custom-select" class="required"><em>*</em>Thumbnail Select - Validation Error</label>
-                    <div class="input-box validation-error">
-                        <select id="custom-select" name="custom-select" title="Custom Select" class="validate-select required-entry ba-thumbnail">
-                            <option value="" data-image="<?php echo $this->getSkinUrl('images/blueacorn/super-selects/sample/logo.png') ?>">Please select a Ninja Turtle, or Character</option>
-                            <option value="1" data-image="<?php echo $this->getSkinUrl('images/blueacorn/super-selects/sample/leo.png') ?>">Leonardo</option>
-                            <option value="2" data-image="<?php echo $this->getSkinUrl('images/blueacorn/super-selects/sample/mike.png') ?>">Michelangelo</option>
-                            <option value="3" data-image="<?php echo $this->getSkinUrl('images/blueacorn/super-selects/sample/don.png') ?>">Donatello</option>
-                            <option value="999" data-image="<?php echo $this->getSkinUrl('images/blueacorn/super-selects/sample/raph.png') ?>">Raphael</option>
-                            <option value="4" data-image="<?php echo $this->getSkinUrl('images/blueacorn/super-selects/sample/splinter.png') ?>">Splinter</option>
-                            <option value="5" data-image="<?php echo $this->getSkinUrl('images/blueacorn/super-selects/sample/april.png') ?>">April O'Neil</option>
-                            <option value="6" data-image="<?php echo $this->getSkinUrl('images/blueacorn/super-selects/sample/cj.png') ?>">Casey Jones</option>
-                            <option value="7" data-image="<?php echo $this->getSkinUrl('images/blueacorn/super-selects/sample/shredder.png') ?>">Shredder</option>
-                            <option value="8" data-image="<?php echo $this->getSkinUrl('images/blueacorn/super-selects/sample/karai.png') ?>">Karai</option>
-                            <option value="10" data-image="<?php echo $this->getSkinUrl('images/blueacorn/super-selects/sample/baxter-stockman.png') ?>">Baxter</option>
-                            <option value="11" data-image="<?php echo $this->getSkinUrl('images/blueacorn/super-selects/sample/krang.png') ?>">Krang</option>
-                            <option value="12" data-image="<?php echo $this->getSkinUrl('images/blueacorn/super-selects/sample/beabop.png') ?>">Beabop</option>
-                            <option value="13" data-image="<?php echo $this->getSkinUrl('images/blueacorn/super-selects/sample/rocksteady.png') ?>">Rocksteady</option>
-                            <option value="14" data-image="<?php echo $this->getSkinUrl('images/blueacorn/super-selects/sample/leatherhead.png') ?>">Leatherhead</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="field">
-                    <label for="">Custom Select - Left - Validation Error</label>
-                    <div class="input-box validation-error">
-                        <select name="custom-select-left" id="custom-select-left" class="ba-left">
-                            <option value="1" selected>Select Magento Version</option>
-                            <option value="2">Enterprise Edition 1.13</option>
-                            <option value="3">Community Edition 1.8</option>
-                            <option value="2">Enterprise Edition 1.14</option>
-                            <option value="3">Community Edition 1.9</option>
-                        </select>
-                    </div>
-                </div>
-            </li>
-            <li class="fields">
-                <div class="field">
-                    <label for="">Custom Select - Overlay - Validation Error</label>
-                    <div class="input-box validation-error">
-                        <select name="custom-select-right" class="ba-overlay" id="custom-select-right">
-                            <option value="1">Select Magento Version</option>
-                            <option value="2">Enterprise Edition 1.13</option>
-                            <option value="3">Community Edition 1.8</option>
-                            <option value="2">Enterprise Edition 1.14</option>
-                            <option value="3">Community Edition 1.9</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="field">
-                    <label for="">Custom Select - Fullscreen - Validation Error</label>
-                    <div class="input-box validation-error">
-                        <select name="custom-select-right" class="ba-fullscreen" id="custom-select-right">
-                            <option value="1">Select Magento Version</option>
-                            <option value="2">Enterprise Edition 1.13</option>
-                            <option value="3">Community Edition 1.8</option>
-                            <option value="2">Enterprise Edition 1.14</option>
-                            <option value="3">Community Edition 1.9</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="field validation-error">
-                    <label for="custom-select" class="required"><em>*</em>Fullscreen Thumbnail Select - Validation Error</label>
-                    <div class="input-box">
-                        <select id="custom-select" name="custom-select" title="Custom Select" class="validate-select required-entry ba-fullthumb">
-                            <option value="" data-color="#fff">Pick Your Favorite Color</option>
-                            <option value="1" data-color="#4A90E2">Leonardo</option>
-                            <option value="2" data-color="#F5A623">Michelangelo</option>
-                            <option value="3" data-color="#9013FE">Donatello</option>
-                            <option value="999" data-color="#D0021B">Raphael</option>
-                            <option value="4" data-color="#8B572A">Splinter</option>
-                            <option value="5" data-color="#F8E71C">April O'Neil</option>
-                            <option value="6" data-color="#B8E986">Casey Jones</option>
-                            <option value="7" data-color="#9B9B9B">Shredder</option>
-                            <option value="8" data-color="#003263">Karai</option>
-                            <option value="10" data-color="#B09CBD">Baxter</option>
-                            <option value="11" data-color="#D6A2AA">Krang</option>
-                            <option value="12" data-color="#933123">Beabop</option>
-                            <option value="13" data-color="#9B9B9B">Rocksteady</option>
-                            <option value="14" data-color="#14B97F">Leatherhead</option>
-                        </select>
-                    </div>
                 </div>
             </li>
         </ul>
