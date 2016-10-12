@@ -15,17 +15,14 @@ var themeOptions = {};
 
 _.each(themes, function(theme, name) {
     if(theme.grunt) {
-        themeOptions[name + 'Dev'] = {
-            expand: true,
-            cwd: combo.autopath(name, 'skin') + 'src/',
-            src: ['**/*.{png,jpg,gif}'],
-            dest: combo.autopath(name, 'skin') + 'images/'
-        };
+        themeOptions[name + 'Prepare'] = combo.autopath(name, 'skin') + 'js/build';
     }
 });
 
-var imageminOptions = {
-    options: {}
+var sassOptions = {
+    options: {
+        force: true
+    }
 };
 
-module.exports = _.extend(themeOptions, imageminOptions);
+module.exports = _.extend(themeOptions, sassOptions);
