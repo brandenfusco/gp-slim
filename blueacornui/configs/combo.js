@@ -215,7 +215,7 @@ module.exports = {
                 });
 
                 tasks = preTasks.concat(midTasks, postTasks);
-                
+
                 return tasks;
     }
 };
