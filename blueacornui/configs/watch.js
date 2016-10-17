@@ -1,6 +1,6 @@
 /**
 * @package     BlueAcorn/GreenPistachio
-* @version     4.4.0
+* @version     4.5.0
 * @author      Blue Acorn, Inc. <code@blueacorn.com>
 * @copyright   Copyright © 2016 Blue Acorn, Inc.
 */
@@ -40,10 +40,8 @@ _.each(themes, function(theme, name) {
         };
 
         themeOptions[name + 'Js'] = {
-            files: [
-                combo.autopath(name, 'skin') + 'js/**/*.js'
-            ],
-            tasks: ['jshint:' + name, 'uglify:' + name + 'Dev']
+            files: combo.themeFallbackJs(name),
+            tasks: combo.themeTasksJs(name)
         };
 
         themeOptions[name + 'Livereload'] = {

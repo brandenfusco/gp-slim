@@ -5,10 +5,18 @@
 * @copyright   Copyright © 2016 Blue Acorn, Inc.
 */
 
+/*
 'use strict';
 
 module.exports = {
-    defaultTheme: 'site',
-    defaultPackage: 'blueacorn',
-    webroot: '../webroot/'
+    grunt: true,
+    name: 'blueacorn/default',
+    area: 'frontend',
+    files: [
+        'blueacorn-example'
+    ],
+    jsdirs: [
+        'blueacorn'
+    ]
 };
+*/
