@@ -122,6 +122,15 @@ function BlueAcornCore(options) {
         camelCaseCreator: function(stringText){
             return stringText.charAt(0).toUpperCase() + stringText.slice(1);
         },
+
+        /**
+         * Converts Class into css selector.
+         * @param classString setting value you wish to convert to css selector.
+         * @returns {string} css selector.
+         */
+        formatClass: function(classString) {
+            return '.' + this.settings.classes[classString];
+        }
     };
 
     /**

@@ -117,7 +117,7 @@ function SuperSelectsCore(options) {
                     dynamicSelectOption,
                     dynamicCreateSuperSelectElement;
 
-                if(currentSelect.siblings(self.formatClass('boxClass')).length > 0) {
+                if(currentSelect.siblings(ba.formatClass('boxClass')).length > 0) {
                     self.updateSuperSelectsShiv(currentSelect);
                     return;
                 }
@@ -486,12 +486,12 @@ function SuperSelectsCore(options) {
 
             html += '<span class="' + settings.classes.shivContentClass + '">' + self.formatShivContent(currentSelect.optionsArray[selectedOption].content) + '</span>';
 
-            self.getSelectBox(currentSelect).find(self.formatClass('shivClass')).html(html + ' <span class="' + settings.classes.arrowClass + '"></span>');
+            self.getSelectBox(currentSelect).find(ba.formatClass('shivClass')).html(html + ' <span class="' + settings.classes.arrowClass + '"></span>');
 
             if(currentSelect.css('display') === 'none'){
-                currentSelect.siblings(self.formatClass('selectClass')).css('display','none');
+                currentSelect.siblings(ba.formatClass('selectClass')).css('display','none');
             }else{
-                currentSelect.siblings(self.formatClass('selectClass')).css('display','');
+                currentSelect.siblings(ba.formatClass('selectClass')).css('display','');
             }
 
             if(currentSelect.prop('disabled')){
@@ -543,7 +543,7 @@ function SuperSelectsCore(options) {
 
             // Remove the Open Class from the Shiv, and Remove the Closing Element from the DOM.
             self.getSelectBox(currentSelect).removeClass(settings.classes.openClass);
-            currentSelect.siblings(self.formatClass('closeClass')).remove();
+            currentSelect.siblings(ba.formatClass('closeClass')).remove();
         },
 
         /**
@@ -627,7 +627,7 @@ function SuperSelectsCore(options) {
         setClickObserver: function(currentSelect) {
             var self = this,
                 settings = self.settings,
-                selectShiv = self.getSelectBox(currentSelect).find(self.formatClass('shivClass')),
+                selectShiv = self.getSelectBox(currentSelect).find(ba.formatClass('shivClass')),
                 dynamicOpenOptions = 'openOptions' + self.getDynamicSelectName(currentSelect),
                 dynamicCloseOptions = 'closeOptions' + self.getDynamicSelectName(currentSelect);
 
@@ -755,7 +755,7 @@ function SuperSelectsCore(options) {
                     keys = [];
                 }, 100),
                 searchFieldMethod = ba.debounce(function (e) {
-                    var currentSearch = self.getSelectBox(currentSelect).find(self.formatClass('searchFieldClass')),
+                    var currentSearch = self.getSelectBox(currentSelect).find(ba.formatClass('searchFieldClass')),
                         customOptions = self.getCustomOptions(currentSelect);
                     if(currentSearch.val() !== '') {
                         $.each(currentSelect.optionsArray, function(idx, opt){
@@ -860,7 +860,7 @@ function SuperSelectsCore(options) {
          */
         openOptionsFullscreen: function(currentSelect) {
             var self = this,
-                optionsList = self.getSelectBox(currentSelect).find(self.formatClass('optionsContainerClass') + ' ul');
+                optionsList = self.getSelectBox(currentSelect).find(ba.formatClass('optionsContainerClass') + ' ul');
 
             self.verticallyCenterElements(optionsList);
             self.openOptions(currentSelect);
@@ -916,7 +916,7 @@ function SuperSelectsCore(options) {
             var self = this,
                 settings = self.settings,
                 customOptions = self.getCustomOptions(currentSelect),
-                searchField = self.getSelectBox(currentSelect).find(self.formatClass('searchFieldClass'));
+                searchField = self.getSelectBox(currentSelect).find(ba.formatClass('searchFieldClass'));
 
             // Add Open Class to the Shiv, Create the Closing Element, and Attach Closing Element Events
             self.getSelectBox(currentSelect).addClass(settings.classes.openClass)
@@ -940,11 +940,11 @@ function SuperSelectsCore(options) {
             var self = this,
                 settings = self.settings,
                 customOptions,
-                closeElement = currentSelect.siblings(self.formatClass('closeClass'));
+                closeElement = currentSelect.siblings(ba.formatClass('closeClass'));
 
             closeElement.on('click', function(){
                self.getSelectBox(currentSelect)
-                   .find(self.formatClass('shivClass'))
+                   .find(ba.formatClass('shivClass'))
                    .trigger('click');
 
                 customOptions = self.getCustomOptions(currentSelect);
@@ -1029,7 +1029,7 @@ function SuperSelectsCore(options) {
         getParentContainer: function(currentSelect) {
             var self = this;
 
-            return currentSelect.parent(self.formatClass('containerClass'));
+            return currentSelect.parent(ba.formatClass('containerClass'));
         },
 
         /**
@@ -1040,7 +1040,7 @@ function SuperSelectsCore(options) {
         getSelectBox: function(currentSelect) {
             var self = this;
 
-            return currentSelect.siblings(self.formatClass('boxClass'));
+            return currentSelect.siblings(ba.formatClass('boxClass'));
         },
 
         /**
@@ -1051,7 +1051,7 @@ function SuperSelectsCore(options) {
         getOptionsContainer: function(currentSelect) {
             var self = this;
 
-            return self.getSelectBox(currentSelect).find(self.formatClass('optionsContainerClass'));
+            return self.getSelectBox(currentSelect).find(ba.formatClass('optionsContainerClass'));
         },
 
         /**
@@ -1063,7 +1063,7 @@ function SuperSelectsCore(options) {
             var self = this,
                 selectBox = self.getSelectBox(currentSelect),
                 customOptions = selectBox
-                    .find(self.formatClass('optionsContainerClass') + ' ul')
+                    .find(ba.formatClass('optionsContainerClass') + ' ul')
                     .children();
 
             return customOptions;
@@ -1079,16 +1079,7 @@ function SuperSelectsCore(options) {
         getDynamicSelectName: function(currentSelect) {
             var self = this;
             return ba.camelCaseCreator(self.getSelectType(currentSelect));
-        },
-
-        /**
-         * Converts Class into css selector.
-         * @param classString setting value you wish to convert to css selector.
-         * @returns {string} css selector.
-         */
-        formatClass: function(classString) {
-            return '.' + this.settings.classes[classString];
-        },
+        }
     };
 
 })(jQuery);
