@@ -647,6 +647,10 @@ html.touch.resp-mobile, html.touch.resp-tablet {
         height: $select-height-default;
         opacity: 0;
         margin: 0;
+        
+        &.ba-shortbuttons {
+            left: -999em;
+        }
     }
 }
 
