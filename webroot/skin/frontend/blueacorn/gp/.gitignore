@@ -4,6 +4,7 @@
 /.sass-cache
 /css
 /jsmin
+/js/build
 
 # ignore development map files
 *.css.map
