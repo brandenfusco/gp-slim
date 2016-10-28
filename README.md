@@ -55,7 +55,8 @@ green-pistachio uses [grunt](http://gruntjs.com/) and [bower](http://bower.io/) 
 modman will install a directory named **blueacornui** to your project's root containing the build scripts for your theme.
 
 * ensure you have nodejs and [npm](https://www.npmjs.com/) installed
-* ensure you have grunt-cli and bower installed globally
+* ensure you have [yarn](https://yarnpkg.com/) installed
+* ensure you have [grunt-cli](https://github.com/gruntjs/grunt-cli) and [bower](https://bower.io/) installed globally
 
 **installation (one-time)**
 

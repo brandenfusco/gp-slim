@@ -58,7 +58,7 @@ reset_blueacorn_ui () {
 install_dependancies () {
 
   # Install Node Modules
-  sudo npm install
+  yarn install
 
   # Install Bower Components
   bower install
