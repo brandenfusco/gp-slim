@@ -1,15 +1,6 @@
-[submodule "pistachios/gp-cms-page-style-update"]
-	path = pistachios/gp-cms-page-style-update
-	url = git@github.com:BlueAcornInc/gp-cms-page-style-update.git
 [submodule "pistachios/gp-footer-assets"]
 	path = pistachios/gp-footer-assets
 	url = git@github.com:BlueAcornInc/gp-footer-assets.git
 [submodule "pistachios/ba-magejsconfig"]
 	path = pistachios/ba-magejsconfig
 	url = git@github.com:BlueAcornInc/ba-magejsconfig.git
-[submodule "pistachios/ba-datamock"]
-	path = pistachios/ba-datamock
-	url = git@github.com:BlueAcornInc/ba-datamock.git
-[submodule "pistachios/ba-product-config-js"]
-	path = pistachios/ba-product-config-js
-	url = git@github.com:BlueAcornInc/ba-product-config-js.git
