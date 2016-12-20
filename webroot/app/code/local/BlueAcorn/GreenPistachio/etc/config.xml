@@ -38,11 +38,6 @@
                 </rewrite>
             </page>
         </blocks>
-        <helpers>
-            <blueacorn_greenpistachio>
-                <class>BlueAcorn_GreenPistachio_Helper</class>
-            </blueacorn_greenpistachio>
-        </helpers>
         <resources>
             <blueacorn_greenpistachio_setup>
                 <setup>
